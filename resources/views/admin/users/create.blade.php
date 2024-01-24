@@ -40,33 +40,23 @@
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="row">
-                                        <div class="form-group col-md-6">
-                                            <label for="pass">Mật khẩu:</label>
-                                            <input type="password" class="form-control" name="password"
-                                                placeholder="Mật khẩu">
-                                            @error('password')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
                                     <div class="form-group col-md-6">
-                                        <label for="rpass">Xác nhận Mật khẩu:</label>
-                                        <input type="password" class="form-control" id="repeatpassword"
-                                            placeholder="Xác nhận Mật khẩu ">
-                                        @error('repeatpassword')
+                                        <label for="phone">Số điện thoại:</label>
+                                        <input type="number" class="form-control" name="phone"
+                                            placeholder="Số điện thoại">
+                                        @error('phone')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    {{-- <div class="form-group col-md-6">
-                                    <label for="name">Hình ảnh:</label>
-                                    <input type="file" class="form-control" name="profile_photo">
-                                    @error('profile_photo')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div> --}}
                                     <div class="form-group col-md-6">
-                                        <label for="gender">Giới tính:</label>
+                                        <label for="pass">Mật khẩu:</label>
+                                        <input type="password" class="form-control" name="password" placeholder="Mật khẩu">
+                                        @error('password')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="gender">Giới tính:</label><br>
                                         <input type="radio" name="gender">
                                         <label for="gender_nam">Nam</label>
                                         <input type="radio" name="gender">
@@ -78,10 +68,10 @@
                                         @enderror
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="phone">Số điện thoại:</label>
-                                        <input type="text" class="form-control" name="phone"
-                                            placeholder="Số điện thoại">
-                                        @error('phone')
+                                        <label for="rpass">Xác nhận Mật khẩu:</label>
+                                        <input type="password" class="form-control" id="repeatpassword"
+                                            placeholder="Xác nhận Mật khẩu ">
+                                        @error('repeatpassword')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>

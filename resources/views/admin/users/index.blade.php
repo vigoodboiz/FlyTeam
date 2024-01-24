@@ -10,14 +10,14 @@
                         <h4 class="mb-3">Danh sách người dùng</h4>
                     </div>
                     <div>
-                        @can('user_delete')
-                            <a href="#" id="deleteAllUserSelected" class="btn btn-danger add-list"><i
-                                    class="las la-trash"></i>Xóa lựa chọn</a>
-                        @endcan
-                        @can('user_create')
-                            <a href="{{ route('users.create') }}" class="btn btn-primary add-list"><i
-                                    class="las la-plus mr-3"></i>Thêm người dùng</a>
-                        @endcan
+                        {{-- @can('user_delete') --}}
+                        <a href="#" id="deleteAllUserSelected" class="btn btn-danger add-list"><i
+                                class="las la-trash"></i>Xóa lựa chọn</a>
+                        {{-- @endcan
+                        @can('user_create') --}}
+                        <a href="{{ route('users.create') }}" class="btn btn-primary add-list"><i
+                                class="las la-plus mr-3"></i>Thêm người dùng</a>
+                        {{-- @endcan --}}
                     </div>
                 </div>
             </div>
@@ -58,37 +58,35 @@
                                     <td>{{ $item->user_code }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
-                                    {{-- <td>
-                            <img src="{{ $item->getFirstMediaUrl('users') }}" width="120" alt="{{ $item->name }}">
-                        </td> --}}
                                     <td>{{ $item->gender }}</td>
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $item->birthday }}</td>
-                                    <td>
+                                    {{-- <td>
                                         @foreach ($item->roles as $role)
                                             <span class="bg-warning">{{ $role->title }}</span>
                                         @endforeach
-                                    </td>
+                                    </td> --}}
                                     <td>
                                         <div class="d-flex align-items-center list-action">
                                             @can('user_show')
-                                                <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top"
-                                                    title="Xem chi tiết" data-original-title="View"
-                                                    href="{{ route('users.show', ['user' => $item->id]) }}"><i
-                                                        class="fa fa-eye mr-0"></i>SHOW</a>
+                                                <button class="btn btn-success"><a data-toggle="tooltip" data-placement="top"
+                                                        title="Xem chi tiết" data-original-title="View"
+                                                        href="{{ route('users.show', ['user' => $item->id]) }}"><i
+                                                            class="fa fa-eye mr-0"></i>SHOW</a></button>
                                             @endcan
                                             @can('user_edit')
-                                                <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top"
-                                                    title="Cập nhật" data-original-title="Edit"
-                                                    href="{{ route('users.edit', ['user' => $item->id]) }}"><i
-                                                        class="fa fa-pen mr-0"></i>EDIT</a>
+                                                <button class="btn btn-warning"> <a data-toggle="tooltip" data-placement="top"
+                                                        title="Cập nhật" data-original-title="Edit"
+                                                        href="{{ route('users.edit', ['user' => $item->id]) }}"><i
+                                                            class="fa fa-pen mr-0"></i>EDIT</a></button>
                                             @endcan
                                             @can('user_delete')
                                                 <form action="{{ route('users.destroy', ['user' => $item->id]) }}"
                                                     method="POST" id="cateForm{{ $item->id }}">
                                                     @csrf
                                                     @method('delete')
-                                                    <button class="btn btn-danger" type="submit"><i
+                                                    <button class="btn btn-danger" type="submit"
+                                                        onclick="return confirm('Có chắc xóa không?')"><i
                                                             class="fa fa-trash-alt mr-0"></i>DELETE</button>
                                                 </form>
                                             @endcan

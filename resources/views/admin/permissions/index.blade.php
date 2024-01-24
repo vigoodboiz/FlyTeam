@@ -67,7 +67,8 @@
                                                 method="POST" id="cateForm{{ $item->id }}">
                                                 @csrf
                                                 @method('delete')
-                                                <button class="btn btn-danger" type="submit"><i
+                                                <button class="btn btn-danger" type="submit"
+                                                    onclick="return confirm('Có chắc xóa không?')"><i
                                                         class="fa fa-trash-alt mr-0"></i>DELETE</button>
                                             </form>
                                             {{-- @endcan --}}
