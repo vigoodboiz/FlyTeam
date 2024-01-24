@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
 
-class UpdatePermissionRequest extends FormRequest
+class StoreUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,7 +15,7 @@ class UpdatePermissionRequest extends FormRequest
      */
     public function authorize()
     {
-        // abort_if(Gate::denies('permission_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        // abort_if(Gate::denies('role_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return true;
     }
@@ -25,7 +25,7 @@ class UpdatePermissionRequest extends FormRequest
      *
      * @return array
      */
-    public function permissions()
+    public function users()
     {
         return [
             'title' => [
@@ -38,7 +38,7 @@ class UpdatePermissionRequest extends FormRequest
     {
         return [
             'title' => [
-                'required' => 'Tên quyền truy cập không được trống'
+                'required' => 'Tên vai trò không được trống'
             ]
         ];
     }

@@ -3,6 +3,11 @@
 @section('title', 'Thêm quyền truy cập')
 
 @section('content')
+    @if (\Session::has('msg'))
+        <div class="alert alert-success">
+            {{ \Session::get('msg') }}
+        </div>
+    @endif
     <div class="container-fluid add-form-list">
         <div class="row">
             <div class="col-sm-12">
