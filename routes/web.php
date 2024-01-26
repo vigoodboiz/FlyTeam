@@ -4,7 +4,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PermissionController;
-use App\Http\Controllers\Admin\RoleController; 
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -47,7 +48,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::delete('roles/massDestroy', [RoleController::class, 'massDestroy']);
     Route::resource('roles', RoleController::class);
 
-    //Users 
+    //Users
     Route::delete('users/massDestroy', [UserController::class, 'massDestroy']);
     Route::resource('users', UserController::class);
 });
@@ -57,3 +58,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/users', [UserController::class, 'index'])->name('users');
 Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions');
 Route::get('/roles', [RoleController::class, 'index'])->name('roles');
+
+ //Comments
+ Route::get('/getComments',[CommentController::class,'add'])->name('route_comment_index');
+ Route::match(['GET','POST'],'/comment/add',[App\Http\Controllers\CommentController::class,'add'])->name('route_comment_add');
+ Route::match(['GET','POST'],'/comment/update/{id}',[App\Http\Controllers\CommentController::class,'update'])->name('route_comment_update');
+ Route::match(['GET','POST'],'/comment/delete/{id}',[App\Http\Controllers\CommentController::class,'delete'])->name('route_comment_delete');
