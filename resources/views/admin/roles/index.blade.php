@@ -10,14 +10,14 @@
                         <h4 class="mb-3">Danh sách vai trò</h4>
                     </div>
                     <div>
-                        {{-- @can('role_delete') --}}
-                        <a href="#" id="deleteSelectRole" class="btn btn-danger add-list"><i class="las la-trash"></i>Xóa
-                            lựa chọn</a>
-                        {{-- @endcan --}}
-                        {{-- @can('role_create') --}}
-                        <a href="{{ route('roles.create') }}" class="btn btn-primary add-list"><i
-                                class="las la-plus mr-3"></i>Thêm vai trò</a>
-                        {{-- @endcan --}}
+                        @can('role_delete')
+                            <a href="#" id="deleteSelectRole" class="btn btn-danger add-list"><i class="las la-trash"></i>Xóa
+                                lựa chọn</a>
+                        @endcan
+                        @can('role_create')
+                            <a href="{{ route('roles.create') }}" class="btn btn-primary add-list"><i
+                                    class="las la-plus mr-3"></i>Thêm vai trò</a>
+                        @endcan
                     </div>
                 </div>
             </div>
@@ -57,28 +57,28 @@
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center list-action">
-                                            {{-- @can('role_show') --}}
-                                            <button class="btn btn-warning"><a data-toggle="tooltip" data-placement="top"
-                                                    title="Xem chi tiết" data-original-title="View"
-                                                    href="{{ route('roles.show', ['role' => $item->id]) }}"><i
-                                                        class="fa fa-eye mr-0"></i>SHOW</a></button>
-                                            {{-- @endcan --}}
-                                            {{-- @can('role_edit') --}}
-                                            <button class="btn btn-success"><a data-toggle="tooltip" data-placement="top"
-                                                    title="Cập nhật" data-original-title="Edit"
-                                                    href="{{ route('roles.edit', ['role' => $item->id]) }}"><i
-                                                        class="fa fa-pen mr-0"></i>EDIT</a></button>
-                                            {{-- @endcan --}}
-                                            {{-- @can('role_delete') --}}
-                                            <form action="{{ route('roles.destroy', ['role' => $item->id]) }}"
-                                                method="POST">
-                                                @csrf
-                                                @method('delete')
-                                                <button class="btn btn-danger" type="submit"
-                                                    onclick="return confirm('Có chắc xóa không?')"><i
-                                                        class="fa fa-trash mr-0"></i>DELETE</button>
-                                            </form>
-                                            {{-- @endcan --}}
+                                            @can('role_show')
+                                                <button class="btn btn-warning"><a data-toggle="tooltip" data-placement="top"
+                                                        title="Xem chi tiết" data-original-title="View"
+                                                        href="{{ route('roles.show', ['role' => $item->id]) }}"><i
+                                                            class="fa fa-eye mr-0"></i>SHOW</a></button>
+                                            @endcan
+                                            @can('role_edit')
+                                                <button class="btn btn-success"><a data-toggle="tooltip" data-placement="top"
+                                                        title="Cập nhật" data-original-title="Edit"
+                                                        href="{{ route('roles.edit', ['role' => $item->id]) }}"><i
+                                                            class="fa fa-pen mr-0"></i>EDIT</a></button>
+                                            @endcan
+                                            @can('role_delete')
+                                                <form action="{{ route('roles.destroy', ['role' => $item->id]) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button class="btn btn-danger" type="submit"
+                                                        onclick="return confirm('Có chắc xóa không?')"><i
+                                                            class="fa fa-trash mr-0"></i>DELETE</button>
+                                                </form>
+                                            @endcan
                                         </div>
                                     </td>
                                 </tr>
