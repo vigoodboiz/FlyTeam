@@ -21,7 +21,6 @@ class UserController extends Controller
     public function index()
     {
         abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        // $user = User::find($role->id);
         $user = User::all();
 
         return view('admin.users.index', compact('user'));
@@ -95,6 +94,7 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         $user->update($request->all());
+        // $role -> Auth()::role()->id;
         $user->roles()->sync($request->input('roles', []));
         
         // if ($request->hasFile('profile_photo', true)) {
@@ -119,7 +119,7 @@ class UserController extends Controller
         abort_if(Gate::denies('user_delete'), Response::HTTP_FORBIDDEN, '430 Forbidden');
         $user->delete();
 
-        return back();
+        return back()->with('success','User deleted successfully');
     }
 
     public function massDestroy(MassDestroyUserRequest $request) {

@@ -45,14 +45,14 @@
                                 <th>Ngày sinh</th>
                                 <th>{{ $user->birthday }}</th>
                             </tr>
-                            {{-- <tr>
+                            <tr>
                                 <th>Vai trò</th>
                                 <th>
                                     @foreach ($user->roles as $role)
                                         <span class="text-primary">{{ $role->title }}</span>
                                     @endforeach
                                 </th>
-                            </tr> --}}
+                            </tr>
                         </tbody>
                     </table>
                 </div>

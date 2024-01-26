@@ -38,7 +38,7 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="birthday">Ngày sinh:</label>
-                                        <input type="date" class="form-control" value="{{ $user->birthday }}"
+                                        <input type="text" class="form-control" value="{{ $user->birthday }}"
                                             name="birthday" placeholder="Ngày sinh">
                                         @error('birthday')
                                             <div class="alert alert-danger">{{ $message }}</div>
@@ -60,7 +60,7 @@
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    {{-- <div class="form-group col-md-6">
+                                    <div class="form-group col-md-6">
                                         <label for="Role">Vai trò:</label>
                                         <select name="roles[]" class="js-select-2 form-control" multiple>
                                             @foreach ($role as $id => $role)
@@ -69,7 +69,7 @@
                                                     {{ $role }}</option>
                                             @endforeach
                                         </select>
-                                    </div> --}}
+                                    </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Lưu lại</button>
                             </form>
