@@ -19,6 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+///////////////////////// product //////////////////
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 // Route::get('/products/create', [ProductController::class, 'create']);
 Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
