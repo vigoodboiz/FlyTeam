@@ -73,7 +73,12 @@ class MemberController extends Controller
         // Validate dữ liệu đầu vào
         $validatedData = $request->validate([
             'user_id' => 'required|integer',
-            // Thêm các trường khác tương ứng
+            'member_name'=>'required',
+            'incentives'=>'required',
+            'condition'=>'required',
+            'membership_card'=>'required',
+            'total_target' => 'required',
+            'reward_points'=>'required',
         ]);
 
         // Cập nhật thành viên
