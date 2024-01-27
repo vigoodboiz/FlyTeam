@@ -1,0 +1,17 @@
+<!-- resources/views/mylayout.blade.php -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title')</title>
+    <!-- Các tài nguyên CSS, JS, ... có thể được thêm vào đây -->
+</head>
+<body>
+    <div class="container">
+        @yield('content')
+    </div>
+    <!-- Các tài nguyên JS, footer, ... có thể được thêm vào đây -->
+</body>
+</html>
