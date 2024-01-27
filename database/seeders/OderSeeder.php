@@ -14,15 +14,10 @@ class OderSeeder extends Seeder
     public function run(): void
     {
         //
-        $oder = [];
-        for($i=1 ; $i<=5 ; $i++ ){
-            $oder[] = [
-                "user_id"=> 1,
-                "date" => now(),
-                "total" => 123,
-                "address" => "hà nội".$i
-            ];
-        }
-        DB::table('oder')->insert($oder);
+        DB::table('oder')->insert([
+            ['user_id'=>1 , 'date' => now() , 'total'=>123 , 'address'=>'hà nội'],
+            ['user_id'=>2 , 'date' => now() , 'total'=>123 , 'address'=>'hà nội'],
+            ['user_id'=>3 , 'date' => now() , 'total'=>123 , 'address'=>'hà nội'],
+        ]);
     }
 }

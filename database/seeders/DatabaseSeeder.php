@@ -20,7 +20,10 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call([
-            OderSeeder::class
+            OderSeeder::class,
+            oder_status::class,
+            oder_detail::class,
+            delivery_status::class
          ]);
     }
 }
