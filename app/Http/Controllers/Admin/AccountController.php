@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Customer;
 use Illuminate\Http\Request;
 use Mail;
 use Illuminate\Support\Facades\Hash;
@@ -15,7 +14,8 @@ class AccountController extends Controller
         return view('account.login');
     }
     public function check_login() {
-        
+            $this->middleware('guest')->except('logout');
+            return view('/home');
     }
     //register
     public function register() {
@@ -55,14 +55,24 @@ class AccountController extends Controller
             'address.min' => 'Dia chi toi thieu 10 ki tu',
             'address.max' => 'Dia chi toi da 100 ki tu',
         ]);
+        $customer =  Customer::query()->create([
+            'user_code' => $request['name'],
+            'email' => $request['email'],
+            'password' => bcrypt($request['password']),
+            'gender' => $request['gender'],
+            'phone' => $request['phone'],
+            'address' => $request['address'],
+            'role_id' => 3,
+        ]);
+        Auth::login($customer);
+        return redirect(RouteServiceProvider::HOME);
 
-       $data = $request->only('user_code', 'name', 'email', 'gender', 'phone', 'address');
+    //    $data = $request->only('user_code', 'name', 'email', 'gender', 'phone', 'address');
 
-       $data['password'] = bcrypt($request->password);
-      if($acc = Customer::create($data)){
-        Mail::to($acc->email)->send(new VerifyAccount($acc));
-        dd('ok');
-      }
+    //    $data['password'] = bcrypt($request->password);
+    //   if($acc = Customer::create($data)){
+    //     Mail::to($acc->email)->send(new VerifyAccount($acc));
+    //   }
     }
     //change-password
     public function change_password() {

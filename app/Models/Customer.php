@@ -10,7 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class Customer extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -28,6 +28,7 @@ class User extends Authenticatable
         'gender',
         'phone',
         'address',
+        'role_id',
     ];
 
     /**
@@ -49,10 +50,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    // public function roles(): BelongsToMany
-    // {
-    //     return $this->belongsToMany(Role::class);
-    // }
+    public function roles(): BelongsToMany
+    {
+        return $this->belongsToMany(Role::class);
+    }
 
     public function setPasswordAttribute($input)
     {

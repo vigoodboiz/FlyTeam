@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController; 
@@ -34,7 +33,7 @@ Route::get('/', function () {
 // });
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::prefix('admin')->middleware(['auth'])->group(function(){
 
@@ -53,8 +52,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::resource('users', UserController::class);
 
 });
-Auth::routes();
-Route::group(['prefix' => 'account'], function(){
+Route::prefix('account')
+->as('account')
+->group(function(){
     
 //Login
 Route::get('/login', [AccountController::class, 'login'])->name('account.login');
