@@ -33,13 +33,13 @@
                                     </div>
                                 </th>
                                 <th>STT</th>
-                                <th>Mã người dùng</th>
+                                {{-- <th>Mã người dùng</th> --}}
                                 <th>Họ tên</th>
                                 <th>Email</th>
-                                <th>Image</th>
+                                {{-- <th>Image</th>
                                 <th>Gender</th>
                                 <th>Phone</th>
-                                <th>Birthday</th>
+                                <th>Birthday</th> --}}
                                 <th>Vai trò</th>
                                 <th>Hành động</th>
                             </tr>
@@ -55,12 +55,12 @@
                                         </div>
                                     </td>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->user_code }}</td>
+                                    {{-- <td>{{ $item->user_code }}</td> --}}
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
-                                    <td>{{ $item->gender }}</td>
+                                    {{-- <td>{{ $item->gender }}</td>
                                     <td>{{ $item->phone }}</td>
-                                    <td>{{ $item->birthday }}</td>
+                                    <td>{{ $item->birthday }}</td> --}}
                                     <td>
                                         @foreach ($item->roles as $role)
                                             <span class="bg-warning">{{ $role->title }}</span>
