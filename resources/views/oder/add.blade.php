@@ -26,7 +26,7 @@
         <input name="address" type="text" class="form-control" id="formGroupExampleInput" placeholder="address">
     </div><br>
     <button type="submit" class="btn btn-success">ADD</button>
-    
+    <a href="{{route('listOder')}}" class="btn btn-success">LIST</a>
 </form>
  </body>
  </html>

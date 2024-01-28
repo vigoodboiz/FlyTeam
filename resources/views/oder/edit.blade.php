@@ -11,7 +11,7 @@
     @csrf
     <div class="mb-3">
         <label for="formGroupExampleInput" class="form-label">user_id :</label>
-        <input name="user_id" type="text" class="form-control" id="formGroupExampleInput" placeholder="user_id" value="{{$oder->user_id}}">
+        <input name="user_id" type="text" class="form-control" id="formGroupExampleInput" placeholder="user_id" value="{{$oder->user_id}}" readonly>
     </div>
     <div class="mb-3">
         <label for="formGroupExampleInput" class="form-label">date :</label>

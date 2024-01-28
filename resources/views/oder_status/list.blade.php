@@ -14,24 +14,20 @@
         <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">USER_ID</th>
-                <th scope="col">DATE</th>
-                <th scope="col">TOTAL</th>
-                <th scope="col">ADDRESS</th>
+                <th scope="col">ODER_ID</th>
+                <th scope="col">STATUS</th>
                 <th scope="col">OPPTION</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($listOder as $oder)
+            @foreach($listOder_status as $oder)
             <tr>
                 <th scope="row">{{$oder->id}}</th>
-                <td>{{$oder->user_id}}</td>
-                <td>{{$oder->date}}</td>
-                <td>{{$oder->total}}</td>
-                <td>{{$oder->address}}</td>
+                <td>{{$oder->oder_id}}</td>
+                <td>{{$oder->status}}</td>
                 <td>
-                    <a href="{{route('addOder')}}" class="btn btn-success">ADD</a>
-                    <a onclick="confirm('bạn có muốn xóa không?')" href="{{route('deleteoder',['id'=>$oder->id])}}" class="btn btn-danger">DELETE</a>
+                    <a href="{{route('addOder_status')}}" class="btn btn-success">ADD</a>
+                    <a onclick="confirm('bạn có muốn xóa không?')" href="{{route('deleteOder_status',['id'=>$oder->id])}}" class="btn btn-danger">DELETE</a>
 
                 </td>
             </tr>
