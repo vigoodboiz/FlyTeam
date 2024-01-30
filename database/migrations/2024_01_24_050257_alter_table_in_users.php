@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->foreignId('role_id')->constrained();
+            $table->string('user_code')->unique();
+            $table->string('gender')->default('0');
+            $table->string('phone');
+            $table->string('address')->nullable();
         });
     }
 
@@ -23,6 +27,10 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('role_id');
+            $table->dropColumn('user_code');
+            $table->dropColumn('gender');
+            $table->dropColumn('phone');
+            $table->dropColumn('address');
         });
     }
 };

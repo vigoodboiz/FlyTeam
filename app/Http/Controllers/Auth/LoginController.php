@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -25,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -35,5 +37,27 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        Gate::define('admin/dashboard', function ($user) {
+
+                if ($user->role_id == "1" && $user->role_id == '2') {
+          
+                    return view('admin.dashboard');
+          
+                }
+          
+                return false;
+          
+            });
+            Gate::define('view-page-guest', function ($user) {
+
+                if ($user->role_id == "3") {
+          
+                    return true;
+          
+                }
+          
+                return false;
+          
+            });
     }
 }

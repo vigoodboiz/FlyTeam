@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AccountController;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,4 +82,12 @@ Route::post('/forgot-password', [AccountController::class, 'check_forgot_passwor
 Route::get('/reset-password', [AccountController::class, 'reset_password'])->name('account.reset_password');
 Route::post('/reset-password', [AccountController::class, 'check_reset_password']);
 
+});
+//Laravel socialite
+Route::get('/auth/facebook', function(){
+    return Socialite::driver('facebook')->redirect();
+});
+
+Route::get('/auth/facebook/callback', function(){
+    return 'Callback login facebook';
 });

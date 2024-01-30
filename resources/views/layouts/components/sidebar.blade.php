@@ -3,15 +3,19 @@
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a href="index.html"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+                    <a href="{{ route('dashboard') }}"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                 </li>
                 <li class="menu-title">Admin</li><!-- /.menu-title -->
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Danh sách quản lý</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-puzzle-piece"></i><a href="ui-buttons.html">Quản lý người dùng</a></li>
-                        <li><i class="fa fa-id-badge"></i><a href="ui-badges.html">Quản lý khách hàng</a></li>
+                        @can('user_access')
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('users.index') }}">Quản lý người
+                                    dùng</a></li>
+                        @endcan
+                        <li><i class="fa fa-id-badge"></i><a href="">Quản lý khách hàng</a>
+                        </li>
                         <li><i class="fa fa-bars"></i><a href="ui-tabs.html">Quản lý phân quyền</a></li>
 
                         <li><i class="fa fa-id-card-o"></i><a href="ui-cards.html">Quản lý vai trò</a></li>

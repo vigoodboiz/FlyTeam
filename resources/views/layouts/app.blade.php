@@ -84,11 +84,11 @@
     @include('layouts.components.topbar');
     <!-- /#header -->
     <!-- Content -->
-    @yield('content')
+    {{-- @yield('content') --}}
     <!-- /.content -->
     <div class="clearfix"></div>
     <!-- Footer -->
-    @include('layouts.components.footer');
+    {{-- @include('layouts.components.footer'); --}}
     <!-- /.site-footer --
     <!-- /#right-panel -->
 

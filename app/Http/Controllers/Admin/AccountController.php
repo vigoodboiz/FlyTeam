@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Mail;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Gate;
 
 class AccountController extends Controller
 {
@@ -15,7 +17,30 @@ class AccountController extends Controller
     }
     public function check_login() {
             $this->middleware('guest')->except('logout');
-            return view('/home');
+            return view('admin.dashboard');
+            // Gate::define('admin.dashboard', function ($user) {
+
+            //     if ($user->role_id == "1" && $user->role_id == '2') {
+          
+            //         return view('admin.dashboard');
+          
+            //     }
+          
+            //     return false;
+          
+            // });
+            // Gate::define('guest.dashboard', function ($user) {
+
+            //     if ($user->role_id == "3") {
+          
+            //         return true;
+          
+            //     }
+          
+            //     return false;
+          
+            // });
+            
     }
     //register
     public function register() {
@@ -55,21 +80,21 @@ class AccountController extends Controller
             'address.min' => 'Dia chi toi thieu 10 ki tu',
             'address.max' => 'Dia chi toi da 100 ki tu',
         ]);
-        $customer =  Customer::query()->create([
-            'user_code' => $request['name'],
-            'email' => $request['email'],
-            'password' => bcrypt($request['password']),
-            'gender' => $request['gender'],
-            'phone' => $request['phone'],
-            'address' => $request['address'],
-            'role_id' => 3,
-        ]);
-        Auth::login($customer);
-        return redirect(RouteServiceProvider::HOME);
+        // $customer =  Customer::query()->create([
+        //     'user_code' => $request['user_code'],
+        //     'name' => $request['name'],
+        //     'email' => $request['email'],
+        //     'password' => bcrypt($request['password']),
+        //     'gender' => $request['gender'],
+        //     'phone' => $request['phone'],
+        //     'address' => $request['address'],
+        //     'role_id' => 3,
+        // ]);
 
     //    $data = $request->only('user_code', 'name', 'email', 'gender', 'phone', 'address');
-
     //    $data['password'] = bcrypt($request->password);
+    $this->middleware('guest')->except('login');
+       return view('account.login');
     //   if($acc = Customer::create($data)){
     //     Mail::to($acc->email)->send(new VerifyAccount($acc));
     //   }
