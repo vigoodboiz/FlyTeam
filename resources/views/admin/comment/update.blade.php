@@ -1,5 +1,6 @@
-@extends('templates.layout')
+@extends('layouts.app')
 @section('content')
+    <div class="col-md-9 mx-auto">
     <form action="{{ route('route_comment_update',['id'=>$comment->id]) }}" method="POST">
         @csrf
         <input type="hidden" name="user_id" value="{{ $comment->user_id }}">
@@ -12,5 +13,5 @@
         <input type="hidden" class="form-control" name="date"  value="{{ $comment->date }}">
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-
+    </div>
 @endsection

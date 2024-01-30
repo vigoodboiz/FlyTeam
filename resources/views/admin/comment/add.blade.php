@@ -1,5 +1,6 @@
-@extends('templates.layout')
+@extends('layouts.app')
 @section('content')
+    <div class="col-md-9 mx-auto">
     <form action="{{ route('route_comment_add') }}" method="POST">
         @csrf
         <div class="mb-3">
@@ -13,5 +14,5 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-
+    </div>
 @endsection

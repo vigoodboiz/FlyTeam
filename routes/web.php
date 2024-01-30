@@ -60,7 +60,7 @@ Route::get('/permissions', [PermissionController::class, 'index'])->name('permis
 Route::get('/roles', [RoleController::class, 'index'])->name('roles');
 
  //Comments
- Route::get('/getComments',[CommentController::class,'add'])->name('route_comment_index');
- Route::match(['GET','POST'],'/comment/add',[App\Http\Controllers\CommentController::class,'add'])->name('route_comment_add');
- Route::match(['GET','POST'],'/comment/update/{id}',[App\Http\Controllers\CommentController::class,'update'])->name('route_comment_update');
- Route::match(['GET','POST'],'/comment/delete/{id}',[App\Http\Controllers\CommentController::class,'delete'])->name('route_comment_delete');
+ Route::get('/getComments',[\App\Http\Controllers\Admin\CommentController::class,'index'])->name('route_comment_index');
+ Route::match(['GET','POST'],'/comment/add',[App\Http\Controllers\Admin\CommentController::class,'add'])->name('route_comment_add');
+ Route::match(['GET','POST'],'/comment/update/{id}',[App\Http\Controllers\Admin\CommentController::class,'update'])->name('route_comment_update');
+ Route::match(['GET','POST'],'/comment/delete/{id}',[App\Http\Controllers\Admin\CommentController::class,'delete'])->name('route_comment_delete');

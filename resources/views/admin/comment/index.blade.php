@@ -1,6 +1,6 @@
-@extends('templates.layout')
+@extends('layouts.app')
 @section('content')
-
+<div class="col-md-9 mx-auto">
     <h1>Welcome to the Admin Page!</h1>
     <div class="row">
         <div class="col-lg-12">
@@ -42,4 +42,5 @@
         </div>
 
     </div>
+</div>
 @endsection

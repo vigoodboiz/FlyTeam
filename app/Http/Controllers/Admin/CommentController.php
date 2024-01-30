@@ -23,7 +23,7 @@ class CommentController extends Controller
             ->where('comments.product_id', $productId)
             ->where('comments.user_id', $userId)
             ->get();
-        return view('comment.index',compact('comments'));
+        return view('admin.comment.index',compact('comments'));
         // $comments = Comment::all();
 
         // $comments = Comment::where('column_name', 'value')->get();
@@ -53,7 +53,7 @@ class CommentController extends Controller
         }
         $currentDateTime = Carbon::now();
         $currentDateTimeGMTPlus7 = $currentDateTime->setTimezone('Asia/Ho_Chi_Minh');
-        return view('comment.add', ['currentDateTime' => $currentDateTimeGMTPlus7]);
+        return view('admin.comment.add', ['currentDateTime' => $currentDateTimeGMTPlus7]);
     }
     public function update(CommentRequest $request, $id){
         $comment = DB::table('comments')->where('id','=',$id)->first();
@@ -64,7 +64,7 @@ class CommentController extends Controller
                 return redirect()->route('route_comment_index',['id'=>$id]);
             }
         }
-        return view('comment.update',compact('comment'));
+        return view('admin.comment.update',compact('comment'));
     }
     public function delete($id){
         Comment::where('id',$id)->delete();
