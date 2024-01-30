@@ -3,8 +3,13 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PermissionController;
+
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\CommentController;
+
 use App\Http\Controllers\Admin\RoleController; 
 use App\Http\Controllers\Admin\AccountController; 
+
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -48,7 +53,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::delete('roles/massDestroy', [RoleController::class, 'massDestroy']);
     Route::resource('roles', RoleController::class);
 
-    //Users 
+    //Users
     Route::delete('users/massDestroy', [UserController::class, 'massDestroy']);
     Route::resource('users', UserController::class);
 
@@ -88,6 +93,19 @@ Route::get('/auth/facebook', function(){
     return Socialite::driver('facebook')->redirect();
 });
 
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/users', [UserController::class, 'index'])->name('users');
+Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions');
+Route::get('/roles', [RoleController::class, 'index'])->name('roles');
+
+ //Comments
+ Route::get('/getComments',[CommentController::class,'index'])->name('route_comment_index');
+ Route::match(['GET','POST'],'/comment/add',[CommentController::class,'add'])->name('route_comment_add');
+ Route::match(['GET','POST'],'/comment/update/{id}',[CommentController::class,'update'])->name('route_comment_update');
+ Route::match(['GET','POST'],'/comment/delete/{id}',[CommentController::class,'delete'])->name('route_comment_delete');
+=======
 Route::get('/auth/facebook/callback', function(){
     return 'Callback login facebook';
 });
+

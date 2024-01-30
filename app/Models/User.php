@@ -60,4 +60,8 @@ class User extends Authenticatable
             $this->attributes['password'] = app('hash')->needsRehash($input) ? Hash::make($input) : $input;
         }
     }
+
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
 }
