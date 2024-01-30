@@ -18,14 +18,14 @@
                             <form method="POST" action="{{ route('users.store') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
-                                    <div class="form-group col-md-6">
+                                    {{-- <div class="form-group col-md-6">
                                         <label for="name">Mã người dùng:</label>
                                         <input type="text" class="form-control" name="user_code"
                                             placeholder="Mã người dùng">
                                         @error('user_code')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
-                                    </div>
+                                    </div> --}}
                                     <div class="form-group col-md-6">
                                         <label for="name">Họ tên:</label>
                                         <input type="text" class="form-control" name="name" placeholder="Họ tên">
@@ -40,14 +40,14 @@
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    {{-- <div class="form-group col-md-6">
                                         <label for="phone">Số điện thoại:</label>
                                         <input type="number" class="form-control" name="phone"
                                             placeholder="Số điện thoại">
                                         @error('phone')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
-                                    </div>
+                                    </div> --}}
                                     <div class="form-group col-md-6">
                                         <label for="pass">Mật khẩu:</label>
                                         <input type="password" class="form-control" name="password" placeholder="Mật khẩu">
@@ -55,7 +55,7 @@
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    {{-- <div class="form-group col-md-6">
                                         <label for="gender">Giới tính:</label><br>
                                         <input type="radio" name="gender">
                                         <label for="gender_nam">Nam</label>
@@ -66,7 +66,7 @@
                                         @error('gender')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
-                                    </div>
+                                    </div> --}}
                                     <div class="form-group col-md-6">
                                         <label for="rpass">Xác nhận Mật khẩu:</label>
                                         <input type="password" class="form-control" id="repeatpassword"
@@ -75,13 +75,13 @@
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    {{-- <div class="form-group col-md-6">
                                         <label for="birthday">Ngày sinh:</label>
                                         <input type="date" class="form-control" name="birthday" placeholder="Ngày sinh">
                                         @error('birthday')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
-                                    </div>
+                                    </div> --}}
                                     <div class="form-group col-md-6">
                                         <label for="Role">Vai trò:</label>
                                         <select name="roles[]" class="js-select-2 form-control" multiple>

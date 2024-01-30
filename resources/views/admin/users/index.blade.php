@@ -10,14 +10,14 @@
                         <h4 class="mb-3">Danh sách người dùng</h4>
                     </div>
                     <div>
-                        {{-- @can('user_delete') --}}
-                        <a href="#" id="deleteAllUserSelected" class="btn btn-danger add-list"><i
-                                class="las la-trash"></i>Xóa lựa chọn</a>
-                        {{-- @endcan
-                        @can('user_create') --}}
-                        <a href="{{ route('users.create') }}" class="btn btn-primary add-list"><i
-                                class="las la-plus mr-3"></i>Thêm người dùng</a>
-                        {{-- @endcan --}}
+                        @can('user_delete')
+                            <a href="#" id="deleteAllUserSelected" class="btn btn-danger add-list"><i
+                                    class="las la-trash"></i>Xóa lựa chọn</a>
+                        @endcan
+                        @can('user_create')
+                            <a href="{{ route('users.create') }}" class="btn btn-primary add-list"><i
+                                    class="las la-plus mr-3"></i>Thêm người dùng</a>
+                        @endcan
                     </div>
                 </div>
             </div>
@@ -33,13 +33,13 @@
                                     </div>
                                 </th>
                                 <th>STT</th>
-                                <th>Mã người dùng</th>
+                                {{-- <th>Mã người dùng</th> --}}
                                 <th>Họ tên</th>
                                 <th>Email</th>
-                                <th>Image</th>
+                                {{-- <th>Image</th>
                                 <th>Gender</th>
                                 <th>Phone</th>
-                                <th>Birthday</th>
+                                <th>Birthday</th> --}}
                                 <th>Vai trò</th>
                                 <th>Hành động</th>
                             </tr>
@@ -55,17 +55,17 @@
                                         </div>
                                     </td>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->user_code }}</td>
+                                    {{-- <td>{{ $item->user_code }}</td> --}}
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
-                                    <td>{{ $item->gender }}</td>
+                                    {{-- <td>{{ $item->gender }}</td>
                                     <td>{{ $item->phone }}</td>
-                                    <td>{{ $item->birthday }}</td>
-                                    {{-- <td>
+                                    <td>{{ $item->birthday }}</td> --}}
+                                    <td>
                                         @foreach ($item->roles as $role)
                                             <span class="bg-warning">{{ $role->title }}</span>
                                         @endforeach
-                                    </td> --}}
+                                    </td>
                                     <td>
                                         <div class="d-flex align-items-center list-action">
                                             @can('user_show')

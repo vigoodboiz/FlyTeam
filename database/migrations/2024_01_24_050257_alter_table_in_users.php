@@ -12,13 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('role_id')->default(2)->constrained();
-
+            $table->foreignId('role_id')->constrained();
             $table->string('user_code')->unique();
-            $table->string('image')->default('default.jpg');
-            $table->string('gender');
-            $table->integer('phone')->nullable();
-            $table->string('birthday');
+            $table->string('gender')->default('0');
+            $table->string('phone');
+            $table->string('address')->nullable();
         });
     }
 
@@ -30,10 +28,9 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('role_id');
             $table->dropColumn('user_code');
-            $table->dropColumn('image');
             $table->dropColumn('gender');
             $table->dropColumn('phone');
-            $table->dropColumn('birthday');
+            $table->dropColumn('address');
         });
     }
 };
