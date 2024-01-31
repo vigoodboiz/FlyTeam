@@ -91,6 +91,22 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <a class="skip-link screen-reader-text" href="#main">Skip to content</a>
 
 <div id="wrapper">
+	<div class="header">
+		
+
+	</div>
+	<div class="main">
+		
+
+	</div>
+	<div class="footer">
+		
+
+	</div>
+	<div class="main_menu">
+		
+
+	</div>
 <!-- #main -->
 
 
