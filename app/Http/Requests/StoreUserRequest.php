@@ -2,8 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Role;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\Response;
 
 class StoreUserRequest extends FormRequest
@@ -15,7 +17,7 @@ class StoreUserRequest extends FormRequest
      */
     public function authorize()
     {
-        // abort_if(Gate::denies('role_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('user_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return true;
     }
@@ -25,21 +27,42 @@ class StoreUserRequest extends FormRequest
      *
      * @return array
      */
-    public function users()
+    public function rules()
     {
         return [
-            'title' => [
+            'user_code'      => [
                 'required',
-            ]
-        ];
-    }
+                'unique'
+            ],
+            'name'           => [
+                'required',
+            ],
+            'email'          => [
+                'required',
+                'email'
+            ],
+            'password'       => [
+                'required',
+                'min:8 ',
+                'max:20'
+            ],
+            'repeatpassword' => [
+                'same:password'
+            ],
+            'phone'         => [
+                'numeric',
+                'min:9'
+            ],
+            'gender'         => [
+                'required',
+                'min:9'
+            ],
+            'address'         => [
+                'required',
+                'max:255'
+            ],
+            
 
-    public function messages()
-    {
-        return [
-            'title' => [
-                'required' => 'Tên vai trò không được trống'
-            ]
         ];
     }
 }
