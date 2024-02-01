@@ -15,7 +15,7 @@ class UpdateRoleRequest extends FormRequest
      */
     public function authorize()
     {
-        // abort_if(Gate::denies('role_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('role_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return true;
     }
@@ -28,8 +28,15 @@ class UpdateRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => [
+            'title'         => [
+                'required'
+            ],
+            'permissions.*' => [
+                'integer'
+            ],
+            'permissions'   => [
                 'required',
+                'array'
             ]
         ];
     }
@@ -37,8 +44,15 @@ class UpdateRoleRequest extends FormRequest
     public function messages()
     {
         return [
-            'title' => [
-                'required' => 'Tên vai trò không được trống'
+            'title'         => [
+                'required'  => 'Tên vai trò không được trống'
+            ],
+            'permissions.*' => [
+                'integer'   => 'Sai kiểu dữ liệu, hãy thử lại !'
+            ],
+            'permissions'   => [
+                'required'  => 'Quyền truy cập cho vai trò này không được trống',
+                'array'     => 'Kiểu dữ liệu phải là mảng'
             ]
         ];
     }
