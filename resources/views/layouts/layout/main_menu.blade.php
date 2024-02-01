@@ -29,7 +29,7 @@
             <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-35"><a href="/danh-muc/thoi-trang-nam/quan-nam/quan-boi-nam/">Quần bơi nam</a></li>
             <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-37"><a href="/danh-muc/thoi-trang-nam/quan-nam/quan-kaki-nam/">Quần kaki nam</a></li>
             <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-36"><a href="/danh-muc/thoi-trang-nam/quan-nam/quan-jogger-nam/">Quần Jogger nam</a></li>
-        </ul>
+        </ul> 
     </li>
         <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-38"><a href="/danh-muc/thoi-trang-nam/phu-kien-nam/">Phụ kiện nam</a>
         <ul class=nav-sidebar-ul>

@@ -35,7 +35,7 @@
                             <label class="woocommerce-form__label woocommerce-form__label-for-checkbox inline">
                                 <input class="woocommerce-form__input woocommerce-form__input-checkbox" name="rememberme" type="checkbox" id="rememberme" value="forever" /> <span>Ghi nhớ mật khẩu</span>
                             </label>
-                        </p>
+                        </p> 
                         <p class="woocommerce-LostPassword lost_password">
                             <a href="http://localhost/wordpress-6.3.1/wordpress/tai-khoan/lost-password/">Quên mật khẩu?</a>
                         </p>

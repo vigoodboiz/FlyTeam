@@ -338,7 +338,7 @@
          
      
      </div>
-                 <div class="cart-sidebar-content relative"></div>  </div>
+                 <div class="cart-sidebar-content relative"></div>  </div> 
        </div>
      
      </li>

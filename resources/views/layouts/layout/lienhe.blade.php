@@ -28,7 +28,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14
 
 	img.wp-smiley, img.emoji {
 		display: inline !important;
-		border: none !important;
+		border: none !important; 
 		box-shadow: none !important;
 		height: 1em !important;
 		width: 1em !important;

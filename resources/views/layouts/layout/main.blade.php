@@ -1645,7 +1645,7 @@
                         </a><!-- .link -->
                     </div><!-- .col-inner -->
                 </div><!-- .col -->
-                <div class="col post-item" >
+                <div class="col post-item" > 
                     <div class="col-inner">
                     <a href="http://localhost/wordpress-6.3.1/wordpress/cap-nhat-mau-kinh-ram-dang-duoc-sao-viet-ua-chuong/" class="plain">
                         <div class="box box-normal box-text-bottom box-blog-post has-hover">

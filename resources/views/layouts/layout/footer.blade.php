@@ -23,7 +23,7 @@
 
 <div class="row row-large"  id="row-572748260">
 
-<div class="col cot1 medium-6 small-12 large-6"  ><div class="col-inner"  >
+<div class="col cot1 medium-6 small-12 large-6"  ><div class="col-inner" >
 
 	<div class="img has-hover x md-x lg-x y md-y lg-y" id="image_679136833">
 								<div class="img-inner dark" >

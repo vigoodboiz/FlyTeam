@@ -128,7 +128,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
     fl_icons.type = 'text/css';
     var fl_icons_insert = document.getElementsByTagName('link')[0];
     fl_icons_insert.parentNode.insertBefore(fl_icons, fl_icons_insert);
-  </script>
+  </script> 
       
   	<script type="text/javascript">
 		(function () {

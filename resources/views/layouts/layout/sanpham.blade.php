@@ -27,7 +27,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14
 <link rel='stylesheet' id='menu-icons-extra-css' href='http://localhost/wordpress-6.3.1/wordpress/wp-content/plugins/ot-flatsome-vertical-menu/libs/menu-icons/css/extra.min.css?ver=0.12.2' type='text/css' media='all' />
 <style id='wp-emoji-styles-inline-css' type='text/css'>
 
-	img.wp-smiley, img.emoji {
+	img.wp-smiley, img.emoji { 
 		display: inline !important;
 		border: none !important;
 		box-shadow: none !important;
