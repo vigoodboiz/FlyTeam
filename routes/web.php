@@ -25,6 +25,9 @@ Route::get('/members/{member}/edit', [MemberController::class, 'edit'])->name('m
 Route::put('/members/{member}', [MemberController::class, 'update'])->name('members.update');
 Route::resource('members', MemberController::class);
 
+
+
+Route::get('/ranking', [MemberController::class, 'ranking'])->name('members.ranking');
 Route::get('/', function () {
     return view('welcome');
 });

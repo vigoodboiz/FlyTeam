@@ -1,8 +1,5 @@
-<!-- resources/views/members/index.blade.php -->
 
-
-    <div class="container">
-        <h1>Members</h1>
+            <h1>Member</h1>
 
         <a href="{{ route('members.create') }}" class="btn btn-primary">Create Member</a>
 
@@ -46,5 +43,5 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
-
+            
+        <a href="{{ route('members.ranking') }}" class="btn btn-primary"> Ranking </a>

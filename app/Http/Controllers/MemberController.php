@@ -87,5 +87,32 @@ class MemberController extends Controller
         return redirect()->route('members.index')->with('success', 'Member updated successfully');
     }
 
-    // ... các phương thức khác
+    public function Ranking()
+{
+    // $members = Member::orderBy('reward_points')->get();
+    
+    // $rankings = $members->groupBy(function ($member) {
+    //     if ($member->reward_points>= 80) {
+    //         return 'A';
+    //     } elseif ($member->reward_points>= 60) {
+    //         return 'B';
+    //     } else {
+    //         return 'C';
+    //     }
+    // });
+
+    $members = Member::orderBy('reward_points', 'desc')->get();
+
+    $rankings = $members->groupBy(function ($member) {
+        if ($member->reward_points >= 80) {
+            return 'A';
+        } elseif ($member->reward_points >= 60) {
+            return 'B';
+        } else {
+            return 'C';
+        }
+    });
+
+    return view('members.Ranking', compact('rankings'));
+}
 }

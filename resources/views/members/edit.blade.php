@@ -1,30 +1,4 @@
-<!-- 
 
-
-    <h1>Edit Member</h1>
-
-    <form method="POST" action="{{ route('members.update', ['member' => $member->id]) }}">
-        @csrf
-        @method('PUT')
-        
-        <label for="user_id">User ID:</label>
-        <input type="text" name="user_id" id="user_id" value="{{ $member->user_id }}" required>
-
-        <label for="member_name">Member Name:</label>
-        <input type="text" name="member_name" id="member_name" value="{{ $member->member_name }}">
-
-        <label for="incentives">Incentives:</label>
-        <input type="text" name="incentives" id="incentives" value="{{ $member->incentives }}">
-
-
-        
-        <button type="submit">Update</button>
-    </form> -->
-
-    <!-- resources/views/members/edit.blade.php -->
-
-
-    <div class="container">
         <h2>Edit Member</h2>
         <form method="POST" action="{{ route('members.update', $member->id) }}">
             @csrf
@@ -67,7 +41,3 @@
 
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
-    </div>
-
-
-

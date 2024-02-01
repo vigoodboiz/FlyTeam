@@ -1,6 +1,4 @@
 
-
-    <div class="container">
         <h2>Create Member</h2>
         <form action="{{ route('members.store') }}" method="POST">
             @csrf
@@ -22,12 +20,22 @@
 
             <div class="form-group">
                 <label for="condition">Condition:</label>
-                <input type="text" name="condition" class="form-control">
+                <select name="condition" class="form-control">
+                    <option value="Đang hoạt động">Đang hoạt động</option>
+                    <option value="Dừng hoạt động">Dừng hoạt động</option>
+
+                </select>
             </div>
+
 
             <div class="form-group">
                 <label for="membership_card">Membership Card:</label>
-                <input type="text" name="membership_card" class="form-control">
+                <select name="membership_card" class="form-control">
+                    <option value="Chọn">Chọn</option>
+                    <option value="Thẻ hạng 1">Thẻ hạng 1</option>
+                    <option value="Thẻ hạng 2">Thẻ hạng 2</option>
+                    <option value="Thẻ hạng 3">Thẻ hạng 3</option>
+                </select>
             </div>
 
             <div class="form-group">
@@ -42,7 +50,5 @@
 
             <button type="submit" class="btn btn-primary">Create Member</button>
         </form>
-    </div>
-
 
 
