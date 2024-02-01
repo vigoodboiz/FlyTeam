@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
@@ -23,7 +24,12 @@ class DatabaseSeeder extends Seeder
             OderSeeder::class,
             oder_status::class,
             oder_detail::class,
-            delivery_status::class
+            delivery_status::class,
+            RoleSeeder::class,
+            PermissionSeeder::class,
+            UserSeeder::class,
+            PermissionRoleSeeder::class,
          ]);
     }
 }
+
