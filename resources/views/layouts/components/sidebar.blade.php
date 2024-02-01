@@ -23,7 +23,7 @@
                         <li><i class="fa fa-spinner"></i><a href="ui-progressbar.html">Quản lý danh mục</a>
                         </li>
                         <li><i class="fa fa-fire"></i><a href="ui-modals.html">Quản lý đơn hàng</a></li>
-                        <li><i class="fa fa-book"></i><a href="ui-switches.html">Quản lý bình luận</a></li>
+                        <li><i class="fa fa-book"></i><a href="{{route('route_comment_index')}}">Quản lý bình luận</a></li>
                         <li><i class="fa fa-th"></i><a href="ui-grids.html">Quản lý khuyến mại</a></li>
                         <li><i class="fa fa-file-word-o"></i><a href="ui-typgraphy.html">Trạng thái đơn hàng</a></li>
                         <li><i class="fa fa-file-word-o"></i><a href="ui-typgraphy.html">Trạng thái giao hàng</a></li>

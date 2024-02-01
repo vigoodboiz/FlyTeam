@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 @section('content')
     <div class="col-md-9 mx-auto">
     <form action="{{ route('route_comment_add') }}" method="POST">
