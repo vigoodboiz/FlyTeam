@@ -15,7 +15,7 @@ class UpdateUserRequest extends FormRequest
      */
     public function authorize()
     {
-        // abort_if(Gate::denies('role_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('user_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return true;
     }
@@ -25,20 +25,34 @@ class UpdateUserRequest extends FormRequest
      *
      * @return array
      */
-    public function users()
+    public function rules()
     {
         return [
-            'title' => [
+            'user_code' => [
                 'required',
             ]
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'title' => [
-                'required' => 'Tên vai trò không được trống'
+            'name' => [
+                'required',
+            ],
+            'email' => [
+                'required',
+                'email'
+            ],
+            // 'profile_photo' => [
+            //     'image',
+            //     'mimes:jpeg,jpg,png,svg,gif',
+            //     'max:2048'
+            // ],
+            'phone' => [
+                'numeric',
+                'min:10'
+            ],
+            'gender' => [
+                'required',
+            ],
+            'address' => [
+                'required',
+                'max:255',
             ]
         ];
     }

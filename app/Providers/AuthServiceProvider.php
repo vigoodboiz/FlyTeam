@@ -34,11 +34,11 @@ class AuthServiceProvider extends ServiceProvider
             return false;
       
         });
-        Gate::define('admin.dashboard', function ($user) {
+        Gate::define('dashboard', function ($user) {
 
             if ($user->role_id == "1" && $user->role_id == '2') {
       
-                return view('admin.dashboard');
+                return view('dashboard');
       
             }
       

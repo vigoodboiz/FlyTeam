@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
 
-class StorePermissionRequest extends FormRequest
+class StoreRoleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,7 +15,7 @@ class StorePermissionRequest extends FormRequest
      */
     public function authorize()
     {
-        // abort_if(Gate::denies('role_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('role_create'), Response::HTTP_FORBIDDEN, '403 Forbiden');
 
         return true;
     }
@@ -28,8 +28,15 @@ class StorePermissionRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => [
+            'title'         => [
+                'required'
+            ],
+            'permissions.*' => [
+                'integer'
+            ],
+            'permissions'   => [
                 'required',
+                'array'
             ]
         ];
     }
@@ -37,8 +44,15 @@ class StorePermissionRequest extends FormRequest
     public function messages()
     {
         return [
-            'title' => [
-                'required' => 'Tên vai trò không được trống'
+            'title'         => [
+                'required'  => 'Tên vai trò không được trống'
+            ],
+            'permissions.*' => [
+                'integer'   => 'Sai kiểu dữ liệu, hãy thử lại !'
+            ],
+            'permissions'   => [
+                'required'  => 'Quyền truy cập cho vai trò này không được trống',
+                'array'     => 'Kiểu dữ liệu phải là mảng'
             ]
         ];
     }
