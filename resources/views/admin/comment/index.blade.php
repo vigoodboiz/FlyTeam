@@ -1,11 +1,10 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 @section('content')
 <div class="col-md-9 mx-auto">
-    <h1>Welcome to the Admin Page!</h1>
     <div class="row">
         <div class="col-lg-12">
             <h2>Comment Management</h2>
-            <button type="button" class="btn btn-warning"><a href="{{ url('/comment/add') }}">Thêm mới</a></button>
+            <button type="button" class="btn btn-warning"><a href="{{ url('admin/comment/add') }}">Thêm mới</a></button>
             <br><br>
             <table class="table table-bordered">
                 <thead>
@@ -26,12 +25,12 @@
                         <td>{{$cmt->content}}</td>
                         <td>{{$cmt->date}}</td>
 
-                        <td><button type="button" class="btn btn-primary ">
-                                <a class="text-white" href="{{ route('route_comment_update',['id'=>$cmt->id]) }}">Sửa</a>
-                            </button></td>
-                        <td><button type="button" class="btn btn-danger">
-                                <a class="text-white" href="{{ route('route_comment_delete',['id'=>$cmt->id]) }}">Xóa</a>
-                            </button></td>
+                        <td><div class="d-flex justify-content-center"><button type="button" class="btn btn-primary ">
+                                    <a class="text-white" href="{{ route('route_comment_update',['id'=>$cmt->id]) }}">Sửa</a>
+                                </button></div></td>
+                        <td><div class="d-flex justify-content-center"><button type="button" class="btn btn-danger">
+                                    <a class="text-white" href="{{ route('route_comment_delete',['id'=>$cmt->id]) }}">Xóa</a>
+                                </button></div></td>
                     </tr>
                 @endforeach
 
