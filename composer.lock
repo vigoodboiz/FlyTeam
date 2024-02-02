@@ -4,6 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+
     "content-hash": "de69ac80eceb664d8d0361148074ae24",
     "packages": [
         {
@@ -1047,6 +1048,7 @@
         },
         {
             "name": "laravel/framework",
+
             "version": "v10.41.0",
             "source": {
                 "type": "git",
@@ -1057,6 +1059,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/da31969bd35e6ee0bbcd9e876f88952dc754b012",
                 "reference": "da31969bd35e6ee0bbcd9e876f88952dc754b012",
+
                 "shasum": ""
             },
             "require": {
@@ -1248,7 +1251,9 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
+
             "time": "2024-01-16T15:23:58+00:00"
+
         },
         {
             "name": "laravel/prompts",
@@ -1434,6 +1439,7 @@
             "time": "2023-11-08T14:08:06+00:00"
         },
         {
+
             "name": "laravel/socialite",
             "version": "v5.11.0",
             "source": {
@@ -1504,6 +1510,7 @@
             "time": "2023-12-02T18:22:36+00:00"
         },
         {
+
             "name": "laravel/tinker",
             "version": "v2.9.0",
             "source": {
@@ -1570,6 +1577,7 @@
             "time": "2024-01-04T16:10:04+00:00"
         },
         {
+
             "name": "laravel/ui",
             "version": "v4.4.0",
             "source": {
@@ -1632,6 +1640,7 @@
             "time": "2024-01-12T15:56:45+00:00"
         },
         {
+
             "name": "league/commonmark",
             "version": "2.4.1",
             "source": {
@@ -2026,6 +2035,7 @@
             "time": "2023-10-17T14:13:20+00:00"
         },
         {
+
             "name": "league/oauth1-client",
             "version": "v1.10.1",
             "source": {
@@ -2102,6 +2112,7 @@
             "time": "2022-04-15T14:02:14+00:00"
         },
         {
+
             "name": "monolog/monolog",
             "version": "3.5.0",
             "source": {
@@ -6168,6 +6179,7 @@
             "time": "2024-01-15T16:14:10+00:00"
         },
         {
+
             "name": "laravel/pint",
             "version": "v1.13.10",
             "source": {
@@ -6235,6 +6247,7 @@
         },
         {
             "name": "laravel/sail",
+
             "version": "v1.27.1",
             "source": {
                 "type": "git",
@@ -6245,6 +6258,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/sail/zipball/9dc648978e4276f2bfd37a076a52e3bd9394777f",
                 "reference": "9dc648978e4276f2bfd37a076a52e3bd9394777f",
+
                 "shasum": ""
             },
             "require": {
@@ -6296,7 +6310,9 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
+
             "time": "2024-01-13T18:46:48+00:00"
+
         },
         {
             "name": "mockery/mockery",
@@ -8423,5 +8439,7 @@
         "php": "^8.1"
     },
     "platform-dev": [],
+
     "plugin-api-version": "2.6.0"
+
 }
