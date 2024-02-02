@@ -2,7 +2,7 @@
 @section('content')
 <form action="{{ route('categories.store') }}" method="POST">
 
-<button type="submit" class="btn btn-primary"><a href="{{ route('admin.categories.index') }}">Category</a></button>
+<button type="submit" class="btn btn-primary"><a href="{{ route('categories.index') }}">Category</a></button>
     @csrf
     <div class="mb-3">
         <label for="name"  class="form-label" >Category Name:</label>
