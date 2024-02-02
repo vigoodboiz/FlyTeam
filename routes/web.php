@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -124,7 +126,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
      ///////////////////////// cate //////////////////
 
-     Route::get('/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
+     Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 
      Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
      Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
