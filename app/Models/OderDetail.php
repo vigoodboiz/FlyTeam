@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class oder_detail extends Model
+class OderDetail extends Model
 {
     use HasFactory;
     protected $table = "oder_detail";
