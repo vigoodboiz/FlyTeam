@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 
+// use Illuminate\Support\Facades\Gate;
+
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 
@@ -16,7 +18,9 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        //
+
+        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+
     ];
 
     /**
@@ -24,31 +28,29 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-
-
         $this->registerPolicies();
+
+
         Gate::define('view-page-guest', function ($user) {
 
             if ($user->role_id == "3") {
-      
+
                 return true;
-      
             }
-      
+
             return false;
-      
         });
         Gate::define('dashboard', function ($user) {
 
             if ($user->role_id == "1" && $user->role_id == '2') {
+
       
                 return view('dashboard');
       
+
             }
-      
+
             return false;
-      
         });
     }
 }
-

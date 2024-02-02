@@ -17,7 +17,6 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet"
@@ -31,6 +30,8 @@
 
     <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
+    <!-- bootstrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
     <style>
         #weatherWidget .currentDesc {
@@ -85,13 +86,15 @@
     @include('layouts.components.topbar');
     <!-- /#header -->
     <!-- Content -->
-    <div class="col-9 ml-auto">  @yield('content')</div>
-   
+    <div class="col-9 ml-auto">
+    @yield('content')
+    </div>
+    
     <!-- /.content -->
     <div class="clearfix"></div>
     <!-- Footer -->
     {{-- @include('layouts.components.footer'); --}}
-    <!-- /.site-footer --
+    <!-- /.site-footer -->
     <!-- /#right-panel -->
 
     <!-- Scripts -->
