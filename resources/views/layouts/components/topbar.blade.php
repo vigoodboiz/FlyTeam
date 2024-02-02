@@ -95,12 +95,12 @@
                 <div class="user-area dropdown float-right">
                     <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
-                        <img class="user-avatar rounded-circle" src="{{ asset('sb-admin/images/admin.jpg') }}"
-                            alt="User Avatar">
+                        <div>Xin chào, {{ Auth::user()->name }}</div>
                     </a>
 
                     <div class="user-menu dropdown-menu">
-                        <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
+                        <a class="nav-link" href="{{ route('profile.edit') }}"><i class="fa fa- user"></i>My
+                            Profile</a>
 
                         <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span
                                 class="count">13</span></a>
@@ -119,23 +119,4 @@
             </div>
         </div>
     </header>
-    <!-- /#header -->
-    <!-- Content -->
-    
-    <!-- /.content -->
-    <div class="clearfix"></div>
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="footer-inner bg-white">
-            <div class="row">
-                <div class="col-sm-6">
-                    Copyright &copy; 2018 Ela Admin
-                </div>
-                <div class="col-sm-6 text-right">
-                    Designed by <a href="https://colorlib.com">Colorlib</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- /.site-footer -->
 </div>
