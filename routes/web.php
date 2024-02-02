@@ -137,6 +137,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
      Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
+     
 });
 
 
