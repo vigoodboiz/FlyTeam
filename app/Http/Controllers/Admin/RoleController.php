@@ -72,7 +72,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        abort_if(Gate::denies('role_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        // abort_if(Gate::denies('role_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $permissions = Permission::all()->pluck('title', 'id');
 
         return view('admin.roles.edit', compact('role', 'permissions'));

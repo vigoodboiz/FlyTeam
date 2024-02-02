@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Gate;
@@ -127,8 +128,14 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
      ///////////////////////// cate //////////////////
 
+
+     Route::get('/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
+
+});
+
      Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
      
+
      Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
      Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
 
@@ -140,37 +147,12 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
      
 });
 
-
-
-
-
-
-
-
-
 //Laravel socialite
 Route::get('/auth/facebook', function () {
     return Socialite::driver('facebook')->redirect();
 });
 
-
-//Laravel socialite
-Route::get('/auth/facebook', function () {
-    return Socialite::driver('facebook')->redirect();
 });
-
-
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/users', [UserController::class, 'index'])->name('users');
-Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions');
-Route::get('/roles', [RoleController::class, 'index'])->name('roles');
-
-
-
 
 //Comments
 Route::get('/getComments', [CommentController::class, 'index'])->name('route_comment_index');
@@ -178,12 +160,13 @@ Route::match(['GET', 'POST'], '/comment/add', [CommentController::class, 'add'])
 Route::match(['GET', 'POST'], '/comment/update/{id}', [CommentController::class, 'update'])->name('route_comment_update');
 Route::match(['GET', 'POST'], '/comment/delete/{id}', [CommentController::class, 'delete'])->name('route_comment_delete');
 
-//facebook
+Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/auth/facebook/callback', function () {
-    return 'Callback login facebook';
-
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+  //facebook
+Route::controller(FacebookController::class)->group(function(){
+    Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
+    Route::get('auth/facebook/callback', 'handleFacebookCallback');
 });
-
-
-
