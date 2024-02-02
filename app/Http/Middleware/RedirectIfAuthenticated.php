@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Providers\RouteServiceProvider;
+
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Auth\Session\Guard;
@@ -31,9 +32,13 @@ class RedirectIfAuthenticated
         // }
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+
+                // return redirect(RouteServiceProvider::HOME);
+
               
                 return redirect(RouteServiceProvider::DASHBOARD);
                
+
             }
             // if(Auth::guard($guard)->check($role_id == '3')){
             //     return view('template');
@@ -42,4 +47,5 @@ class RedirectIfAuthenticated
 
         return $next($request);
     }
+
 }

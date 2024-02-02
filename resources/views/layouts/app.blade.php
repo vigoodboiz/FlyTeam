@@ -86,14 +86,13 @@
     @include('layouts.components.topbar');
     <!-- /#header -->
     <!-- Content -->
-    {{-- <div class="col-9 ml-auto">
+    <div class="col-9 ml-auto">
         @yield('content')
-    </div> --}}
-
+    </div>
     <!-- /.content -->
     <div class="clearfix"></div>
     <!-- Footer -->
-    {{-- @include('layouts.components.footer'); --}}
+    @include('layouts.components.footer');
     <!-- /.site-footer -->
     <!-- /#right-panel -->
 

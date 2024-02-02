@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('12341234'),
             'gender' => '0',
             'phone' => '0345166934',
-            'address' => 'Nam du, linh nam, ha noiu',
+            'address' => 'Nam du, linh nam, ha noi',
             'role_id' => '2',
             'remember_token' => null,
         ]);

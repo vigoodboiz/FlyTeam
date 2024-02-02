@@ -23,12 +23,43 @@
                         {{-- @endcan --}}
                         <li><i class="fa fa-exclamation-triangle"></i><a href="ui-alerts.html">Quản lý sản phẩm</a></li>
                         <li><i class="fa fa-spinner"></i><a href="ui-progressbar.html">Quản lý danh mục</a>
+                        <li><i class="bi bi-person-circle text-Danger"></i><a href="{{ route('users.index') }}">Quản lý
+                                người dùng</a></li>
+
+                        <li><i class="bi bi-people text-Danger"></i><a href="{{ route('members.index') }}">Quản lý khách
+                                hàng</a>
                         </li>
-                        <li><i class="fa fa-fire"></i><a href="ui-modals.html">Quản lý đơn hàng</a></li>
-                        <li><i class="fa fa-book"></i><a href="ui-switches.html">Quản lý bình luận</a></li>
-                        <li><i class="fa fa-th"></i><a href="ui-grids.html">Quản lý khuyến mại</a></li>
-                        <li><i class="fa fa-file-word-o"></i><a href="ui-typgraphy.html">Trạng thái đơn hàng</a></li>
-                        <li><i class="fa fa-file-word-o"></i><a href="ui-typgraphy.html">Trạng thái giao hàng</a></li>
+                        <li><i class="bi bi-person-bounding-box"></i></i><a href="ui-tabs.html">Quản lý phân quyền</a>
+                        </li>
+
+                        <li><i class="bi bi-person-vcard-fill text-Danger"></i><a href="ui-cards.html">Quản lý vai
+                                trò</a></li>
+
+                        <li><i class="bi bi-inboxes-fill text-Danger"></i><a
+                                href="{{ route('admin.categories.index') }}">Quản lý sản phẩm</a></li>
+                        <li><i class="bi bi-grid-3x3-gap text-Danger"></i></i><a
+                                href="{{ route('products.index') }}">Quản lý danh mục</a>
+
+                        <li><i class="bi bi-inboxes-fill text-Danger"></i><a href="ui-alerts.html">Quản lý sản phẩm</a>
+                        </li>
+                        <li><i class="bi bi-grid-3x3-gap text-Danger"></i></i><a href="ui-progressbar.html">Quản lý danh
+                                mục</a>
+
+                        </li>
+
+                        <li><i class="bi bi-bag-fill text-Danger"></i><a href="{{ route('listOder') }}">Quản lý đơn
+                                hàng</a></li>
+                        <li><i class="bi bi-chat-quote text-Danger"></i><a
+                                href="{{ route('route_comment_index') }}">Quản lý bình luận</a></li>
+                        <li><i class="bi bi-gift-fill text-Danger"></i></i><a href="ui-grids.html">Quản lý khuyến
+                                mại</a></li>
+                        <li><i class="bi bi-minecart text-Danger"></i><a href="{{ route('listOder_status') }}">Trạng
+                                thái đơn hàng</a></li>
+                        <li><i class="bi bi-truck text-Danger"></i><a href="{{ route('listDelivery_status') }}">Trạng
+                                thái giao hàng</a></li>
+                        <li><i class="bi bi-graph-up-arrow text-Danger"></i><a href="ui-typgraphy.html">Thống kê</a>
+                        </li>
+
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
