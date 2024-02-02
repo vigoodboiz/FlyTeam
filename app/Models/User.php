@@ -56,6 +56,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
     /**
      * The accessors to append to the model's array form.
      *
@@ -64,4 +65,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+    public function setPasswordAttribute($input)
+    {
+        if ($input) {
+            $this->attributes['password'] = app('hash')->needsRehash($input) ? Hash::make($input) : $input;
+        }
+    }
+
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
 }
