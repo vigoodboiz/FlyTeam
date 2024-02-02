@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Product;
+use App\Models\Products;
 use App\Models\Category;
 
 use App\Http\Controllers\Controller;
@@ -20,7 +20,7 @@ class ProductController extends Controller
         // $products = Product::with('category')->get();
         // return view('products.index', compact('products'));
 
-        $products = Product::with('category')->get();
+        $products = Products::with('category')->get();
         return view('admin.products.index', compact('products'));
     }
     /**
