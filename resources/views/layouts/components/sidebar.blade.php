@@ -17,8 +17,10 @@
                         <li><i class="bi bi-person-bounding-box"></i></i><a href="ui-tabs.html">Quản lý phân quyền</a></li>
 
                         <li><i class="bi bi-person-vcard-fill text-Danger"></i><a href="ui-cards.html">Quản lý vai trò</a></li>
+
                         <li><i class="bi bi-inboxes-fill text-Danger"></i><a href="{{route('products.index')}}">Quản lý sản phẩm</a></li>
                         <li><i class="bi bi-grid-3x3-gap text-Danger"></i></i><a href="{{route('categories.index')}}">Quản lý danh mục</a>
+
                         </li>
 
                         <li><i class="bi bi-bag-fill text-Danger"></i><a href="{{route('listOder')}}">Quản lý đơn hàng</a></li>

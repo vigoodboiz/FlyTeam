@@ -111,6 +111,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::match(['GET', 'POST'], '/comment/update/{id}', [CommentController::class, 'update'])->name('route_comment_update');
     Route::match(['GET', 'POST'], '/comment/delete/{id}', [CommentController::class, 'delete'])->name('route_comment_delete');
 
+
      ///////////////////////// product //////////////////
      Route::get('/products', [ProductController::class, 'index'])->name('products.index');
      // Route::get('/products/create', [ProductController::class, 'create']);
@@ -127,7 +128,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
      ///////////////////////// cate //////////////////
 
      Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
-
+     
      Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
      Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
 
@@ -135,7 +136,12 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
      Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
 
      Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
 });
+
+
+
+
 
 
 
@@ -145,6 +151,13 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 Route::get('/auth/facebook', function () {
     return Socialite::driver('facebook')->redirect();
 });
+
+
+//Laravel socialite
+Route::get('/auth/facebook', function () {
+    return Socialite::driver('facebook')->redirect();
+});
+
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -168,4 +181,8 @@ Route::match(['GET', 'POST'], '/comment/delete/{id}', [CommentController::class,
 
 Route::get('/auth/facebook/callback', function () {
     return 'Callback login facebook';
+
 });
+
+
+
