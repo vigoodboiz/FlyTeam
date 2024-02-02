@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('layouts.app')
 
 @section('title', 'Vai trò')
 @section('content')
@@ -63,12 +63,12 @@
                                                         href="{{ route('roles.show', ['role' => $item->id]) }}"><i
                                                             class="fa fa-eye mr-0"></i>SHOW</a></button>
                                             @endcan
-                                            @can('role_edit')
-                                                <button class="btn btn-success"><a data-toggle="tooltip" data-placement="top"
-                                                        title="Cập nhật" data-original-title="Edit"
-                                                        href="{{ route('roles.edit', ['role' => $item->id]) }}"><i
-                                                            class="fa fa-pen mr-0"></i>EDIT</a></button>
-                                            @endcan
+                                            {{-- @can('role_edit') --}}
+                                            <button class="btn btn-success"><a data-toggle="tooltip" data-placement="top"
+                                                    title="Cập nhật" data-original-title="Edit"
+                                                    href="{{ route('roles.edit', ['role' => $item->id]) }}"><i
+                                                        class="fa fa-pen mr-0"></i>EDIT</a></button>
+                                            {{-- @endcan --}}
                                             @can('role_delete')
                                                 <form action="{{ route('roles.destroy', ['role' => $item->id]) }}"
                                                     method="POST">

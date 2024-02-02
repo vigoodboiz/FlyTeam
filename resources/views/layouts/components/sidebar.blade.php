@@ -10,15 +10,17 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Danh sách quản lý</a>
                     <ul class="sub-menu children dropdown-menu">
-                        @can('user_access')
-                            <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('users.index') }}">Quản lý người
-                                    dùng</a></li>
-                        @endcan
-                        <li><i class="fa fa-id-badge"></i><a href="">Quản lý khách hàng</a>
+                        {{-- @can('user_access') --}}
+                        <li><i class="fa fa-puzzle-piece"></i><a href="">Quản lý người
+                                dùng</a></li>
+                        {{-- @endcan --}}
+                        {{-- <li><i class="fa fa-id-badge"></i><a href="">Quản lý khách hàng</a>
+                        </li> --}}
+                        <li><i class="fa fa-bars"></i><a href="">Quản lý phân quyền</a>
                         </li>
-                        <li><i class="fa fa-bars"></i><a href="ui-tabs.html">Quản lý phân quyền</a></li>
-
-                        <li><i class="fa fa-id-card-o"></i><a href="ui-cards.html">Quản lý vai trò</a></li>
+                        {{-- @can('role_access') --}}
+                        <li><i class="fa fa-id-card-o"></i><a href="">Quản lý vai trò</a></li>
+                        {{-- @endcan --}}
                         <li><i class="fa fa-exclamation-triangle"></i><a href="ui-alerts.html">Quản lý sản phẩm</a></li>
                         <li><i class="fa fa-spinner"></i><a href="ui-progressbar.html">Quản lý danh mục</a>
                         </li>

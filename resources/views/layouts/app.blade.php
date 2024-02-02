@@ -30,6 +30,8 @@
 
     <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
+    <!-- bootstrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
     <style>
         #weatherWidget .currentDesc {
@@ -84,12 +86,15 @@
     @include('layouts.components.topbar');
     <!-- /#header -->
     <!-- Content -->
-    {{-- @yield('content') --}}
+    {{-- <div class="col-9 ml-auto">
+        @yield('content')
+    </div> --}}
+
     <!-- /.content -->
     <div class="clearfix"></div>
     <!-- Footer -->
     {{-- @include('layouts.components.footer'); --}}
-    <!-- /.site-footer --
+    <!-- /.site-footer -->
     <!-- /#right-panel -->
 
     <!-- Scripts -->

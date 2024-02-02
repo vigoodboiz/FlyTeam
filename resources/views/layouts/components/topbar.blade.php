@@ -95,12 +95,12 @@
                 <div class="user-area dropdown float-right">
                     <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
-                        <img class="user-avatar rounded-circle" src="{{ asset('sb-admin/images/admin.jpg') }}"
-                            alt="User Avatar">
+                        <div>Xin chào, {{ Auth::user()->name }}</div>
                     </a>
 
                     <div class="user-menu dropdown-menu">
-                        <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
+                        <a class="nav-link" href="{{ route('profile.edit') }}"><i class="fa fa- user"></i>My
+                            Profile</a>
 
                         <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span
                                 class="count">13</span></a>

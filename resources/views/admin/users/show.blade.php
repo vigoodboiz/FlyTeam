@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('layouts.app')
 
 @section('title', $user->name)
 
@@ -25,26 +25,30 @@
                                 <th>Mã</th>
                                 <th>{{ $user->id }}</th>
                             </tr>
-                            {{-- <tr>
+                            <tr>
                                 <th>Mã người dùng</th>
                                 <th>{{ $user->user_code }}</th>
-                            </tr> --}}
+                            </tr>
                             <tr>
                                 <th>Tên quyền truy cập</th>
                                 <th>{{ $user->name }}</th>
                             </tr>
-                            {{-- <tr>
-                                <th>Điện thoại</th>
-                                <th>{{ $user->phone }}</th>
-                            </tr> --}}
                             <tr>
                                 <th>Email</th>
                                 <th>{{ $user->email }}</th>
                             </tr>
-                            {{-- <tr>
-                                <th>Ngày sinh</th>
-                                <th>{{ $user->birthday }}</th>
-                            </tr> --}}
+                            <tr>
+                                <th>Số Điện thoại</th>
+                                <th>{{ $user->phone }}</th>
+                            </tr>
+                            <tr>
+                                <th>Gender</th>
+                                <th>{{ $user->gender }}</th>
+                            </tr>
+                            <tr>
+                                <th>Address</th>
+                                <th>{{ $user->address }}</th>
+                            </tr>
                             <tr>
                                 <th>Vai trò</th>
                                 <th>
