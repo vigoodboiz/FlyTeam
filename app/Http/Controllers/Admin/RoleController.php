@@ -21,7 +21,7 @@ class RoleController extends Controller
     public function index()
     {
         // abort_if(Gate::denies('role_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $role = Role::all();
+        $role = Role::query()->paginate(5);
         return view('admin.roles.index', compact('role'));
     }
 
@@ -48,7 +48,6 @@ class RoleController extends Controller
     {
         $role = Role::create($request->all());
         $role->permissions()->sync($request->input('permissions', []));
-
         return redirect()->route('roles.index');
     }
 
