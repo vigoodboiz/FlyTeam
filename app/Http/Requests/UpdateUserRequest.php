@@ -30,7 +30,7 @@ class UpdateUserRequest extends FormRequest
         return [
             'user_code' => [
                 'required',
-            ]
+            ],
             'name' => [
                 'required',
             ],
