@@ -13,6 +13,8 @@ use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\FacebookController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -126,9 +128,14 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
      ///////////////////////// cate //////////////////
 
+
      Route::get('/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
 
 });
+
+     Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+     
+
      Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
      Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
 
@@ -136,6 +143,10 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
      Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
 
      Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
+
+
+});
 
 //Comments
 Route::get('/getComments', [CommentController::class, 'index'])->name('route_comment_index');
