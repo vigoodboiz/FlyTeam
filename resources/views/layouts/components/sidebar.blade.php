@@ -12,7 +12,7 @@
 
                         <li><i class="bi bi-person-circle text-Danger"></i><a href="{{ route('users.index') }}">Quản lý người dùng</a></li>
 
-                        <li><i class="bi bi-people text-Danger"></i><a href="#">Quản lý khách hàng</a>
+                        <li><i class="bi bi-people text-Danger"></i><a href="{{route('members.index')}}">Quản lý khách hàng</a>
                         </li>
                         <li><i class="bi bi-person-bounding-box"></i></i><a href="ui-tabs.html">Quản lý phân quyền</a></li>
 

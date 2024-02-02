@@ -9,7 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
-
+use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\CommentController;
 use Illuminate\Support\Facades\Gate;
@@ -67,7 +67,17 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     //Users
     Route::delete('users/massDestroy', [UserController::class, 'massDestroy']);
     Route::resource('users', UserController::class);
+    /////////member////////////////
+    Route::post('/members/create', [MemberController::class, 'create'])->name('members.create');
+    Route::post('/members', [MemberController::class, 'store'])->name('members.store');
 
+    Route::get('/members', [MemberController::class, 'index'])->name('members.index');
+
+    Route::get('/members/{member}/edit', [MemberController::class, 'edit'])->name('members.edit');
+    Route::put('/members/{member}', [MemberController::class, 'update'])->name('members.update');
+    Route::resource('members', MemberController::class);
+
+    Route::get('/ranking', [MemberController::class, 'ranking'])->name('members.ranking');
 
     ///////// oder ///////////
     Route::get('/oder', [OderController::class, 'listOder'])->name('listOder');
