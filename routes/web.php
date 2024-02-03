@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\oder_detailController;
 use App\Http\Controllers\Admin\delivery_statusController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\MemberController;
@@ -131,7 +132,11 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
      Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
-
+    //Coupon//
+    Route::get('/insert-coupon', [CouponController::class, 'insert_coupon'])->name('insert_coupon');
+    Route::get('/delete-coupon/{coupon_id}', [CouponController::class, 'delete_coupon'])->name("delete_coupon");
+    Route::get('/list-coupon', [CouponController::class, 'list_coupon'])->name('list_coupon');
+    Route::post('/insert-coupon-code', [CouponController::class, 'insert_coupon_code'])->name('insert_coupon_code');
 });
 
 //Comments
