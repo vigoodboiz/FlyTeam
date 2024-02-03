@@ -65,7 +65,7 @@ class CategoryController extends Controller
 
         // Thực hiện các xử lý khác sau khi cập nhật danh mục
 
-        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully');
+        return redirect()->route('categories.index')->with('success', 'Category updated successfully');
     }
 
     /**
@@ -86,7 +86,7 @@ class CategoryController extends Controller
 
         $category->delete(); // Xóa thành viên
 
-        return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully');
+        return redirect()->route('categories.index')->with('success', 'Category deleted successfully');
     }
 
 

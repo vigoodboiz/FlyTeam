@@ -51,11 +51,12 @@
                             </tr>
                             <tr>
                                 <th>Vai trò</th>
-                                <th>
+                                {{-- <th>
                                     @foreach ($user->roles as $role)
                                         <span class="text-primary">{{ $role->title }}</span>
                                     @endforeach
-                                </th>
+                                </th> --}}
+                                <th>{{ $user->role_id }}</th>
                             </tr>
                         </tbody>
                     </table>

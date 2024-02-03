@@ -20,14 +20,14 @@
                                 @csrf
                                 @method('put')
                                 <div class="row">
-                                    {{-- <div class="form-group col-md-6">
+                                    <div class="form-group col-md-6">
                                         <label for="user_code">Mã người dùng</label>
                                         <input type="text" class="form-control" value="{{ $user->user_code }}"
                                             name="user_code" placeholder="Mã người dùng">
                                         @error('user_code')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
-                                    </div> --}}
+                                    </div>
                                     <div class="form-group col-md-6">
                                         <label for="name">Họ tên:</label>
                                         <input type="text" class="form-control" value="{{ $user->name }}"
@@ -36,10 +36,10 @@
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    {{-- <div class="form-group col-md-6">
-                                        <label for="birthday">Ngày sinh:</label>
-                                        <input type="text" class="form-control" value="{{ $user->birthday }}"
-                                            name="birthday" placeholder="Ngày sinh">
+                                    <div class="form-group col-md-6">
+                                        <label for="address">Địa chỉ:</label>
+                                        <input type="text" class="form-control" value="{{ $user->address }}"
+                                            name="birthday" placeholder="Địa chỉ">
                                         @error('birthday')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
@@ -51,7 +51,7 @@
                                         @error('phone')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
-                                    </div> --}}
+                                    </div>
                                     <div class="form-group col-md-6">
                                         <label for="email">Email:</label>
                                         <input type="email" class="form-control" value="{{ $user->email }}"

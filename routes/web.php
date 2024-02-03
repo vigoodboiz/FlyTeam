@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\OderDetailController;
 use App\Http\Controllers\Admin\DeliveryStatusController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\MemberController;
@@ -34,13 +35,6 @@ use Laravel\Socialite\Facades\Socialite;
 Route::get('/', function () {
     return view('welcome');
 });
-
-
-// Route::get('/users', function(){
-//     abort_if(Gate::denies('user_access', 403, 'Ban khong co quyen truy cap vao trang nay!'));
-//     return view('users');
-// })->middleware(['auth', 'verified'])->name('users');
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -126,6 +120,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
 
 
+
     ///////////////////////// cate //////////////////
 
 
@@ -140,7 +135,15 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
 
     Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+    
+    //Coupon//
+    Route::get('/insert-coupon', [CouponController::class, 'insert_coupon'])->name('insert_coupon');
+    Route::get('/delete-coupon/{coupon_id}', [CouponController::class, 'delete_coupon'])->name("delete_coupon");
+    Route::get('/list-coupon', [CouponController::class, 'list_coupon'])->name('list_coupon');
+    Route::post('/insert-coupon-code', [CouponController::class, 'insert_coupon_code'])->name('insert_coupon_code');
 });
+
+
 
 
 
@@ -155,8 +158,12 @@ Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'inde
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-//facebook
-Route::controller(FacebookController::class)->group(function () {
-    Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
-    Route::get('auth/facebook/callback', 'handleFacebookCallback');
-});
+
+  //facebook
+// Route::controller(FacebookController::class)->group(function(){
+//     Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
+//     Route::get('auth/facebook/callback', 'handleFacebookCallback');
+// });
+Route::get('auth/facebook', [FacebookController::class, 'redirectToFB']);
+Route::get('callback/facebook', [FacebookController::class, 'handleCallback']);
+

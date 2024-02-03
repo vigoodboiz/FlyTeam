@@ -34,7 +34,7 @@
                                 </th>
                                 <th>STT</th>
                                 <th>Tên quyền truy cập</th>
-                                <th>Hành động</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody class="ligth-body">
@@ -78,6 +78,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $permission->links() }}
                 </div>
             </div>
         </div>

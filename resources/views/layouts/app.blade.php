@@ -92,7 +92,7 @@
     <!-- /.content -->
     <div class="clearfix"></div>
     <!-- Footer -->
-    @include('layouts.components.footer');
+    @include('layouts.components.footer')
     <!-- /.site-footer -->
     <!-- /#right-panel -->
 
@@ -120,7 +120,7 @@
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
     <script src="{{ asset('sb-admin/assets/js/init/fullcalendar-init.js') }}"></script>
-    @stack('script');
+    @stack('script')
 
     <!--Local Stuff-->
     <script>

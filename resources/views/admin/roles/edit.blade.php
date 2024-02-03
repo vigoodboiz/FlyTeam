@@ -41,8 +41,8 @@
                                 <div class="col-md-10">
                                     <div class="form-group">
                                         <label for="permissions">Quyền truy cập</label>
-                                        <a href="#" id="selectAll" class="btn btn-success ml-3">Chọn tất cả</a>
-                                        <a href="#" id="deselectAll" class="btn btn-danger ml-3">Bỏ chọn tất cả</a>
+                                        {{-- <a href="#" id="selectAll" class="btn btn-success ml-3">Chọn tất cả</a>
+                                        <a href="#" id="deselectAll" class="btn btn-danger ml-3">Bỏ chọn tất cả</a> --}}
                                         <select name="permissions[]" class="form-control permission-list"
                                             multiple="multiple">
                                             @foreach ($permissions as $id => $permissions)
