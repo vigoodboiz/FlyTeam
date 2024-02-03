@@ -137,7 +137,13 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
      Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
+     
+});
 
+//Laravel socialite
+Route::get('/auth/facebook', function () {
+    return Socialite::driver('facebook')->redirect();
+});
 
 });
 
