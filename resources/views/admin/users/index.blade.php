@@ -33,15 +33,15 @@
                                     </div>
                                 </th>
                                 <th>STT</th>
-                                <th>Mã người dùng</th>
-                                <th>Họ tên</th>
+                                <th>Code</th>
+                                <th>Name</th>
                                 <th>Email</th>
                                 {{-- <th>Image</th> --}}
                                 <th>Gender</th>
                                 <th>Phone</th>
-                                <th>Birthday</th>
-                                {{-- <th>Vai trò</th> --}}
-                                <th>Hành động</th>
+                                <th>Address</th>
+                                <th>Vai trò</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody class="ligth-body">
@@ -61,11 +61,12 @@
                                     <td>{{ $item->gender }}</td>
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $item->address }}</td>
-                                    {{-- <td>
-                                            @foreach ($item->roles as $role)
-                                                <span class="bg-warning">{{ $role->title }}</span>
-                                            @endforeach
-                                        </td> --}}
+                                    <td>
+                                        {{-- @foreach ($item->roles as $role)
+                                            <span class="bg-warning">{{ $role->title }}</span>
+                                        @endforeach --}}
+                                        {{ $item->role_id }}
+                                    </td>
                                     <td>
                                         <div class="d-flex align-items-center list-action">
                                             {{-- @can('user_show') --}}
