@@ -19,21 +19,13 @@
                         {{-- @can('role_access') --}}
                         <li><i class="fa fa-id-card-o"></i><a href="{{ route('roles.index') }}">Quản lý vai trò</a></li>
                         {{-- @endcan --}}
-                        <li><i class="fa fa-exclamation-triangle"></i><a href="ui-alerts.html">Quản lý sản phẩm</a></li>
-                        <li><i class="fa fa-spinner"></i><a href="ui-progressbar.html">Quản lý danh mục</a>
                         <li><i class="bi bi-people text-Danger"></i><a href="{{ route('members.index') }}">Quản lý khách
                                 hàng</a>
                         </li>
-
-                        <li><i class="bi bi-inboxes-fill text-Danger"></i><a
-                                href="{{ route('admin.categories.index') }}">Quản lý sản phẩm</a></li>
+                        <li><i class="bi bi-inboxes-fill text-Danger"></i><a href="{{ route('products.index') }}">Quản
+                                lý sản phẩm</a></li>
                         <li><i class="bi bi-grid-3x3-gap text-Danger"></i></i><a
-                                href="{{ route('products.index') }}">Quản lý danh mục</a>
-                        <li><i class="bi bi-grid-3x3-gap text-Danger"></i></i><a href="ui-progressbar.html">Quản lý danh
-                                mục</a>
-
-                        <li><i class="bi bi-inboxes-fill text-Danger"></i><a href="{{route('products.index')}}">Quản lý sản phẩm</a></li>
-                        <li><i class="bi bi-grid-3x3-gap text-Danger"></i></i><a href="{{route('categories.index')}}">Quản lý danh mục</a>
+                                href="{{ route('categories.index') }}">Quản lý danh mục</a>
 
                         </li>
 

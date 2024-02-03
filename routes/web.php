@@ -120,12 +120,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
 
      ///////////////////////// cate //////////////////
-
-
-     Route::get('/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
-
-});
-
      Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
      
 
@@ -136,7 +130,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
      Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
 
      Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
-
 
 
 });
