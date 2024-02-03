@@ -35,13 +35,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-// Route::get('/users', function(){
-//     abort_if(Gate::denies('user_access', 403, 'Ban khong co quyen truy cap vao trang nay!'));
-//     return view('users');
-// })->middleware(['auth', 'verified'])->name('users');
-
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -166,7 +159,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
   //facebook
-Route::controller(FacebookController::class)->group(function(){
-    Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
-    Route::get('auth/facebook/callback', 'handleFacebookCallback');
-});
+// Route::controller(FacebookController::class)->group(function(){
+//     Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
+//     Route::get('auth/facebook/callback', 'handleFacebookCallback');
+// });
+Route::get('auth/facebook', [FacebookController::class, 'redirectToFB']);
+Route::get('callback/facebook', [FacebookController::class, 'handleCallback']);

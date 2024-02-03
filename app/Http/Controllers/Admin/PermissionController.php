@@ -22,7 +22,7 @@ class PermissionController extends Controller
     {
         // abort_if(Gate::denies('permission_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $permission = Permission::all();
+        $permission = Permission::query()->paginate(5);
         return view('admin.permissions.index', compact('permission'));
     }
     /**

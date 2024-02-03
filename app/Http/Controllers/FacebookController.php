@@ -15,42 +15,44 @@ class FacebookController extends Controller
      *
      * @return void
      */
-    public function redirectToFacebook()
+    public function redirectToFB()
     {
         return Socialite::driver('facebook')->redirect();
     }
-           
+      
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function handleFacebookCallback()
+    public function handleCallback()
     {
         try {
-        
+    
             $user = Socialite::driver('facebook')->user();
-         
-            $finduser = User::where('facebook_id', $user->id)->first();
-         
+     
+            $finduser = User::where('social_id', $user->id)->first();
+     
             if($finduser){
-         
+     
                 Auth::login($finduser);
-       
-                return redirect()->intended('dashboard');
-         
+    
+                return redirect('/dashboard');
+     
             }else{
-                $newUser = User::updateOrCreate(['email' => $user->email],[
-                        'name' => $user->name,
-                        'facebook_id'=> $user->id,
-                        'password' => encrypt('123456dummy')
-                    ]);
-        
+                $newUser = User::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'facebook_id'=> $user->id,
+                    'facebook_type'=> 'facebook',
+                    'password' => encrypt('my-facebook')
+                ]);
+    
                 Auth::login($newUser);
-        
-                return redirect()->intended('dashboard');
+     
+                return redirect('/dashboard');
             }
-       
+    
         } catch (Exception $e) {
             dd($e->getMessage());
         }
