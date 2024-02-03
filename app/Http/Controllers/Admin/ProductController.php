@@ -56,7 +56,7 @@ class ProductController extends Controller
             $validatedData['image'] = $imageName;
         }
 
-        Product::create($validatedData);
+        Products::create($validatedData);
 
         return redirect()->route('products.create')->with('success', 'Sản phẩm đã được thêm thành công');
 
@@ -89,7 +89,7 @@ class ProductController extends Controller
 
         // return view('products.edit', compact('product'));
 
-        $product = Product::find($id);
+        $product = Products::find($id);
             $categories = Category::all();
 
             return view('admin.products.edit', compact('product', 'categories'));
@@ -135,7 +135,7 @@ class ProductController extends Controller
         ]);
 
         // Tìm sản phẩm cần sửa
-        $product = Product::findOrFail($id);
+        $product = Products::findOrFail($id);
 
         // Lưu ảnh mới nếu có
         if ($request->hasFile('image')) {
@@ -168,7 +168,7 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        $product = Product::findOrFail($id);
+        $product = Products::findOrFail($id);
         $product->delete();
     
         return redirect()->route('products.index')->with('success', 'Đã xóa sản phẩm thành công.');

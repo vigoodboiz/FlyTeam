@@ -24,4 +24,3 @@ class Products extends Model
         return $this->hasMany(Comment::class);
     }
     
-}
