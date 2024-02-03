@@ -4,26 +4,26 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\oder_status;
+use App\Models\OderStatus;
 use App\Http\Controllers\Controller;
 
-class oder_status_statusController extends Controller
+class OderStatusController extends Controller
 {
     //
     public function list(Request $request){
         $title = "Danh Sách Trạng Thái Đơn Hàng";
-        $oder_status = new oder_status();
+        $oder_status = new OderStatus();
         $listOder_status = $oder_status::all();
-        return view('admin.oder_status.list', compact('listOder_status','title'));
+        return view('admin.OderStatus.list', compact('listOder_status','title'));
     }
 
     public function add(Request $request){
         $title = "Thêm Trạng Thái Đơn Hàng";
         if($request->isMethod('POST')){
             $params = $request->except('_token');
-             $oder_status = oder_status::create($params);
+             $oder_status = OderStatus::create($params);
         }
-        return view('admin.oder_status.add',compact('title'));
+        return view('admin.OderStatus.add',compact('title'));
     }
 
     public function edit(Request $request , $id){
@@ -31,16 +31,16 @@ class oder_status_statusController extends Controller
         $oder_status = DB::table('oder_status')->where('id',$id)->first();
         if($request->isMethod('POST')){
             $params = $request->except('_token');
-            $resutl = oder_status::where('id',$id)->update($params);
+            $resutl = OderStatus::where('id',$id)->update($params);
             if($resutl){
                 return redirect()->route('listOder_status');
             }
         }
-        return view('admin.oder_status.edit',compact('oder_status','title'));
+        return view('admin.OderStatus.edit',compact('oder_status','title'));
     }
 
     public function delete(Request $request , $id){
-        $oder_status = oder_status::where('id',$id)->delete();
+        $oder_status = OderStatus::where('id',$id)->delete();
         if($oder_status){
             return redirect()->route('listOder_status');
         }
