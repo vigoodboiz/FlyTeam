@@ -78,6 +78,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     ///////// oder ///////////
     Route::get('/oder', [OderController::class, 'listOder'])->name('listOder');
+    Route::match(['GET', 'POST'],'/oder/search', [OderController::class, 'listOder'])->name('searchOder');
     Route::match(['GET', 'POST'], '/addoder', [OderController::class, 'addOder'])->name('addOder');
     Route::match(['GET', 'POST'], '/editoder/{id}', [OderController::class, 'editoder'])->name('editoder');
     Route::get('/delete/{id}', [OderController::class, 'deleteoder'])->name('deleteoder');
@@ -124,7 +125,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     ///////////////////////// cate //////////////////
 
 
-    
+
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 
 
@@ -135,7 +136,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
 
     Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
-    
+
     //Coupon//
     Route::get('/insert-coupon', [CouponController::class, 'insert_coupon'])->name('insert_coupon');
     Route::get('/delete-coupon/{coupon_id}', [CouponController::class, 'delete_coupon'])->name("delete_coupon");
@@ -159,11 +160,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-  //facebook
+//facebook
 // Route::controller(FacebookController::class)->group(function(){
 //     Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
 //     Route::get('auth/facebook/callback', 'handleFacebookCallback');
 // });
 Route::get('auth/facebook', [FacebookController::class, 'redirectToFB']);
 Route::get('callback/facebook', [FacebookController::class, 'handleCallback']);
-
