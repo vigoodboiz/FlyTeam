@@ -5,12 +5,11 @@
 <table class="table">
     <form class="d-flex" role="search" action="{{route('searchOder')}}" method="POST">
         @csrf
-        <input class="col-3 form-control me-2" type="search" name="searchOder" placeholder="Search" aria-label="Search">
+        <input class="col-3 form-control me-2" type="search" name="searchOder" placeholder="Search Address" aria-label="Search">
         <button class="btn btn-success mb-5" type="submit">Search</button>
     </form>
     <thead>
         <tr>
-            <!-- <th scope="col">STT</th> -->
             <th scope="col">ID</th>
             <th scope="col">USER_ID</th>
             <th scope="col">DATE</th>

@@ -16,6 +16,9 @@ use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+
+use App\Http\Controllers\shopGridController;
+
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -167,3 +170,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 // });
 Route::get('auth/facebook', [FacebookController::class, 'redirectToFB']);
 Route::get('callback/facebook', [FacebookController::class, 'handleCallback']);
+
+
+/////////////////////
+Route::get('page/shop', [shopGridController::class, 'index'])->name('shopGrid');
+Route::get('page/shop/fillCate/{id_cate}', [shopGridController::class, 'fillCate'])->name('fillCate');
+Route::get('page/shop/fillPrice', [shopGridController::class, 'fillPrice'])->name('fillPrice');

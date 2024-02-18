@@ -36,6 +36,7 @@
                                 mại</a></li>
                         <li><i class="bi bi-minecart text-Danger"></i><a href="{{ route('listOder_status') }}">Trạng
                                 thái đơn hàng</a></li>
+                        <li><i class="bi bi-cart4"></i><a href="{{ route('listOder_detail') }}">Chi tiết đơn hàng</a></li>
                         <li><i class="bi bi-truck text-Danger"></i><a href="{{ route('listDelivery_status') }}">Trạng
                                 thái giao hàng</a></li>
                         <li><i class="bi bi-graph-up-arrow text-Danger"></i><a href="ui-typgraphy.html">Thống kê</a>

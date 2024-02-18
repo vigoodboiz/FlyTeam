@@ -19,9 +19,9 @@ class OderController extends Controller
             $listOder = Oder::where('address', 'like', '%' . $keyword . '%')->paginate(10);
         }
         else{
-            $listOder = $oder::paginate(10);
+            $listOder = $oder::paginate(3);
         }
-        return view('admin.oder.list', compact('listOder', 'title'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('admin.oder.list', compact('listOder', 'title'));
     }
 
     
