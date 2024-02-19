@@ -61,6 +61,17 @@
                                         @enderror
                                     </div>
                                     <div class="form-group col-md-6">
+                                        <label for="email">Gender:</label>
+                                        <select name="gender" class="form-control" id="">
+                                            <option value="">{{ $user->gender }}</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                        </select>
+                                        @error('email')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group col-md-6">
                                         <label for="Role">Vai trò:</label>
                                         <select name="roles[]" class="js-select-2 form-control" multiple>
                                             @foreach ($role as $id => $role)

@@ -32,15 +32,15 @@
                                         <label for="selectAll" class="mb-0"></label>
                                     </div>
                                 </th>
-                                <th>STT</th>
+                                <th>Id</th>
                                 <th>Code</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 {{-- <th>Image</th> --}}
                                 <th>Gender</th>
-                                <th>Phone</th>
+                                <th>SDT</th>
                                 <th>Address</th>
-                                <th>Vai trò</th>
+                                <th>Role</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -62,9 +62,9 @@
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $item->address }}</td>
                                     <td>
-                                        {{-- @foreach ($item->roles as $role)
-                                            <span class="bg-warning">{{ $role->title }}</span>
-                                        @endforeach --}}
+                                        @foreach ($item->roles as $role)
+                                            <span class="bg-primary">{{ $role->title }}</span>
+                                        @endforeach
                                         {{ $item->role_id }}
                                     </td>
                                     <td>
@@ -73,13 +73,13 @@
                                             <button class="btn btn-success"><a data-toggle="tooltip" data-placement="top"
                                                     title="Xem chi tiết" data-original-title="View"
                                                     href="{{ route('users.show', ['user' => $item->id]) }}"><i
-                                                        class="fa fa-eye mr-0"></i>SHOW</a></button>
+                                                        class="fa fa-eye mr-0"></i></a></button>
                                             {{-- @endcan
                                             @can('user_edit') --}}
                                             <button class="btn btn-warning"> <a data-toggle="tooltip" data-placement="top"
                                                     title="Cập nhật" data-original-title="Edit"
                                                     href="{{ route('users.edit', ['user' => $item->id]) }}"><i
-                                                        class="fa fa-pen mr-0"></i>EDIT</a></button>
+                                                        class="fa-solid fa-pen"></i></a></button>
                                             {{-- @endcan
                                             @can('user_delete') --}}
                                             <form action="{{ route('users.destroy', ['user' => $item->id]) }}"
@@ -88,7 +88,7 @@
                                                 @method('delete')
                                                 <button class="btn btn-danger" type="submit"
                                                     onclick="return confirm('Có chắc xóa không?')"><i
-                                                        class="fa fa-trash-alt mr-0"></i>DELETE</button>
+                                                        class="fa fa-trash mr-0"></i></button>
                                             </form>
                                             {{-- @endcan --}}
                                         </div>

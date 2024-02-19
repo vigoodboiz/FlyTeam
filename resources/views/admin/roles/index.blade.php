@@ -61,13 +61,13 @@
                                             <button class="btn btn-warning"><a data-toggle="tooltip" data-placement="top"
                                                     title="Xem chi tiết" data-original-title="View"
                                                     href="{{ route('roles.show', ['role' => $item->id]) }}"><i
-                                                        class="fa fa-eye mr-0"></i>SHOW</a></button>
+                                                        class="fa fa-eye mr-0"></i></a></button>
                                             {{-- @endcan --}}
                                             {{-- @can('role_edit') --}}
                                             <button class="btn btn-success"><a data-toggle="tooltip" data-placement="top"
                                                     title="Cập nhật" data-original-title="Edit"
                                                     href="{{ route('roles.edit', ['role' => $item->id]) }}"><i
-                                                        class="fa fa-pen mr-0"></i>EDIT</a></button>
+                                                        class="fa-solid fa-pen"></i></a></button>
                                             {{-- @endcan --}}
                                             {{-- @can('role_delete') --}}
                                             <form action="{{ route('roles.destroy', ['role' => $item->id]) }}"
@@ -76,7 +76,7 @@
                                                 @method('delete')
                                                 <button class="btn btn-danger" type="submit"
                                                     onclick="return confirm('Có chắc xóa không?')"><i
-                                                        class="fa fa-trash mr-0"></i>DELETE</button>
+                                                        class="fa fa-trash mr-0"></i></button>
                                             </form>
                                             {{-- @endcan --}}
                                         </div>

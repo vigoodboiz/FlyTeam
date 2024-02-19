@@ -22,7 +22,7 @@ class AuthGate
         $user = Auth::user();
 
         if (!app()->runningInConsole() && $user) {
-            $roles = Role::with('permissions')->get();
+            $roles           = Role::with('permissions')->get();
             $permissionArray = [];
 
             foreach ($roles as $role) {
@@ -37,6 +37,7 @@ class AuthGate
                     return count(array_intersect($user->roles->pluck('id')->toArray(),$roles)) > 0;
                 });
             }
+        }
 
          }
         return $next($request);

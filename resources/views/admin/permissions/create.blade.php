@@ -24,7 +24,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Tên quyền truy cập</label>
+                                        <label>Permission name</label>
                                         <input type="text" name="title" class="form-control"
                                             placeholder="Nhập tên quyền truy cập">
                                         <div class="help-block with-errors"></div>
@@ -34,12 +34,13 @@
                                     @enderror
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary mr-2">Lưu lại</button>
-                        </form>
                     </div>
+                    <button type="submit" class="btn btn-primary mr-2">Lưu lại</button>
+                    </form>
                 </div>
             </div>
         </div>
-        <!-- Page end  -->
+    </div>
+    <!-- Page end  -->
     </div>
 @endsection

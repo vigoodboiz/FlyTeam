@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ela Admin - HTML5 Admin Template</title>
+    <title>Login</title>
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -36,8 +36,8 @@
         <div class="container">
             <div class="login-content">
                 <div class="login-logo">
-                    <a href="index.html">
-                        <img class="align-content" src="{{ asset('sb-admin/images/logo.png') }}" alt="">
+                    <a href="">
+                        <img class="align-content" src="{{ asset('sb-admin/images/logo3.png') }}" alt="">
                     </a>
                 </div>
                 <div class="login-form">
@@ -76,11 +76,12 @@
                         </div>
                         <div class="social-login-content">
                             <div class="social-button">
-                                <a href="{{ url('auth/facebook') }}"><button type="button"
+                                <a href="{{ route('auth.facebook') }}"><button type="button"
                                         class="btn social facebook btn-flat btn-addon mb-3"><i
-                                            class="ti-facebook"></i>Sign in with facebook</button></a>
-                                <button type="button" class="btn social twitter btn-flat btn-addon mt-2"><i
-                                        class="ti-google"></i>Sign in with google</button>
+                                            class="ti-facebook"></i>Login in with facebook</button></a>
+                                <a href="{{ route('auth.google') }}"><button type="button"
+                                        class="btn social twitter btn-flat btn-addon mt-2"><i
+                                            class="ti-google"></i>Login in with google</button></a>
                             </div>
                         </div>
                         <div class="register-link m-t-15 text-center">

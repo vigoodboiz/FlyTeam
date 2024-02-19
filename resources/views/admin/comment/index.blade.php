@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h2>Comment Management</h2>
-                <button type="button" class="btn btn-warning"><a href="{{ url('admin/comment/add') }}">Thêm mới</a></button>
+                {{-- <button type="button" class="btn btn-warning"><a href="{{ url('admin/comment/add') }}">Thêm mới</a></button> --}}
                 <br><br>
                 <table class="table table-bordered">
                     <thead>
@@ -32,8 +32,7 @@
                                         </button></div>
                                 </td>
                                 <td>
-                                    <div class="d-flex justify-content-center"><button type="button"
-                                            class="btn btn-danger">
+                                    <div class="d-flex justify-content-center"><button type="button" class="btn btn-danger">
                                             <a class="text-white"
                                                 href="{{ route('route_comment_delete', ['id' => $cmt->id]) }}">Xóa</a>
                                         </button></div>
