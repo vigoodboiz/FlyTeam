@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\delivery_status;
 use App\Http\Controllers\Controller;
 
-class delivery_statusController extends Controller
+class DeliveryStatusController extends Controller
 {
     //
     public function list(Request $request){

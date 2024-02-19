@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\OderController;
-use App\Http\Controllers\Admin\oder_status_statusController;
-use App\Http\Controllers\Admin\oder_detailController;
-use App\Http\Controllers\Admin\delivery_statusController;
+use App\Http\Controllers\Admin\OderStatusController;
+use App\Http\Controllers\Admin\OderDetailController;
+use App\Http\Controllers\Admin\DeliveryStatusController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ForgotPasswordController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
@@ -14,11 +15,13 @@ use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\FacebookController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 
 /*
@@ -52,7 +55,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-
     //Permissions
     Route::delete('permissions/massDestroy', [PermissionController::class, 'massDestroy']);
     Route::resource('permissions', PermissionController::class);
@@ -61,15 +63,20 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::delete('roles/massDestroy', [RoleController::class, 'massDestroy']);
     Route::resource('roles', RoleController::class);
 
+    //Forgot password
+    Route::get('/forget-pasword', [ForgotPasswordController::class, 'forgetPass'])->name('forgetPass');
+    Route::post('/forget-pasword', [ForgotPasswordController::class, 'postForgetPass']);
+    Route::get('/get-password/{user}/{token}', [ForgotPasswordController::class, 'getPass'])->name('getPass');
+    Route::post('/get-pasword/{user}/{token}', [ForgotPasswordController::class, 'postGetPass']);
+
     //Users
     Route::delete('users/massDestroy', [UserController::class, 'massDestroy']);
     Route::resource('users', UserController::class);
+    
     /////////member////////////////
     Route::post('/members/create', [MemberController::class, 'create'])->name('members.create');
     Route::post('/members', [MemberController::class, 'store'])->name('members.store');
-
     Route::get('/members', [MemberController::class, 'index'])->name('members.index');
-
     Route::get('/members/{member}/edit', [MemberController::class, 'edit'])->name('members.edit');
     Route::put('/members/{member}', [MemberController::class, 'update'])->name('members.update');
     Route::resource('members', MemberController::class);
@@ -83,22 +90,22 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/delete/{id}', [OderController::class, 'deleteoder'])->name('deleteoder');
 
     ///////// oder_status ///////////
-    Route::get('/oder/list_oder_status', [oder_status_statusController::class, 'list'])->name('listOder_status');
-    Route::match(['GET', 'POST'], '/oder/add_oder_status', [oder_status_statusController::class, 'add'])->name('addOder_status');
-    Route::match(['GET', 'POST'], '/oder/edit_oder_status/{id}', [oder_status_statusController::class, 'edit'])->name('editOder_status');
-    Route::get('/oder/delete_oder_status/{id}', [oder_status_statusController::class, 'delete'])->name('deleteOder_status');
+    Route::get('/oder/list_oder_status', [OderStatusController::class, 'list'])->name('listOder_status');
+    Route::match(['GET', 'POST'], '/oder/add_oder_status', [OderStatusController::class, 'add'])->name('addOder_status');
+    Route::match(['GET', 'POST'], '/oder/edit_oder_status/{id}', [OderStatusController::class, 'edit'])->name('editOder_status');
+    Route::get('/oder/delete_oder_status/{id}', [OderStatusController::class, 'delete'])->name('deleteOder_status');
 
     ///////// oder_detail ///////////
-    Route::get('/oder/list_oder_detail', [oder_detailController::class, 'list'])->name('listOder_detail');
-    Route::match(['GET', 'POST'], '/oder/add_oder_detail', [oder_detailController::class, 'add'])->name('addOder_detail');
-    Route::match(['GET', 'POST'], '/oder/edit_oder_detail/{id}', [oder_detailController::class, 'edit'])->name('editOder_detail');
-    Route::get('/oder/delete_oder_detail/{id}', [oder_detailController::class, 'delete'])->name('deleteOder_detail');
+    Route::get('/oder/list_oder_detail', [OderDetailController::class, 'list'])->name('listOder_detail');
+    Route::match(['GET', 'POST'], '/oder/add_oder_detail', [OderDetailController::class, 'add'])->name('addOder_detail');
+    Route::match(['GET', 'POST'], '/oder/edit_oder_detail/{id}', [OderDetailController::class, 'edit'])->name('editOder_detail');
+    Route::get('/oder/delete_oder_detail/{id}', [OderDetailController::class, 'delete'])->name('deleteOder_detail');
 
     ///////// delivery_status ///////////
-    Route::get('/oder/list_delivery_status', [delivery_statusController::class, 'list'])->name('listDelivery_status');
-    Route::match(['GET', 'POST'], '/oder/add_delivery_status', [delivery_statusController::class, 'add'])->name('addDelivery_status');
-    Route::match(['GET', 'POST'], '/oder/edit_delivery_status/{id}', [delivery_statusController::class, 'edit'])->name('editDelivery_status');
-    Route::get('/oder/delete_delivery_status/{id}', [delivery_statusController::class, 'delete'])->name('deleteDelivery_status');
+    Route::get('/oder/list_delivery_status', [DeliveryStatusController::class, 'list'])->name('listDelivery_status');
+    Route::match(['GET', 'POST'], '/oder/add_delivery_status', [DeliveryStatusController::class, 'add'])->name('addDelivery_status');
+    Route::match(['GET', 'POST'], '/oder/edit_delivery_status/{id}', [DeliveryStatusController::class, 'edit'])->name('editDelivery_status');
+    Route::get('/oder/delete_delivery_status/{id}', [DeliveryStatusController::class, 'delete'])->name('deleteDelivery_status');
 
     //Comments
     Route::get('/getComments', [CommentController::class, 'index'])->name('route_comment_index');
@@ -109,27 +116,19 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
      ///////////////////////// product //////////////////
      Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-     // Route::get('/products/create', [ProductController::class, 'create']);
      Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
      Route::post('/products', [ProductController::class, 'store'])->name('products.store');
-
      Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
      Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
-
-
      Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
 
 
      ///////////////////////// cate //////////////////
      Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
-     
-
      Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
      Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
-
      Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
      Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
-
      Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
 
@@ -149,15 +148,19 @@ Route::match(['GET', 'POST'], '/comment/add', [CommentController::class, 'add'])
 Route::match(['GET', 'POST'], '/comment/update/{id}', [CommentController::class, 'update'])->name('route_comment_update');
 Route::match(['GET', 'POST'], '/comment/delete/{id}', [CommentController::class, 'delete'])->name('route_comment_delete');
 
-Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-  //facebook
-// Route::controller(FacebookController::class)->group(function(){
-//     Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
-//     Route::get('auth/facebook/callback', 'handleFacebookCallback');
-// });
-Route::get('auth/facebook', [FacebookController::class, 'redirectToFB']);
-Route::get('callback/facebook', [FacebookController::class, 'handleCallback']);
+//Route Facebook
+Route::controller(FacebookController::class)->group(function(){
+    Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
+    Route::get('auth/facebook/callback', 'handleFacebookCallback');
+});
+//Route Google
+Route::controller(GoogleController::class)->group(function(){
+    Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
+    Route::get('auth/google/callback', 'handleGoogleCallback');
+});
+// Send email
+Route::get('/send-mail{email}', [RegisteredUserController::class, 'store'])->name('send.email');

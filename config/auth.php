@@ -100,6 +100,13 @@ return [
         ],
     ],
 
+    'verification' => [
+        'expire' => 60,
+        'table' => 'email_verifications',
+        'after_resend' => 120,
+        'redirect_to' => '/email-verified',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Password Confirmation Timeout
@@ -116,4 +123,3 @@ return [
 
 
 ];
-

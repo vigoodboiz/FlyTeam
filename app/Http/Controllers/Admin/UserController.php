@@ -21,7 +21,7 @@ class UserController extends Controller
     public function index()
     {
         // abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $user = User::query()->paginate(5);
+        $user = User::all();
 
         return view('admin.users.index', compact('user'));
     }
@@ -48,7 +48,12 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $user = User::create($request->all());
-        $user->roles()->sync($request->input('roles', []));        
+        $user->roles()->sync($request->input('roles', []));
+        
+        // if ($request->input('profile_photo', true)) {
+        //     $user->addMedia($request->profile_photo)->toMediaCollection('users');
+        // }
+        
         return redirect()->route('users.index');
     }
 
@@ -89,9 +94,16 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         $user->update($request->all());
-        // $role -> Auth()::role()->id;
         $user->roles()->sync($request->input('roles', []));
         
+        // if ($request->hasFile('profile_photo', true)) {
+            
+        //     if ($user->getFirstMedia('users')) {
+        //         $user->getFirstMedia('users')->delete();
+        //     }
+        //     $user->addMedia($request->profile_photo)->toMediaCollection('users');
+        // }
+
         return redirect()->route('users.index');
     }
 
@@ -106,7 +118,7 @@ class UserController extends Controller
         // abort_if(Gate::denies('user_delete'), Response::HTTP_FORBIDDEN, '430 Forbidden');
         $user->delete();
 
-        return back()->with('success','User deleted successfully');
+        return back();
     }
 
     public function massDestroy(MassDestroyUserRequest $request) {

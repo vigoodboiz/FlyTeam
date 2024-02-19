@@ -53,6 +53,9 @@ class UpdateUserRequest extends FormRequest
             'address' => [
                 'required',
                 'max:255',
+            ],
+            'role_id' => [
+                'required',
             ]
         ];
     }

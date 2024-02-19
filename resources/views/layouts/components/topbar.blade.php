@@ -3,7 +3,7 @@
     <header id="header" class="header">
         <div class="top-left">
             <div class="navbar-header">
-                <a class="navbar-brand" href="./"><img src="{{ asset('sb-admin/images/logo.png') }}"
+                <a class="navbar-brand" href="{{ route('dashboard') }}"><img src="{{ asset('sb-admin/images/logo3.png') }}"
                         alt="Logo"></a>
                 <a class="navbar-brand hidden" href="./"><img src="{{ asset('sb-admin/images/logo2.png') }}"
                         alt="Logo"></a>
@@ -81,7 +81,8 @@
                                 </div>
                             </a>
                             <a class="dropdown-item media" href="#">
-                                <span class="photo media-left"><img alt="avatar" src="images/avatar/4.jpg')}}"></span>
+                                <span class="photo media-left"><img alt="avatar"
+                                        src="{{ asset('sb-admin/images/avatar/4.jpg') }}"></span>
                                 <div class="message media-body">
                                     <span class="name float-left">Rachel Santos</span>
                                     <span class="time float-right">15 minutes ago</span>
@@ -99,7 +100,7 @@
                     </a>
 
                     <div class="user-menu dropdown-menu">
-                        <a class="nav-link" href="{{ route('profile.edit') }}"><i class="fa fa- user"></i>My
+                        <a class="nav-link" href="{{ route('profile.show') }}"><i class="fa fa- user"></i>My
                             Profile</a>
 
                         <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span

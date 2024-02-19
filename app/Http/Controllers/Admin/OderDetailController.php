@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\oder_detail;
 use App\Http\Controllers\Controller;
 
-class oder_detailController extends Controller
+class OderDetailController extends Controller
 {
     //
     public function list(Request $request){

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\oder_status;
 use App\Http\Controllers\Controller;
 
-class oder_status_statusController extends Controller
+class OderStatusController extends Controller
 {
     //
     public function list(Request $request){

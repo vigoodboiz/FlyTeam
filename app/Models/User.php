@@ -11,7 +11,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
@@ -34,7 +34,7 @@ class User extends Authenticatable
         'address',
         'role_id',
         'facebook_id',
-        'facebook_type',
+        'google_id',
     ];
 
     /**

@@ -9,17 +9,17 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class VerifyAccount extends Mailable
+class DemoMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public $account;
-    public function __construct($acc)
+    public $mailData;
+    public function __construct($mailData)
     {
-        $this->account = $acc;
+        $this->mailData = $mailData;
     }
 
     /**
@@ -28,7 +28,7 @@ class VerifyAccount extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Verify Account',
+            subject: 'C.O.I Cosmestics',
         );
     }
 
@@ -38,7 +38,7 @@ class VerifyAccount extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.verify_account',
+            view: 'emails.demoMail',
         );
     }
 
