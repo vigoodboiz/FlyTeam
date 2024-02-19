@@ -13,8 +13,8 @@ class DeliveryStatusController extends Controller
     public function list(Request $request){
         $title = "Danh Sách Trạng Thái Vận Chuyển";
         $delivery_status = new DeliveryStatus();
-        $listDelivery_status = $delivery_status::all();
-        return view('admin.DeliveryStatus.list', compact('listDelivery_status','title'));
+        $listDelivery_status = $delivery_status::paginate(5);
+        return view('admin.DeliveryStatus.list', compact('listDelivery_status','title'))->with('i',(request()->input('page',1)-1)*5);
     }
 
     public function add(Request $request){

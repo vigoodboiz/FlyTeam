@@ -6,19 +6,19 @@
     @csrf
     <div class="mb-3">
         <label for="formGroupExampleInput" class="form-label">product_id :</label>
-        <input name="product_id" type="text" class="form-control" id="formGroupExampleInput" placeholder="product_id">
+        <input name="product_id" type="text" class="form-control" id="formGroupExampleInput" placeholder="product_id" required>
     </div>
     <div class="mb-3">
         <label for="formGroupExampleInput" class="form-label">oder_id :</label>
-        <input name="oder_id" type="text" class="form-control" id="formGroupExampleInput" placeholder="oder_id">
+        <input name="oder_id" type="text" class="form-control" id="formGroupExampleInput" placeholder="oder_id" required>
     </div>
     <div class="mb-3">
         <label for="formGroupExampleInput" class="form-label">price :</label>
-        <input name="price" type="number" class="form-control" id="formGroupExampleInput" placeholder="price">
+        <input name="price" type="number" class="form-control" id="formGroupExampleInput" placeholder="price" required>
     </div>
     <div class="mb-3">
         <label for="formGroupExampleInput" class="form-label">quantity :</label>
-        <input name="quantity" type="number" class="form-control" id="formGroupExampleInput" placeholder="quantity">
+        <input name="quantity" type="number" class="form-control" id="formGroupExampleInput" placeholder="quantity" required>
     </div>
     <br>
     
