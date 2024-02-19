@@ -88,7 +88,7 @@
                             @foreach($sale_product as $sale_pro)
                             <div class="col-lg-4">
                                 <div class="product__discount__item">
-                                    <div class="product__discount__item__pic set-bg" data-setbg="{{ asset('storage/images/'.$sale_pro->image) }}">
+                                    <div class="rounded product__discount__item__pic set-bg" data-setbg="{{ asset('storage/images/'.$sale_pro->image) }}" >
                                         <div class="product__discount__percent">-20%</div>
                                         <ul class="product__item__pic__hover">
                                             <li><a href="#"><i class="fa fa-heart"></i></a></li>
@@ -129,7 +129,7 @@
                     @foreach($products as $pro)
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="{{ asset('storage/images/'.$pro->image) }}">
+                            <div class="rounded product__item__pic set-bg" data-setbg="{{ asset('storage/images/'.$pro->image) }}">
                                 <ul class="product__item__pic__hover">
                                     <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                     <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -137,7 +137,7 @@
                                 </ul>
                             </div>
                             <div class="product__item__text">
-                                <h6><a href="#">{{$pro->name}}</a></h6>
+                                <h4><b><a style="color:black" href="#">{{$pro->name}}</a></b></h4>
                                 <div class="product__item__price">${{$pro->price}}</div>
                             </div>
                         </div>

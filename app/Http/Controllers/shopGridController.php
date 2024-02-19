@@ -16,7 +16,7 @@ class shopGridController extends Controller
         $categories = Category::all();
         $products = Products::with('category')->paginate(9);
         // sản phẩm mới
-        $new_product = Products::orderBy('created_at', 'DESC')->limit(6)->get();
+        $new_product = Products::orderBy('created_at', 'DESC')->limit(3)->get();
         // sản phẩm sale
         $sale_product = Products::where('price_sale', '!=', 0)->get();
         // lấy giá trị min , max của price
@@ -30,7 +30,7 @@ class shopGridController extends Controller
         $categories = Category::all();
         $products = Products::where('id_category', $id_cate)->paginate(9);
         // sản phẩm mới
-        $new_product = Products::orderBy('created_at', 'DESC')->limit(6)->get();
+        $new_product = Products::orderBy('created_at', 'DESC')->limit(3)->get();
         // sản phẩm sale
         $sale_product = Products::where('price_sale', '!=', 0)->get();
         // lấy giá trị min , max của price
@@ -44,7 +44,7 @@ class shopGridController extends Controller
 
         $categories = Category::all();
         // sản phẩm mới
-        $new_product = Products::orderBy('created_at', 'DESC')->limit(6)->get();
+        $new_product = Products::orderBy('created_at', 'DESC')->limit(3)->get();
         // sản phẩm sale
         $sale_product = Products::where('price_sale', '!=', 0)->get();
 
