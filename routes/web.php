@@ -18,6 +18,9 @@ use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+
+use App\Http\Controllers\shopGridController;
+
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -85,6 +88,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     ///////// oder ///////////
     Route::get('/oder', [OderController::class, 'listOder'])->name('listOder');
+    Route::match(['GET', 'POST'],'/oder/search', [OderController::class, 'listOder'])->name('searchOder');
     Route::match(['GET', 'POST'], '/addoder', [OderController::class, 'addOder'])->name('addOder');
     Route::match(['GET', 'POST'], '/editoder/{id}', [OderController::class, 'editoder'])->name('editoder');
     Route::get('/delete/{id}', [OderController::class, 'deleteoder'])->name('deleteoder');
@@ -121,6 +125,18 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
      Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
      Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
      Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
+  
+    ///////////////////////// product //////////////////
+    Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+    // Route::get('/products/create', [ProductController::class, 'create']);
+    Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+    Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+
+    Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
+
+
+    Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
 
 
      ///////////////////////// cate //////////////////
@@ -131,15 +147,15 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
      Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
      Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
-
     //Coupon//
     Route::get('/insert-coupon', [CouponController::class, 'insert_coupon'])->name('insert_coupon');
     Route::get('/delete-coupon/{coupon_id}', [CouponController::class, 'delete_coupon'])->name("delete_coupon");
     Route::get('/list-coupon', [CouponController::class, 'list_coupon'])->name('list_coupon');
     Route::post('/insert-coupon-code', [CouponController::class, 'insert_coupon_code'])->name('insert_coupon_code');
-
-     
 });
+
+
+
 
 
 //Comments
@@ -164,3 +180,17 @@ Route::controller(GoogleController::class)->group(function(){
 });
 // Send email
 Route::get('/send-mail{email}', [RegisteredUserController::class, 'store'])->name('send.email');
+
+//facebook
+// Route::controller(FacebookController::class)->group(function(){
+//     Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
+//     Route::get('auth/facebook/callback', 'handleFacebookCallback');
+// });
+Route::get('auth/facebook', [FacebookController::class, 'redirectToFB']);
+Route::get('callback/facebook', [FacebookController::class, 'handleCallback']);
+
+
+/////////////////////
+Route::get('page/shop', [shopGridController::class, 'index'])->name('shopGrid');
+Route::get('page/shop/fillCate/{id_cate}', [shopGridController::class, 'fillCate'])->name('fillCate');
+Route::get('page/shop/fillPrice', [shopGridController::class, 'fillPrice'])->name('fillPrice');
