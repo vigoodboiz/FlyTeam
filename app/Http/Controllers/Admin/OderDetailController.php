@@ -52,4 +52,3 @@ class OderDetailController extends Controller
         return view('admin.OderDetail.edit',compact('oder_detail','title'));
     }
 }
-}
