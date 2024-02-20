@@ -6,8 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\OderStatus;
-use App\Http\Requests\OderStatusRequest;
-use Illuminate\Support\Facades\Validator;
+
 
 class OderStatusController extends Controller
 {
