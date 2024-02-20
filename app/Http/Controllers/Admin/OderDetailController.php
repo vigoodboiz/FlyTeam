@@ -51,12 +51,5 @@ class OderDetailController extends Controller
         $oder_detail = oder_detail::where('id',$id)->delete();
         return view('admin.OderDetail.edit',compact('oder_detail','title'));
     }
-
-    public function delete(Request $request , $id){
-        $oder_detail = OderDetail::where('id',$id)->delete();
-        if($oder_detail){
-            return redirect()->route('listOder_detail');
-        }
-    }
 }
 }
