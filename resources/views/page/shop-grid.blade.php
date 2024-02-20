@@ -137,7 +137,7 @@
                                 </ul>
                             </div>
                             <div class="product__item__text">
-                                <h4><b><a style="color:black" href="#">{{$pro->name}}</a></b></h4>
+                                <h4><b><a style="color:black" href="{{route('shopDetails' , $pro->id)}}">{{$pro->name}}</a></b></h4>
                                 <div class="product__item__price">${{$pro->price}}</div>
                             </div>
                         </div>

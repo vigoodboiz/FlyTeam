@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 
 use App\Http\Controllers\shopGridController;
+use App\Http\Controllers\ShopDetailsController;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
@@ -67,10 +68,10 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('roles', RoleController::class);
 
     //Forgot password
-    Route::get('/forget-pasword', [ForgotPasswordController::class, 'forgetPass'])->name('forgetPass');
-    Route::post('/forget-pasword', [ForgotPasswordController::class, 'postForgetPass']);
-    Route::get('/get-password/{user}/{token}', [ForgotPasswordController::class, 'getPass'])->name('getPass');
-    Route::post('/get-pasword/{user}/{token}', [ForgotPasswordController::class, 'postGetPass']);
+    // Route::get('/forget-pasword', [ForgotPasswordController::class, 'forgetPass'])->name('forgetPass');
+    // Route::post('/forget-pasword', [ForgotPasswordController::class, 'postForgetPass']);
+    // Route::get('/get-password/{user}/{token}', [ForgotPasswordController::class, 'getPass'])->name('getPass');
+    // Route::post('/get-pasword/{user}/{token}', [ForgotPasswordController::class, 'postGetPass']);
 
     //Users
     Route::delete('users/massDestroy', [UserController::class, 'massDestroy']);
@@ -190,7 +191,8 @@ Route::get('auth/facebook', [FacebookController::class, 'redirectToFB']);
 Route::get('callback/facebook', [FacebookController::class, 'handleCallback']);
 
 
-/////////////////////
+/////////////////////main//////////////////////
 Route::get('page/shop', [shopGridController::class, 'index'])->name('shopGrid');
 Route::get('page/shop/fillCate/{id_cate}', [shopGridController::class, 'fillCate'])->name('fillCate');
 Route::get('page/shop/fillPrice', [shopGridController::class, 'fillPrice'])->name('fillPrice');
+Route::get('page/shopDetails/{id_pro}', [ShopDetailsController::class, 'index'])->name('shopDetails');

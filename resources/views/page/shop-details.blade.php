@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="{{ asset('interface/img/breadcrumb.jpg')}" >
+<section class="breadcrumb-section set-bg" data-setbg="{{ asset('interface/img/breadcrumb.jpg')}}">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -24,22 +24,24 @@
 <section class="product-details spad">
     <div class="container">
         <div class="row">
+            @foreach($product_detail as $pro_dt)
             <div class="col-lg-6 col-md-6">
                 <div class="product__details__pic">
                     <div class="product__details__pic__item">
-                        <img class="product__details__pic__item--large" src="img/product/details/product-details-1.jpg" alt="">
+                        <img class="product__details__pic__item--large" style="height: 600px;" src="{{ asset('storage/images/'.$pro_dt->image) }}" alt="">
                     </div>
                     <div class="product__details__pic__slider owl-carousel">
-                        <img data-imgbigurl="img/product/details/product-details-2.jpg" src="img/product/details/thumb-1.jpg" alt="">
-                        <img data-imgbigurl="img/product/details/product-details-3.jpg" src="img/product/details/thumb-2.jpg" alt="">
-                        <img data-imgbigurl="img/product/details/product-details-5.jpg" src="img/product/details/thumb-3.jpg" alt="">
-                        <img data-imgbigurl="img/product/details/product-details-4.jpg" src="img/product/details/thumb-4.jpg" alt="">
+                        <img data-imgbigurl="{{asset('interface/img/product/details/product-details-2.jpg')}}" src="{{asset('interface/img/product/details/thumb-1.jpg')}}" alt="">
+                        <img data-imgbigurl="{{asset('interface/img/product/details/product-details-3.jpg')}}" src="{{asset('interface/img/product/details/thumb-2.jpg')}}" alt="">
+                        <img data-imgbigurl="{{asset('interface/img/product/details/product-details-5.jpg')}}" src="{{asset('interface/img/product/details/thumb-3.jpg')}}" alt="">
+                        <img data-imgbigurl="{{asset('interface/img/product/details/product-details-4.jpg')}}" src="{{asset('interface/img/product/details/thumb-4.jpg')}}" alt="">
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
+
                 <div class="product__details__text">
-                    <h3>Vetgetable’s Package</h3>
+                    <h3>{{$pro_dt->name}}</h3>
                     <div class="product__details__rating">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
@@ -48,7 +50,7 @@
                         <i class="fa fa-star-half-o"></i>
                         <span>(18 reviews)</span>
                     </div>
-                    <div class="product__details__price">$50.00</div>
+                    <div class="product__details__price">${{$pro_dt->price}}</div>
                     <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
                         vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
                         quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p>
@@ -136,24 +138,43 @@
                         </div>
                         <div class="tab-pane" id="tabs-3" role="tabpanel">
                             <div class="product__details__tab__desc">
-                                <h6>Products Infomation</h6>
-                                <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-                                    Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
-                                    Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam
-                                    sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo
-                                    eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.
-                                    Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent
-                                    sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac
-                                    diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante
-                                    ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                                    Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
-                                    Proin eget tortor risus.</p>
+                                <h6>Products Comment</h6>
+                                <p>
+                                <div class="ml-14">
+                                    <div class="row flex">
+                                        <img class="rounded" style="width: 40px; height: 30px;" src="{{ asset('interface/img/ava.jpg') }}" alt="">
+                                        <p class="text-[16px] ml-1">abc</p>
+                                    </div>
+                                    <p class="display-6 text-muted">20/2/2024 | 22:22:22</p>
+                                    <h5>san pham rat tot</h5>
+                                </div>
+
+                                <div class="mt-4 ml-14">
+                                    <div class="row flex">
+                                        <img class="rounded" style="width: 40px; height: 30px;" src="{{ asset('interface/img/ava.jpg') }}" alt="">
+                                        <p class="text-[16px] ml-1">abc</p>
+                                    </div>
+                                    <p class="display-6 text-muted">20/2/2024 | 22:22:22</p>
+                                    <h5>san pham rat tot</h5>
+                                </div>
+                                <hr class="border-gray-600 w-[95%] mx-auto my-5">
+
+                                <h3>Comment</h3>
+                                <form action="#" method="">
+                                    <div class="form-group">
+                                        <textarea class="form-control" id="comment" rows="3" placeholder="Nhập nội dung bình luận"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-success">success</button>
+                                </form>
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
+
     </div>
 </section>
 <!-- Product Details Section End -->
@@ -170,8 +191,9 @@
         </div>
         <div class="row">
             <div class="col-lg-3 col-md-4 col-sm-6">
+                @foreach($product_same as $pro_same)
                 <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
+                    <div class="product__item__pic set-bg" data-setbg="{{ asset('storage/images/'.$pro_same->image) }}">
                         <ul class="product__item__pic__hover">
                             <li><a href="#"><i class="fa fa-heart"></i></a></li>
                             <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -179,55 +201,11 @@
                         </ul>
                     </div>
                     <div class="product__item__text">
-                        <h6><a href="#">Crab Pool Security</a></h6>
-                        <h5>$30.00</h5>
+                        <h6><a href="#">{{$pro_same->name}}</a></h6>
+                        <h5>${{$pro_same->price}}</h5>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/product/product-2.jpg">
-                        <ul class="product__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">Crab Pool Security</a></h6>
-                        <h5>$30.00</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/product/product-3.jpg">
-                        <ul class="product__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">Crab Pool Security</a></h6>
-                        <h5>$30.00</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/product/product-7.jpg">
-                        <ul class="product__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">Crab Pool Security</a></h6>
-                        <h5>$30.00</h5>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
