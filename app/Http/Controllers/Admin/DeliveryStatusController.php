@@ -51,12 +51,5 @@ class DeliveryStatusController extends Controller
         $delivery_status = delivery_status::where('id',$id)->delete();
         return view('admin.DeliveryStatus.edit',compact('delivery_status','title'));
     }
+}
 
-    public function delete(Request $request , $id){
-        $delivery_status = DeliveryStatus::where('id',$id)->delete();
-        if($delivery_status){
-            return redirect()->route('listDelivery_status');
-        }
-    }
-}
-}
