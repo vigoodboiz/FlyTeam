@@ -14,4 +14,4 @@ class OderStatus extends Model
         'status'
     ];
 }
-}
+
