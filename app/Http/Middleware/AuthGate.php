@@ -29,6 +29,7 @@ class AuthGate
                 }
             }
 
+
             foreach ($permissionArray as $title => $roles) {
                 Gate::define($title, function (User $user) use ($roles) {
                     return in_array($user->role_id, $roles);
@@ -36,5 +37,5 @@ class AuthGate
             }
         }
         return $next($request);
+         }
     }
-}

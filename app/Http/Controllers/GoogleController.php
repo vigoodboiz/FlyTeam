@@ -38,7 +38,7 @@ class GoogleController extends Controller
          
                 Auth::login($finduser);
         
-                return view('guest');
+                return view('welcome');
          
             }else{
                 $newUser = User::updateOrCreate(['email' => $user->email],[
@@ -49,7 +49,7 @@ class GoogleController extends Controller
          
                 Auth::login($newUser);
         
-                return view('guest');
+                return view('welcome');
             } 
         } catch (Exception $e) {
             $e->getMessage();

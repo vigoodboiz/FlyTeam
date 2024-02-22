@@ -21,7 +21,7 @@ class UserController extends Controller
     public function index()
     {
         abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $user = User::all();
+        $user = User::query()->paginate(5);
 
         return view('admin.users.index', compact('user'));
     }
