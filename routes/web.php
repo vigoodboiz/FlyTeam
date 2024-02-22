@@ -130,9 +130,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
 
      Route::get('/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
-
-});
-
      Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
      
 
@@ -143,16 +140,17 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
      Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
 
      Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+});
+
+    
 
      
-});
 
 //Laravel socialite
 Route::get('/auth/facebook', function () {
     return Socialite::driver('facebook')->redirect();
 });
 
-});
 
 //Comments
 Route::get('/getComments', [CommentController::class, 'index'])->name('route_comment_index');

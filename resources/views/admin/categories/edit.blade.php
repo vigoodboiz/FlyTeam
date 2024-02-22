@@ -9,19 +9,14 @@
     <label for="name">Category Name:</label>
     <input type="text" class="form-control" name="name" id="name" value="{{ $category->name }}" required>
     <div class="invalid-feedback">Please enter a category name.</div>
-</div>
+    </div>
 
+    <div class="form-group">
+        <label for="image">Image:</label>
+        <input type="file" name="image" class="form-control-file">
+        <img src="{{ Storage::url('images/' . $category->image) }}" alt="category Image" style="max-width: 200px;">
+    </div>
 
-    <!-- <div>
-        <label for="name" for="description" >Category Name:</label>
-        <input type="text" name="name" id="name" value="{{ $category->name }}">
-    </div> -->
-
-
-    <!-- <div>
-        <label for="description">Category Description:</label>
-        <textarea name="description" id="description">{{ $category->description }}</textarea>
-    </div> -->
     <button type="submit">Update Category</button>
 </form>
 @endsection

@@ -32,7 +32,16 @@ class CategoryController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|unique:category|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+         // Lưu ảnh vào thư mục storage/app/public/images
+         if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/images', $imageName);
+            $validatedData['image'] = $imageName;
+        }
 
         Category::create($validatedData);
 

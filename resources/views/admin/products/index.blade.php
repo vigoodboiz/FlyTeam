@@ -13,6 +13,7 @@
             <th>Danh mục</th>
             <th>Name</th>
             <th>Brand</th>
+            <th>Describe</th>
             <th>Price</th>
             <th>Price Sale</th>
             <th>Image</th>
@@ -27,6 +28,7 @@
             <td>{{ $product->category->name }}</td>
             <td>{{ $product->name }}</td>
             <td>{{ $product->brand }}</td>
+            <td>{{ $product->describe }}</td>
             <td>{{ $product->price }}</td>
             <td>{{ $product->price_sale }}</td>
             <td><img src="{{ asset('storage/images/'.$product->image) }}" alt="{{ $product->name }}" width="100"></td>

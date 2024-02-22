@@ -9,31 +9,7 @@
     <button type="submit" class="btn btn-primary"><a href="{{ route('categories.create') }}">thêm</a></button>
 
 
-    <!-- <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-        </tr>
-        @foreach($categories as $category)
-        <tr>
-            <td>{{ $category->id }}</td>
-            <td>{{ $category->name }}</td>
 
-            <td><a href="{{ route('categories.edit', $category->id) }}">Edit</a></td>
-            <td>
-                 <form action="{{ route('categories.destroy', $category->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit">Delete</button>
-                </form>
-            </td>
-        </tr>
-       
-        
-        @endforeach                                                                                     
-
-       
-    </table> -->
 
 
     <table class="table table-bordered">
@@ -49,6 +25,11 @@
         <tr>
             <td>{{ $category->id }}</td>
             <td>{{ $category->name }}</td>
+
+            <td><img src="{{ asset('storage/images/'.$category->image) }}" alt="{{ $category->name }}" width="100"></td>
+            <td>
+                <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-danger">Edit</a>
+            </td>
             <td>
                 <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-primary">Edit</a>
                 <form action="{{ route('categories.destroy', $category->id) }}" method="POST" class="d-inline">
