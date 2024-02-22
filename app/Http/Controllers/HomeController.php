@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Products;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
@@ -16,9 +18,7 @@ class HomeController extends Controller
         return view('dashboard');
     } elseif ($redirectRoute === 'unauthorized') {
         abort(403, 'Unauthorized');
-    } elseif ($redirectRoute == 'login') {
-        return view('auth.login');
-    }
+    } 
     else {
         return redirect()->route($redirectRoute);
     }
