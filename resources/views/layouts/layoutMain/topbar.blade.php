@@ -28,38 +28,30 @@
                             </div>
                             <div class="header__top__right__language">
                                 <img src="img/language.png" alt="">
-                                <div>English</div>
+                                <div>
+                                    @if (Auth::check())
+                                        <a href="#" class="dropdown-toggle active" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            <div>Xin chào, {{ Auth::user()->name }}</div>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('login') }}"><i class="fa fa-user"></i> Login</a>
+                                    @endif
+                                </div>
                                 <span class="arrow_carrot-down"></span>
                                 <ul>
-                                    <li><a href="#">Spanis</a></li>
-                                    <li><a href="#">English</a></li>
+                                    <li><a class="nav-link" href="{{ route('profile.show') }}"><i
+                                                class="fa fa- user"></i>My
+                                            Profile</a></li>
+                                    <li><a class="nav-link" href="{{ route('logout') }}"onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit(); return view('auth.login');"><i
+                                                class="fa fa-power -off"></i>Logout</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
+                                    </li>
                                 </ul>
-                            </div>
-                            {{-- <div class="header__top__right__auth">
-                                <a href="{{ route('login') }}"><i class="fa fa-user"></i> Login</a>
-                            </div> --}}
-                            <div class="user-area dropdown float-right">
-                                <a href="#" class="dropdown-toggle active" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                    <div>Xin chào, {{ Auth::user()->name }}</div>
-                                </a>
-
-                                <div class="user-menu dropdown-menu">
-                                    <a class="nav-link" href="{{ route('profile.show') }}"><i class="fa fa- user"></i>My
-                                        Profile</a>
-
-                                    <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span
-                                            class="count">13</span></a>
-
-                                    <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
-
-                                    <a class="nav-link" href="{{ route('logout') }}"onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit(); return view('auth.login');"><i
-                                            class="fa fa-power -off"></i>Logout</a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
                             </div>
                         </div>
                     </div>
