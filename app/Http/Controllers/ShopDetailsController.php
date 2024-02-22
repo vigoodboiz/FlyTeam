@@ -19,6 +19,6 @@ class ShopDetailsController extends Controller
             $id_cate = Products::where('id', $id_pro)->value('id_category');
             $product_same = Products::where('id_category',$id_cate)->where('id','<>', $id_pro)->paginate(9);
         }
-        return view('page.shop-details', compact('product_detail','product_same'));
+        return view('page.product-details', compact('product_detail','product_same'));
     }
 }

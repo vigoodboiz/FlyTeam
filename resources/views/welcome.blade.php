@@ -9,7 +9,7 @@
     <title>Becute - Product Gallery</title>
     <meta name="description" content="Morden Bootstrap HTML5 Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('becute/assets/img/logo/logo_main.png')}}">
 
     <!-- ======= All CSS Plugins here ======== -->
     <link rel="stylesheet" href="{{asset('becute/assets/css/plugins/swiper-bundle.min.css')}}">
@@ -21,6 +21,10 @@
 
     <!-- Custom Style CSS -->
     <link rel="stylesheet" href="{{asset('becute/assets/css/style.css')}}">
+    <!-- bootstrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">    
 </head>
 
 <body>
@@ -53,6 +57,32 @@
 
         <!-- Customscript js -->
         <script src="{{asset('becute/assets/js/script.js')}}"></script>
+        <!-- fill price -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                var minPrice = 1;
+                var maxPrice = 1000; // Giá trị theo product
+
+                $("#slider").slider({
+                    range: true,
+                    min: 1,
+                    max: 1000,
+                    values: [minPrice, maxPrice],
+                    slide: function(event, ui) {
+                        $("#price_range").val(ui.values[0] + " - " + ui.values[1]);
+                    },
+                    change: function(event, ui) {
+                        $("#price_range").val(ui.values[0] + " - " + ui.values[1]);
+                    }
+                });
+
+                $("#price_range").val("$" + minPrice + " - " + "$" + maxPrice);
+            });
+        </script>
     </body>
+
 
 </html>
