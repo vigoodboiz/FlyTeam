@@ -22,30 +22,27 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next, string ...$guards): Response
     {
         $guards = empty($guards) ? [null] : $guards;
-        // $user = Auth::user();
-        // $role_id = Auth::guard($user)->role_id(); 
-        // if(Auth::user()->role_id =='1'){
-        //     return redirect(RouteServiceProvider::DASHBOARD);
-        // }
-        // if(Auth::user()->role_id == '3'){
-        //     return view('template');
-        // }
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-
-                // return redirect(RouteServiceProvider::HOME);
-
-              
                 return redirect(RouteServiceProvider::DASHBOARD);
-               
-
             }
-            // if(Auth::guard($guard)->check($role_id == '3')){
-            //     return view('template');
-            // }
         }
-
+        
+        $user = Auth::user();
+        if($user !== null){
+            $roleId = $user->role_id;
+        }
+        $roleId = optional($user)->role_id;
+        if (Auth::check() && Auth::user()->role_id == $roleId) {
+            if($roleId == 1 && $roleId == 2){
+                return redirect(RouteServiceProvider::DASHBOARD);
+            }
+            if($roleId == 3){
+                return redirect(RouteServiceProvider::GUEST);
+            }
+        };
         return $next($request);
-    }
+   
 
+}
 }

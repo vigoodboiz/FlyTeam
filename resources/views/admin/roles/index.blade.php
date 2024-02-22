@@ -24,7 +24,7 @@
             <div class="col-lg-12">
                 <div class="table-responsive rounded mb-3">
                     <table class="data-table table mb-0 tbl-server-info">
-                        <thead class="bg-white text-uppercase">
+                         <thead class="bg-white text-uppercase">
                             <tr class="ligth ligth-data">
                                 <th>
                                     <div class="checkbox d-inline-block">
@@ -35,7 +35,7 @@
                                 <th>STT</th>
                                 <th>Tên vai trò</th>
                                 <th>Quyền truy cập</th>
-                                <th>Hành động</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody class="ligth-body">
@@ -57,28 +57,28 @@
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center list-action">
-                                            @can('role_show')
-                                                <button class="btn btn-warning"><a data-toggle="tooltip" data-placement="top"
-                                                        title="Xem chi tiết" data-original-title="View"
-                                                        href="{{ route('roles.show', ['role' => $item->id]) }}"><i
-                                                            class="fa fa-eye mr-0"></i>SHOW</a></button>
-                                            @endcan
+                                            {{-- @can('role_show') --}}
+                                            <button class="btn btn-warning"><a data-toggle="tooltip" data-placement="top"
+                                                    title="Xem chi tiết" data-original-title="View"
+                                                    href="{{ route('roles.show', ['role' => $item->id]) }}"><i
+                                                        class="fa fa-eye mr-0"></i></a></button>
+                                            {{-- @endcan --}}
                                             {{-- @can('role_edit') --}}
                                             <button class="btn btn-success"><a data-toggle="tooltip" data-placement="top"
                                                     title="Cập nhật" data-original-title="Edit"
                                                     href="{{ route('roles.edit', ['role' => $item->id]) }}"><i
-                                                        class="fa fa-pen mr-0"></i>EDIT</a></button>
+                                                        class="fa-solid fa-pen"></i></a></button>
                                             {{-- @endcan --}}
-                                            @can('role_delete')
-                                                <form action="{{ route('roles.destroy', ['role' => $item->id]) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button class="btn btn-danger" type="submit"
-                                                        onclick="return confirm('Có chắc xóa không?')"><i
-                                                            class="fa fa-trash mr-0"></i>DELETE</button>
-                                                </form>
-                                            @endcan
+                                            {{-- @can('role_delete') --}}
+                                            <form action="{{ route('roles.destroy', ['role' => $item->id]) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <button class="btn btn-danger" type="submit"
+                                                    onclick="return confirm('Có chắc xóa không?')"><i
+                                                        class="fa fa-trash mr-0"></i></button>
+                                            </form>
+                                            {{-- @endcan --}}
                                         </div>
                                     </td>
                                 </tr>

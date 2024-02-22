@@ -34,7 +34,7 @@
                                 </th>
                                 <th>STT</th>
                                 <th>Tên quyền truy cập</th>
-                                <th>Hành động</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody class="ligth-body">
@@ -54,13 +54,13 @@
                                             {{-- @can('permission_show') --}}
                                             <button class="btn btn-warning"><a title="Xem chi tiết"
                                                     href="{{ route('permissions.show', ['permission' => $item->id]) }}"><i
-                                                        class="fa fa-eye mr-0"></i>SHOW</a></button>
+                                                        class="fa fa-eye mr-0"></i></a></button>
                                             {{-- @endcan
                                             @can('permission_edit') --}}
                                             <button class="btn btn-info"><a data-toggle="tooltip" data-placement="top"
                                                     title="Cập nhật" data-original-title="Edit"
                                                     href="{{ route('permissions.edit', ['permission' => $item->id]) }}"><i
-                                                        class="fa fa-pen mr-0"></i>EDIT</a></button>
+                                                        class="fa-solid fa-pen"></i></a></button>
                                             {{-- @endcan
                                             @can('permission_delete') --}}
                                             <form action="{{ route('permissions.destroy', ['permission' => $item->id]) }}"
@@ -69,7 +69,7 @@
                                                 @method('delete')
                                                 <button class="btn btn-danger" type="submit"
                                                     onclick="return confirm('Có chắc xóa không?')"><i
-                                                        class="fa fa-trash-alt mr-0"></i>DELETE</button>
+                                                        class="fa fa-trash mr-0"></i></button>
                                             </form>
                                             {{-- @endcan --}}
                                         </div>
@@ -78,6 +78,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $permission->links() }}
                 </div>
             </div>
         </div>
