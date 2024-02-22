@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
+use App\Providers\RouteServiceProvider;
 
 class AuthGate
 {
@@ -36,7 +37,19 @@ class AuthGate
                     return count(array_intersect($user->roles->pluck('id')->toArray(), $roles)) > 0;
                 });
             }
+        };
+        if($user !== null){
+            $roleId = $user->role_id;
         }
+        $roleId = optional($user)->role_id;
+        if (Auth::check() && Auth::user()->role_id == $roleId) {
+            if($roleId == 1 && $roleId == 2){
+                $redirectRoute = 'dashboard';
+            }
+            else {
+                $redirectRoute = 'welcome';
+            }
+        };
         return $next($request);
          }
     }

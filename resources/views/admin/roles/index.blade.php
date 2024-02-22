@@ -24,7 +24,7 @@
             <div class="col-lg-12">
                 <div class="table-responsive rounded mb-3">
                     <table class="data-table table mb-0 tbl-server-info">
-                         <thead class="bg-white text-uppercase">
+                        <thead class="bg-white text-uppercase">
                             <tr class="ligth ligth-data">
                                 <th>
                                     <div class="checkbox d-inline-block">
@@ -64,7 +64,7 @@
                                                             class="fa fa-eye mr-0"></i></a></button>
                                             @endcan
                                             @can('role_edit')
-                                                <button class="btn btn-success"><a data-toggle="tooltip" data-placement="top"
+                                                <button class="btn btn-info"><a data-toggle="tooltip" data-placement="top"
                                                         title="Cập nhật" data-original-title="Edit"
                                                         href="{{ route('roles.edit', ['role' => $item->id]) }}"><i
                                                             class="fa-solid fa-pen"></i></a></button>

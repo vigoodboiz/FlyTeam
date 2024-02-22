@@ -70,13 +70,13 @@
                                     <td>
                                         <div class="d-flex align-items-center list-action">
                                             @can('user_show')
-                                                <button class="btn btn-success"><a data-toggle="tooltip" data-placement="top"
+                                                <button class="btn btn-warning"><a data-toggle="tooltip" data-placement="top"
                                                         title="Xem chi tiết" data-original-title="View"
                                                         href="{{ route('users.show', ['user' => $item->id]) }}"><i
                                                             class="fa fa-eye mr-0"></i></a></button>
                                             @endcan
                                             @can('user_edit')
-                                                <button class="btn btn-warning"> <a data-toggle="tooltip" data-placement="top"
+                                                <button class="btn btn-info"> <a data-toggle="tooltip" data-placement="top"
                                                         title="Cập nhật" data-original-title="Edit"
                                                         href="{{ route('users.edit', ['user' => $item->id]) }}"><i
                                                             class="fa-solid fa-pen"></i></a></button>

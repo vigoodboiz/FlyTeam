@@ -27,20 +27,6 @@ class RedirectIfAuthenticated
                 return redirect(RouteServiceProvider::DASHBOARD);
             }
         }
-        
-        $user = Auth::user();
-        if($user !== null){
-            $roleId = $user->role_id;
-        }
-        $roleId = optional($user)->role_id;
-        if (Auth::check() && Auth::user()->role_id == $roleId) {
-            if($roleId == 1 || $roleId == 2){
-                return redirect(RouteServiceProvider::DASHBOARD);
-            }
-            elseif($roleId == 3){
-                return redirect(RouteServiceProvider::GUEST);
-            }
-        };
         return $next($request);
 }
 }
