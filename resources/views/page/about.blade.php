@@ -26,7 +26,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="about__thumbnail padding__left position-relative">
-                        <img src="assets/img/other/about.webp" alt="img">
+                        <img src="{{asset('becute/assets/img/other/about.webp')}}" alt="img">
                         <div class="about__experience--text text-center">
                             <span class="about__experience--years"><span class="about__experience--years__inner">15</span>+</span>
                             <span class="about__experience--title">YEARS
@@ -91,7 +91,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 col-6 custom-col mb-30">
                         <div class="team__items text-center">
                             <div class="team__thumb">
-                                <img class="team__thumb--img" src="assets/img/other/team1.webp" alt="team img">
+                                <img class="team__thumb--img" src="{{asset('becute/assets/img/other/team1.webp')}}" alt="team img">
                             </div>
                             <div class="team__content ">
                                 <h3 class="team__content--title">Bruce Sutton</h3>
@@ -136,7 +136,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 col-6 custom-col mb-30">
                         <div class="team__items text-center">
                             <div class="team__thumb">
-                                <img class="team__thumb--img" src="assets/img/other/team2.webp" alt="team img">
+                                <img class="team__thumb--img" src="{{asset('becute/assets/img/other/team2.webp')}}" alt="team img">
                             </div>
                             <div class="team__content">
                                 <h3 class="team__content--title">Ellen Thornton</h3>
@@ -181,7 +181,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 col-6 custom-col mb-30">
                         <div class="team__items text-center">
                             <div class="team__thumb">
-                                <img class="team__thumb--img" src="assets/img/other/team3.webp" alt="team img">
+                                <img class="team__thumb--img" src="{{asset('becute/assets/img/other/team3.webp')}}" alt="team img">
                             </div>
                             <div class="team__content">
                                 <h3 class="team__content--title">Milton Marsh</h3>
@@ -226,7 +226,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 col-6 custom-col mb-30">
                         <div class="team__items text-center">
                             <div class="team__thumb">
-                                <img class="team__thumb--img" src="assets/img/other/team1.webp" alt="team img">
+                                <img class="team__thumb--img" src="{{asset('becute/assets/img/other/team1.webp')}}" alt="team img">
                             </div>
                             <div class="team__content">
                                 <h3 class="team__content--title">Jackly Smith</h3>
@@ -286,7 +286,7 @@
                         <div class="testimonial__items">
                             <div class="testimonial__author d-flex align-items-center">
                                 <div class="testimonial__author__thumbnail">
-                                    <img src="assets/img/other/testimonial1.webp" alt="testimonial-img">
+                                    <img src="{{asset('becute/assets/img/other/testimonial1.webp')}}" alt="testimonial-img">
                                 </div>
                                 <div class="testimonial__author--text">
                                     <h3 class="testimonial__author--title">Michael Linda</h3>
@@ -333,7 +333,7 @@
                             <div class="testimonial__content">
                                 <p class="testimonial__desc">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
-                                <img class="testimonial__vector--icon" src="assets/img/icon/vector-icon.webp" alt="icon">
+                                <img class="testimonial__vector--icon" src="{{asset('becute/assets/img/icon/vector-icon.webp')}}" alt="icon">
                             </div>
 
                         </div>
@@ -342,7 +342,7 @@
                         <div class="testimonial__items">
                             <div class="testimonial__author d-flex align-items-center">
                                 <div class="testimonial__author__thumbnail">
-                                    <img src="assets/img/other/testimonial2.webp" alt="testimonial-img">
+                                    <img src="{{asset('becute/assets/img/other/testimonial2.webp')}}" alt="testimonial-img">
                                 </div>
                                 <div class="testimonial__author--text">
                                     <h3 class="testimonial__author--title">Lee Barners</h3>
@@ -389,7 +389,7 @@
                             <div class="testimonial__content">
                                 <p class="testimonial__desc">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
-                                <img class="testimonial__vector--icon" src="assets/img/icon/vector-icon.webp" alt="icon">
+                                <img class="testimonial__vector--icon" src="{{asset('becute/assets/img/icon/vector-icon.webp')}}" alt="icon">
                             </div>
 
                         </div>
@@ -398,7 +398,7 @@
                         <div class="testimonial__items">
                             <div class="testimonial__author d-flex align-items-center">
                                 <div class="testimonial__author__thumbnail">
-                                    <img src="assets/img/other/testimonial3.webp" alt="testimonial-img">
+                                    <img src="{{asset('becute/assets/img/other/testimonial3.webp')}}" alt="testimonial-img">
                                 </div>
                                 <div class="testimonial__author--text">
                                     <h3 class="testimonial__author--title">Michael Linda</h3>
@@ -445,7 +445,7 @@
                             <div class="testimonial__content">
                                 <p class="testimonial__desc">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
-                                <img class="testimonial__vector--icon" src="assets/img/icon/vector-icon.webp" alt="icon">
+                                <img class="testimonial__vector--icon" src="{{asset('becute/assets/img/icon/vector-icon.webp')}}" alt="icon">
                             </div>
 
                         </div>
@@ -454,7 +454,7 @@
                         <div class="testimonial__items">
                             <div class="testimonial__author d-flex align-items-center">
                                 <div class="testimonial__author__thumbnail">
-                                    <img src="assets/img/other/testimonial4.webp" alt="testimonial-img">
+                                    <img src="{{asset('becute/assets/img/other/testimonial4.webp')}}" alt="testimonial-img">
                                 </div>
                                 <div class="testimonial__author--text">
                                     <h3 class="testimonial__author--title">Lee Barners</h3>
@@ -501,7 +501,7 @@
                             <div class="testimonial__content">
                                 <p class="testimonial__desc">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
-                                <img class="testimonial__vector--icon" src="assets/img/icon/vector-icon.webp" alt="icon">
+                                <img class="testimonial__vector--icon" src="{{asset('becute/assets/img/icon/vector-icon.webp')}}" alt="icon">
                             </div>
 
                         </div>
@@ -520,37 +520,37 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div class="brang__logo--items">
-                            <img class="brang__logo--img" src="assets/img/logo/brand-logo1.webp" alt="brand-logo">
+                            <img class="brang__logo--img" src="{{asset('becute/assets/img/logo/brand-logo1.webp')}}" alt="brand-logo">
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="brang__logo--items">
-                            <img class="brang__logo--img" src="assets/img/logo/brand-logo2.webp" alt="brand-logo">
+                            <img class="brang__logo--img" src="{{asset('becute/assets/img/logo/brand-logo2.webp')}}" alt="brand-logo">
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="brang__logo--items">
-                            <img class="brang__logo--img" src="assets/img/logo/brand-logo3.webp" alt="brand-logo">
+                            <img class="brang__logo--img" src="{{asset('becute/assets/img/logo/brand-logo3.webp')}}" alt="brand-logo">
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="brang__logo--items">
-                            <img class="brang__logo--img" src="assets/img/logo/brand-logo4.webp" alt="brand-logo">
+                            <img class="brang__logo--img" src="{{asset('becute/assets/img/logo/brand-logo4.webp')}}" alt="brand-logo">
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="brang__logo--items">
-                            <img class="brang__logo--img" src="assets/img/logo/brand-logo5.webp" alt="brand-logo">
+                            <img class="brang__logo--img" src="{{asset('becute/assets/img/logo/brand-logo5.webp')}}" alt="brand-logo">
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="brang__logo--items">
-                            <img class="brang__logo--img" src="assets/img/logo/brand-logo6.webp" alt="brand-logo">
+                            <img class="brang__logo--img" src="{{asset('becute/assets/img/logo/brand-logo6.webp')}}" alt="brand-logo">
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="brang__logo--items">
-                            <img class="brang__logo--img" src="assets/img/logo/brand-logo7.webp" alt="brand-logo">
+                            <img class="brang__logo--img" src="{{asset('becute/assets/img/logo/brand-logo7.webp')}}" alt="brand-logo">
                         </div>
                     </div>
                 </div>
