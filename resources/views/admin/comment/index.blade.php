@@ -26,16 +26,20 @@
                                 <td>{{ $cmt->date }}</td>
 
                                 <td>
-                                    <div class="d-flex justify-content-center"><button type="button" class="btn btn-primary ">
-                                            <a class="text-white"
-                                                href="{{ route('route_comment_update', ['id' => $cmt->id]) }}">Sửa</a>
-                                        </button></div>
+                                    @can('comment_edit')
+                                        <div class="d-flex justify-content-center"><button type="button" class="btn btn-primary ">
+                                                <a class="text-white"
+                                                    href="{{ route('route_comment_update', ['id' => $cmt->id]) }}">Sửa</a>
+                                            </button></div>
+                                    @endcan
                                 </td>
                                 <td>
-                                    <div class="d-flex justify-content-center"><button type="button" class="btn btn-danger">
-                                            <a class="text-white"
-                                                href="{{ route('route_comment_delete', ['id' => $cmt->id]) }}">Xóa</a>
-                                        </button></div>
+                                    @can('comment_delete')
+                                        <div class="d-flex justify-content-center"><button type="button" class="btn btn-danger">
+                                                <a class="text-white"
+                                                    href="{{ route('route_comment_delete', ['id' => $cmt->id]) }}">Xóa</a>
+                                            </button></div>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

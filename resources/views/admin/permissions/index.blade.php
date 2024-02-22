@@ -10,14 +10,14 @@
                         <h4 class="mb-3">Danh sách quyền truy cập</h4>
                     </div>
                     <div>
-                        {{-- @can('permission_delete') --}}
-                        <a href="#" id="deleteAll" class="btn btn-danger add-list"><i class="las la-trash"></i>Xóa lựa
-                            chọn</a>
-                        {{-- @endcan --}}
-                        {{-- @can('permission_create') --}}
-                        <a href="{{ route('permissions.create') }}" class="btn btn-primary add-list"><i
-                                class="las la-plus mr-3"></i>Thêm quyền truy cập</a>
-                        {{-- @endcan --}}
+                        @can('permission_delete')
+                            <a href="#" id="deleteAll" class="btn btn-danger add-list"><i class="las la-trash"></i>Xóa lựa
+                                chọn</a>
+                        @endcan
+                        @can('permission_create')
+                            <a href="{{ route('permissions.create') }}" class="btn btn-primary add-list"><i
+                                    class="las la-plus mr-3"></i>Thêm quyền truy cập</a>
+                        @endcan
                     </div>
                 </div>
             </div>
@@ -51,27 +51,27 @@
                                     <td>{{ $item->title }}</td>
                                     <td>
                                         <div class="d-flex align-items-center list-action">
-                                            {{-- @can('permission_show') --}}
-                                            <button class="btn btn-warning"><a title="Xem chi tiết"
-                                                    href="{{ route('permissions.show', ['permission' => $item->id]) }}"><i
-                                                        class="fa fa-eye mr-0"></i></a></button>
-                                            {{-- @endcan
-                                            @can('permission_edit') --}}
-                                            <button class="btn btn-info"><a data-toggle="tooltip" data-placement="top"
-                                                    title="Cập nhật" data-original-title="Edit"
-                                                    href="{{ route('permissions.edit', ['permission' => $item->id]) }}"><i
-                                                        class="fa-solid fa-pen"></i></a></button>
-                                            {{-- @endcan
-                                            @can('permission_delete') --}}
-                                            <form action="{{ route('permissions.destroy', ['permission' => $item->id]) }}"
-                                                method="POST" id="cateForm{{ $item->id }}">
-                                                @csrf
-                                                @method('delete')
-                                                <button class="btn btn-danger" type="submit"
-                                                    onclick="return confirm('Có chắc xóa không?')"><i
-                                                        class="fa fa-trash mr-0"></i></button>
-                                            </form>
-                                            {{-- @endcan --}}
+                                            @can('permission_show')
+                                                <button class="btn btn-warning"><a title="Xem chi tiết"
+                                                        href="{{ route('permissions.show', ['permission' => $item->id]) }}"><i
+                                                            class="fa fa-eye mr-0"></i></a></button>
+                                            @endcan
+                                            @can('permission_edit')
+                                                <button class="btn btn-info"><a data-toggle="tooltip" data-placement="top"
+                                                        title="Cập nhật" data-original-title="Edit"
+                                                        href="{{ route('permissions.edit', ['permission' => $item->id]) }}"><i
+                                                            class="fa-solid fa-pen"></i></a></button>
+                                            @endcan
+                                            @can('permission_delete')
+                                                <form action="{{ route('permissions.destroy', ['permission' => $item->id]) }}"
+                                                    method="POST" id="cateForm{{ $item->id }}">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button class="btn btn-danger" type="submit"
+                                                        onclick="return confirm('Có chắc xóa không?')"><i
+                                                            class="fa fa-trash mr-0"></i></button>
+                                                </form>
+                                            @endcan
                                         </div>
                                     </td>
                                 </tr>
