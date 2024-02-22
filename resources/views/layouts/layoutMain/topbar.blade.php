@@ -118,7 +118,7 @@
                  </div>
                  <div class="main__logo">
                      <h1 class="main__logo--title"><a class="main__logo--link" href="index.html">
-                             <img class="main__logo--img" src="assets/img/logo/nav-log.webp" alt="logo-img">
+                             <img class="main__logo--img h-50 w-50"  src="{{asset('becute/assets/img/logo/logo_main.png')}}" alt="logo-img">
                          </a></h1>
                  </div>
                  <div class="header__menu d-none d-lg-block">

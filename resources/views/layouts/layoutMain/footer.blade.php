@@ -12,7 +12,7 @@
                             <div class="footer__widget--inner">
                                 <div class="footer__logo">
                                     <a class="footer__logo--link" href="index.html">
-                                        <img class="footer__logo--img" src="assets/img/logo/nav-log.webp" alt="logo-img">
+                                        <img class="footer__logo--img" src="{{asset('becute/assets/img/logo/logo_main.png')}}" alt="logo-img">
                                     </a>
                                 </div>
                                 <p class="footer__widget--desc">Corporate clients and leisure travelers has
