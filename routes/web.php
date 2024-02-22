@@ -18,9 +18,14 @@ use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
-
+// home
 use App\Http\Controllers\shopGridController;
 use App\Http\Controllers\ShopDetailsController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PrivacyController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\AboutController;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
@@ -192,7 +197,21 @@ Route::get('callback/facebook', [FacebookController::class, 'handleCallback']);
 
 
 /////////////////////main//////////////////////
+
+// home
+Route::get('home', [HomeController::class, 'index'])->name('home');
+
+// shop
 Route::get('page/shop', [shopGridController::class, 'index'])->name('shopGrid');
 Route::get('page/shop/fillCate/{id_cate}', [shopGridController::class, 'fillCate'])->name('fillCate');
 Route::get('page/shop/fillPrice', [shopGridController::class, 'fillPrice'])->name('fillPrice');
+// shop details
 Route::get('page/shopDetails/{id_pro}', [ShopDetailsController::class, 'index'])->name('shopDetails');
+//blog
+Route::get('page/blog', [BlogController::class, 'index'])->name('blogPage');
+// about
+Route::get('page/about', [AboutController::class, 'index'])->name('aboutPage');
+// privacy
+Route::get('page/privacy', [PrivacyController::class, 'index'])->name('privacyPage');
+// contact
+Route::get('page/contact', [ContactController::class, 'index'])->name('contactPage');
