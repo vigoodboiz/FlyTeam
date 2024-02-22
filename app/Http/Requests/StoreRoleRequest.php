@@ -15,7 +15,7 @@ class StoreRoleRequest extends FormRequest
      */
     public function authorize()
     {
-        // abort_if(Gate::denies('role_create'), Response::HTTP_FORBIDDEN, '403 Forbiden');
+        abort_if(Gate::denies('role_create'), Response::HTTP_FORBIDDEN, '403 Forbiden');
 
         return true;
     }

@@ -38,22 +38,21 @@ class GoogleController extends Controller
          
                 Auth::login($finduser);
         
-                return view('guest');
+                return view('welcome');
          
             }else{
                 $newUser = User::updateOrCreate(['email' => $user->email],[
                         'name' => $user->name,
                         'google_id'=> $user->id,
-                        'password' => encrypt('123456dummy')
+                        'password' => encryp('123456dummy')
                     ]);
          
                 Auth::login($newUser);
         
-                return view('guest');
-            }
-        
+                return view('welcome');
+            } 
         } catch (Exception $e) {
-            dd($e->getMessage());
+            $e->getMessage();
         }
-    }
+}
 }
