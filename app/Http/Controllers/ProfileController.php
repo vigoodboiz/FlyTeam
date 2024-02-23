@@ -17,12 +17,12 @@ class ProfileController extends Controller
      * 
      * 
      */
-    // public function index()
-    // {
-    //     $id = Auth::user()->id;
-    //     $profileData = User::find(id);
-    //     return view('admin.profile.index', compact('profileData'));
-    // }
+    public function index()
+    {
+        $id = Auth::user()->id;
+        $profileData = User::find(id);
+        return view('admin.profile.index', compact('profileData'));
+    }
 
     public function edit(Request $request): View
     {

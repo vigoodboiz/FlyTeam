@@ -186,15 +186,10 @@ Route::controller(GoogleController::class)->group(function(){
 });
 // Send email
 Route::get('/send-mail{email}', [RegisteredUserController::class, 'store'])->name('send.email');
-
-//facebook
-// Route::controller(FacebookController::class)->group(function(){
-//     Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
-//     Route::get('auth/facebook/callback', 'handleFacebookCallback');
-// });
-Route::get('auth/facebook', [FacebookController::class, 'redirectToFB']);
-Route::get('callback/facebook', [FacebookController::class, 'handleCallback']);
-
+/////////////////////
+Route::get('page/shop', [shopGridController::class, 'index'])->name('shopGrid');
+Route::get('page/shop/fillCate/{id_cate}', [shopGridController::class, 'fillCate'])->name('fillCate');
+Route::get('page/shop/fillPrice', [shopGridController::class, 'fillPrice'])->name('fillPrice');
 
 /////////////////////main//////////////////////
 
@@ -215,6 +210,4 @@ Route::get('page/about', [AboutController::class, 'index'])->name('aboutPage');
 Route::get('page/privacy', [PrivacyController::class, 'index'])->name('privacyPage');
 // contact
 Route::get('page/contact', [ContactController::class, 'index'])->name('contactPage');
-
-
 
