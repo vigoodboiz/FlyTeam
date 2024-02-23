@@ -319,7 +319,7 @@
                              </a>
                          </li>
                          <li class="header__account--items">
-                             <a class="header__account--btn d-sm-2-none" href="my-account.html">
+                             <a class="header__account--btn d-sm-2-none" href="">
                                  <span class="header__account--btn__icon">
                                      <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                          <path d="M16 16V14.3333C16 13.4493 15.6049 12.6014 14.9016 11.9763C14.1984 11.3512 13.2446 11 12.25 11H4.75C3.75544 11 2.80161 11.3512 2.09835 11.9763C1.39509 12.6014 1 13.4493 1 14.3333V16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
