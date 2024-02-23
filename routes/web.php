@@ -215,3 +215,6 @@ Route::get('page/about', [AboutController::class, 'index'])->name('aboutPage');
 Route::get('page/privacy', [PrivacyController::class, 'index'])->name('privacyPage');
 // contact
 Route::get('page/contact', [ContactController::class, 'index'])->name('contactPage');
+
+
+
