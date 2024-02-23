@@ -15,152 +15,59 @@
                  <span data-text-preloader="A" class="letters-loading">
                      A
                  </span>
-    <!-- Header Section Begin -->
-    <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="header__top__left">
-                            <ul>
-                                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                                <li>Free Shipping for all Order of $99</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="header__top__right">
-                            <div class="header__top__right__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                            </div>
-                            <div class="header__top__right__language">
-                                <img src="img/language.png" alt="">
-                                <div>
-                                    @if (Auth::check())
-                                        <a href="#" class="dropdown-toggle active" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">
-                                            <div>Xin chào, {{ Auth::user()->name }}</div>
-                                        </a>
-                                    @else
-                                        <a href="{{ route('login') }}"><i class="fa fa-user"></i> Login</a>
-                                    @endif
-                                </div>
-                                <span class="arrow_carrot-down"></span>
-                                <ul>
-                                    <li><a class="nav-link" href="{{ route('profile.show') }}"><i
-                                                class="fa fa- user"></i>My
-                                            Profile</a></li>
-                                    <li><a class="nav-link" href="{{ route('logout') }}"onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit(); return view('auth.login');"><i
-                                                class="fa fa-power -off"></i>Logout</a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            class="d-none">
-                                            @csrf
-                                        </form>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="header__logo">
-                        <a href="./index.html"><img src="{{ asset('interface/img/logo1.png') }}" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <nav class="header__menu">
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="{{ route('shopGrid') }}">Shop</a></li>
-                            <li><a href="#">Pages</a>
-                                <ul class="header__menu__dropdown">
-                                    <li><a href="./shop-details.html">Shop Details</a></li>
-                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                    <li><a href="./checkout.html">Check Out</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="./blog.html">Blog</a></li>
-                            <li class="active"><a href="./contact.html">Contact</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-lg-3">
-                    <div class="header__cart">
-                        <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-                        </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="humberger__open">
-                <i class="fa fa-bars"></i>
-            </div>
-        </div>
-    </header>
-    <!-- Header Section End -->
+                 <!-- Header Section Begin -->
+                 <!-- <header class="header">
+                     <div class="header__top">
+                         <div class="container">
+                             <div class="row">
+                                 <div class="col-lg-6">
+                                     <div class="header__top__left">
+                                         <ul>
+                                             <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                                             <li>Free Shipping for all Order of $99</li>
+                                         </ul>
+                                     </div>
+                                 </div>
+                                 <div class="col-lg-6">
+                                     <div class="header__top__right">
+                                         <div class="header__top__right__social">
+                                             <a href="#"><i class="fa fa-facebook"></i></a>
+                                             <a href="#"><i class="fa fa-twitter"></i></a>
+                                             <a href="#"><i class="fa fa-linkedin"></i></a>
+                                             <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                                         </div>
+                                         <div class="header__top__right__language">
+                                             <img src="img/language.png" alt="">
+                                             <div>
+                                                 @if (Auth::check())
+                                                 <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                     <div>Xin chào, {{ Auth::user()->name }}</div>
+                                                 </a>
+                                                 @else
+                                                 <a href="{{ route('login') }}"><i class="fa fa-user"></i> Login</a>
+                                                 @endif
+                                             </div>
+                                             <span class="arrow_carrot-down"></span>
+                                             <ul>
+                                                 <li><a class="nav-link" href="{{ route('profile.show') }}"><i class="fa fa- user"></i>My
+                                                         Profile</a></li>
+                                                 <li><a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit(); return view('auth.login');"><i class="fa fa-power -off"></i>Logout</a>
+                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                         @csrf
+                                                     </form>
+                                                 </li>
+                                             </ul>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </header> -->
+                 <!-- Header Section End -->
 
-    <!-- Hero Section Begin -->
-    <section class="hero hero-normal">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="hero__categories">
-                        <div class="hero__categories__all">
-                            <i class="fa fa-bars"></i>
-                            <span>All departments</span>
-                        </div>
-                        <ul>
-                            <li><a href="#">Fresh Meat</a></li>
-                            <li><a href="#">Vegetables</a></li>
-                            <li><a href="#">Fruit & Nut Gifts</a></li>
-                            <li><a href="#">Fresh Berries</a></li>
-                            <li><a href="#">Ocean Foods</a></li>
-                            <li><a href="#">Butter & Eggs</a></li>
-                            <li><a href="#">Fastfood</a></li>
-                            <li><a href="#">Fresh Onion</a></li>
-                            <li><a href="#">Papayaya & Crisps</a></li>
-                            <li><a href="#">Oatmeal</a></li>
-                            <li><a href="#">Fresh Bananas</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-9">
-                    <div class="hero__search">
-                        <div class="hero__search__form">
-                            <form action="#">
-                                <div class="hero__search__categories">
-                                    All Categories
-                                    <span class="arrow_carrot-down"></span>
-                                </div>
-                                <input type="text" placeholder="What do yo u need?">
-                                <button type="submit" class="site-btn">SEARCH</button>
-                            </form>
-                        </div>
-                        <div class="hero__search__phone">
-                            <div class="hero__search__phone__icon">
-                                <i class="fa fa-phone"></i>
-                            </div>
-                            <div class="hero__search__phone__text">
-                                <h5>+65 11.188.888</h5>
-                                <span>support 24/7 time</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                 <!-- Hero Section Begin -->
                  <span data-text-preloader="D" class="letters-loading">
                      D
                  </span>
@@ -309,7 +216,7 @@
                              </a>
                          </li>
                          <li class="header__account--items">
-                             <a class="header__account--btn d-sm-2-none" href="wishlist.html">
+                             <a class="header__account--btn d-sm-2-none" href="{{route('wishlistPage')}}">
                                  <span class="header__account--btn__icon">
                                      <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                          <path d="M2.09836 2.28681C1.75014 2.69477 1.47391 3.1791 1.28545 3.71213C1.097 4.24516 1 4.81646 1 5.39341C1 5.97036 1.097 6.54167 1.28545 7.0747C1.47391 7.60773 1.75014 8.09206 2.09836 8.50002L8.50001 16L14.9016 8.50002C15.6049 7.6761 16 6.55862 16 5.39341C16 4.22821 15.6049 3.11073 14.9016 2.28681C14.1984 1.46289 13.2446 1.00001 12.25 1.00001C11.2554 1.00001 10.3016 1.46289 9.59833 2.28681L8.50001 3.57358L7.40168 2.28681C7.05346 1.87884 6.64006 1.55522 6.18509 1.33443C5.73011 1.11364 5.24248 1 4.75002 1C4.25756 1 3.76992 1.11364 3.31495 1.33443C2.85998 1.55522 2.44658 1.87884 2.09836 2.28681V2.28681Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
@@ -319,7 +226,7 @@
                              </a>
                          </li>
                          <li class="header__account--items">
-                             <a class="header__account--btn d-sm-2-none" href="">
+                             <a class="header__account--btn d-sm-2-none" href="{{route('acountPage')}}">
                                  <span class="header__account--btn__icon">
                                      <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                          <path d="M16 16V14.3333C16 13.4493 15.6049 12.6014 14.9016 11.9763C14.1984 11.3512 13.2446 11 12.25 11H4.75C3.75544 11 2.80161 11.3512 2.09835 11.9763C1.39509 12.6014 1 13.4493 1 14.3333V16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
@@ -590,8 +497,8 @@
              <label class="minicart__conditions--label" for="accept">I agree with the <a class="minicart__conditions--link" href="privacy-policy.html">Privacy Policy</a></label>
          </div>
          <div class="minicart__button d-flex justify-content-center">
-             <a class="primary__btn minicart__button--link" href="cart.html">View cart</a>
-             <a class="primary__btn minicart__button--link" href="checkout.html">Checkout</a>
+             <a class="primary__btn minicart__button--link" href="{{route('cartPage')}}">View cart</a>
+             <a class="primary__btn minicart__button--link" href="{{route('checkoutPage')}}">Checkout</a>
          </div>
      </div>
      <!-- End offCanvas minicart -->

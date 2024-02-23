@@ -27,6 +27,11 @@ use App\Http\Controllers\PrivacyController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AboutController;
 
+use App\Http\Controllers\WishlishController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\AcountController;
+use App\Http\Controllers\CartController;
+
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -186,10 +191,7 @@ Route::controller(GoogleController::class)->group(function(){
 });
 // Send email
 Route::get('/send-mail{email}', [RegisteredUserController::class, 'store'])->name('send.email');
-/////////////////////
-Route::get('page/shop', [shopGridController::class, 'index'])->name('shopGrid');
-Route::get('page/shop/fillCate/{id_cate}', [shopGridController::class, 'fillCate'])->name('fillCate');
-Route::get('page/shop/fillPrice', [shopGridController::class, 'fillPrice'])->name('fillPrice');
+
 
 /////////////////////main//////////////////////
 
@@ -211,3 +213,11 @@ Route::get('page/privacy', [PrivacyController::class, 'index'])->name('privacyPa
 // contact
 Route::get('page/contact', [ContactController::class, 'index'])->name('contactPage');
 
+// Checkout
+Route::get('page/Checkout', [CheckoutController::class, 'index'])->name('checkoutPage');
+// acount
+Route::get('page/acount', [AcountController::class, 'index'])->name('acountPage');
+// wishlist
+Route::get('page/wishlist', [WishlishController::class, 'index'])->name('wishlistPage');
+// cart
+Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');

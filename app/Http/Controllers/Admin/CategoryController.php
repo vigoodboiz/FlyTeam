@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Models\Products;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
+
 class CategoryController extends Controller
 {
     /**
@@ -31,13 +33,23 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|unique:category|max:255',
+            'name' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        // Lưu ảnh vào thư mục public/images
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+            $validatedData['image'] = $imageName;
+        }
 
         Category::create($validatedData);
 
-        return redirect('/admin/categories');
+        return redirect()->route('categories.index')->with('success', 'Danh mục đã được tạo thành công');
     }
+
 
     /**
      * Display the specified resource.
@@ -50,7 +62,7 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit( $id)
+    public function edit($id)
     {
         $category = Category::find($id);
         return view('admin.categories.edit', compact('category'));
@@ -59,9 +71,28 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
+
     public function update(Request $request, Category $category)
     {
-        $category->update($request->only('name', 'description'));
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        if ($request->hasFile('image')) {
+            // Xóa ảnh cũ (nếu có)
+            // if ($category->image) {
+            //     Storage::delete('public/images/' . $category->image);
+            // }
+
+            // Lưu ảnh mới
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/images', $imageName);
+            $validatedData['image'] = $imageName;
+        }
+
+        $category->update($validatedData);
 
         // Thực hiện các xử lý khác sau khi cập nhật danh mục
 
@@ -93,11 +124,11 @@ class CategoryController extends Controller
     // public function destroy(Category $category)
     // {
     //     $category->products()->delete(); // Xóa tất cả các sản phẩm thuộc về danh mục trước
-    
+
     //     $category->delete(); // Xóa danh mục
-    
+
     //     // Thực hiện các xử lý khác sau khi xoá danh mục
-    
+
     //     return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully');
     // }
 }
