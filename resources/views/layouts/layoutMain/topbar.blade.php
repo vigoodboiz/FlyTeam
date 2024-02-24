@@ -237,7 +237,7 @@
                              </a>
                          </li>
                          <li class="header__account--items header__minicart--items">
-                             <a class="header__account--btn minicart__open--btn" href="javascript:void(0)" data-offcanvas>
+                             <a class="header__account--btn minicart__open--btn" href="{{route('cartPage')}}" data-offcanvas>
                                  <span class="header__account--btn__icon">
                                      <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                          <path d="M12.25 7.66667V4.33333C12.25 3.44928 11.8549 2.60143 11.1517 1.97631C10.4484 1.35119 9.49456 1 8.5 1C7.50544 1 6.55161 1.35119 5.84835 1.97631C5.14509 2.60143 4.75 3.44928 4.75 4.33333V7.66667M1.9375 6H15.0625L16 16H1L1.9375 6Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
@@ -252,116 +252,9 @@
          </div>
      </div>
 
-     <!-- Start Offcanvas header menu -->
-     <!-- <div class="offcanvas__header">
-         <div class="offcanvas__inner">
-             <div class="offcanvas__logo">
-                 <a class="offcanvas__logo_link" href="index.html">
-                     <img src="assets/img/logo/nav-log.webp" alt="Logo-img" width="158" height="36">
-                 </a>
-                 <button class="offcanvas__close--btn" data-offcanvas>close</button>
-             </div>
-             <nav class="offcanvas__menu">
-                 <ul class="offcanvas__menu_ul">
-                     <li class="offcanvas__menu_li">
-                         <a class="offcanvas__menu_item" href="index.html">Home</a>
-                         <ul class="offcanvas__sub_menu">
-                             <li class="offcanvas__sub_menu_li"><a href="index.html" class="offcanvas__sub_menu_item">Home - Beauty Cosmetic</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="index-2.html" class="offcanvas__sub_menu_item">Home - Cosmetic Spa</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="index-3.html" class="offcanvas__sub_menu_item">Home - Jewelry Store</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="index-4.html" class="offcanvas__sub_menu_item">Home - Modern Jewelry</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="index-5.html" class="offcanvas__sub_menu_item">Home - Look book</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="index-6.html" class="offcanvas__sub_menu_item">Home - Beauty Jewelers</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="index-7.html" class="offcanvas__sub_menu_item">Home - Parallax</a></li>
-                         </ul>
-                     </li>
-                     <li class="offcanvas__menu_li">
-                         <a class="offcanvas__menu_item" href="shop.html">Shop</a>
-                         <ul class="offcanvas__sub_menu">
-                             <li class="offcanvas__sub_menu_li">
-                                 <a href="#" class="offcanvas__sub_menu_item">Column One</a>
-                                 <ul class="offcanvas__sub_menu">
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="shop.html">Shop Left Sidebar</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="shop-grid.html">Shop Grid</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="shop-grid-list.html">Shop Grid List</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="shop-list.html">Shop List</a></li>
-                                 </ul>
-                             </li>
-                             <li class="offcanvas__sub_menu_li">
-                                 <a href="#" class="offcanvas__sub_menu_item">Column Two</a>
-                                 <ul class="offcanvas__sub_menu">
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="product-details.html">Product Details</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="product-video.html">Video Product</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="product-details.html">Variable Product</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="product-left-sidebar.html">Product Left Sidebar</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="product-gallery.html">Product Gallery</a></li>
-                                 </ul>
-                             </li>
-                             <li class="offcanvas__sub_menu_li">
-                                 <a href="#" class="offcanvas__sub_menu_item">Column Three</a>
-                                 <ul class="offcanvas__sub_menu">
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="my-account.html">My Account</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="my-account-2.html">My Account 2</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="404.html">404 Page</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="login.html">Login Page</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="faq.html">Faq Page</a></li>
-                                 </ul>
-                             </li>
-                             <li class="offcanvas__sub_menu_li">
-                                 <a href="#" class="offcanvas__sub_menu_item">Column Three</a>
-                                 <ul class="offcanvas__sub_menu">
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="about.html">About Us</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="contact.html">Contact Us</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="portfolio.html">Portfolio</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="compare.html">Compare Pages</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="checkout.html">Checkout page</a></li>
-                                 </ul>
-                             </li>
-                         </ul>
-                     </li>
-                     <li class="offcanvas__menu_li">
-                         <a class="offcanvas__menu_item" href="blog.html">Blog</a>
-                         <ul class="offcanvas__sub_menu">
-                             <li class="offcanvas__sub_menu_li"><a href="blog-grid.html" class="offcanvas__sub_menu_item">Blog Grid</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="blog-details.html" class="offcanvas__sub_menu_item">Blog Details</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="blog.html" class="offcanvas__sub_menu_item">Blog Left Sidebar</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="blog-right-sidebar.html" class="offcanvas__sub_menu_item">Blog Right Sidebar</a></li>
-                         </ul>
-                     </li>
-                     <li class="offcanvas__menu_li">
-                         <a class="offcanvas__menu_item" href="#">Pages</a>
-                         <ul class="offcanvas__sub_menu">
-                             <li class="offcanvas__sub_menu_li"><a href="about.html" class="offcanvas__sub_menu_item">About Us</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="contact.html" class="offcanvas__sub_menu_item">Contact Us</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="cart.html" class="offcanvas__sub_menu_item">Cart Page</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="portfolio.html" class="offcanvas__sub_menu_item">Portfolio Page</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="wishlist.html" class="offcanvas__sub_menu_item">Wishlist Page</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="login.html" class="offcanvas__sub_menu_item">Login Page</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="404.html" class="offcanvas__sub_menu_item">Error Page</a></li>
-                         </ul>
-                     </li>
-                     <li class="offcanvas__menu_li"><a class="offcanvas__menu_item" href="about.html">About</a></li>
-                     <li class="offcanvas__menu_li"><a class="offcanvas__menu_item" href="contact.html">Contact</a></li>
-                 </ul>
-                 <div class="offcanvas__account--items">
-                     <a class="offcanvas__account--items__btn d-flex align-items-center" href="login.html">
-                         <span class="offcanvas__account--items__icon">
-                             <svg xmlns="http://www.w3.org/2000/svg" width="20.51" height="19.443" viewBox="0 0 512 512">
-                                 <path d="M344 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
-                                 <path d="M256 304c-87 0-175.3 48-191.64 138.6C62.39 453.52 68.57 464 80 464h352c11.44 0 17.62-10.48 15.65-21.4C431.3 352 343 304 256 304z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32" />
-                             </svg>
-                         </span>
-                         <span class="offcanvas__account--items__label">Login / Register</span>
-                     </a>
-                 </div>
-             </nav>
-         </div>
-     </div> -->
-     <!-- End Offcanvas header menu -->
 
      <!-- Start Offcanvas sticky toolbar -->
-     <div class="offcanvas__sticky--toolbar">
+     <!-- <div class="offcanvas__sticky--toolbar">
          <ul class="d-flex justify-content-between">
              <li class="offcanvas__sticky--toolbar__list">
                  <a class="offcanvas__sticky--toolbar__btn" href="index.html">
@@ -417,11 +310,11 @@
                  </a>
              </li>
          </ul>
-     </div>
+     </div> -->
      <!-- End Offcanvas sticky toolbar -->
 
      <!-- Start offCanvas minicart -->
-     <div class="offCanvas__minicart">
+     <!-- <div class="offCanvas__minicart">
          <div class="minicart__header ">
              <div class="minicart__header--top d-flex justify-content-between align-items-center">
                  <h3 class="minicart__title"> Shopping Cart</h3>
@@ -500,7 +393,7 @@
              <a class="primary__btn minicart__button--link" href="{{route('cartPage')}}">View cart</a>
              <a class="primary__btn minicart__button--link" href="{{route('checkoutPage')}}">Checkout</a>
          </div>
-     </div>
+     </div> -->
      <!-- End offCanvas minicart -->
 
      <!-- Start serch box area -->

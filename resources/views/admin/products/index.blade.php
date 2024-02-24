@@ -5,9 +5,8 @@
     @endif
 
     <table class="table table-bordered">
-        @can('product_create')
+        
             <h2><a href="{{ route('products.create') }}">thêm</a></h2>
-        @endcan
         <thead>
             <tr>
                 <th>ID</th>

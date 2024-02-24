@@ -30,6 +30,7 @@
                     <ul class="account__menu">
                         <li class="account__menu--list active"><a href="my-account.html">Dashboard</a></li>
                         <li class="account__menu--list"><a href="my-account-2.html">Addresses</a></li>
+                        <li class="account__menu--list"><a href="my-account.html">Reward Points</a></li>
                         <li class="account__menu--list"><a href="wishlist.html">Wishlist</a></li>
                         <li class="account__menu--list"><a href="login.html">Log Out</a></li>
                     </ul>
