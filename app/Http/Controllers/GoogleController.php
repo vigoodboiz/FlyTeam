@@ -8,6 +8,7 @@ use Exception;
 use App\Models\User;
 use App\Models\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Https\Helpers\EncryptionHelper;
   
 class GoogleController extends Controller
 {
