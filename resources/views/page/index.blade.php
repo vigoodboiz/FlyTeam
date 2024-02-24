@@ -92,60 +92,17 @@
             </div>
             <div class="shop__collection--column5 swiper">
                 <div class="swiper-wrapper">
+                    @foreach($categories as $cate)
                     <div class="swiper-slide">
                         <div class="shop__collection--card text-center">
                             <a class="shop__collection--link" href="shop.html">
-                                <img class="shop__collection--img" src="assets/img/collection/collection1.webp" alt="icon-img">
-                                <h3 class="shop__collection--title">Vitamins & Health</h3>
+                                <img class="shop__collection--img" src="{{ asset('storage/images/'.$cate->image) }}" alt="icon-img">
+                                <h3 class="shop__collection--title">{{$cate->name}}</h3>
                                 <span class="shop__collection--subtitle">25 Items</span>
                             </a>
                         </div>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="shop__collection--card text-center">
-                            <a class="shop__collection--link" href="shop.html">
-                                <img class="shop__collection--img" src="assets/img/collection/collection2.webp" alt="icon-img">
-                                <h3 class="shop__collection--title">Vitamins & Health</h3>
-                                <span class="shop__collection--subtitle">25 Items</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="shop__collection--card text-center">
-                            <a class="shop__collection--link" href="shop.html">
-                                <img class="shop__collection--img" src="assets/img/collection/collection3.webp" alt="icon-img">
-                                <h3 class="shop__collection--title">Vitamins & Health</h3>
-                                <span class="shop__collection--subtitle">25 Items</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="shop__collection--card text-center">
-                            <a class="shop__collection--link" href="shop.html">
-                                <img class="shop__collection--img" src="assets/img/collection/collection4.webp" alt="icon-img">
-                                <h3 class="shop__collection--title">Vitamins & Health</h3>
-                                <span class="shop__collection--subtitle">25 Items</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="shop__collection--card text-center">
-                            <a class="shop__collection--link" href="shop.html">
-                                <img class="shop__collection--img" src="assets/img/collection/collection5.webp" alt="icon-img">
-                                <h3 class="shop__collection--title">Vitamins & Health</h3>
-                                <span class="shop__collection--subtitle">25 Items</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="shop__collection--card text-center">
-                            <a class="shop__collection--link" href="shop.html">
-                                <img class="shop__collection--img" src="assets/img/collection/collection2.webp" alt="icon-img">
-                                <h3 class="shop__collection--title">Vitamins & Health</h3>
-                                <span class="shop__collection--subtitle">25 Items</span>
-                            </a>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="swiper__nav--btn swiper-button-next">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class=" -chevron-right">

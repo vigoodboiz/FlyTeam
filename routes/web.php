@@ -49,9 +49,11 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('page.index');
+// });
+// home
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -195,8 +197,7 @@ Route::get('/send-mail{email}', [RegisteredUserController::class, 'store'])->nam
 
 /////////////////////main//////////////////////
 
-// home
-Route::get('home', [HomeController::class, 'index'])->name('home');
+
 
 // shop
 Route::get('page/shop', [shopGridController::class, 'index'])->name('shopGrid');
