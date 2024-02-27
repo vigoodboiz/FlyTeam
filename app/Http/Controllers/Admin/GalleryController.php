@@ -33,14 +33,9 @@ class GalleryController extends Controller
      public function store(Request $request , $product_id)
     {
       
-            $validatedData = $request->validate([
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-                        'name' => 'required',
-                    ]);
-
             if ($request->hasFile('images')) {
                 $images = $request->file('images');
-                $names = $request->input('name');
+              
 
                 foreach ($images as $index => $image) {
                     $imageName = time() . '_' . $image->getClientOriginalName();
@@ -48,7 +43,7 @@ class GalleryController extends Controller
 
                     Gallery::create([
                         'product_id' => $product_id,
-                        'name' => $names[$index],
+                  
                         'image' => $imageName,
                     ]);
                 }

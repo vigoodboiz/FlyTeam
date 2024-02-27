@@ -11,10 +11,11 @@
                 <th>ID</th>
                 <th>Danh mục</th>
                 <th>Name</th>
-                <th>Thư viện ảnh </th>
                 <th>Brand</th>
+                <th>Describe </th>
                 <th>Price</th>
                 <th>Price Sale</th>
+                <th>Image</th>
                 <th>Image</th>
                 <th>Edit</th>
                 <th>Delete</th>
@@ -26,23 +27,19 @@
                     <td>{{ $product->id }}</td>
                     <td>{{ $product->category->name }}</td>
                     <td>{{ $product->name }}</td>
-                    <!-- <td><a href="{{url('/add-gallery/'.$product->id) }}">Thêm Thư viện ảnh </a></td> -->
-                    <!-- <td><a href="{{ route('gallery.store', ['product_id' => $product->id]) }}">Thêm Thư viện ảnh</a></td>
-                    <td><a href="{{ route('gallery.store', $product->id) }}">Xem Gallery</a></td> -->
-
-                    <td><a href="{{ route('index', $product->id) }}">Xem Gallery</a></td>
-                    <!-- <td><a href="{{ route('gallery.create', $product->id) }}">Xem Gallery</a></td> -->
                     <td>{{ $product->brand }}</td>
+                    <td>{{ $product->describe }}</td>
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->price_sale }}</td>
                     <td><img src="{{ asset('storage/images/' . $product->image) }}" alt="{{ $product->name }}" width="100">
+                    <td> <a href="{{ route('index', $product->id) }}" class="btn btn-danger" > image</a></td>
                     </td>
 
-                    
-                    <td>
                         @can('product_edit')
                             <a href="{{ route('products.edit', $product->id) }}" class="btn btn-danger">Edit</a>
+                         
                         @endcan
+                       
                     </td>
                     <td>
                         @can('product_delete')

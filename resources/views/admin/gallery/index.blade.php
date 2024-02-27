@@ -1,13 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
+
+<div class="container">
+        <h2>thêm ảnh </h2>
+        <form action="{{ route('gallery.store', $product_id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="form-group">
+                <label for="images">Ảnh:</label>
+                <input type="file" name="images[]" id="images" class="form-control-file" multiple>
+            </div>
+            <button type="submit" class="btn btn-primary">Thêm ảnh</button>
+        </form>
+    </div>
+
     <h1>Gallery List</h1>
 
-    <table border='1' >
+    <table border='1'class="table" >
         <thead>
             <tr>
                 <th>id</th>
-                <th>Name</th>
                 <th>Image</th>
                 <th>Chức Năng </th>
            
@@ -17,8 +29,7 @@
             @foreach($gallery as $gallery)
                 <tr>
                     <td>{{ $gallery->id }}</td>
-                    <td>{{ $gallery->name }}</td>
-                    <td><img src="{{ asset('storage/images/' . $gallery->image) }}" alt="{{ $gallery->name }}" width="100">    
+                    <td class="col-9"><img src="{{ asset('storage/images/' . $gallery->image) }}" alt="{{ $gallery->name }}" width="400" class="img-fluid">    
                     <td>
                         <form action="{{ route('gallery.destroy', $gallery->id) }}" method="POST">
                             @csrf
@@ -33,21 +44,6 @@
         </tbody>
     </table>
 
-    <div class="container">
-        <h2>Thêm sản phẩm mới</h2>
-        <form action="{{ route('gallery.store', $product_id) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="form-group">
-                <label for="name">Tên sản phẩm:</label>
-                <input type="text" name="name" id="name" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="images">Ảnh:</label>
-                <input type="file" name="images[]" id="images" class="form-control-file" multiple>
-            </div>
-            <button type="submit" class="btn btn-primary">Thêm sản phẩm</button>
-        </form>
-    </div>
-
     
+
 @endsection

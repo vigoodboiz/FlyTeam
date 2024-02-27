@@ -22,7 +22,7 @@
                 <input type="text" name="brand" id="brand" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="describe">Mô Tả :</label>
+                <label for="describe">Mô Tả:</label>
                 <input type="text" name="describe" id="describe" class="form-control" required>
             </div>
             <div class="form-group">

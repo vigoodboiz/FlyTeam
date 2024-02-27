@@ -43,6 +43,7 @@ class ProductController extends Controller
             'id_category' => 'required',
             'name' => 'required',
             'brand' => 'required',
+            'describe' => 'required',
             'price' => 'required',
             'price_sale' => 'nullable',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -74,7 +75,6 @@ class ProductController extends Controller
      * Show the form for editing the specified resource.
      */
 
-
     public function edit($id)
     {
         // $product = Product::findOrFail($id);
@@ -90,7 +90,6 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-   
 
 
     public function update(Request $request, $id)
@@ -99,6 +98,7 @@ class ProductController extends Controller
             'id_category' => 'required',
             'name' => 'required',
             'brand' => 'required',
+            'describe' => 'required',
             'price' => 'required|numeric',
             'price_sale' => 'required|numeric',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -125,6 +125,7 @@ class ProductController extends Controller
         $product->id_category = $request->input('id_category');
         $product->name = $request->input('name');
         $product->brand = $request->input('brand');
+        $product->describe = $request->input('describe');
         $product->price = $request->input('price');
         $product->price_sale = $request->input('price_sale');
         $product->save();
