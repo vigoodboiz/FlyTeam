@@ -18,6 +18,8 @@ use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\GalleryController;
+
 // home
 use App\Http\Controllers\shopGridController;
 use App\Http\Controllers\ShopDetailsController;
@@ -138,20 +140,29 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
      Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
      Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
      Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
-  
-    ///////////////////////// product //////////////////
-    Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-    // Route::get('/products/create', [ProductController::class, 'create']);
-    Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
-    Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 
-    Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
-    Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
+    //  Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
+    //  Route::get('/gallery/create/{productId}', [GalleryController::class, 'create'])->name('gallery.create');
+    //  Route::post('/gallery', [GalleryController::class, 'store'])->name('gallery.store');
+    //  Route::post('/products/{productId}/gallery/add-images', 'ProductController@addImages')->name('gallery.addImages');
+
+    ///////////////////////// gallery //////////////////
+
+    // Route::get('/add-gallery/{product_id}', [GalleryController::class, 'add_gallery'])->name('add-gallery');
+
+    Route::get('/index/{product_id}', [GalleryController::class, 'index'])->name('index');
+
+    // Route::post('/gallery/{product_id}', [GalleryController::class, 'store'])->name('gallery.store');
+    // Route::get('/gallery/create', [GalleryController::class, 'create'])->name('gallery.create');
+
+    Route::get('/gallery/create/{product_id}', [GalleryController::class, 'create'])->name('gallery.create');
+    Route::post('/gallery/store/{product_id}', [GalleryController::class, 'store'])->name('gallery.store');
+    // Route::match(['GET', 'POST'],'/gallery/{product_id}', [GalleryController::class, 'store'])->name('gallery.store');
+    Route::delete('/gallery/{gallery}', [GalleryController::class, 'destroy'])->name('gallery.destroy');
+    // Route::post('/gallery/{product_id}', [GalleryController::class, 'store'])->name('gallery.store');
 
 
-    Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
-
-
+    // Route::post('/gallery/{product_id}', [GalleryController::class, 'store'])->name('gallery.store');
      ///////////////////////// cate //////////////////
      Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
      Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
@@ -159,17 +170,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
      Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
      Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
      Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
-
-    //Coupon//
-    Route::get('/insert-coupon', [CouponController::class, 'insert_coupon'])->name('insert_coupon');
-    Route::get('/delete-coupon/{coupon_id}', [CouponController::class, 'delete_coupon'])->name("delete_coupon");
-    Route::get('/list-coupon', [CouponController::class, 'list_coupon'])->name('list_coupon');
-    Route::post('/insert-coupon-code', [CouponController::class, 'insert_coupon_code'])->name('insert_coupon_code');
 });
-
-
-
-
 
 //Comments
 Route::get('/getComments', [CommentController::class, 'index'])->name('route_comment_index');
