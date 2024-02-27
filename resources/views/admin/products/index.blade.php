@@ -3,7 +3,6 @@
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-
     <table class="table table-bordered">
         
             <h2><a href="{{ route('products.create') }}">thêm</a></h2>
@@ -13,10 +12,12 @@
                 <th>Danh mục</th>
                 <th>Name</th>
                 <th>Brand</th>
+                <th>Describe </th>
                 <th>Price</th>
                 <th>Price Sale</th>
                 <th>Image</th>
                 <th>View</th>
+                <th>Galery</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -28,15 +29,20 @@
                     <td>{{ $product->category->name }}</td>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->brand }}</td>
+                    <td>{{ $product->describe }}</td>
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->price_sale }}</td>
                     <td><img src="{{ asset('storage/images/' . $product->image) }}" alt="{{ $product->name }}" width="100">
-                    </td>
                     <td>{{ $product->view_count }}</td>
+                    <td> <a href="{{ route('index', $product->id) }}" class="btn btn-success" > image</a></td>
+                    </td>
                     <td>
+
                         @can('product_edit')
                             <a href="{{ route('products.edit', $product->id) }}" class="btn btn-danger">Edit</a>
+                         
                         @endcan
+                       
                     </td>
                     <td>
                         @can('product_delete')
@@ -53,3 +59,5 @@
         </tbody>
     </table>
 @endsection
+
+
