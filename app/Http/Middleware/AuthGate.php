@@ -38,19 +38,17 @@ class AuthGate
                 });
             }
         };
-        if($user !== null){
+        if ($user !== null) {
             $roleId = $user->role_id;
         }
         $roleId = optional($user)->role_id;
         if (Auth::check() && Auth::user()->role_id == $roleId) {
-            if($roleId == 1 && $roleId == 2){
+            if ($roleId == 1 && $roleId == 2) {
                 $redirectRoute = 'dashboard';
-            }
-            else {
+            } else {
                 $redirectRoute = 'welcome';
             }
         };
         return $next($request);
-         }
     }
- 
+}

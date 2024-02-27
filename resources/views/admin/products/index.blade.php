@@ -16,7 +16,8 @@
                 <th>Price</th>
                 <th>Price Sale</th>
                 <th>Image</th>
-                <th>Image</th>
+                <th>View</th>
+                <th>Galery</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -32,8 +33,10 @@
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->price_sale }}</td>
                     <td><img src="{{ asset('storage/images/' . $product->image) }}" alt="{{ $product->name }}" width="100">
-                    <td> <a href="{{ route('index', $product->id) }}" class="btn btn-danger" > image</a></td>
+                    <td>{{ $product->view_count }}</td>
+                    <td> <a href="{{ route('index', $product->id) }}" class="btn btn-success" > image</a></td>
                     </td>
+                    <td>
 
                         @can('product_edit')
                             <a href="{{ route('products.edit', $product->id) }}" class="btn btn-danger">Edit</a>

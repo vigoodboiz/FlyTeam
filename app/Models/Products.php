@@ -12,13 +12,16 @@ class Products extends Model
 
 
     protected $table = 'products';
+
     
     protected $fillable = ['id_category', 'name', 'brand',  'describe' ,'price', 'price_sale', 'image'];
+
 
     public function category()
     {
         return $this->belongsTo(Category::class, 'id_category');
     }
+
 
     public function galleries()
     {
@@ -28,6 +31,12 @@ class Products extends Model
     public function comments() {
         return $this->hasMany(Comment::class);
     }
+    public function views()
+    {
+        return $this->hasOne(ProductView::class);
+    }
 
 }
 
+
+   
