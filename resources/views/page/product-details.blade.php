@@ -679,7 +679,7 @@
                             <article class="product__card">
                                 <div class="product__card--thumbnail">
                                     <a class="product__card--thumbnail__link display-block" href="{{route('shopDetails',$pro_same->id)}}">
-                                        <img class="product__card--thumbnail__img product__primary--img" src="assets/img/product/main-product/product1.webp" alt="product-img">
+                                        <img class="product__card--thumbnail__img product__primary--img" src="{{ asset('storage/images/'.$pro_same->image) }}" style="height: 180px;" alt="product-img">
                                         <img class="product__card--thumbnail__img product__secondary--img" src="assets/img/product/main-product/product2.webp" alt="product-img">
                                     </a>
                                     <span class="product__badge">-14%</span>
