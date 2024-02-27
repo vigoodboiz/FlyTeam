@@ -36,7 +36,7 @@
         <div class="container">
             <div class="login-content">
                 <div class="login-logo">
-                    <a href="">
+                    <a href="#">
                         <img class="align-content" src="{{ asset('sb-admin/images/logo3.png') }}" alt="">
                     </a>
                 </div>

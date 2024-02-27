@@ -20,8 +20,14 @@ class Products extends Model
         return $this->belongsTo(Category::class, 'id_category');
     }
 
+    public function galleries()
+    {
+        return $this->hasMany(Gallery::class);
+    }
+
     public function comments() {
         return $this->hasMany(Comment::class);
     }
+
 }
 

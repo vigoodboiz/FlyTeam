@@ -71,7 +71,7 @@
                 <div class="feature__inner d-flex justify-content-between">
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
-                            <img src="assets/img/other/feature1.webp" alt="img">
+                            <img src="{{asset('becute/assets/img/other/feature1.webp')}}" alt="img">
                         </div>
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">Free Shipping</h2>
@@ -80,7 +80,7 @@
                     </div>
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon ">
-                            <img src="assets/img/other/feature2.webp" alt="img">
+                            <img src="{{asset('becute/assets/img/other/feature2.webp')}}" alt="img">
                         </div>
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">Support 24/7</h2>
@@ -89,7 +89,7 @@
                     </div>
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
-                            <img src="assets/img/other/feature3.webp" alt="img">
+                            <img src="{{asset('becute/assets/img/other/feature3.webp')}}" alt="img">
                         </div>
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">100% Money Back</h2>
@@ -98,7 +98,7 @@
                     </div>
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
-                            <img src="assets/img/other/feature4.webp" alt="img">
+                            <img src="{{asset('becute/assets/img/other/feature4.webp')}}" alt="img">
                         </div>
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">Payment Secure</h2>

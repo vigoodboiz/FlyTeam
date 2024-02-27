@@ -18,9 +18,21 @@ use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\GalleryController;
 
+// home
 use App\Http\Controllers\shopGridController;
 use App\Http\Controllers\ShopDetailsController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PrivacyController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\AboutController;
+
+use App\Http\Controllers\WishlishController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\AcountController;
+use App\Http\Controllers\CartController;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
@@ -39,9 +51,11 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('page.index');
+// });
+// home
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -126,27 +140,30 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
      Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
      Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
      Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
-  
-    ///////////////////////// product //////////////////
-    Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-    // Route::get('/products/create', [ProductController::class, 'create']);
-    Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
-    Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 
-    Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
-    Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
+    //  Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
+    //  Route::get('/gallery/create/{productId}', [GalleryController::class, 'create'])->name('gallery.create');
+    //  Route::post('/gallery', [GalleryController::class, 'store'])->name('gallery.store');
+    //  Route::post('/products/{productId}/gallery/add-images', 'ProductController@addImages')->name('gallery.addImages');
+
+    ///////////////////////// gallery //////////////////
+
+    // Route::get('/add-gallery/{product_id}', [GalleryController::class, 'add_gallery'])->name('add-gallery');
+
+    Route::get('/index/{product_id}', [GalleryController::class, 'index'])->name('index');
+
+    // Route::post('/gallery/{product_id}', [GalleryController::class, 'store'])->name('gallery.store');
+    // Route::get('/gallery/create', [GalleryController::class, 'create'])->name('gallery.create');
+
+    Route::get('/gallery/create/{product_id}', [GalleryController::class, 'create'])->name('gallery.create');
+    Route::post('/gallery/store/{product_id}', [GalleryController::class, 'store'])->name('gallery.store');
+    // Route::match(['GET', 'POST'],'/gallery/{product_id}', [GalleryController::class, 'store'])->name('gallery.store');
+    Route::delete('/gallery/{gallery}', [GalleryController::class, 'destroy'])->name('gallery.destroy');
+    // Route::post('/gallery/{product_id}', [GalleryController::class, 'store'])->name('gallery.store');
 
 
-    Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
-
-
+    // Route::post('/gallery/{product_id}', [GalleryController::class, 'store'])->name('gallery.store');
      ///////////////////////// cate //////////////////
-<<<<<<< HEAD
-
-
-     Route::get('/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
-=======
->>>>>>> c0ef719dd76cf615e70435cbb5b3ec20218c8831
      Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
      Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
      Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
@@ -154,26 +171,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
      Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
      Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 });
-
-    
-
-<<<<<<< HEAD
-     
-=======
-    //Coupon//
-    Route::get('/insert-coupon', [CouponController::class, 'insert_coupon'])->name('insert_coupon');
-    Route::get('/delete-coupon/{coupon_id}', [CouponController::class, 'delete_coupon'])->name("delete_coupon");
-    Route::get('/list-coupon', [CouponController::class, 'list_coupon'])->name('list_coupon');
-    Route::post('/insert-coupon-code', [CouponController::class, 'insert_coupon_code'])->name('insert_coupon_code');
-});
->>>>>>> c0ef719dd76cf615e70435cbb5b3ec20218c8831
-
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> c0ef719dd76cf615e70435cbb5b3ec20218c8831
 
 //Comments
 Route::get('/getComments', [CommentController::class, 'index'])->name('route_comment_index');
@@ -198,17 +195,31 @@ Route::controller(GoogleController::class)->group(function(){
 // Send email
 Route::get('/send-mail{email}', [RegisteredUserController::class, 'store'])->name('send.email');
 
-//facebook
-// Route::controller(FacebookController::class)->group(function(){
-//     Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
-//     Route::get('auth/facebook/callback', 'handleFacebookCallback');
-// });
-Route::get('auth/facebook', [FacebookController::class, 'redirectToFB']);
-Route::get('callback/facebook', [FacebookController::class, 'handleCallback']);
-
 
 /////////////////////main//////////////////////
+
+
+
+// shop
 Route::get('page/shop', [shopGridController::class, 'index'])->name('shopGrid');
 Route::get('page/shop/fillCate/{id_cate}', [shopGridController::class, 'fillCate'])->name('fillCate');
 Route::get('page/shop/fillPrice', [shopGridController::class, 'fillPrice'])->name('fillPrice');
+// shop details
 Route::get('page/shopDetails/{id_pro}', [ShopDetailsController::class, 'index'])->name('shopDetails');
+//blog
+Route::get('page/blog', [BlogController::class, 'index'])->name('blogPage');
+// about
+Route::get('page/about', [AboutController::class, 'index'])->name('aboutPage');
+// privacy
+Route::get('page/privacy', [PrivacyController::class, 'index'])->name('privacyPage');
+// contact
+Route::get('page/contact', [ContactController::class, 'index'])->name('contactPage');
+
+// Checkout
+Route::get('page/Checkout', [CheckoutController::class, 'index'])->name('checkoutPage');
+// acount
+Route::get('page/acount', [AcountController::class, 'index'])->name('acountPage');
+// wishlist
+Route::get('page/wishlist', [WishlishController::class, 'index'])->name('wishlistPage');
+// cart
+Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');

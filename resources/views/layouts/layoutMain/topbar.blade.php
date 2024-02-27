@@ -15,7 +15,59 @@
                  <span data-text-preloader="A" class="letters-loading">
                      A
                  </span>
+                 <!-- Header Section Begin -->
+                 <!-- <header class="header">
+                     <div class="header__top">
+                         <div class="container">
+                             <div class="row">
+                                 <div class="col-lg-6">
+                                     <div class="header__top__left">
+                                         <ul>
+                                             <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                                             <li>Free Shipping for all Order of $99</li>
+                                         </ul>
+                                     </div>
+                                 </div>
+                                 <div class="col-lg-6">
+                                     <div class="header__top__right">
+                                         <div class="header__top__right__social">
+                                             <a href="#"><i class="fa fa-facebook"></i></a>
+                                             <a href="#"><i class="fa fa-twitter"></i></a>
+                                             <a href="#"><i class="fa fa-linkedin"></i></a>
+                                             <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                                         </div>
+                                         <div class="header__top__right__language">
+                                             <img src="img/language.png" alt="">
+                                             <div>
+                                                 @if (Auth::check())
+                                                 <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                     <div>Xin chào, {{ Auth::user()->name }}</div>
+                                                 </a>
+                                                 @else
+                                                 <a href="{{ route('login') }}"><i class="fa fa-user"></i> Login</a>
+                                                 @endif
+                                             </div>
+                                             <span class="arrow_carrot-down"></span>
+                                             <ul>
+                                                 <li><a class="nav-link" href="{{ route('profile.show') }}"><i class="fa fa- user"></i>My
+                                                         Profile</a></li>
+                                                 <li><a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit(); return view('auth.login');"><i class="fa fa-power -off"></i>Logout</a>
+                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                         @csrf
+                                                     </form>
+                                                 </li>
+                                             </ul>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </header> -->
+                 <!-- Header Section End -->
 
+                 <!-- Hero Section Begin -->
                  <span data-text-preloader="D" class="letters-loading">
                      D
                  </span>
@@ -57,7 +109,7 @@
                      <ul class="language__currency d-flex align-items-center">
                          <li class="language__currency--list">
                              <a class="language__currency--link currency__link" href="javascript:void(0)">
-                                 <img class="currency__link--icon" src="assets/img/icon/language-icon.webp" alt="currency">
+                                 <img class="currency__link--icon" src="{{asset('becute/assets/img/icon/language-icon.webp')}}" alt="currency">
                                  <span>USD</span>
                                  <svg xmlns="http://www.w3.org/2000/svg" width="9.797" height="6.05" viewBox="0 0 9.797 6.05">
                                      <path d="M14.646,8.59,10.9,12.329,7.151,8.59,6,9.741l4.9,4.9,4.9-4.9Z" transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7" />
@@ -117,109 +169,22 @@
                      </a>
                  </div>
                  <div class="main__logo">
-                     <h1 class="main__logo--title"><a class="main__logo--link" href="index.html">
-                             <img class="main__logo--img h-50 w-50"  src="{{asset('becute/assets/img/logo/logo_main.png')}}" alt="logo-img">
+                     <h1 class="main__logo--title"><a class="main__logo--link" href="{{route('home')}}">
+                             <img class="main__logo--img h-50 w-50" src="{{asset('becute/assets/img/logo/logo_main.png')}}" alt="logo-img">
                          </a></h1>
                  </div>
                  <div class="header__menu d-none d-lg-block">
                      <nav class="header__menu--navigation">
                          <ul class="header__menu--wrapper d-flex">
                              <li class="header__menu--items">
-                                 <a class="header__menu--link" href="index.html">Home
-                                     <svg class="menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12" height="7.41" viewBox="0 0 12 7.41">
-                                         <path d="M16.59,8.59,12,13.17,7.41,8.59,6,10l6,6,6-6Z" transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7" />
-                                     </svg>
-                                 </a>
-                                 <ul class="header__sub--menu">
-                                     <li class="header__sub--menu__items"><a href="index.html" class="header__sub--menu__link">Home - Beauty Cosmetic</a></li>
-                                     <li class="header__sub--menu__items"><a href="index-2.html" class="header__sub--menu__link">Home - Cosmetic Spa</a></li>
-                                     <li class="header__sub--menu__items"><a href="index-3.html" class="header__sub--menu__link">Home - Jewelry Store</a></li>
-                                     <li class="header__sub--menu__items"><a href="index-4.html" class="header__sub--menu__link">Home - Modern Jewelry</a></li>
-                                     <li class="header__sub--menu__items"><a href="index-5.html" class="header__sub--menu__link">Home - Look book</a></li>
-                                     <li class="header__sub--menu__items"><a href="index-6.html" class="header__sub--menu__link">Home - Beauty Jewelers</a></li>
-                                     <li class="header__sub--menu__items"><a href="index-7.html" class="header__sub--menu__link">Home - Parallax</a></li>
-                                 </ul>
+                                 <a class="header__menu--link" href="{{route('home')}}">Home</a>
                              </li>
                              <li class="header__menu--items mega__menu--items">
-                                 <a class="header__menu--link" href="{{route('shopGrid')}}">Shop
-                                     <svg class="menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12" height="7.41" viewBox="0 0 12 7.41">
-                                         <path d="M16.59,8.59,12,13.17,7.41,8.59,6,10l6,6,6-6Z" transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7" />
-                                     </svg>
-                                 </a>
-                                 <div class="header__mega--menu__wrapper">
-                                     <ul class="header__mega--menu d-flex">
-                                         <li class="header__mega--menu__li">
-                                             <ul class="header__mega--sub__menu">
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="shop.html">Shop Left Sidebar</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="shop-grid.html">Shop Grid</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="shop-grid-list.html">Shop Grid List</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="shop-list.html">Shop List</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="shop.html">Vitamins & Health</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="shop.html">Mans Collection</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="shop.html">Beauty products</a></li>
-                                             </ul>
-                                         </li>
-                                         <li class="header__mega--menu__li">
-                                             <ul class="header__mega--sub__menu">
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="product-details.html">Product Details</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="product-video.html">Video Product</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="product-details.html">Variable Product</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="product-left-sidebar.html">Product Left Sidebar</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="product-gallery.html">Product Gallery</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="product-details.html">Trending Product</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="product-details.html">Tab Product</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="product-details.html">Horizontal Product</a></li>
-                                             </ul>
-                                         </li>
-                                         <li class="header__mega--menu__li">
-                                             <ul class="header__mega--sub__menu">
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="my-account.html">My Account</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="my-account-2.html">My Account 2</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="cart.html">Cart Page</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="wishlist.html">Wishlist</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="404.html">404 Page</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="login.html">Login Page</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="faq.html">Faq Page</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="privacy-policy.html">Privacy Policy</a></li>
-                                             </ul>
-                                         </li>
-                                         <li class="header__mega--menu__li">
-                                             <ul class="header__mega--sub__menu">
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="about.html">About Us</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="contact.html">Contact Us</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="portfolio.html">Portfolio</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="compare.html">Compare</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="checkout.html">Checkout</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="404.html">Error Page</a></li>
-                                                 <li class="header__mega--sub__menu_li"><a class="header__mega--sub__menu--title" href="cart.html">View cart</a></li>
-                                             </ul>
-                                         </li>
-                                         <li class="header__mega--menu__li banner__child">
-                                             <div class="header__mega--menu__banner">
-                                                 <a href="shop.html">
-                                                     <img class="header__mega--menu__banner--img" src="assets/img/banner/banner-menu.webp" alt="banner">
-                                                 </a>
-                                             </div>
-                                         </li>
-                                     </ul>
-                                 </div>
+                                 <a class="header__menu--link" href="{{route('shopGrid')}}">Shop</a>
                              </li>
                              <li class="header__menu--items">
-                                 <a class="header__menu--link" href="shop.html">Accesories </a>
-                             </li>
-                             <li class="header__menu--items">
-                                 <a class="header__menu--link" href="blog.html">Blog
-                                     <svg class="menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12" height="7.41" viewBox="0 0 12 7.41">
-                                         <path d="M16.59,8.59,12,13.17,7.41,8.59,6,10l6,6,6-6Z" transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7" />
-                                     </svg>
+                                 <a class="header__menu--link" href="{{route('blogPage')}}">Blog
                                  </a>
-                                 <ul class="header__sub--menu">
-                                     <li class="header__sub--menu__items"><a href="blog-grid.html" class="header__sub--menu__link">Blog Grid</a></li>
-                                     <li class="header__sub--menu__items"><a href="blog-details.html" class="header__sub--menu__link">Blog Details</a></li>
-                                     <li class="header__sub--menu__items"><a href="blog.html" class="header__sub--menu__link">Blog Left Sidebar</a></li>
-                                     <li class="header__sub--menu__items"><a href="blog-right-sidebar.html" class="header__sub--menu__link">Blog Right Sidebar</a></li>
-                                 </ul>
                              </li>
                              <li class="header__menu--items">
                                  <a class="header__menu--link active" href="#">Pages
@@ -228,18 +193,12 @@
                                      </svg>
                                  </a>
                                  <ul class="header__sub--menu">
-                                     <li class="header__sub--menu__items"><a href="about.html" class="header__sub--menu__link">About Us</a></li>
-                                     <li class="header__sub--menu__items"><a href="contact.html" class="header__sub--menu__link">Contact Us</a></li>
-                                     <li class="header__sub--menu__items"><a href="cart.html" class="header__sub--menu__link">Cart Page</a></li>
-                                     <li class="header__sub--menu__items"><a href="portfolio.html" class="header__sub--menu__link">Portfolio Page</a></li>
-                                     <li class="header__sub--menu__items"><a href="wishlist.html" class="header__sub--menu__link">Wishlist Page</a></li>
-                                     <li class="header__sub--menu__items"><a href="privacy-policy.html" class="header__sub--menu__link">Privacy Policy</a></li>
-                                     <li class="header__sub--menu__items"><a href="login.html" class="header__sub--menu__link">Login Page</a></li>
-                                     <li class="header__sub--menu__items"><a href="404.html" class="header__sub--menu__link">Error Page</a></li>
+                                     <li class="header__sub--menu__items"><a href="{{route('aboutPage')}}" class="header__sub--menu__link">About Us</a></li>
+                                     <li class="header__sub--menu__items"><a href="{{route('privacyPage')}}" class="header__sub--menu__link">Privacy Policy</a></li>
                                  </ul>
                              </li>
                              <li class="header__menu--items">
-                                 <a class="header__menu--link" href="contact.html">Contact </a>
+                                 <a class="header__menu--link" href="{{route('contactPage')}}">Contact </a>
                              </li>
                          </ul>
                      </nav>
@@ -257,7 +216,7 @@
                              </a>
                          </li>
                          <li class="header__account--items">
-                             <a class="header__account--btn d-sm-2-none" href="wishlist.html">
+                             <a class="header__account--btn d-sm-2-none" href="{{route('wishlistPage')}}">
                                  <span class="header__account--btn__icon">
                                      <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                          <path d="M2.09836 2.28681C1.75014 2.69477 1.47391 3.1791 1.28545 3.71213C1.097 4.24516 1 4.81646 1 5.39341C1 5.97036 1.097 6.54167 1.28545 7.0747C1.47391 7.60773 1.75014 8.09206 2.09836 8.50002L8.50001 16L14.9016 8.50002C15.6049 7.6761 16 6.55862 16 5.39341C16 4.22821 15.6049 3.11073 14.9016 2.28681C14.1984 1.46289 13.2446 1.00001 12.25 1.00001C11.2554 1.00001 10.3016 1.46289 9.59833 2.28681L8.50001 3.57358L7.40168 2.28681C7.05346 1.87884 6.64006 1.55522 6.18509 1.33443C5.73011 1.11364 5.24248 1 4.75002 1C4.25756 1 3.76992 1.11364 3.31495 1.33443C2.85998 1.55522 2.44658 1.87884 2.09836 2.28681V2.28681Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
@@ -267,7 +226,7 @@
                              </a>
                          </li>
                          <li class="header__account--items">
-                             <a class="header__account--btn d-sm-2-none" href="my-account.html">
+                             <a class="header__account--btn d-sm-2-none" href="{{route('acountPage')}}">
                                  <span class="header__account--btn__icon">
                                      <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                          <path d="M16 16V14.3333C16 13.4493 15.6049 12.6014 14.9016 11.9763C14.1984 11.3512 13.2446 11 12.25 11H4.75C3.75544 11 2.80161 11.3512 2.09835 11.9763C1.39509 12.6014 1 13.4493 1 14.3333V16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
@@ -278,7 +237,7 @@
                              </a>
                          </li>
                          <li class="header__account--items header__minicart--items">
-                             <a class="header__account--btn minicart__open--btn" href="javascript:void(0)" data-offcanvas>
+                             <a class="header__account--btn minicart__open--btn" href="{{route('cartPage')}}" data-offcanvas>
                                  <span class="header__account--btn__icon">
                                      <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                          <path d="M12.25 7.66667V4.33333C12.25 3.44928 11.8549 2.60143 11.1517 1.97631C10.4484 1.35119 9.49456 1 8.5 1C7.50544 1 6.55161 1.35119 5.84835 1.97631C5.14509 2.60143 4.75 3.44928 4.75 4.33333V7.66667M1.9375 6H15.0625L16 16H1L1.9375 6Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
@@ -293,116 +252,9 @@
          </div>
      </div>
 
-     <!-- Start Offcanvas header menu -->
-     <div class="offcanvas__header">
-         <div class="offcanvas__inner">
-             <div class="offcanvas__logo">
-                 <a class="offcanvas__logo_link" href="index.html">
-                     <img src="assets/img/logo/nav-log.webp" alt="Logo-img" width="158" height="36">
-                 </a>
-                 <button class="offcanvas__close--btn" data-offcanvas>close</button>
-             </div>
-             <nav class="offcanvas__menu">
-                 <ul class="offcanvas__menu_ul">
-                     <li class="offcanvas__menu_li">
-                         <a class="offcanvas__menu_item" href="index.html">Home</a>
-                         <ul class="offcanvas__sub_menu">
-                             <li class="offcanvas__sub_menu_li"><a href="index.html" class="offcanvas__sub_menu_item">Home - Beauty Cosmetic</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="index-2.html" class="offcanvas__sub_menu_item">Home - Cosmetic Spa</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="index-3.html" class="offcanvas__sub_menu_item">Home - Jewelry Store</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="index-4.html" class="offcanvas__sub_menu_item">Home - Modern Jewelry</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="index-5.html" class="offcanvas__sub_menu_item">Home - Look book</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="index-6.html" class="offcanvas__sub_menu_item">Home - Beauty Jewelers</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="index-7.html" class="offcanvas__sub_menu_item">Home - Parallax</a></li>
-                         </ul>
-                     </li>
-                     <li class="offcanvas__menu_li">
-                         <a class="offcanvas__menu_item" href="shop.html">Shop</a>
-                         <ul class="offcanvas__sub_menu">
-                             <li class="offcanvas__sub_menu_li">
-                                 <a href="#" class="offcanvas__sub_menu_item">Column One</a>
-                                 <ul class="offcanvas__sub_menu">
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="shop.html">Shop Left Sidebar</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="shop-grid.html">Shop Grid</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="shop-grid-list.html">Shop Grid List</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="shop-list.html">Shop List</a></li>
-                                 </ul>
-                             </li>
-                             <li class="offcanvas__sub_menu_li">
-                                 <a href="#" class="offcanvas__sub_menu_item">Column Two</a>
-                                 <ul class="offcanvas__sub_menu">
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="product-details.html">Product Details</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="product-video.html">Video Product</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="product-details.html">Variable Product</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="product-left-sidebar.html">Product Left Sidebar</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="product-gallery.html">Product Gallery</a></li>
-                                 </ul>
-                             </li>
-                             <li class="offcanvas__sub_menu_li">
-                                 <a href="#" class="offcanvas__sub_menu_item">Column Three</a>
-                                 <ul class="offcanvas__sub_menu">
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="my-account.html">My Account</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="my-account-2.html">My Account 2</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="404.html">404 Page</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="login.html">Login Page</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="faq.html">Faq Page</a></li>
-                                 </ul>
-                             </li>
-                             <li class="offcanvas__sub_menu_li">
-                                 <a href="#" class="offcanvas__sub_menu_item">Column Three</a>
-                                 <ul class="offcanvas__sub_menu">
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="about.html">About Us</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="contact.html">Contact Us</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="portfolio.html">Portfolio</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="compare.html">Compare Pages</a></li>
-                                     <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="checkout.html">Checkout page</a></li>
-                                 </ul>
-                             </li>
-                         </ul>
-                     </li>
-                     <li class="offcanvas__menu_li">
-                         <a class="offcanvas__menu_item" href="blog.html">Blog</a>
-                         <ul class="offcanvas__sub_menu">
-                             <li class="offcanvas__sub_menu_li"><a href="blog-grid.html" class="offcanvas__sub_menu_item">Blog Grid</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="blog-details.html" class="offcanvas__sub_menu_item">Blog Details</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="blog.html" class="offcanvas__sub_menu_item">Blog Left Sidebar</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="blog-right-sidebar.html" class="offcanvas__sub_menu_item">Blog Right Sidebar</a></li>
-                         </ul>
-                     </li>
-                     <li class="offcanvas__menu_li">
-                         <a class="offcanvas__menu_item" href="#">Pages</a>
-                         <ul class="offcanvas__sub_menu">
-                             <li class="offcanvas__sub_menu_li"><a href="about.html" class="offcanvas__sub_menu_item">About Us</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="contact.html" class="offcanvas__sub_menu_item">Contact Us</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="cart.html" class="offcanvas__sub_menu_item">Cart Page</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="portfolio.html" class="offcanvas__sub_menu_item">Portfolio Page</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="wishlist.html" class="offcanvas__sub_menu_item">Wishlist Page</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="login.html" class="offcanvas__sub_menu_item">Login Page</a></li>
-                             <li class="offcanvas__sub_menu_li"><a href="404.html" class="offcanvas__sub_menu_item">Error Page</a></li>
-                         </ul>
-                     </li>
-                     <li class="offcanvas__menu_li"><a class="offcanvas__menu_item" href="about.html">About</a></li>
-                     <li class="offcanvas__menu_li"><a class="offcanvas__menu_item" href="contact.html">Contact</a></li>
-                 </ul>
-                 <div class="offcanvas__account--items">
-                     <a class="offcanvas__account--items__btn d-flex align-items-center" href="login.html">
-                         <span class="offcanvas__account--items__icon">
-                             <svg xmlns="http://www.w3.org/2000/svg" width="20.51" height="19.443" viewBox="0 0 512 512">
-                                 <path d="M344 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
-                                 <path d="M256 304c-87 0-175.3 48-191.64 138.6C62.39 453.52 68.57 464 80 464h352c11.44 0 17.62-10.48 15.65-21.4C431.3 352 343 304 256 304z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32" />
-                             </svg>
-                         </span>
-                         <span class="offcanvas__account--items__label">Login / Register</span>
-                     </a>
-                 </div>
-             </nav>
-         </div>
-     </div>
-     <!-- End Offcanvas header menu -->
 
      <!-- Start Offcanvas sticky toolbar -->
-     <div class="offcanvas__sticky--toolbar">
+     <!-- <div class="offcanvas__sticky--toolbar">
          <ul class="d-flex justify-content-between">
              <li class="offcanvas__sticky--toolbar__list">
                  <a class="offcanvas__sticky--toolbar__btn" href="index.html">
@@ -458,11 +310,11 @@
                  </a>
              </li>
          </ul>
-     </div>
+     </div> -->
      <!-- End Offcanvas sticky toolbar -->
 
      <!-- Start offCanvas minicart -->
-     <div class="offCanvas__minicart">
+     <!-- <div class="offCanvas__minicart">
          <div class="minicart__header ">
              <div class="minicart__header--top d-flex justify-content-between align-items-center">
                  <h3 class="minicart__title"> Shopping Cart</h3>
@@ -538,10 +390,10 @@
              <label class="minicart__conditions--label" for="accept">I agree with the <a class="minicart__conditions--link" href="privacy-policy.html">Privacy Policy</a></label>
          </div>
          <div class="minicart__button d-flex justify-content-center">
-             <a class="primary__btn minicart__button--link" href="cart.html">View cart</a>
-             <a class="primary__btn minicart__button--link" href="checkout.html">Checkout</a>
+             <a class="primary__btn minicart__button--link" href="{{route('cartPage')}}">View cart</a>
+             <a class="primary__btn minicart__button--link" href="{{route('checkoutPage')}}">Checkout</a>
          </div>
-     </div>
+     </div> -->
      <!-- End offCanvas minicart -->
 
      <!-- Start serch box area -->

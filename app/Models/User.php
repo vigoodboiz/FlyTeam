@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Support\Facades\Hash;
+
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -81,7 +82,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function roles(): BelongsToMany {
-    return $this->BelongsToMany(Role::class);
+       return $this->BelongsToMany(Role::class);
 }
 
 }
