@@ -24,6 +24,7 @@
 
     <!-- Start collection section -->
     <section class="shop__collection--section section--padding">
+
         <div class="container">
             <div class="section__heading text-center mb-40">
                 <h2 class="section__heading--maintitle">Shop Product Sale</h2>
@@ -32,6 +33,7 @@
                 <div class="swiper-wrapper">
                     @foreach($sale_product as $pro_sale)
                     <div class="swiper-slide">
+
                         <article class="product__card">
                             <div class="product__card--thumbnail">
                                 <a class="product__card--thumbnail__link display-block" href="product-details.html">
@@ -81,6 +83,7 @@
                                 </div>
                             </div>
                         </article>
+
                     </div>
                     @endforeach
                 </div>
@@ -96,6 +99,7 @@
                 </div>
             </div>
         </div>
+        
     </section>
     <!-- End collection section -->
 
@@ -242,18 +246,6 @@
                                     </svg>
                                     <span class="widget__filter--btn__text">Filter</span>
                                 </button>
-                                <div class="product__view--mode__list product__short--by align-items-center d-flex ">
-                                    <label class="product__view--label">Prev Page :</label>
-                                    <div class="select shop__header--select">
-                                        <select class="product__view--select">
-                                            <option selected value="1">65</option>
-                                            <option value="2">40</option>
-                                            <option value="3">42</option>
-                                            <option value="4">57 </option>
-                                            <option value="5">60 </option>
-                                        </select>
-                                    </div>
-                                </div>
                                 <div class="product__view--mode__list product__short--by align-items-center d-flex">
                                     <label class="product__view--label">Sort By :</label>
                                     <div class="select shop__header--select">
@@ -301,7 +293,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="product__showing--count">Showing 1–9 of 21 results</p>
+                            <p class="product__showing--count">Showing 1–9 of {{$products->count()}} results</p>
                         </div>
                         <div class="tab_content">
                             <div id="product_grid" class="tab_pane">
@@ -311,7 +303,7 @@
                                         <div class="col-lg-4 col-md-4 col-sm-6 col-6 custom-col mb-30">
                                             <article class="product__card">
                                                 <div class="product__card--thumbnail">
-                                                    <a class="product__card--thumbnail__link display-block" href="{{route('shopDetails',$pro->id)}}">
+                                                    <a class="product__card--thumbnail__link display-block" href="{{route('shopDetails',$pro->id)}}" data-product-id="{{$pro->id}}">
                                                         <img class="product__card--thumbnail__img product__primary--img" style="height: 200px;" src="{{ asset('storage/images/'.$pro->image) }}" alt="product-img">
                                                         <img class="product__card--thumbnail__img product__secondary--img" src="assets/img/product/main-product/product2.webp" class="height:100px" alt="product-img">
                                                     </a>
@@ -391,7 +383,7 @@
                                                             <span class="rating__review--text">(126) Review</span>
                                                         </li>
                                                     </ul>
-                                                    <h3 class="product__card--title"><a href="{{route('shopDetails',$pro->id)}}">{{$pro->name}} </a></h3>
+                                                    <h3 class="product__card--title"><a href="{{route('shopDetails',$pro->id)}}" data-product-id="{{$pro->id}}">{{$pro->name}} </a></h3>
                                                     <div class="product__card--price">
                                                         <span class="current__price">${{$pro->price_sale}}</span>
                                                         <span class="old__price"> ${{$pro->price}}</span>
@@ -410,7 +402,7 @@
                                             @foreach($products as $pro)
                                             <div class="product__card product__list d-flex align-items-center">
                                                 <div class="product__card--thumbnail product__list--thumbnail">
-                                                    <a class="product__card--thumbnail__link display-block" href="{{route('shopDetails',$pro->id)}}">
+                                                    <a class="product__card--thumbnail__link display-block" href="{{route('shopDetails',$pro->id)}}" data-product-id="{{$pro->id}}">
                                                         <img class="product__card--thumbnail__img product__primary--img" src="{{ asset('storage/images/'.$pro->image) }}" alt="product-img">
                                                         <img class="product__card--thumbnail__img product__secondary--img" src="assets/img/product/main-product/product2.webp" alt="product-img">
                                                     </a>
@@ -443,7 +435,7 @@
                                                     </ul>
                                                 </div>
                                                 <div class="product__card--content product__list--content">
-                                                    <h3 class="product__card--title"><a href="{{route('shopDetails',$pro->id)}}">{{$pro->name}}</a></h3>
+                                                    <h3 class="product__card--title"><a href="{{route('shopDetails',$pro->id)}}" data-product-id="{{$pro->id}}">{{$pro->name}}</a></h3>
                                                     <ul class="rating product__card--rating d-flex">
                                                         <li class="rating__list">
                                                             <span class="rating__icon">
@@ -498,29 +490,61 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- paginator -->
                         <div class="pagination__area">
                             <nav class="pagination justify-content-center">
                                 <ul class="pagination__wrapper d-flex align-items-center justify-content-center">
+                                    @if ($products->onFirstPage())
+                                    <li class="pagination__list disabled">
+                                        <span class="pagination__item--arrow link">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="22.51" height="20.443" viewBox="0 0 512 512">
+                                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M244 400L100 256l144-144M120 256h292" />
+                                            </svg>
+                                            <span class="visually-hidden">page left arrow</span>
+                                        </span>
+                                    </li>
+                                    @else
                                     <li class="pagination__list">
-                                        <a href="shop.html" class="pagination__item--arrow  link ">
+                                        <a href="{{ $products->previousPageUrl() }}" class="pagination__item--arrow link">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="22.51" height="20.443" viewBox="0 0 512 512">
                                                 <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M244 400L100 256l144-144M120 256h292" />
                                             </svg>
                                             <span class="visually-hidden">page left arrow</span>
                                         </a>
-                                    <li>
-                                    <li class="pagination__list"><span class="pagination__item pagination__item--current">1</span></li>
-                                    <li class="pagination__list"><a href="shop.html" class="pagination__item link">2</a></li>
-                                    <li class="pagination__list"><a href="shop.html" class="pagination__item link">3</a></li>
-                                    <li class="pagination__list"><a href="shop.html" class="pagination__item link">4</a></li>
+                                    </li>
+                                    @endif
+
+                                    @foreach ($products->getUrlRange(1, $products->lastPage()) as $page => $url)
+                                    @if ($page == $products->currentPage())
                                     <li class="pagination__list">
-                                        <a href="shop.html" class="pagination__item--arrow  link ">
+                                        <span class="pagination__item pagination__item--current">{{ $page }}</span>
+                                    </li>
+                                    @else
+                                    <li class="pagination__list">
+                                        <a href="{{ $url }}" class="pagination__item link">{{ $page }}</a>
+                                    </li>
+                                    @endif
+                                    @endforeach
+
+                                    @if ($products->hasMorePages())
+                                    <li class="pagination__list">
+                                        <a href="{{ $products->nextPageUrl() }}" class="pagination__item--arrow link">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="22.51" height="20.443" viewBox="0 0 512 512">
                                                 <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M268 112l144 144-144 144M392 256H100" />
                                             </svg>
                                             <span class="visually-hidden">page right arrow</span>
                                         </a>
-                                    <li>
+                                    </li>
+                                    @else
+                                    <li class="pagination__list disabled">
+                                        <span class="pagination__item--arrow link">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="22.51" height="20.443" viewBox="0 0 512 512">
+                                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M268 112l144 144-144 144M392 256H100" />
+                                            </svg>
+                                            <span class="visually-hidden">page right arrow</span>
+                                        </span>
+                                    </li>
+                                    @endif
                                 </ul>
                             </nav>
                         </div>
@@ -529,6 +553,7 @@
             </div>
         </div>
     </div>
+    
     <!-- End shop section -->
 
     <!-- Start feature section -->
@@ -577,4 +602,7 @@
     <!-- End feature section -->
 
 </main>
+
+
+
 @endsection

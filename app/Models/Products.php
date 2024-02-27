@@ -12,7 +12,7 @@ class Products extends Model
 
 
     protected $table = 'products';
-    
+
     protected $fillable = ['id_category', 'name', 'brand', 'price', 'price_sale', 'image'];
 
     public function category()
@@ -20,8 +20,13 @@ class Products extends Model
         return $this->belongsTo(Category::class, 'id_category');
     }
 
-    public function comments() {
+    public function comments()
+    {
         return $this->hasMany(Comment::class);
     }
-}
 
+    public function views()
+    {
+        return $this->hasOne(ProductView::class);
+    }
+}

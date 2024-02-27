@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('brand');
             $table->double('price');
-            $table->double('price_sale')->nullable();
+            $table->double('price_sale')->default(0);
             $table->string('image')->nullable();
+            $table->integer('view_count')->default(0);
             $table->timestamps();
             
             $table->foreign('id_category')->references('id')->on('category');

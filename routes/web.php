@@ -31,6 +31,7 @@ use App\Http\Controllers\WishlishController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\AcountController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ErrosController;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
@@ -54,6 +55,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 // });
 // home
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -203,6 +205,12 @@ Route::get('/send-mail{email}', [RegisteredUserController::class, 'store'])->nam
 Route::get('page/shop', [shopGridController::class, 'index'])->name('shopGrid');
 Route::get('page/shop/fillCate/{id_cate}', [shopGridController::class, 'fillCate'])->name('fillCate');
 Route::get('page/shop/fillPrice', [shopGridController::class, 'fillPrice'])->name('fillPrice');
+Route::get('page/shop/fillBrand', [shopGridController::class, 'fillBrand'])->name('fillBrand');
+Route::match(['GET', 'POST'],'/shopGrid/searchPro', [shopGridController::class, 'index'])->name('search');
+
+
+// lỗi 404
+Route::get('page/errors', [ErrosController::class, 'index'])->name('errors');
 // shop details
 Route::get('page/shopDetails/{id_pro}', [ShopDetailsController::class, 'index'])->name('shopDetails');
 //blog
@@ -215,7 +223,7 @@ Route::get('page/privacy', [PrivacyController::class, 'index'])->name('privacyPa
 Route::get('page/contact', [ContactController::class, 'index'])->name('contactPage');
 
 // Checkout
-Route::get('page/Checkout', [CheckoutController::class, 'index'])->name('checkoutPage');
+Route::get('page/Checkout', [CheckoutController::class, 'inde   x'])->name('checkoutPage');
 // acount
 Route::get('page/acount', [AcountController::class, 'index'])->name('acountPage');
 // wishlist

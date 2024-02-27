@@ -15,7 +15,7 @@
                                         <h2 class="slider__maintitle text__primary h1">Beauty is Whatever <br>
                                             Brings Perfect</h2>
                                         <p class="slider__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, aliquip ex ea commodo consequat. </p>
-                                        <a class="primary__btn slider__btn" href="shop.html">
+                                        <a class="primary__btn slider__btn" href="{{route('shopGrid')}}">
                                             SHOP NOW
                                             <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M15.9732 5.19375L11.1893 0.460018C11.1225 0.392216 11.0412 0.338185 10.9507 0.301395C10.8601 0.264605 10.7623 0.245867 10.6636 0.246372C10.5648 0.246877 10.4672 0.266615 10.377 0.304329C10.2869 0.342044 10.2061 0.396903 10.14 0.465385C10.001 0.610077 9.9245 0.79778 9.92549 0.992021C9.92649 1.18626 10.0049 1.37316 10.1454 1.51643L13.6531 4.9864L0.935903 5.05145C0.734471 5.06613 0.546408 5.15137 0.409525 5.29006C0.272641 5.42874 0.197086 5.61057 0.19805 5.799C0.199014 5.98743 0.276425 6.16848 0.41472 6.30575C0.553015 6.44303 0.74194 6.52635 0.943512 6.53896L13.6586 6.47392L10.1866 9.98155C10.0475 10.1262 9.97108 10.3139 9.97207 10.5082C9.97306 10.7024 10.0514 10.8893 10.192 11.0326C10.2588 11.1004 10.3401 11.1544 10.4306 11.1912C10.5212 11.228 10.6189 11.2467 10.7177 11.2462C10.8165 11.2457 10.9141 11.226 11.0042 11.1883C11.0944 11.1506 11.1751 11.0957 11.2413 11.0272L15.9786 6.25458C16.1206 6.1093 16.1989 5.91956 16.1979 5.72303C16.1969 5.5265 16.1167 5.33757 15.9732 5.19375Z" fill="currentColor" />
@@ -39,7 +39,7 @@
                                         <h2 class="slider__maintitle text__primary h1">Beauty is Whatever <br>
                                             Brings Perfect</h2>
                                         <p class="slider__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, aliquip ex ea commodo consequat. </p>
-                                        <a class="primary__btn slider__btn" href="shop.html">
+                                        <a class="primary__btn slider__btn" href="{{route('shopGrid')}}">
                                             SHOP NOW
                                             <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M15.9732 5.19375L11.1893 0.460018C11.1225 0.392216 11.0412 0.338185 10.9507 0.301395C10.8601 0.264605 10.7623 0.245867 10.6636 0.246372C10.5648 0.246877 10.4672 0.266615 10.377 0.304329C10.2869 0.342044 10.2061 0.396903 10.14 0.465385C10.001 0.610077 9.9245 0.79778 9.92549 0.992021C9.92649 1.18626 10.0049 1.37316 10.1454 1.51643L13.6531 4.9864L0.935903 5.05145C0.734471 5.06613 0.546408 5.15137 0.409525 5.29006C0.272641 5.42874 0.197086 5.61057 0.19805 5.799C0.199014 5.98743 0.276425 6.16848 0.41472 6.30575C0.553015 6.44303 0.74194 6.52635 0.943512 6.53896L13.6586 6.47392L10.1866 9.98155C10.0475 10.1262 9.97108 10.3139 9.97207 10.5082C9.97306 10.7024 10.0514 10.8893 10.192 11.0326C10.2588 11.1004 10.3401 11.1544 10.4306 11.1912C10.5212 11.228 10.6189 11.2467 10.7177 11.2462C10.8165 11.2457 10.9141 11.226 11.0042 11.1883C11.0944 11.1506 11.1751 11.0957 11.2413 11.0272L15.9786 6.25458C16.1206 6.1093 16.1989 5.91956 16.1979 5.72303C16.1969 5.5265 16.1167 5.33757 15.9732 5.19375Z" fill="currentColor" />
@@ -63,7 +63,7 @@
                                         <h2 class="slider__maintitle text__primary h1">Beauty is Whatever <br>
                                             Brings Perfect</h2>
                                         <p class="slider__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, aliquip ex ea commodo consequat. </p>
-                                        <a class="primary__btn slider__btn" href="shop.html">
+                                        <a class="primary__btn slider__btn" href="{{route('shopGrid')}}">
                                             SHOP NOW
                                             <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M15.9732 5.19375L11.1893 0.460018C11.1225 0.392216 11.0412 0.338185 10.9507 0.301395C10.8601 0.264605 10.7623 0.245867 10.6636 0.246372C10.5648 0.246877 10.4672 0.266615 10.377 0.304329C10.2869 0.342044 10.2061 0.396903 10.14 0.465385C10.001 0.610077 9.9245 0.79778 9.92549 0.992021C9.92649 1.18626 10.0049 1.37316 10.1454 1.51643L13.6531 4.9864L0.935903 5.05145C0.734471 5.06613 0.546408 5.15137 0.409525 5.29006C0.272641 5.42874 0.197086 5.61057 0.19805 5.799C0.199014 5.98743 0.276425 6.16848 0.41472 6.30575C0.553015 6.44303 0.74194 6.52635 0.943512 6.53896L13.6586 6.47392L10.1866 9.98155C10.0475 10.1262 9.97108 10.3139 9.97207 10.5082C9.97306 10.7024 10.0514 10.8893 10.192 11.0326C10.2588 11.1004 10.3401 11.1544 10.4306 11.1912C10.5212 11.228 10.6189 11.2467 10.7177 11.2462C10.8165 11.2457 10.9141 11.226 11.0042 11.1883C11.0944 11.1506 11.1751 11.0957 11.2413 11.0272L15.9786 6.25458C16.1206 6.1093 16.1989 5.91956 16.1979 5.72303C16.1969 5.5265 16.1167 5.33757 15.9732 5.19375Z" fill="currentColor" />
@@ -95,7 +95,7 @@
                     @foreach($categories as $cate)
                     <div class="swiper-slide">
                         <div class="shop__collection--card text-center">
-                            <a class="shop__collection--link" href="shop.html">
+                            <a class="shop__collection--link" href="{{route('fillCate' , $cate->id)}}">
                                 <img class="shop__collection--img" src="{{ asset('storage/images/'.$cate->image) }}" alt="icon-img">
                                 <h3 class="shop__collection--title">{{$cate->name}}</h3>
                                 <span class="shop__collection--subtitle">25 Items</span>
@@ -130,12 +130,12 @@
                         <p class="image__width--text__desc">Kidlues ispum maruwes cnsectetur adipisicing elit, sed do
                             eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         <div class="image__width--text__footer">
-                            <a class="image__width--text__link" href="shop.html">Shop Now
+                            <a class="image__width--text__link" href="{{route('shopGrid')}}">Shop Now
                                 <svg width="9" height="12" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 1L7.96317 7.96317L1 14.9263" stroke="currentColor" stroke-width="2" />
                                 </svg>
                             </a>
-                            <a class="image__width--text__link glightbox" href="https://vimeo.com/115041822" data-gallery="video">Play Video
+                            <a class="image__width--text__link glightbox" href="https://youtu.be/AJK5hVO3TLc" data-gallery="video">Play Video
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="10" cy="10" r="9.75" fill="#F7EEDD" stroke="black" stroke-width="0.5" />
                                     <path d="M15 10L7.5 14.3301L7.5 5.66987L15 10Z" fill="black" />
@@ -162,12 +162,14 @@
             </div>
             <div class="product__section--inner">
                 <div class="row mb--n30">
+                    @foreach($products_trending as $pro_trending)
                     <div class="col-lg-3 col-md-4 col-sm-6 col-6 custom-col mb-30">
+
                         <article class="product__card">
                             <div class="product__card--thumbnail">
-                                <a class="product__card--thumbnail__link display-block" href="product-details.html">
-                                    <img class="product__card--thumbnail__img product__primary--img" src="assets/img/product/main-product/product3.webp" alt="product-img">
-                                    <img class="product__card--thumbnail__img product__secondary--img" src="assets/img/product/main-product/product4.webp" alt="product-img">
+                                <a class="product__card--thumbnail__link display-block" href="{{route('shopDetails',$pro_trending->id)}}">
+                                    <img class="product__card--thumbnail__img product__primary--img" src="{{ asset('storage/images/'.$pro_trending->image) }}" style="height: 200px;" alt="product-img">
+                                    <img class="product__card--thumbnail__img product__secondary--img" src="{{asset('becute/assets/img/product/main-product/product4.webp')}}" alt="product-img">
                                 </a>
                                 <ul class="product__card--action">
                                     <li class="product__card--action__list">
@@ -244,17 +246,19 @@
                                         <span class="rating__review--text">(126) Review</span>
                                     </li>
                                 </ul>
-                                <h3 class="product__card--title"><a href="product-details.html">Lorem, ipsum dolor sit ame elit. </a></h3>
+                                <h3 class="product__card--title"><a href="product-details.html">{{$pro_trending->name}}</a></h3>
                                 <div class="product__card--price">
-                                    <span class="current__price">$215.52</span>
-                                    <span class="old__price"> $320.00</span>
+                                    <span class="current__price">${{$pro_trending->price_sale}}</span>
+                                    <span class="old__price"> ${{$pro_trending->price}}</span>
                                 </div>
                             </div>
                         </article>
+
                     </div>
+                    @endforeach
                 </div>
                 <div class="product__load--more text-center">
-                    <a class="load__more--btn primary__btn" href="shop.html">Load More</a>
+                    <a class="load__more--btn primary__btn" href="{{route('shopGrid')}}">Load More</a>
                 </div>
             </div>
         </div>
@@ -270,7 +274,7 @@
                     <div class="video__banner--box position-relative">
                         <img class="video__banner--box__thumbnail" src="{{asset('becute/assets/img/banner/banner3.webp')}}" alt="banner-img">
                         <div class="bideo__play">
-                            <a class="bideo__play--icon glightbox" href="https://vimeo.com/115041822" data-gallery="video">
+                            <a class="bideo__play--icon glightbox" href="https://youtu.be/khYupez97OU" data-gallery="video">
                                 <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16.5 9.13398C17.1667 9.51888 17.1667 10.4811 16.5 10.866L1.5 19.5263C0.833335 19.9112 9.70611e-07 19.4301 1.00426e-06 18.6603L1.76136e-06 1.33975C1.79501e-06 0.569945 0.833335 0.0888201 1.5 0.47372L16.5 9.13398Z" fill="currentColor" />
                                 </svg>
