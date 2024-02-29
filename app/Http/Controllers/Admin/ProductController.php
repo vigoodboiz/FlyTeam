@@ -43,6 +43,7 @@ class ProductController extends Controller
             'id_category' => 'required',
             'name' => 'required',
             'brand' => 'required',
+            'describe' => 'required',
             'price' => 'required',
             'price_sale' => 'nullable',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -73,15 +74,6 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    ////////////////////////////////////////////////////////////////////////////
-    // public function edit(string $id)
-    // {
-    //     // Lấy danh sách các category để hiển thị trong form
-    //     $categories = Category::all();
-
-      
-    //     return view('products.edit', compact('products', 'categories'));
-    // }
 
     public function edit($id)
     {
@@ -98,29 +90,6 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    // public function update(Request $request, string $id)
-    // {
-    //     $validatedData = $request->validate([
-    //         'id_category' => 'required',
-    //         'name' => 'required',
-    //         'brand' => 'required',
-    //         'price' => 'required',
-    //         'price_sale' => 'nullable',
-    //         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-    //     ]);
-
-    //     // Lưu ảnh vào thư mục storage/app/public/images
-    //     if ($request->hasFile('image')) {
-    //         $image = $request->file('image');
-    //         $imageName = time() . '.' . $image->getClientOriginalExtension();
-    //         $image->storeAs('public/images', $imageName);
-    //         $validatedData['image'] = $imageName;
-    //     }
-
-    //     $product->update($validatedData);
-
-    //     return redirect()->route('products.edit', $product)->with('success', 'Sản phẩm đã được cập nhật thành công');
-    // }
 
 
     public function update(Request $request, $id)
@@ -129,6 +98,7 @@ class ProductController extends Controller
             'id_category' => 'required',
             'name' => 'required',
             'brand' => 'required',
+            'describe' => 'required',
             'price' => 'required|numeric',
             'price_sale' => 'required|numeric',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -155,6 +125,7 @@ class ProductController extends Controller
         $product->id_category = $request->input('id_category');
         $product->name = $request->input('name');
         $product->brand = $request->input('brand');
+        $product->describe = $request->input('describe');
         $product->price = $request->input('price');
         $product->price_sale = $request->input('price_sale');
         $product->save();
@@ -174,5 +145,3 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('success', 'Đã xóa sản phẩm thành công.');
     }
 }
-
-

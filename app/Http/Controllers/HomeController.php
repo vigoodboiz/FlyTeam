@@ -10,7 +10,11 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        return view('page.index');
+
+        $categories = Category::all();
+        $products_trending = Products::orderBy('view_count', 'desc')->limit(8)->get();
+        return view('page.index',compact('categories','products_trending'));
     }
 
+    
 }

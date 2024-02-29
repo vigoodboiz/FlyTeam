@@ -18,6 +18,7 @@ class CouponController extends Controller
             return redirect()->back()->with('message','Xóa mã khuyến mãi thành công');
         }
     }
+
     public function insert_coupon()
     {
         return view('admin.coupon.insert_coupon');

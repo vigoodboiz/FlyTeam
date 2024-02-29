@@ -24,6 +24,7 @@
     <section class="cart__section section--padding">
         <div class="container-fluid">
             <div class="cart__section--inner">
+
                     <h2 class="cart__title mb-35">Shopping Cart</h2>
                     <div class="row">
                         <div class="col-lg-8">
@@ -97,6 +98,8 @@
                                     <p class="cart__note--desc">Add special instructions for your seller...</p>
                                     <textarea class="cart__note--textarea border-radius-5"></textarea>
                                 </div> -->
+                                </div>
+                              
                                 <div class="cart__summary--total mb-20">
                                     <table class="cart__summary--total__table">
                                         <tbody>
@@ -105,6 +108,7 @@
                                             <tr class="cart__summary--total__list">
                                                 <td class="cart__summary--total__title text-left">GRAND TOTAL</td>
                                                 <td class="cart__summary--amount text-right">{{$totalPrice}} VNĐ</td>
+
                                             </tr>
                                         </tbody>
                                     </table>
@@ -132,17 +136,20 @@
 										@endif
 									@endforeach
 							@endif 
+
                                 <div class="cart__summary--footer">
                                     <p class="cart__summary--footer__desc">Shipping & taxes calculated at checkout</p>
                                     <ul class="d-flex justify-content-between">
                                         <li><button class="cart__summary--footer__btn primary__btn cart" type="submit">Update Cart</button></li>
-                                        <li><a class="cart__summary--footer__btn primary__btn checkout" href="checkout.html">Check Out</a></li>
+
+                                        <li><a class="cart__summary--footer__btn primary__btn checkout" href="{{route('checkoutPage')}}">Check Out</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
 
                     </div>
+
             </div>
         </div>
     </section>
