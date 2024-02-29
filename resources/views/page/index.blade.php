@@ -248,8 +248,12 @@
                                 </ul>
                                 <h3 class="product__card--title"><a href="product-details.html">{{$pro_trending->name}}</a></h3>
                                 <div class="product__card--price">
+                                    @if(isset($pro_trending->price_sale) && $pro_trending->price_sale > 0)
                                     <span class="current__price">${{$pro_trending->price_sale}}</span>
-                                    <span class="old__price"> ${{$pro_trending->price}}</span>
+                                    <span class="old__price">${{$pro_trending->price}}</span>
+                                    @else
+                                    <span class="current__price">${{$pro_trending->price}}</span>
+                                    @endif
                                 </div>
                             </div>
                         </article>

@@ -99,7 +99,7 @@
                 </div>
             </div>
         </div>
-        
+
     </section>
     <!-- End collection section -->
 
@@ -293,7 +293,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="product__showing--count">Showing 1–9 of {{$products->count()}} results</p>
+                            <p class="product__showing--count">Showing 1–6 of {{$products->count()}} results</p>
                         </div>
                         <div class="tab_content">
                             <div id="product_grid" class="tab_pane">
@@ -385,8 +385,12 @@
                                                     </ul>
                                                     <h3 class="product__card--title"><a href="{{route('shopDetails',$pro->id)}}" data-product-id="{{$pro->id}}">{{$pro->name}} </a></h3>
                                                     <div class="product__card--price">
+                                                        @if(isset($pro->price_sale) && $pro->price_sale > 0)
                                                         <span class="current__price">${{$pro->price_sale}}</span>
-                                                        <span class="old__price"> ${{$pro->price}}</span>
+                                                        <span class="old__price">${{$pro->price}}</span>
+                                                        @else
+                                                        <span class="current__price">${{$pro->price}}</span>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </article>
@@ -477,10 +481,14 @@
                                                         </li>
                                                     </ul>
                                                     <div class="product__list--price">
+                                                        @if(isset($pro->price_sale) && $pro->price_sale > 0)
                                                         <span class="current__price">${{$pro->price_sale}}</span>
-                                                        <span class="old__price"> ${{$pro->price}}</span>
+                                                        <span class="old__price">${{$pro->price}}</span>
+                                                        @else
+                                                        <span class="current__price">${{$pro->price}}</span>
+                                                        @endif
                                                     </div>
-                                                    <p class="product__card--content__desc mb-15">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia voluptas dolore doloribus architecto sequi corporis deleniti officia culpa dolor esse there.</p>
+                                                    <p class="product__card--content__desc mb-15">{{$pro->describe}}</p>
                                                     <a class="product__card--btn primary__btn" href="cart.html">+ Add to cart</a>
                                                 </div>
                                             </div>
@@ -553,7 +561,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- End shop section -->
 
     <!-- Start feature section -->
