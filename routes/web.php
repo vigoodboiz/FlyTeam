@@ -18,6 +18,8 @@ use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\GalleryController;
+
 // home
 use App\Http\Controllers\shopGridController;
 use App\Http\Controllers\ShopDetailsController;
@@ -32,6 +34,9 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\AcountController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\ErrosController;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
@@ -50,9 +55,12 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('page.index');
+// });
+// home
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -79,11 +87,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('users', UserController::class);
     
     /////////member////////////////
-    Route::post('/members/create', [MemberController::class, 'create'])->name('members.create');
-    Route::post('/members', [MemberController::class, 'store'])->name('members.store');
+    Route::post('/members', [MemberController::class, 'show'])->name('members.show');
     Route::get('/members', [MemberController::class, 'index'])->name('members.index');
-    Route::get('/members/{member}/edit', [MemberController::class, 'edit'])->name('members.edit');
-    Route::put('/members/{member}', [MemberController::class, 'update'])->name('members.update');
+
     Route::resource('members', MemberController::class);
 
     Route::get('/ranking', [MemberController::class, 'ranking'])->name('members.ranking');
@@ -127,20 +133,29 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
      Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
      Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
      Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
-  
-    ///////////////////////// product //////////////////
-    Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-    // Route::get('/products/create', [ProductController::class, 'create']);
-    Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
-    Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 
-    Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
-    Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
+    //  Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
+    //  Route::get('/gallery/create/{productId}', [GalleryController::class, 'create'])->name('gallery.create');
+    //  Route::post('/gallery', [GalleryController::class, 'store'])->name('gallery.store');
+    //  Route::post('/products/{productId}/gallery/add-images', 'ProductController@addImages')->name('gallery.addImages');
+
+    ///////////////////////// gallery //////////////////
+
+    // Route::get('/add-gallery/{product_id}', [GalleryController::class, 'add_gallery'])->name('add-gallery');
+
+    Route::get('/index/{product_id}', [GalleryController::class, 'index'])->name('index');
+
+    // Route::post('/gallery/{product_id}', [GalleryController::class, 'store'])->name('gallery.store');
+    // Route::get('/gallery/create', [GalleryController::class, 'create'])->name('gallery.create');
+
+    Route::get('/gallery/create/{product_id}', [GalleryController::class, 'create'])->name('gallery.create');
+    Route::post('/gallery/store/{product_id}', [GalleryController::class, 'store'])->name('gallery.store');
+    // Route::match(['GET', 'POST'],'/gallery/{product_id}', [GalleryController::class, 'store'])->name('gallery.store');
+    Route::delete('/gallery/{gallery}', [GalleryController::class, 'destroy'])->name('gallery.destroy');
+    // Route::post('/gallery/{product_id}', [GalleryController::class, 'store'])->name('gallery.store');
 
 
-    Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
-
-
+    // Route::post('/gallery/{product_id}', [GalleryController::class, 'store'])->name('gallery.store');
      ///////////////////////// cate //////////////////
      Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
      Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
@@ -149,16 +164,14 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
      Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
      Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
-    //Coupon//
+     //Coupon//
     Route::get('/insert-coupon', [CouponController::class, 'insert_coupon'])->name('insert_coupon');
     Route::get('/delete-coupon/{coupon_id}', [CouponController::class, 'delete_coupon'])->name("delete_coupon");
     Route::get('/list-coupon', [CouponController::class, 'list_coupon'])->name('list_coupon');
     Route::post('/insert-coupon-code', [CouponController::class, 'insert_coupon_code'])->name('insert_coupon_code');
+    Route::post('/check-coupon', [CartController::class, 'check_coupon'])->name('check_coupon');
+    Route::get('/unset-coupon', [CouponController::class, 'unset_coupon'])->name('unset_coupon');
 });
-
-
-
-
 
 //Comments
 Route::get('/getComments', [CommentController::class, 'index'])->name('route_comment_index');
@@ -182,10 +195,7 @@ Route::controller(GoogleController::class)->group(function(){
 });
 // Send email
 Route::get('/send-mail{email}', [RegisteredUserController::class, 'store'])->name('send.email');
-/////////////////////
-Route::get('page/shop', [shopGridController::class, 'index'])->name('shopGrid');
-Route::get('page/shop/fillCate/{id_cate}', [shopGridController::class, 'fillCate'])->name('fillCate');
-Route::get('page/shop/fillPrice', [shopGridController::class, 'fillPrice'])->name('fillPrice');
+
 
 /////////////////////main//////////////////////
 
@@ -195,6 +205,12 @@ Route::get('home', [HomeController::class, 'index'])->name('home');
 Route::get('page/shop', [shopGridController::class, 'index'])->name('shopGrid');
 Route::get('page/shop/fillCate/{id_cate}', [shopGridController::class, 'fillCate'])->name('fillCate');
 Route::get('page/shop/fillPrice', [shopGridController::class, 'fillPrice'])->name('fillPrice');
+Route::get('page/shop/fillBrand', [shopGridController::class, 'fillBrand'])->name('fillBrand');
+Route::match(['GET', 'POST'],'/shopGrid/searchPro', [shopGridController::class, 'index'])->name('search');
+
+
+// lỗi 404
+Route::get('page/errors', [ErrosController::class, 'index'])->name('errors');
 // shop details
 Route::get('page/shopDetails/{id_pro}', [ShopDetailsController::class, 'index'])->name('shopDetails');
 //blog
@@ -215,3 +231,14 @@ Route::get('page/portfolio', [PortfolioController::class, 'index'])->name('portf
 Route::get('page/wishlist', [WishlishController::class, 'index'])->name('wishlistPage');
 // cart
 Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');
+=======
+Route::get('page/acount', [AcountController::class, 'index'])->name('acountPage');
+// wishlist
+Route::get('page/wishlist', [WishlishController::class, 'index'])->name('wishlistPage');
+// cart
+Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');
+
+// cart
+Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');
+Route::post('add_to_cart/{product}', [CartController::class, 'store'])->name('addCart');
+Route::delete('/cart/products/{productId}', [CartController::class, 'removeProductFromCart'])->name('cart.removeProduct');

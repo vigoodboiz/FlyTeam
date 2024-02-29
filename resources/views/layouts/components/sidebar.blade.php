@@ -22,49 +22,43 @@
                         @can('role_access')
                             <li><i class="fa fa-id-card-o"></i><a href="{{ route('roles.index') }}">Quản lý vai trò</a></li>
                         @endcan
-                        @can('member_access')
+                        
                             <li><i class="bi bi-people text-Danger"></i><a href="{{ route('members.index') }}">Quản lý khách
                                     hàng</a>
                             </li>
-                        @endcan
-                        @can('product_access')
+                        
+                        
                             <li><i class="bi bi-inboxes-fill text-Danger"></i><a href="{{ route('products.index') }}">Quản
                                     lý sản phẩm</a></li>
-                        @endcan
-                        @can('category_access')
+                        
+                        
                             <li><i class="bi bi-grid-3x3-gap text-Danger"></i></i><a
                                     href="{{ route('categories.index') }}">Quản lý danh mục</a>
                             </li>
-                        @endcan
-                        @can('order_access')
+                       
                             <li><i class="bi bi-bag-fill text-Danger"></i><a href="{{ route('listOder') }}">Quản lý đơn
                                     hàng</a></li>
-                        @endcan
-                        @can('comment_access')
+                      
                             <li><i class="bi bi-chat-quote text-Danger"></i><a
                                     href="{{ route('route_comment_index') }}">Quản lý bình luận</a></li>
-                        @endcan
-                        @can('coupon_access')
+                      
                             <li><i class="bi bi-gift-fill text-Danger"></i></i><a href="{{ route('list_coupon') }}">Quản lý
                                     khuyến
                                     mại</a></li>
-                        @endcan
-                        @can('orderStt_access')
+                     
+
                             <li><i class="bi bi-minecart text-Danger"></i><a href="{{ route('listOder_status') }}">Trạng
                                     thái đơn hàng</a></li>
-                        @endcan
-                        @can('orderDetail_access')
+                     
                             <li><i class="bi bi-cart4"></i><a href="{{ route('listOder_detail') }}">Chi tiết đơn hàng</a>
                             </li>
-                        @endcan
-                        @can('delivery_access')
+                       
                             <li><i class="bi bi-truck text-Danger"></i><a href="{{ route('listDelivery_status') }}">Trạng
                                     thái giao hàng</a></li>
-                        @endcan
-                        @can('statistics_access')
+                       
                             <li><i class="bi bi-graph-up-arrow text-Danger"></i><a href="ui-typgraphy.html">Thống kê</a>
                             </li>
-                        @endcan
+                        
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">

@@ -56,22 +56,22 @@
                         <div class="counterup__items text-center">
                             <h2 class="counterup__title">YEARS OF <br>
                                 FOUNDATION</h2>
-                            <span class="counterup__number js-counter" data-count="50">0</span>
+                            <span class="counterup__number js-counter" data-count="2022">0</span>
                         </div>
                         <div class="counterup__items text-center">
                             <h2 class="counterup__title">SKILLED TEAM <br>
                                 MEMBERS </h2>
-                            <span class="counterup__number js-counter" data-count="100">0</span>
+                            <span class="counterup__number js-counter" data-count="6">0</span>
                         </div>
                         <div class="counterup__items text-center">
                             <h2 class="counterup__title">HAPPY <br>
                                 CUSTOMERS</h2>
-                            <span class="counterup__number js-counter" data-count="80">0</span>
+                            <span class="counterup__number js-counter" data-count="1000">0</span>
                         </div>
                         <div class="counterup__items text-center">
                             <h2 class="counterup__title">MONTHLY <br>
                                 ORDERS</h2>
-                            <span class="counterup__number js-counter" data-count="70">0</span>
+                            <span class="counterup__number js-counter" data-count="60">0</span>
                         </div>
                     </div>
                 </div>

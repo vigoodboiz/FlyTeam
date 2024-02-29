@@ -29,6 +29,11 @@
     </div>
 
     <div class="form-group">
+        <label for="describe">Describe:</label>
+        <input type="text" name="describe" class="form-control" value="{{ $product->describe }}" required>
+    </div>
+
+    <div class="form-group">
         <label for="price">Price:</label>
         <input type="number" name="price" class="form-control" value="{{ $product->price }}" required>
     </div>

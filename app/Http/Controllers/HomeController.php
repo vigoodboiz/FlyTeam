@@ -11,8 +11,10 @@ use App\Models\User;
 class HomeController extends Controller
 {
     public function index(Request $request)
-{
-        return view('welcome');
+    {
 
-}
+        $categories = Category::all();
+        $products_trending = Products::orderBy('view_count', 'desc')->limit(8)->get();
+        return view('page.index',compact('categories','products_trending'));
+    }
 }

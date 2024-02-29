@@ -22,6 +22,10 @@
                 <input type="text" name="brand" id="brand" class="form-control" required>
             </div>
             <div class="form-group">
+                <label for="describe">Mô Tả:</label>
+                <input type="text" name="describe" id="describe" class="form-control" required>
+            </div>
+            <div class="form-group">
                 <label for="price">Giá:</label>
                 <input type="number" name="price" id="price" class="form-control" required>
             </div>
@@ -31,9 +35,10 @@
             </div>
             <div class="form-group">
                 <label for="image">Ảnh:</label>
-                <input type="file" name="image[]" id="image" class="form-control-file">
+                <input type="file" name="image" id="image" class="form-control-file">
             </div>
             <button type="submit" class="btn btn-primary">Thêm sản phẩm</button>
         </form>
     </div>
     @endsection
+Viết cho Duy Niên
