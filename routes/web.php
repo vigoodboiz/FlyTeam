@@ -123,6 +123,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::match(['GET', 'POST'], '/comment/add', [CommentController::class, 'add'])->name('route_comment_add');
     Route::match(['GET', 'POST'], '/comment/update/{id}', [CommentController::class, 'update'])->name('route_comment_update');
     Route::match(['GET', 'POST'], '/comment/delete/{id}', [CommentController::class, 'delete'])->name('route_comment_delete');
+    Route::post('/newComment', [ShopDetailsController::class, 'newComment'])->name('route_new_comment');
 
 
      ///////////////////////// product //////////////////
@@ -196,9 +197,7 @@ Route::controller(GoogleController::class)->group(function(){
 Route::get('/send-mail{email}', [RegisteredUserController::class, 'store'])->name('send.email');
 
 
-/////////////////////main//////////////////////
 
-Route::get('home', [HomeController::class, 'index'])->name('home');
 
 // shop
 Route::get('page/shop', [shopGridController::class, 'index'])->name('shopGrid');
