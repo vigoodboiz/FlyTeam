@@ -289,8 +289,6 @@
                                              stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
                                      </svg>
                                  </span>
-
-                                 <span class="items__count">2</span>
                              </a>
                          </li>
                      </ul>
