@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Products;
+
 use App\Models\Gallery;
 
 use Illuminate\Support\Facades\DB;
@@ -13,6 +14,7 @@ use App\Http\Controllers\Controller;
 
 class ShopDetailsController extends Controller
 {
+
 
     public function index($id_pro)
     {

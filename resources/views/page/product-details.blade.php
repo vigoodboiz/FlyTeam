@@ -1,3 +1,4 @@
+
 @extends('welcome')
 
 @section('content')
@@ -17,6 +18,7 @@
                 </div>
             </div>
         </div>
+
     </div>
     <!-- End breadcrumb section -->
 
@@ -24,6 +26,8 @@
     <section class="product__details--section section--padding">
         <div class="container">
             @foreach($product_detail as $pro_dt)
+            <form action="{{route('addCart',$pro_dt->id)}}" method="POST">
+                            @csrf()
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details--media">
@@ -248,7 +252,7 @@
                                     <div class="quantity__box">
                                         <button type="button" class="quantity__value quickview__value--quantity decrease" aria-label="quantity value" value="Decrease Value">-</button>
                                         <label>
-                                            <input type="number" class="quantity__number quickview__value--number" value="1" data-counter />
+                                            <input name="quantity" type="number" class="quantity__number quickview__value--number" value="1" data-counter />
                                         </label>
                                         <button type="button" class="quantity__value quickview__value--quantity increase" aria-label="quantity value" value="Increase Value">+</button>
                                     </div>
@@ -767,6 +771,7 @@
                                         <span class="rating__review--text">(126) Review</span>
                                     </li>
                                 </ul>
+
                                 <h3 class="product__card--title"><a href="product-details.html">{{$pro_same->name}}</a></h3>
                                 <div class="product__card--price">
                                     @if(isset($pro_same->price_sale) && $pro_same->price_sale > 0)

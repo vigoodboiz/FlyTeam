@@ -172,6 +172,14 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
      Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
      Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
      Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
+     //Coupon//
+    Route::get('/insert-coupon', [CouponController::class, 'insert_coupon'])->name('insert_coupon');
+    Route::get('/delete-coupon/{coupon_id}', [CouponController::class, 'delete_coupon'])->name("delete_coupon");
+    Route::get('/list-coupon', [CouponController::class, 'list_coupon'])->name('list_coupon');
+    Route::post('/insert-coupon-code', [CouponController::class, 'insert_coupon_code'])->name('insert_coupon_code');
+    Route::post('/check-coupon', [CartController::class, 'check_coupon'])->name('check_coupon');
+    Route::get('/unset-coupon', [CouponController::class, 'unset_coupon'])->name('unset_coupon');
 });
 
 //Comments
@@ -231,3 +239,8 @@ Route::get('page/acount', [AcountController::class, 'index'])->name('acountPage'
 Route::get('page/wishlist', [WishlishController::class, 'index'])->name('wishlistPage');
 // cart
 Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');
+
+// cart
+Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');
+Route::post('add_to_cart/{product}', [CartController::class, 'store'])->name('addCart');
+Route::delete('/cart/products/{productId}', [CartController::class, 'removeProductFromCart'])->name('cart.removeProduct');
