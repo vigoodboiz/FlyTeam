@@ -50,10 +50,6 @@ class UserController extends Controller
         $user = User::create($request->all());
         $user->roles()->sync($request->input('roles', []));
         
-        // if ($request->input('profile_photo', true)) {
-        //     $user->addMedia($request->profile_photo)->toMediaCollection('users');
-        // }
-        
         return redirect()->route('users.index');
     }
 
@@ -95,14 +91,6 @@ class UserController extends Controller
     {
         $user->update($request->all());
         $user->roles()->sync($request->input('roles', []));
-        
-        // if ($request->hasFile('profile_photo', true)) {
-            
-        //     if ($user->getFirstMedia('users')) {
-        //         $user->getFirstMedia('users')->delete();
-        //     }
-        //     $user->addMedia($request->profile_photo)->toMediaCollection('users');
-        // }
 
         return redirect()->route('users.index');
     }
@@ -118,7 +106,7 @@ class UserController extends Controller
         abort_if(Gate::denies('user_delete'), Response::HTTP_FORBIDDEN, '430 Forbidden');
         $user->delete();
 
-        return back();
+        return back()->with('msg', 'Thao tác thành công!');
     }
 
     public function massDestroy(MassDestroyUserRequest $request) {
