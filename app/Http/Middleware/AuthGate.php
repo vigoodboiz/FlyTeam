@@ -35,19 +35,14 @@ class AuthGate
                     return in_array($user->role_id, $roles);
                 });
             }
-        };
-        if($user !== null){
-            $roleId = $user->role_id;
         }
-        $roleId = optional($user)->role_id;
-        if (Auth::check() && Auth::user()->role_id == $roleId) {
-            if($roleId == 1 && $roleId == 2){
-                $redirectRoute = 'dashboard';
-            }
-            else {
-                $redirectRoute = 'welcome';
-            }
-        };
+        // if (Auth::check()) {
+        //     if($user->role_id == 1 && $user->role_id == 2){
+        //         return redirect()->route('dashboard');
+        //     } else {
+        //         return redirect()->route('home');
+        //     }
+        // };
         return $next($request);
          }
     }

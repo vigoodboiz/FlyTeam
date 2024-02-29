@@ -1,78 +1,91 @@
-<!DOCTYPE html>
-<html lang="zxx">
+<!doctype html>
+<html lang="en">
+
+
+<!-- Mirrored from risingtheme.com/html/demo-becute/becute/product-gallery.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Feb 2024 17:34:11 GMT -->
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Ogani Template">
-    <meta name="keywords" content="Ogani, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>C.O.I Cosmestics</title>
+    <meta charset="utf-8">
+    <title>Becute - Product Gallery</title>
+    <meta name="description" content="Morden Bootstrap HTML5 Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('becute/assets/img/logo/logo_main.png') }}">
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+    <!-- ======= All CSS Plugins here ======== -->
+    <link rel="stylesheet" href="{{ asset('becute/assets/css/plugins/swiper-bundle.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('becute/assets/css/plugins/glightbox.min.css') }}">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&amp;family=Karma:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet">
 
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="{{ asset('interface/assets/css/bootstrap.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('interface/assets/css/font-awesome.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('interface/assets/css/elegant-icons.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('interface/assets/css/nice-select.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('interface/assets/css/jquery-ui.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('interface/assets/css/owl.carousel.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('interface/assets/css/slicknav.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('interface/assets/css/style.css') }}" type="text/css">
+    <!-- Plugin css -->
+    <link rel="stylesheet" href="{{ asset('becute/assets/css/vendor/bootstrap.min.css') }}">
+
+    <!-- Custom Style CSS -->
+    <link rel="stylesheet" href="{{ asset('becute/assets/css/style.css') }}">
+    <!-- bootstrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 </head>
 
-<body class="antialiased">
-    <!-- topbar -->
-    <!-- topbar End -->
-    @include('layouts.layoutMain.topbar');
-    <!-- content -->
-    <div>
-        @yield('content')
-    </div>
-    <!-- end_content -->
+<body>
 
-    <!-- Footer Section Begin -->
-    @include('layouts.layoutMain.footer')
-    <!-- Footer Section End -->
+    <body>
+        <!-- topbar -->
+        <!-- topbar End -->
+        @include('layouts.layoutMain.topbar');
+        <!-- content -->
+        <div>
+            @yield('content')
+        </div>
+        <!-- end_content -->
 
-    <!-- Js Plugins -->
-    <script src="{{ asset('interface/assets/js/jquery-3.3.1.min.js') }}"></script>
-    <script src="{{ asset('interface/assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('interface/assets/js/jquery.nice-select.min.js') }}"></script>
-    <script src="{{ asset('interface/assets/js/jquery-ui.min.js') }}"></script>
-    <script src="{{ asset('interface/assets/js/jquery.slicknav.js') }}"></script>
-    <script src="{{ asset('interface/assets/js/mixitup.min.js') }}"></script>
-    <script src="{{ asset('interface/assets/js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('interface/assets/js/main.js') }}"></script>
+        <!-- Footer Section Begin -->
+        @include('layouts.layoutMain.footer')
+        <!-- Footer Section End -->
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <!-- Js Plugins -->
+        <!-- Scroll top bar -->
+        <button id="scroll__top"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="48" d="M112 244l144-144 144 144M256 120v292" />
+            </svg></button>
 
-    <script>
-        $(document).ready(function() {
-            var minPrice = 1;
-            var maxPrice = 1000; // Giá trị theo product
+        <!-- All Script JS Plugins here  -->
+        <script src="{{ asset('becute/assets/js/vendor/popper.js') }}" defer="defer"></script>
+        <script src="{{ asset('becute/assets/js/vendor/bootstrap.min.js') }}" defer="defer"></script>
+        <script src="{{ asset('becute/assets/js/plugins/swiper-bundle.min.js') }}"></script>
+        <script src="{{ asset('becute/assets/js/plugins/glightbox.min.js') }}"></script>
 
-            $("#slider").slider({
-                range: true,
-                min: 1,
-                max: 1000,
-                values: [minPrice, maxPrice],
-                slide: function(event, ui) {
-                    $("#price_range").val(ui.values[0] + " - " + ui.values[1]);
-                },
-                change: function(event, ui) {
-                    $("#price_range").val(ui.values[0] + " - " + ui.values[1]);
-                }
+        <!-- Customscript js -->
+        <script src="{{ asset('becute/assets/js/script.js') }}"></script>
+        <!-- fill price -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                var minPrice = 1;
+                var maxPrice = 1000; // Giá trị theo product
+
+                $("#slider").slider({
+                    range: true,
+                    min: 1,
+                    max: 1000,
+                    values: [minPrice, maxPrice],
+                    slide: function(event, ui) {
+                        $("#price_range").val(ui.values[0] + " - " + ui.values[1]);
+                    },
+                    change: function(event, ui) {
+                        $("#price_range").val(ui.values[0] + " - " + ui.values[1]);
+                    }
+                });
+
+                $("#price_range").val("$" + minPrice + " - " + "$" + maxPrice);
             });
+        </script>
+    </body>
 
-            $("#price_range").val("$" + minPrice + " - " + "$" + maxPrice);
-        });
-    </script>
-</body>
 
 </html>

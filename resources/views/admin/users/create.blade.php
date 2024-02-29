@@ -98,10 +98,3 @@
         </div>
     </div>
 @endsection
-@push('scripts')
-    <script>
-        $(document).ready(function() {
-            $('.js-select-2').select2();
-        });
-    </script>
-@endpush

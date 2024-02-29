@@ -27,6 +27,12 @@ use App\Http\Controllers\PrivacyController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AboutController;
 
+use App\Http\Controllers\WishlishController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\CartController;
+
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -52,11 +58,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
 
 require __DIR__ . '/auth.php';
@@ -71,12 +73,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     //Roles
     Route::delete('roles/massDestroy', [RoleController::class, 'massDestroy']);
     Route::resource('roles', RoleController::class);
-
-    //Forgot password
-    // Route::get('/forget-pasword', [ForgotPasswordController::class, 'forgetPass'])->name('forgetPass');
-    // Route::post('/forget-pasword', [ForgotPasswordController::class, 'postForgetPass']);
-    // Route::get('/get-password/{user}/{token}', [ForgotPasswordController::class, 'getPass'])->name('getPass');
-    // Route::post('/get-pasword/{user}/{token}', [ForgotPasswordController::class, 'postGetPass']);
 
     //Users
     Route::delete('users/massDestroy', [UserController::class, 'massDestroy']);
@@ -193,7 +189,6 @@ Route::get('page/shop/fillPrice', [shopGridController::class, 'fillPrice'])->nam
 
 /////////////////////main//////////////////////
 
-// home
 Route::get('home', [HomeController::class, 'index'])->name('home');
 
 // shop
@@ -211,3 +206,12 @@ Route::get('page/privacy', [PrivacyController::class, 'index'])->name('privacyPa
 // contact
 Route::get('page/contact', [ContactController::class, 'index'])->name('contactPage');
 
+// Checkout
+Route::get('page/Checkout', [CheckoutController::class, 'index'])->name('checkoutPage');
+// acount
+Route::get('page/account', [AccountController::class, 'index'])->name('accountPage');
+Route::get('page/portfolio', [PortfolioController::class, 'index'])->name('portfolioPage');
+// wishlist
+Route::get('page/wishlist', [WishlishController::class, 'index'])->name('wishlistPage');
+// cart
+Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');
