@@ -1,12 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Models\Products;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
-
 class CategoryController extends Controller
 {
     /**
@@ -30,6 +28,9 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
+
+
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -50,7 +51,6 @@ class CategoryController extends Controller
         return redirect()->route('categories.index')->with('success', 'Danh mục đã được tạo thành công');
     }
 
-
     /**
      * Display the specified resource.
      */
@@ -62,7 +62,7 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit( $id)
     {
         $category = Category::find($id);
         return view('admin.categories.edit', compact('category'));
@@ -72,63 +72,46 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      */
 
+
     public function update(Request $request, Category $category)
     {
         $validatedData = $request->validate([
             'name' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
+    
         if ($request->hasFile('image')) {
             // Xóa ảnh cũ (nếu có)
             // if ($category->image) {
             //     Storage::delete('public/images/' . $category->image);
             // }
-
+    
             // Lưu ảnh mới
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->storeAs('public/images', $imageName);
             $validatedData['image'] = $imageName;
         }
-
+    
         $category->update($validatedData);
-
+    
         // Thực hiện các xử lý khác sau khi cập nhật danh mục
-
+    
         return redirect()->route('categories.index')->with('success', 'Category updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    // public function destroy(Category $category)
-    // {
-    //     $category->delete();
+   
 
-    //     // Thực hiện các xử lý khác sau khi xoá danh mục
-
-    //     return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully');
-    // }
-
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        $category = Category::findOrFail($id); // Tìm một thành viên theo ID
-
-        $category->delete(); // Xóa thành viên
-
-        return redirect()->route('categories.index')->with('success', 'Category deleted successfully');
+        $category->products()->delete(); // Xóa tất cả các sản phẩm thuộc về category này
+        $category->delete(); // Xóa category
+        return redirect()->route('categories.index')->with('success', 'Category deleted successfully.');
     }
 
 
-    // public function destroy(Category $category)
-    // {
-    //     $category->products()->delete(); // Xóa tất cả các sản phẩm thuộc về danh mục trước
 
-    //     $category->delete(); // Xóa danh mục
-
-    //     // Thực hiện các xử lý khác sau khi xoá danh mục
-
-    //     return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully');
-    // }
 }
