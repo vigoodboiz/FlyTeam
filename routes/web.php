@@ -31,8 +31,10 @@ use App\Http\Controllers\AboutController;
 
 use App\Http\Controllers\WishlishController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\AcountController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\AcountController;
 use App\Http\Controllers\ErrosController;
 
 use Illuminate\Support\Facades\Gate;
@@ -63,11 +65,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
 
 require __DIR__ . '/auth.php';
@@ -82,12 +80,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     //Roles
     Route::delete('roles/massDestroy', [RoleController::class, 'massDestroy']);
     Route::resource('roles', RoleController::class);
-
-    //Forgot password
-    // Route::get('/forget-pasword', [ForgotPasswordController::class, 'forgetPass'])->name('forgetPass');
-    // Route::post('/forget-pasword', [ForgotPasswordController::class, 'postForgetPass']);
-    // Route::get('/get-password/{user}/{token}', [ForgotPasswordController::class, 'getPass'])->name('getPass');
-    // Route::post('/get-pasword/{user}/{token}', [ForgotPasswordController::class, 'postGetPass']);
 
     //Users
     Route::delete('users/massDestroy', [UserController::class, 'massDestroy']);
@@ -206,7 +198,7 @@ Route::get('/send-mail{email}', [RegisteredUserController::class, 'store'])->nam
 
 /////////////////////main//////////////////////
 
-
+Route::get('home', [HomeController::class, 'index'])->name('home');
 
 // shop
 Route::get('page/shop', [shopGridController::class, 'index'])->name('shopGrid');
@@ -232,13 +224,12 @@ Route::get('page/contact', [ContactController::class, 'index'])->name('contactPa
 // Checkout
 Route::get('page/Checkout', [CheckoutController::class, 'index'])->name('checkoutPage');
 // acount
-Route::get('page/acount', [AcountController::class, 'index'])->name('acountPage');
+Route::get('page/account', [AccountController::class, 'index'])->name('accountPage');
+Route::get('page/portfolio', [PortfolioController::class, 'index'])->name('portfolioPage');
 // wishlist
 Route::get('page/wishlist', [WishlishController::class, 'index'])->name('wishlistPage');
-
 
 // cart
 Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');
 Route::post('add_to_cart/{product}', [CartController::class, 'store'])->name('addCart');
 Route::delete('/cart/products/{productId}', [CartController::class, 'removeProductFromCart'])->name('cart.removeProduct');
-
