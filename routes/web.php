@@ -35,7 +35,6 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AcountController;
-use App\Http\Controllers\CartController;
 use App\Http\Controllers\ErrosController;
 
 use Illuminate\Support\Facades\Gate;
@@ -231,13 +230,6 @@ Route::get('page/portfolio', [PortfolioController::class, 'index'])->name('portf
 Route::get('page/wishlist', [WishlishController::class, 'index'])->name('wishlistPage');
 // cart
 Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');
-=======
-Route::get('page/acount', [AcountController::class, 'index'])->name('acountPage');
-// wishlist
-Route::get('page/wishlist', [WishlishController::class, 'index'])->name('wishlistPage');
-// cart
-Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');
-
 // cart
 Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');
 Route::post('add_to_cart/{product}', [CartController::class, 'store'])->name('addCart');
