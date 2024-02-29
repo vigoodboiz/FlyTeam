@@ -92,6 +92,7 @@
             </div>
             <div class="shop__collection--column5 swiper">
                 <div class="swiper-wrapper">
+
                     @foreach($categories as $cate)
                     <div class="swiper-slide">
                         <div class="shop__collection--card text-center">
@@ -102,6 +103,7 @@
                             </a>
                         </div>
                     </div>
+
                     @endforeach
                 </div>
                 <div class="swiper__nav--btn swiper-button-next">
@@ -130,6 +132,7 @@
                         <p class="image__width--text__desc">Kidlues ispum maruwes cnsectetur adipisicing elit, sed do
                             eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         <div class="image__width--text__footer">
+
                             <a class="image__width--text__link" href="{{route('shopGrid')}}">Shop Now
                                 <svg width="9" height="12" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 1L7.96317 7.96317L1 14.9263" stroke="currentColor" stroke-width="2" />
@@ -162,6 +165,7 @@
             </div>
             <div class="product__section--inner">
                 <div class="row mb--n30">
+
                     @foreach($products_trending as $pro_trending)
                     <div class="col-lg-3 col-md-4 col-sm-6 col-6 custom-col mb-30">
 
@@ -278,6 +282,7 @@
                     <div class="video__banner--box position-relative">
                         <img class="video__banner--box__thumbnail" src="{{asset('becute/assets/img/banner/banner3.webp')}}" alt="banner-img">
                         <div class="bideo__play">
+
                             <a class="bideo__play--icon glightbox" href="https://youtu.be/khYupez97OU" data-gallery="video">
                                 <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16.5 9.13398C17.1667 9.51888 17.1667 10.4811 16.5 10.866L1.5 19.5263C0.833335 19.9112 9.70611e-07 19.4301 1.00426e-06 18.6603L1.76136e-06 1.33975C1.79501e-06 0.569945 0.833335 0.0888201 1.5 0.47372L16.5 9.13398Z" fill="currentColor" />

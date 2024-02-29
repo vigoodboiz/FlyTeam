@@ -124,16 +124,6 @@
     <script src="{{ asset('sb-admin/assets/js/init/fullcalendar-init.js') }}"></script>
     @stack('script')
 
-    <!-- <script type="text/javascript">
-        $(document).ready(function(){
-            load_gallery();
-            function load_gallery(){
-               var pro_id= $(.pro_id).val();
-                alert(pro_id)
-            }
-        })
-
-    </script> -->
 
     <!--Local Stuff-->
     <script>
@@ -380,7 +370,8 @@
             });
             // Bar Chart #flotBarChart End
         });
-    </scrip>
+    </script>
+
 </body>
 
 </html>

@@ -94,11 +94,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('users', UserController::class);
     
     /////////member////////////////
-    Route::post('/members/create', [MemberController::class, 'create'])->name('members.create');
-    Route::post('/members', [MemberController::class, 'store'])->name('members.store');
+    Route::post('/members', [MemberController::class, 'show'])->name('members.show');
     Route::get('/members', [MemberController::class, 'index'])->name('members.index');
-    Route::get('/members/{member}/edit', [MemberController::class, 'edit'])->name('members.edit');
-    Route::put('/members/{member}', [MemberController::class, 'update'])->name('members.update');
+
     Route::resource('members', MemberController::class);
 
     Route::get('/ranking', [MemberController::class, 'ranking'])->name('members.ranking');
@@ -237,10 +235,10 @@ Route::get('page/Checkout', [CheckoutController::class, 'index'])->name('checkou
 Route::get('page/acount', [AcountController::class, 'index'])->name('acountPage');
 // wishlist
 Route::get('page/wishlist', [WishlishController::class, 'index'])->name('wishlistPage');
-// cart
-Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');
+
 
 // cart
 Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');
 Route::post('add_to_cart/{product}', [CartController::class, 'store'])->name('addCart');
 Route::delete('/cart/products/{productId}', [CartController::class, 'removeProductFromCart'])->name('cart.removeProduct');
+
