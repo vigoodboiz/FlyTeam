@@ -143,28 +143,14 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
      Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
      Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
 
-    //  Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
-    //  Route::get('/gallery/create/{productId}', [GalleryController::class, 'create'])->name('gallery.create');
-    //  Route::post('/gallery', [GalleryController::class, 'store'])->name('gallery.store');
-    //  Route::post('/products/{productId}/gallery/add-images', 'ProductController@addImages')->name('gallery.addImages');
+
 
     ///////////////////////// gallery //////////////////
-
-    // Route::get('/add-gallery/{product_id}', [GalleryController::class, 'add_gallery'])->name('add-gallery');
-
     Route::get('/index/{product_id}', [GalleryController::class, 'index'])->name('index');
-
-    // Route::post('/gallery/{product_id}', [GalleryController::class, 'store'])->name('gallery.store');
-    // Route::get('/gallery/create', [GalleryController::class, 'create'])->name('gallery.create');
-
-    Route::get('/gallery/create/{product_id}', [GalleryController::class, 'create'])->name('gallery.create');
-    Route::post('/gallery/store/{product_id}', [GalleryController::class, 'store'])->name('gallery.store');
-    // Route::match(['GET', 'POST'],'/gallery/{product_id}', [GalleryController::class, 'store'])->name('gallery.store');
+   Route::get('/gallery/create/{product_id}', [GalleryController::class, 'create'])->name('gallery.create');
+    Route::post('/gallery/store/{product_id}', [GalleryController::class, 'store'])->name('gallery.store'); 
     Route::delete('/gallery/{gallery}', [GalleryController::class, 'destroy'])->name('gallery.destroy');
-    // Route::post('/gallery/{product_id}', [GalleryController::class, 'store'])->name('gallery.store');
-
-
-    // Route::post('/gallery/{product_id}', [GalleryController::class, 'store'])->name('gallery.store');
+  
      ///////////////////////// cate //////////////////
      Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
      Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
