@@ -7,10 +7,8 @@
                 <div class="card mb-4">
                     <div class="card-body text-center">
                         @if (!empty(auth()->user()->profile_picture))
-                            <!-- Hiển thị ảnh profile nếu đã có -->
-                            <img src="{{ asset('auth()->user()->profile_picture') }}" alt="Profile Picture">
+                            <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" alt="Profile Picture">
                         @else
-                            <!-- Hiển thị form upload ảnh nếu chưa có -->
                             <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <input type="file" name="profile_picture">
