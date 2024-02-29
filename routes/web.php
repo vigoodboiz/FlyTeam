@@ -197,9 +197,7 @@ Route::controller(GoogleController::class)->group(function(){
 Route::get('/send-mail{email}', [RegisteredUserController::class, 'store'])->name('send.email');
 
 
-/////////////////////main//////////////////////
 
-Route::get('home', [HomeController::class, 'index'])->name('home');
 
 // shop
 Route::get('page/shop', [shopGridController::class, 'index'])->name('shopGrid');
@@ -229,8 +227,7 @@ Route::get('page/account', [AccountController::class, 'index'])->name('accountPa
 Route::get('page/portfolio', [PortfolioController::class, 'index'])->name('portfolioPage');
 // wishlist
 Route::get('page/wishlist', [WishlishController::class, 'index'])->name('wishlistPage');
-// cart
-Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');
+
 // cart
 Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');
 Route::post('add_to_cart/{product}', [CartController::class, 'store'])->name('addCart');

@@ -66,10 +66,10 @@
 
                                 </table>
                                 <div class="continue__shopping d-flex justify-content-between">
-                                    <a class="continue__shopping--link" href="shop.html">Continue shopping</a>
-
-
-                                    <button type="submit">Clear Cart</button>
+                                    <a class="continue__shopping--link" href="shop.html">Continue shopping</a>                         
+                                
+                                        <button type="submit" class="coupon__code--field__btn primary__btn">Clear Cart</button>
+       
 
                                 </div>
                             </div>

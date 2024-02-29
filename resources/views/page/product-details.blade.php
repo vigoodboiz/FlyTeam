@@ -525,7 +525,7 @@
                                                                 <button class="primary__btn text-white" type="submit">Submit</button>
                                                             </form>
                                                         @else
-                                                            <p>Bạn cần <a href="{{ route('login') }}">đăng nhập</a> để bình luận.</p>
+                                                            <p>Bạn cần <a class="fw-bold" href="{{ route('login') }}">Đăng Nhập</a> để bình luận.</p>
                                                         @endauth
 
                                                         @if(session('success'))

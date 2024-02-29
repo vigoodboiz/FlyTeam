@@ -14,7 +14,7 @@
                                 <li class="breadcrumb__content--menu__items"><span>My Account</span></li>
                             </ul>
                         </div>
-                    </div>
+                    </div>  
                 </div>
             </div>
         </div>
