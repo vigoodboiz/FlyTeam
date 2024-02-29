@@ -31,10 +31,7 @@ class Products extends Model
     public function comments() {
         return $this->hasMany(Comment::class);
     }
-    public function views()
-    {
-        return $this->hasOne(ProductView::class);
-    }
+   
 
 }
 

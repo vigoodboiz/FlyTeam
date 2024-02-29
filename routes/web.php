@@ -224,7 +224,7 @@ Route::get('page/privacy', [PrivacyController::class, 'index'])->name('privacyPa
 Route::get('page/contact', [ContactController::class, 'index'])->name('contactPage');
 
 // Checkout
-Route::get('page/Checkout', [CheckoutController::class, 'inde   x'])->name('checkoutPage');
+Route::get('page/Checkout', [CheckoutController::class, 'index'])->name('checkoutPage');
 // acount
 Route::get('page/acount', [AcountController::class, 'index'])->name('acountPage');
 // wishlist

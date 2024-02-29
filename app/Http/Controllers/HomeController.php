@@ -11,7 +11,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $categories = Category::all();
-        $products_trending = Products::orderBy('view_count', 'desc')->get();
+        $products_trending = Products::orderBy('view_count', 'desc')->limit(8)->get();
         return view('page.index',compact('categories','products_trending'));
     }
 
