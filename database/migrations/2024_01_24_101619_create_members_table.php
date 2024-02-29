@@ -11,17 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
+
+
         Schema::create('members', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->string('member_name')->nullable();
-            $table->string('incentives')->nullable();
-            $table->string('condition')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->string('name');
+            $table->integer('reward_points')->default(0); 
+            // $table->string('incentives')->nullable();
+            // $table->string('condition')->nullable();
             $table->date('updated_date');
-            $table->string('membership_card')->nullable();
-            $table->integer('total_target')->nullable();
-            $table->integer('reward_points')->nullable();
+            // $table->string('membership_card')->nullable();
+            // $table->integer('total_target')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

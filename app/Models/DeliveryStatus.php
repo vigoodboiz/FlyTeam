@@ -14,4 +14,4 @@ class DeliveryStatus extends Model
         'status'
     ];
 }
-}
+
