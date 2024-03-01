@@ -10,8 +10,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-use App\Models\Coupon;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Coupon;
+
 
 class CartController extends Controller
 {
@@ -51,6 +52,7 @@ class CartController extends Controller
         } else {
             return redirect()->back()->with('error', 'Mã giảm giá không đúng');
         }
+
     }
     public function index()
     {
@@ -64,6 +66,7 @@ class CartController extends Controller
             return back()->with([
                 'message' => 'Đã có lỗi nghiêm trọng xảy ra'
             ]);
+
         }
     }
 

@@ -47,6 +47,7 @@
                                             <th class="cart__table--header__list">Total</th>
                                         </tr>
                                     </thead>
+                                    
                                     <tbody class="cart__table--body">
                                         @foreach ($cartItems as $cart)
                                             <tr class="cart__table">
