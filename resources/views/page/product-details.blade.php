@@ -413,7 +413,7 @@
                                                                 </span>
                                                             </li>
                                                         </ul>
-                                                        <span class="reviews__summary--caption">Based on 2 reviews</span>
+                                                        <span class="reviews__summary--caption">Based on {{$comments->count()}} reviews</span>
                                                     </div>
                                                     <a class="actions__newreviews--btn primary__btn" href="#writereview">Write A Review</a>
                                                 </div>
