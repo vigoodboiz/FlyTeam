@@ -12,16 +12,17 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Coupon;
-
-
+use Illuminate\Support\Carbon;
 class CartController extends Controller
 {
     //
 
     public function check_coupon(Request $request)
     {
+        $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y/mm/dd');
         $data = $request->all();
-        $coupon = Coupon::where('coupon_code', $data['coupon'])->first();
+        $coupon = Coupon::where('coupon_code', $data['coupon'])->where('coupon_status',1)->where('coupon_date_end','>=',$today)->first();
+
         if ($coupon) {
             $count_coupon = $coupon->count();
             if ($count_coupon > 0) {
@@ -50,7 +51,7 @@ class CartController extends Controller
                 return redirect()->back()->with('message', 'Thêm mã giảm giá thành công');
             }
         } else {
-            return redirect()->back()->with('error', 'Mã giảm giá không đúng');
+            return redirect()->back()->with('error', 'Mã giảm giá không đúng hoặc đã hết hạn');
         }
 
     }
@@ -58,7 +59,8 @@ class CartController extends Controller
     {
         try {
             $userId = Auth::id();
-            $cartItems = Cart::where('user_id',$userId)->get();
+            $cartItems = Cart::where('user_id', $userId)->get();
+
             $totalPrice = $this->calculateTotalPrice();
             return view('page.cart', compact('cartItems', 'totalPrice'));
         } catch (Exception $exception) {
@@ -66,7 +68,6 @@ class CartController extends Controller
             return back()->with([
                 'message' => 'Đã có lỗi nghiêm trọng xảy ra'
             ]);
-
         }
     }
 
@@ -108,9 +109,8 @@ class CartController extends Controller
     public function calculateTotalPrice()
     {
         $userId = Auth::id();
-        $cartItems = Cart::where('user_id',$userId)->get();
+        $cartItems = Cart::where('user_id', $userId)->get();
         $totalPrice = 0;
-
         foreach ($cartItems as $cartItem) {
             $totalPrice += $cartItem->total_price;
         }
