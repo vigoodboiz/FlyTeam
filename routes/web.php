@@ -32,8 +32,10 @@ use App\Http\Controllers\PaymentController;
 
 use App\Http\Controllers\WishlishController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\AcountController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\AcountController;
 use App\Http\Controllers\ErrosController;
 
 use Illuminate\Support\Facades\Gate;
@@ -64,11 +66,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
 
 require __DIR__ . '/auth.php';
@@ -83,12 +81,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     //Roles
     Route::delete('roles/massDestroy', [RoleController::class, 'massDestroy']);
     Route::resource('roles', RoleController::class);
-
-    //Forgot password
-    // Route::get('/forget-pasword', [ForgotPasswordController::class, 'forgetPass'])->name('forgetPass');
-    // Route::post('/forget-pasword', [ForgotPasswordController::class, 'postForgetPass']);
-    // Route::get('/get-password/{user}/{token}', [ForgotPasswordController::class, 'getPass'])->name('getPass');
-    // Route::post('/get-pasword/{user}/{token}', [ForgotPasswordController::class, 'postGetPass']);
 
     //Users
     Route::delete('users/massDestroy', [UserController::class, 'massDestroy']);
@@ -132,6 +124,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::match(['GET', 'POST'], '/comment/add', [CommentController::class, 'add'])->name('route_comment_add');
     Route::match(['GET', 'POST'], '/comment/update/{id}', [CommentController::class, 'update'])->name('route_comment_update');
     Route::match(['GET', 'POST'], '/comment/delete/{id}', [CommentController::class, 'delete'])->name('route_comment_delete');
+    Route::post('/newComment', [ShopDetailsController::class, 'newComment'])->name('route_new_comment');
 
 
      ///////////////////////// product //////////////////
@@ -195,8 +188,6 @@ Route::controller(GoogleController::class)->group(function(){
 Route::get('/send-mail{email}', [RegisteredUserController::class, 'store'])->name('send.email');
 
 
-/////////////////////main//////////////////////
-
 
 
 // shop
@@ -223,9 +214,11 @@ Route::get('page/contact', [ContactController::class, 'index'])->name('contactPa
 // Checkout
 Route::get('page/Checkout', [CheckoutController::class, 'index'])->name('checkoutPage');
 // acount
-Route::get('page/acount', [AcountController::class, 'index'])->name('acountPage');
+Route::get('page/account', [AccountController::class, 'index'])->name('accountPage');
+Route::get('page/portfolio', [PortfolioController::class, 'index'])->name('portfolioPage');
 // wishlist
 Route::get('page/wishlist', [WishlishController::class, 'index'])->name('wishlistPage');
+
 // cart
 Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');
 Route::post('add_to_cart/{product}', [CartController::class, 'store'])->name('addCart');

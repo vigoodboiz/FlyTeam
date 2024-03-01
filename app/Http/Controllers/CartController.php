@@ -12,59 +12,63 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Coupon;
+
+
 class CartController extends Controller
 {
     //
 
-    public function check_coupon(Request $request){
+    public function check_coupon(Request $request)
+    {
         $data = $request->all();
-        $coupon = Coupon::where('coupon_code',$data['coupon'])->first();
-        if($coupon){
+        $coupon = Coupon::where('coupon_code', $data['coupon'])->first();
+        if ($coupon) {
             $count_coupon = $coupon->count();
-            if($count_coupon>0){
+            if ($count_coupon > 0) {
                 $coupon_session = Session::get('coupon');
-                if($coupon_session==true){
+                if ($coupon_session == true) {
                     $is_avaiable = 0;
-                    if($is_avaiable==0){
+                    if ($is_avaiable == 0) {
                         $cou[] = array(
                             'coupon_code' => $coupon->coupon_code,
                             'coupon_condition' => $coupon->coupon_condition,
                             'coupon_number' => $coupon->coupon_number,
 
                         );
-                        Session::put('coupon',$cou);
+                        Session::put('coupon', $cou);
                     }
-                }else{
+                } else {
                     $cou[] = array(
-                            'coupon_code' => $coupon->coupon_code,
-                            'coupon_condition' => $coupon->coupon_condition,
-                            'coupon_number' => $coupon->coupon_number,
+                        'coupon_code' => $coupon->coupon_code,
+                        'coupon_condition' => $coupon->coupon_condition,
+                        'coupon_number' => $coupon->coupon_number,
 
-                        );
-                    Session::put('coupon',$cou);
+                    );
+                    Session::put('coupon', $cou);
                 }
                 Session::save();
-                return redirect()->back()->with('message','Thêm mã giảm giá thành công');
+                return redirect()->back()->with('message', 'Thêm mã giảm giá thành công');
             }
+        } else {
+            return redirect()->back()->with('error', 'Mã giảm giá không đúng');
+        }
 
-        }else{
-            return redirect()->back()->with('error','Mã giảm giá không đúng');
+    }
+    public function index()
+    {
+        try {
+            $userId = Auth::id();
+            $cartItems = Cart::where('user_id',$userId)->get();
+            $totalPrice = $this->calculateTotalPrice();
+            return view('page.cart', compact('cartItems', 'totalPrice'));
+        } catch (Exception $exception) {
+            Log::error('CartController: ', [$exception->getMessage()]);
+            return back()->with([
+                'message' => 'Đã có lỗi nghiêm trọng xảy ra'
+            ]);
+
         }
-    } 
-        public function index()
-        {
-            try {
-                $userId = Auth::id();
-                $cartItems = Cart::where('user_id',$userId)->get();
-                $totalPrice = $this->calculateTotalPrice();
-                return view('page.cart', compact('cartItems', 'totalPrice'));
-            } catch (Exception $exception) {
-                Log::error('CartController: ', [$exception->getMessage()]);
-                return back()->with([
-                    'message' => 'Đã có lỗi nghiêm trọng xảy ra'
-                ]);
-            }
-        }
+    }
 
     public function store(Request $request, string $id)
     {
@@ -113,9 +117,4 @@ class CartController extends Controller
 
         return $totalPrice;
     }
-   
-   
-
-  
-
 }

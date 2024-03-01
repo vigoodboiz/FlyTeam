@@ -19,7 +19,9 @@ class CheckoutController extends Controller
 
     public function calculateTotalPrice()
     {
-        $cartItems = Cart::all();
+      
+        $userId = Auth::id();
+        $cartItems = Cart::where('user_id', $userId)->get();
         $totalPrice = 0;
 
         foreach ($cartItems as $cartItem) {
