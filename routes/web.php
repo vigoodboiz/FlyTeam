@@ -28,11 +28,14 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PrivacyController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\PaymentController;
 
 use App\Http\Controllers\WishlishController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\AcountController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\AcountController;
 use App\Http\Controllers\ErrosController;
 
 use Illuminate\Support\Facades\Gate;
@@ -63,11 +66,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
 
 require __DIR__ . '/auth.php';
@@ -83,22 +82,14 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::delete('roles/massDestroy', [RoleController::class, 'massDestroy']);
     Route::resource('roles', RoleController::class);
 
-    //Forgot password
-    // Route::get('/forget-pasword', [ForgotPasswordController::class, 'forgetPass'])->name('forgetPass');
-    // Route::post('/forget-pasword', [ForgotPasswordController::class, 'postForgetPass']);
-    // Route::get('/get-password/{user}/{token}', [ForgotPasswordController::class, 'getPass'])->name('getPass');
-    // Route::post('/get-pasword/{user}/{token}', [ForgotPasswordController::class, 'postGetPass']);
-
     //Users
     Route::delete('users/massDestroy', [UserController::class, 'massDestroy']);
     Route::resource('users', UserController::class);
     
     /////////member////////////////
-    Route::post('/members/create', [MemberController::class, 'create'])->name('members.create');
-    Route::post('/members', [MemberController::class, 'store'])->name('members.store');
+    Route::post('/members', [MemberController::class, 'show'])->name('members.show');
     Route::get('/members', [MemberController::class, 'index'])->name('members.index');
-    Route::get('/members/{member}/edit', [MemberController::class, 'edit'])->name('members.edit');
-    Route::put('/members/{member}', [MemberController::class, 'update'])->name('members.update');
+
     Route::resource('members', MemberController::class);
 
     Route::get('/ranking', [MemberController::class, 'ranking'])->name('members.ranking');
@@ -133,6 +124,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::match(['GET', 'POST'], '/comment/add', [CommentController::class, 'add'])->name('route_comment_add');
     Route::match(['GET', 'POST'], '/comment/update/{id}', [CommentController::class, 'update'])->name('route_comment_update');
     Route::match(['GET', 'POST'], '/comment/delete/{id}', [CommentController::class, 'delete'])->name('route_comment_delete');
+    Route::post('/newComment', [ShopDetailsController::class, 'newComment'])->name('route_new_comment');
 
 
      ///////////////////////// product //////////////////
@@ -143,28 +135,14 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
      Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
      Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
 
-    //  Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
-    //  Route::get('/gallery/create/{productId}', [GalleryController::class, 'create'])->name('gallery.create');
-    //  Route::post('/gallery', [GalleryController::class, 'store'])->name('gallery.store');
-    //  Route::post('/products/{productId}/gallery/add-images', 'ProductController@addImages')->name('gallery.addImages');
+
 
     ///////////////////////// gallery //////////////////
-
-    // Route::get('/add-gallery/{product_id}', [GalleryController::class, 'add_gallery'])->name('add-gallery');
-
     Route::get('/index/{product_id}', [GalleryController::class, 'index'])->name('index');
-
-    // Route::post('/gallery/{product_id}', [GalleryController::class, 'store'])->name('gallery.store');
-    // Route::get('/gallery/create', [GalleryController::class, 'create'])->name('gallery.create');
-
-    Route::get('/gallery/create/{product_id}', [GalleryController::class, 'create'])->name('gallery.create');
-    Route::post('/gallery/store/{product_id}', [GalleryController::class, 'store'])->name('gallery.store');
-    // Route::match(['GET', 'POST'],'/gallery/{product_id}', [GalleryController::class, 'store'])->name('gallery.store');
+   Route::get('/gallery/create/{product_id}', [GalleryController::class, 'create'])->name('gallery.create');
+    Route::post('/gallery/store/{product_id}', [GalleryController::class, 'store'])->name('gallery.store'); 
     Route::delete('/gallery/{gallery}', [GalleryController::class, 'destroy'])->name('gallery.destroy');
-    // Route::post('/gallery/{product_id}', [GalleryController::class, 'store'])->name('gallery.store');
-
-
-    // Route::post('/gallery/{product_id}', [GalleryController::class, 'store'])->name('gallery.store');
+  
      ///////////////////////// cate //////////////////
      Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
      Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
@@ -180,6 +158,10 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('/insert-coupon-code', [CouponController::class, 'insert_coupon_code'])->name('insert_coupon_code');
     Route::post('/check-coupon', [CartController::class, 'check_coupon'])->name('check_coupon');
     Route::get('/unset-coupon', [CouponController::class, 'unset_coupon'])->name('unset_coupon');
+
+    ////////////////////////// thanh toán Vnpay /////////////////
+    Route::match(['GET', 'POST'], '/vnpay_payment', [PaymentController::class, 'vnpay_payment'])->name('vnpay_payment');
+    Route::match(['GET', 'POST'], '/momo_payment', [PaymentController::class, 'momo_payment'])->name('momo_payment');
 });
 
 //Comments
@@ -205,8 +187,6 @@ Route::controller(GoogleController::class)->group(function(){
 // Send email
 Route::get('/send-mail{email}', [RegisteredUserController::class, 'store'])->name('send.email');
 
-
-/////////////////////main//////////////////////
 
 
 
@@ -234,11 +214,10 @@ Route::get('page/contact', [ContactController::class, 'index'])->name('contactPa
 // Checkout
 Route::get('page/Checkout', [CheckoutController::class, 'index'])->name('checkoutPage');
 // acount
-Route::get('page/acount', [AcountController::class, 'index'])->name('acountPage');
+Route::get('page/account', [AccountController::class, 'index'])->name('accountPage');
+Route::get('page/portfolio', [PortfolioController::class, 'index'])->name('portfolioPage');
 // wishlist
 Route::get('page/wishlist', [WishlishController::class, 'index'])->name('wishlistPage');
-// cart
-Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');
 
 // cart
 Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');

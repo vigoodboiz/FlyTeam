@@ -12,7 +12,6 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
-
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
@@ -37,6 +36,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'role_id',
         'facebook_id',
         'google_id',
+        'profile_picture',
     ];
 
     /**
@@ -83,6 +83,15 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function roles(): BelongsToMany {
        return $this->BelongsToMany(Role::class);
-}
+    }
+    public function members()
+    {
+        return $this->hasMany(Member::class);
+    }
 
+
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
+    }
 }

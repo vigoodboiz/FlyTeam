@@ -11,7 +11,6 @@
                             </h2>
                             <div class="footer__widget--inner">
                                 <div class="footer__logo">
-
                                     <a class="footer__logo--link" href="{{route('home')}}">
                                         <img class="footer__logo--img" src="{{asset('becute/assets/img/logo/logo_main.png')}}" alt="logo-img">
                                     </a>

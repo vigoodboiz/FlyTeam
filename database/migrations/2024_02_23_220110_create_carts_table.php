@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignId('product_id');
             $table->integer('quantity');
             $table->integer('total_price');
-            $table->decimal('grand_price', 8, 2)->nullable();
             $table->timestamps();
         });
     }

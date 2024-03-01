@@ -10,8 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-use App\Models\Coupon;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Coupon;
 use Illuminate\Support\Carbon;
 class CartController extends Controller
 {
@@ -22,6 +22,7 @@ class CartController extends Controller
         $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y/mm/dd');
         $data = $request->all();
         $coupon = Coupon::where('coupon_code', $data['coupon'])->where('coupon_status',1)->where('coupon_date_end','>=',$today)->first();
+
         if ($coupon) {
             $count_coupon = $coupon->count();
             if ($count_coupon > 0) {
@@ -52,12 +53,14 @@ class CartController extends Controller
         } else {
             return redirect()->back()->with('error', 'Mã giảm giá không đúng hoặc đã hết hạn');
         }
+
     }
     public function index()
     {
         try {
             $userId = Auth::id();
             $cartItems = Cart::where('user_id', $userId)->get();
+
             $totalPrice = $this->calculateTotalPrice();
             return view('page.cart', compact('cartItems', 'totalPrice'));
         } catch (Exception $exception) {
@@ -108,7 +111,6 @@ class CartController extends Controller
         $userId = Auth::id();
         $cartItems = Cart::where('user_id', $userId)->get();
         $totalPrice = 0;
-
         foreach ($cartItems as $cartItem) {
             $totalPrice += $cartItem->total_price;
         }

@@ -16,4 +16,3 @@ class OderDetail extends Model
         'quantity'
     ];
 }
-

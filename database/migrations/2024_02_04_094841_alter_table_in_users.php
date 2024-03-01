@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('user_code')->unique();
             $table->string('gender')->default('0');
             $table->string('phone');
+            $table->string('profile_picture')->nullable();
             $table->string('address')->nullable();
         });
     }
@@ -30,6 +31,7 @@ return new class extends Migration
             $table->dropColumn('user_code');
             $table->dropColumn('gender');
             $table->dropColumn('phone');
+            $table->dropColumn('profile_picture');
             $table->dropColumn('address');
         });
     }

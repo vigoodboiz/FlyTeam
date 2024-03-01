@@ -154,7 +154,6 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details--info">
-                        <form action="#">
                             <h2 class="product__details--info__title mb-15">{{$pro_dt->name}} </h2>
                             <div class="product__details--info__price mb-12">
                                 @if(isset($pro_dt->price_sale) && $pro_dt->price_sale > 0)
@@ -267,6 +266,7 @@
                                     </a>
                                     <button class="variant__buy--now__btn primary__btn" type="submit">Buy it now</button>
                                 </div>
+                            </form>
                             </div>
                             <div class="quickview__social d-flex align-items-center mb-20">
                                 <label class="quickview__social--title">Social Share:</label>
@@ -413,10 +413,11 @@
                                                                 </span>
                                                             </li>
                                                         </ul>
-                                                        <span class="reviews__summary--caption">Based on 2 reviews</span>
+                                                        <span class="reviews__summary--caption">Based on {{$comments->count()}} reviews</span>
                                                     </div>
                                                     <a class="actions__newreviews--btn primary__btn" href="#writereview">Write A Review</a>
                                                 </div>
+                                                @foreach ($comments as $cmt)
                                                 <div class="reviews__comment--area">
                                                     <div class="reviews__comment--list d-flex">
                                                         <div class="reviews__comment--thumb">
@@ -425,7 +426,7 @@
                                                         <div class="reviews__comment--content">
                                                             <div class="reviews__comment--top d-flex justify-content-between">
                                                                 <div class="reviews__comment--top__left">
-                                                                    <h3 class="reviews__comment--content__title h4">Jakes on</h3>
+                                                                    <h3 class="reviews__comment--content__title h4">{{$cmt->user_name}}</h3>
                                                                     <ul class="rating d-flex">
                                                                         <li class="rating__list">
                                                                             <span class="rating__icon">
@@ -464,114 +465,13 @@
                                                                         </li>
                                                                     </ul>
                                                                 </div>
-                                                                <span class="reviews__comment--content__date">May 26, 202</span>
+                                                                <span class="reviews__comment--content__date">{{$cmt->date}}</span>
                                                             </div>
-                                                            <p class="reviews__comment--content__desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos ex repellat officiis neque.</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="reviews__comment--list margin__left d-flex">
-                                                        <div class="reviews__comment--thumb">
-                                                            <img src="assets/img/other/comment-thumb2.webp" alt="comment-thumb">
-                                                        </div>
-                                                        <div class="reviews__comment--content">
-                                                            <div class="reviews__comment--top d-flex justify-content-between">
-                                                                <div class="reviews__comment--top__left">
-                                                                    <h3 class="reviews__comment--content__title h4">Laura Johnson</h3>
-                                                                    <ul class="rating d-flex">
-                                                                        <li class="rating__list">
-                                                                            <span class="rating__icon">
-                                                                                <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                                    <path d="M6.08398 0.921875L4.56055 4.03906L1.11523 4.53125C0.505859 4.625 0.271484 5.375 0.716797 5.82031L3.17773 8.23438L2.5918 11.6328C2.49805 12.2422 3.1543 12.7109 3.69336 12.4297L6.76367 10.8125L9.81055 12.4297C10.3496 12.7109 11.0059 12.2422 10.9121 11.6328L10.3262 8.23438L12.7871 5.82031C13.2324 5.375 12.998 4.625 12.3887 4.53125L8.9668 4.03906L7.41992 0.921875C7.16211 0.382812 6.36523 0.359375 6.08398 0.921875Z" fill="currentColor" />
-                                                                                </svg>
-                                                                            </span>
-                                                                        </li>
-                                                                        <li class="rating__list">
-                                                                            <span class="rating__icon">
-                                                                                <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                                    <path d="M6.08398 0.921875L4.56055 4.03906L1.11523 4.53125C0.505859 4.625 0.271484 5.375 0.716797 5.82031L3.17773 8.23438L2.5918 11.6328C2.49805 12.2422 3.1543 12.7109 3.69336 12.4297L6.76367 10.8125L9.81055 12.4297C10.3496 12.7109 11.0059 12.2422 10.9121 11.6328L10.3262 8.23438L12.7871 5.82031C13.2324 5.375 12.998 4.625 12.3887 4.53125L8.9668 4.03906L7.41992 0.921875C7.16211 0.382812 6.36523 0.359375 6.08398 0.921875Z" fill="currentColor" />
-                                                                                </svg>
-                                                                            </span>
-                                                                        </li>
-                                                                        <li class="rating__list">
-                                                                            <span class="rating__icon">
-                                                                                <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                                    <path d="M6.08398 0.921875L4.56055 4.03906L1.11523 4.53125C0.505859 4.625 0.271484 5.375 0.716797 5.82031L3.17773 8.23438L2.5918 11.6328C2.49805 12.2422 3.1543 12.7109 3.69336 12.4297L6.76367 10.8125L9.81055 12.4297C10.3496 12.7109 11.0059 12.2422 10.9121 11.6328L10.3262 8.23438L12.7871 5.82031C13.2324 5.375 12.998 4.625 12.3887 4.53125L8.9668 4.03906L7.41992 0.921875C7.16211 0.382812 6.36523 0.359375 6.08398 0.921875Z" fill="currentColor" />
-                                                                                </svg>
-                                                                            </span>
-                                                                        </li>
-                                                                        <li class="rating__list">
-                                                                            <span class="rating__icon">
-                                                                                <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                                    <path d="M6.08398 0.921875L4.56055 4.03906L1.11523 4.53125C0.505859 4.625 0.271484 5.375 0.716797 5.82031L3.17773 8.23438L2.5918 11.6328C2.49805 12.2422 3.1543 12.7109 3.69336 12.4297L6.76367 10.8125L9.81055 12.4297C10.3496 12.7109 11.0059 12.2422 10.9121 11.6328L10.3262 8.23438L12.7871 5.82031C13.2324 5.375 12.998 4.625 12.3887 4.53125L8.9668 4.03906L7.41992 0.921875C7.16211 0.382812 6.36523 0.359375 6.08398 0.921875Z" fill="currentColor" />
-                                                                                </svg>
-                                                                            </span>
-                                                                        </li>
-                                                                        <li class="rating__list">
-                                                                            <span class="rating__icon">
-                                                                                <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                                    <path d="M12.4141 4.53125L8.99219 4.03906L7.44531 0.921875C7.1875 0.382812 6.39062 0.359375 6.10938 0.921875L4.58594 4.03906L1.14062 4.53125C0.53125 4.625 0.296875 5.375 0.742188 5.82031L3.20312 8.23438L2.61719 11.6328C2.52344 12.2422 3.17969 12.7109 3.71875 12.4297L6.78906 10.8125L9.83594 12.4297C10.375 12.7109 11.0312 12.2422 10.9375 11.6328L10.3516 8.23438L12.8125 5.82031C13.2578 5.375 13.0234 4.625 12.4141 4.53125ZM9.53125 7.95312L10.1875 11.75L6.78906 9.96875L3.36719 11.75L4.02344 7.95312L1.25781 5.28125L5.07812 4.71875L6.78906 1.25L8.47656 4.71875L12.2969 5.28125L9.53125 7.95312Z" fill="currentColor" />
-                                                                                </svg>
-                                                                            </span>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <span class="reviews__comment--content__date">May 26, 2022</span>
-                                                            </div>
-                                                            <p class="reviews__comment--content__desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos ex repellat officiis neque.</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="reviews__comment--list d-flex">
-                                                        <div class="reviews__comment--thumb">
-                                                            <img src="assets/img/other/comment-thumb3.webp" alt="comment-thumb">
-                                                        </div>
-                                                        <div class="reviews__comment--content">
-                                                            <div class="reviews__comment--top d-flex justify-content-between">
-                                                                <div class="reviews__comment--top__left">
-                                                                    <h3 class="reviews__comment--content__title h4">Richard Smith</h3>
-                                                                    <ul class="rating d-flex">
-                                                                        <li class="rating__list">
-                                                                            <span class="rating__icon">
-                                                                                <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                                    <path d="M6.08398 0.921875L4.56055 4.03906L1.11523 4.53125C0.505859 4.625 0.271484 5.375 0.716797 5.82031L3.17773 8.23438L2.5918 11.6328C2.49805 12.2422 3.1543 12.7109 3.69336 12.4297L6.76367 10.8125L9.81055 12.4297C10.3496 12.7109 11.0059 12.2422 10.9121 11.6328L10.3262 8.23438L12.7871 5.82031C13.2324 5.375 12.998 4.625 12.3887 4.53125L8.9668 4.03906L7.41992 0.921875C7.16211 0.382812 6.36523 0.359375 6.08398 0.921875Z" fill="currentColor" />
-                                                                                </svg>
-                                                                            </span>
-                                                                        </li>
-                                                                        <li class="rating__list">
-                                                                            <span class="rating__icon">
-                                                                                <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                                    <path d="M6.08398 0.921875L4.56055 4.03906L1.11523 4.53125C0.505859 4.625 0.271484 5.375 0.716797 5.82031L3.17773 8.23438L2.5918 11.6328C2.49805 12.2422 3.1543 12.7109 3.69336 12.4297L6.76367 10.8125L9.81055 12.4297C10.3496 12.7109 11.0059 12.2422 10.9121 11.6328L10.3262 8.23438L12.7871 5.82031C13.2324 5.375 12.998 4.625 12.3887 4.53125L8.9668 4.03906L7.41992 0.921875C7.16211 0.382812 6.36523 0.359375 6.08398 0.921875Z" fill="currentColor" />
-                                                                                </svg>
-                                                                            </span>
-                                                                        </li>
-                                                                        <li class="rating__list">
-                                                                            <span class="rating__icon">
-                                                                                <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                                    <path d="M6.08398 0.921875L4.56055 4.03906L1.11523 4.53125C0.505859 4.625 0.271484 5.375 0.716797 5.82031L3.17773 8.23438L2.5918 11.6328C2.49805 12.2422 3.1543 12.7109 3.69336 12.4297L6.76367 10.8125L9.81055 12.4297C10.3496 12.7109 11.0059 12.2422 10.9121 11.6328L10.3262 8.23438L12.7871 5.82031C13.2324 5.375 12.998 4.625 12.3887 4.53125L8.9668 4.03906L7.41992 0.921875C7.16211 0.382812 6.36523 0.359375 6.08398 0.921875Z" fill="currentColor" />
-                                                                                </svg>
-                                                                            </span>
-                                                                        </li>
-                                                                        <li class="rating__list">
-                                                                            <span class="rating__icon">
-                                                                                <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                                    <path d="M6.08398 0.921875L4.56055 4.03906L1.11523 4.53125C0.505859 4.625 0.271484 5.375 0.716797 5.82031L3.17773 8.23438L2.5918 11.6328C2.49805 12.2422 3.1543 12.7109 3.69336 12.4297L6.76367 10.8125L9.81055 12.4297C10.3496 12.7109 11.0059 12.2422 10.9121 11.6328L10.3262 8.23438L12.7871 5.82031C13.2324 5.375 12.998 4.625 12.3887 4.53125L8.9668 4.03906L7.41992 0.921875C7.16211 0.382812 6.36523 0.359375 6.08398 0.921875Z" fill="currentColor" />
-                                                                                </svg>
-                                                                            </span>
-                                                                        </li>
-                                                                        <li class="rating__list">
-                                                                            <span class="rating__icon">
-                                                                                <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                                    <path d="M12.4141 4.53125L8.99219 4.03906L7.44531 0.921875C7.1875 0.382812 6.39062 0.359375 6.10938 0.921875L4.58594 4.03906L1.14062 4.53125C0.53125 4.625 0.296875 5.375 0.742188 5.82031L3.20312 8.23438L2.61719 11.6328C2.52344 12.2422 3.17969 12.7109 3.71875 12.4297L6.78906 10.8125L9.83594 12.4297C10.375 12.7109 11.0312 12.2422 10.9375 11.6328L10.3516 8.23438L12.8125 5.82031C13.2578 5.375 13.0234 4.625 12.4141 4.53125ZM9.53125 7.95312L10.1875 11.75L6.78906 9.96875L3.36719 11.75L4.02344 7.95312L1.25781 5.28125L5.07812 4.71875L6.78906 1.25L8.47656 4.71875L12.2969 5.28125L9.53125 7.95312Z" fill="currentColor" />
-                                                                                </svg>
-                                                                            </span>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <span class="reviews__comment--content__date">May 26, 202</span>
-                                                            </div>
-                                                            <p class="reviews__comment--content__desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos ex repellat officiis neque.</p>
+                                                            <p class="reviews__comment--content__desc">{{$cmt->content}}</p>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @endforeach
                                                 <div id="writereview" class="reviews__comment--reply__area">
                                                     <h3 class="reviews__comment--reply__title mb-15">Add a review </h3>
                                                     <div class="reviews__ratting mb-20">
@@ -613,22 +513,29 @@
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-12 mb-10">
-                                                            <textarea class="reviews__comment--reply__textarea" placeholder="Your Comments...."></textarea>
-                                                        </div>
-                                                        <div class="col-lg-6 col-md-6 mb-15">
-                                                            <label>
-                                                                <input class="reviews__comment--reply__input" placeholder="Your Name...." type="text">
-                                                            </label>
-                                                        </div>
-                                                        <div class="col-lg-6 col-md-6 mb-15">
-                                                            <label>
-                                                                <input class="reviews__comment--reply__input" placeholder="Your Email...." type="email">
-                                                            </label>
-                                                        </div>
+                                                    <div id="writereview" class="reviews__comment--reply__area">
+                                                        @auth
+                                                            <form action="{{ route('route_new_comment') }}" method="POST">
+                                                                @csrf
+                                                                @foreach($product_detail as $pro_dt)
+                                                                <input type="hidden" name="product_id" value="{{$pro_dt->id}}">
+                                                                @endforeach
+                                                                <textarea class="reviews__comment--reply__textarea" name="content" placeholder="Your comment"></textarea>
+                                                                <input type="hidden" class="form-control" name="date"  value="{{ $currentDateTime->format('d-m-Y H:i') }}">
+                                                                <button class="primary__btn text-white" type="submit">Submit</button>
+                                                            </form>
+                                                        @else
+                                                            <p>Bạn cần <a class="fw-bold" href="{{ route('login') }}">Đăng Nhập</a> để bình luận.</p>
+                                                        @endauth
+
+                                                        @if(session('success'))
+                                                            <p style="color: green">{{ session('success') }}</p>
+                                                        @endif
+
+                                                        @if(session('error'))
+                                                            <p style="color: red">{{ session('error') }}</p>
+                                                        @endif
                                                     </div>
-                                                    <button class="primary__btn text-white" data-hover="Submit" type="submit">SUBMIT</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -670,7 +577,6 @@
                                     </details>
                                 </div>
                             </div>
-                        </form>
                     </div>
                 </div>
             </div>
