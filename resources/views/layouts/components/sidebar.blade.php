@@ -41,7 +41,12 @@
                       
                             <li><i class="bi bi-chat-quote text-Danger"></i><a
                                     href="{{ route('route_comment_index') }}">Quản lý bình luận</a></li>
-                   
+                      
+                            <li><i class="bi bi-gift-fill text-Danger"></i></i><a href="{{ route('list_coupon') }}">Quản lý
+                                    khuyến
+                                    mại</a></li>
+                     
+
                             <li><i class="bi bi-minecart text-Danger"></i><a href="{{ route('listOder_status') }}">Trạng
                                     thái đơn hàng</a></li>
                      

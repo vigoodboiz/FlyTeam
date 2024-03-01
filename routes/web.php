@@ -28,6 +28,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PrivacyController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\PaymentController;
 
 use App\Http\Controllers\WishlishController;
 use App\Http\Controllers\CheckoutController;
@@ -94,11 +95,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('users', UserController::class);
     
     /////////member////////////////
-    Route::post('/members/create', [MemberController::class, 'create'])->name('members.create');
-    Route::post('/members', [MemberController::class, 'store'])->name('members.store');
+    Route::post('/members', [MemberController::class, 'show'])->name('members.show');
     Route::get('/members', [MemberController::class, 'index'])->name('members.index');
-    Route::get('/members/{member}/edit', [MemberController::class, 'edit'])->name('members.edit');
-    Route::put('/members/{member}', [MemberController::class, 'update'])->name('members.update');
+
     Route::resource('members', MemberController::class);
 
     Route::get('/ranking', [MemberController::class, 'ranking'])->name('members.ranking');
@@ -158,6 +157,18 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
      Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
      Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
      Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
+     //Coupon//
+    Route::get('/insert-coupon', [CouponController::class, 'insert_coupon'])->name('insert_coupon');
+    Route::get('/delete-coupon/{coupon_id}', [CouponController::class, 'delete_coupon'])->name("delete_coupon");
+    Route::get('/list-coupon', [CouponController::class, 'list_coupon'])->name('list_coupon');
+    Route::post('/insert-coupon-code', [CouponController::class, 'insert_coupon_code'])->name('insert_coupon_code');
+    Route::post('/check-coupon', [CartController::class, 'check_coupon'])->name('check_coupon');
+    Route::get('/unset-coupon', [CouponController::class, 'unset_coupon'])->name('unset_coupon');
+
+    ////////////////////////// thanh toán Vnpay /////////////////
+    Route::match(['GET', 'POST'], '/vnpay_payment', [PaymentController::class, 'vnpay_payment'])->name('vnpay_payment');
+    Route::match(['GET', 'POST'], '/momo_payment', [PaymentController::class, 'momo_payment'])->name('momo_payment');
 });
 
 //Comments
@@ -210,10 +221,12 @@ Route::get('page/privacy', [PrivacyController::class, 'index'])->name('privacyPa
 Route::get('page/contact', [ContactController::class, 'index'])->name('contactPage');
 
 // Checkout
-Route::get('page/Checkout', [CheckoutController::class, 'inde   x'])->name('checkoutPage');
+Route::get('page/Checkout', [CheckoutController::class, 'index'])->name('checkoutPage');
 // acount
 Route::get('page/acount', [AcountController::class, 'index'])->name('acountPage');
 // wishlist
 Route::get('page/wishlist', [WishlishController::class, 'index'])->name('wishlistPage');
 // cart
 Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');
+Route::post('add_to_cart/{product}', [CartController::class, 'store'])->name('addCart');
+Route::delete('/cart/products/{productId}', [CartController::class, 'removeProductFromCart'])->name('cart.removeProduct');

@@ -23,6 +23,7 @@ class Products extends Model
     }
 
 
+
     public function galleries()
     {
         return $this->hasMany(Gallery::class);
@@ -31,10 +32,7 @@ class Products extends Model
     public function comments() {
         return $this->hasMany(Comment::class);
     }
-    public function views()
-    {
-        return $this->hasOne(ProductView::class);
-    }
+   
 
 }
 
