@@ -30,7 +30,18 @@
                         <div class="col-lg-8">
                             <div class="cart__table">
                                 <table class="cart__table--inner">
-                                   
+                                    <!-- thông báo -->
+                                @if (\Session::has('message'))
+                        <div class="alert alert-success">
+                            {{ \Session::get('message') }}
+                        </div>
+                    @endif
+                      <!-- thông báo -->
+                      @if (\Session::has('error'))
+                        <div class="alert alert-danger">
+                            {{ \Session::get('error') }}
+                        </div>
+                    @endif
                                     <thead class="cart__table--header">
                                         <tr class="cart__table--header__items">
                                             <th class="cart__table--header__list">Image</th>
