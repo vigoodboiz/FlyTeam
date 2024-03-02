@@ -27,11 +27,6 @@
 
                     <h2 class="cart__title mb-35">Shopping Cart</h2>
 
-                    @if (\Session::has('message'))
-                        <div class="alert alert-success">
-                            {{ \Session::get('message') }}
-                        </div>
-                    @endif
                     <div class="row">
                         <div class="col-lg-8">
                             <div class="cart__table">
@@ -57,6 +52,7 @@
                                             <th class="cart__table--header__list">Sale Price</th>
                                             <th class="cart__table--header__list">Quantity</th>
                                             <th class="cart__table--header__list">Total</th>
+                                            <th class="cart__table--header__list">Action</th>
                                         </tr>
                                     </thead>
                                     
@@ -70,7 +66,12 @@
                                                 <th>{{ $cart->product->price_sale }}</th>
                                                 <th>{{ $cart->quantity }}</th>
                                                 <th>{{ $cart->total_price }} VNĐ</th>
-
+                                                <td class="product-close">
+                                                <a href="{{ route('cart.delete', $cart->id) }}" class="product-remove"
+                                            title="Remove this product">
+                                            <i class="fas fa-times">Remove</i>
+                                        </a>
+                                    </td>
                                             </tr>
                                         @endforeach
 
@@ -79,9 +80,9 @@
 
                                 </table>
                                 <div class="continue__shopping d-flex justify-content-between">
-                                    <a class="continue__shopping--link" href="shop.html">Continue shopping</a>                         
+                                    <a class="continue__shopping--link" href="http://127.0.0.1:8000/page/shop">Continue shopping</a>                         
                                 
-                                        <button type="submit" class="coupon__code--field__btn primary__btn">Clear Cart</button>
+                                        <!-- <button type="submit" class="coupon__code--field__btn primary__btn">Clear Cart</button> -->
        
 
                                 </div>

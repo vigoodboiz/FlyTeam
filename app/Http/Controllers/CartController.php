@@ -6,13 +6,13 @@ use App\Models\Cart;
 use App\Models\Products;
 use Exception;
 use Hamcrest\Core\Set;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Coupon;
 use Illuminate\Support\Carbon;
+use Illuminate\Http\Request;
 class CartController extends Controller
 {
     //
@@ -85,7 +85,7 @@ class CartController extends Controller
             if ($cartItem) {
                 // Đã tồn tại thì tăng
                 $cartItem->quantity += $request->quantity;
-                $cartItem->total_price = $cartItem->quantity * $product->price_sale;
+                $cartItem->total_price = $cartItem->quantity * $product->price_sale ;
                 $cartItem->save();
 
                 return back()->with('message', 'Product quantity increased successfully');
@@ -95,7 +95,7 @@ class CartController extends Controller
                     'quantity' => $request->quantity,
                     'product_id' => $id,
                     'user_id' => $userId,
-                    'total_price' => $request->quantity * $product->price_sale
+                    'total_price' => $request->quantity * $product->price_sale > 0 ? $product->price_sale : $product->price
                 ]);
 
                 return back()->with('message', 'Product added to cart successfully');
@@ -117,4 +117,18 @@ class CartController extends Controller
 
         return $totalPrice;
     }
+
+    public function destroy(Cart $cart)
+    {
+        try {
+            $cart->delete();
+
+            return back()->with('message', 'Cart item deleted successfully');
+        } catch (\Exception $exception) {
+            Log::error('CartController@destroy: ', [$exception->getMessage()]);
+
+            return back()->with('message', 'Cart item delete failed');
+        }
+    }
+    
 }
