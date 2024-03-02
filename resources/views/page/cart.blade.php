@@ -10,7 +10,7 @@
                     <div class="col">
                         <div class="breadcrumb__content text-center">
                             <ul class="breadcrumb__content--menu d-flex justify-content-center">
-                                <li class="breadcrumb__content--menu__items"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb__content--menu__items"><a href="route('home')">Home</a></li>
                                 <li class="breadcrumb__content--menu__items"><span>Shopping Cart</span></li>
                             </ul>
                         </div>
@@ -27,15 +27,22 @@
 
                     <h2 class="cart__title mb-35">Shopping Cart</h2>
 
-                    @if (\Session::has('message'))
-                        <div class="alert alert-success">
-                            {{ \Session::get('message') }}
-                        </div>
-                    @endif
                     <div class="row">
                         <div class="col-lg-8">
                             <div class="cart__table">
                                 <table class="cart__table--inner">
+                                    <!-- thông báo -->
+                                @if (\Session::has('message'))
+                        <div class="alert alert-success">
+                            {{ \Session::get('message') }}
+                        </div>
+                    @endif
+                      <!-- thông báo -->
+                      @if (\Session::has('error'))
+                        <div class="alert alert-danger">
+                            {{ \Session::get('error') }}
+                        </div>
+                    @endif
 
                                     <thead class="cart__table--header">
                                         <tr class="cart__table--header__items">
@@ -45,6 +52,7 @@
                                             <th class="cart__table--header__list">Sale Price</th>
                                             <th class="cart__table--header__list">Quantity</th>
                                             <th class="cart__table--header__list">Total</th>
+                                            <th class="cart__table--header__list">Action</th>
                                         </tr>
                                     </thead>
                                     
@@ -52,13 +60,19 @@
                                         @foreach ($cartItems as $cart)
                                             <tr class="cart__table">
                                                 <th><img style="height: 80px" ;
-                                                        src="{{ asset('storage/images/' . $cart->product->image) }}"></th>
+                                                        src="{{ asset('upload/public/images/' . $cart->product->image) }}">
+                                                </th>
                                                 <th>{{ $cart->product->name }}</th>
                                                 <th>{{ $cart->product->price }}</th>
                                                 <th>{{ $cart->product->price_sale }}</th>
                                                 <th>{{ $cart->quantity }}</th>
-                                                <th>{{ $cart->total_price }} VNĐ</th>
-
+                                                <th>{{ $cart->total_price }} đ</th>
+                                                <td class="product-close">
+                                                <a href="{{ route('cart.delete', $cart->id) }}" class="product-remove"
+                                            title="Remove this product">
+                                            <i class="fas fa-times">Remove</i>
+                                        </a>
+                                    </td>
                                             </tr>
                                         @endforeach
 
@@ -67,11 +81,10 @@
 
                                 </table>
                                 <div class="continue__shopping d-flex justify-content-between">
-                                    <a class="continue__shopping--link" href="shop.html">Continue shopping</a>                         
-                                
-                                        <button type="submit" class="coupon__code--field__btn primary__btn">Clear Cart</button>
-       
+                                    <a class="continue__shopping--link" href="{{ route('shopGrid') }}">Continue shopping</a>
 
+
+                                    <button type="submit">Clear Cart</button>
                                 </div>
                             </div>
                         </div>
@@ -103,10 +116,10 @@
 
 
                                 <!-- <div class="cart__note mb-20">
-                                            <h3 class="cart__note--title">Note</h3>
-                                            <p class="cart__note--desc">Add special instructions for your seller...</p>
-                                            <textarea class="cart__note--textarea border-radius-5"></textarea>
-                                        </div> -->
+                                                            <h3 class="cart__note--title">Note</h3>
+                                                            <p class="cart__note--desc">Add special instructions for your seller...</p>
+                                                            <textarea class="cart__note--textarea border-radius-5"></textarea>
+                                                        </div> -->
                             </div>
 
                             <div class="cart__summary--total mb-20">

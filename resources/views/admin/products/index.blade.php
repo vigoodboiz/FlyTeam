@@ -1,8 +1,9 @@
 @extends('layouts.app')
 @section('content')
-@if (session('success'))
-<div class="alert alert-success">{{ session('success') }}</div>
-@endif
+    @if (session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+
 
 <style>
     .description-cell {
@@ -37,7 +38,7 @@
             <td>{{ $product->category->name }}</td>
             <td>{{ $product->name }}</td>
             <td>{{ $product->brand }}</td>
-            <td class="description-cell">{{ $product->describe }}</td>
+            <td>{{ $product->describe }}</td>
             <td>{{ $product->price }}</td>
             <td>{{ $product->price_sale }}</td>
             <td><img src="{{ asset('storage/images/' . $product->image) }}" alt="{{ $product->name }}" width="100">
@@ -65,4 +66,6 @@
         @endforeach
     </tbody>
 </table>
+{{ $products->links() }}
 @endsection
+
