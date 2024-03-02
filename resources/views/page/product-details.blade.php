@@ -92,47 +92,47 @@
                                             </div>
 
                                             <!-- <div class="swiper-slide">
-                                                            <div class="product__media--preview__items">
-                                                                <a class="product__media--preview__items--link glightbox" data-gallery="product-media-preview" href="{{ asset('becute/assets/img/product/big-product/product3.webp') }}"><img class="product__media--preview__items--img" src="assets/img/product/big-product/product3.webp" alt="product-media-img"></a>
-                                                                <div class="product__media--view__icon">
-                                                                    <a class="product__media--view__icon--link glightbox" href="{{ asset('becute/assets/img/product/big-product/product3.webp') }}" data-gallery="product-media-preview">
-                                                                        <svg class="product__items--action__btn--svg" xmlns="http://www.w3.org/2000/svg" width="22.51" height="22.443" viewBox="0 0 512 512">
-                                                                            <path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"></path>
-                                                                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"></path>
-                                                                        </svg>
-                                                                        <span class="visually-hidden">product view</span>
-                                                                    </a>
+                                                                <div class="product__media--preview__items">
+                                                                    <a class="product__media--preview__items--link glightbox" data-gallery="product-media-preview" href="{{ asset('becute/assets/img/product/big-product/product3.webp') }}"><img class="product__media--preview__items--img" src="assets/img/product/big-product/product3.webp" alt="product-media-img"></a>
+                                                                    <div class="product__media--view__icon">
+                                                                        <a class="product__media--view__icon--link glightbox" href="{{ asset('becute/assets/img/product/big-product/product3.webp') }}" data-gallery="product-media-preview">
+                                                                            <svg class="product__items--action__btn--svg" xmlns="http://www.w3.org/2000/svg" width="22.51" height="22.443" viewBox="0 0 512 512">
+                                                                                <path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"></path>
+                                                                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"></path>
+                                                                            </svg>
+                                                                            <span class="visually-hidden">product view</span>
+                                                                        </a>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="swiper-slide">
-                                                            <div class="product__media--preview__items">
-                                                                <a class="product__media--preview__items--link glightbox" data-gallery="product-media-preview" href="{{ asset('becute/assets/img/product/big-product/product4.webp') }}"><img class="product__media--preview__items--img" src="assets/img/product/big-product/product4.webp" alt="product-media-img"></a>
-                                                                <div class="product__media--view__icon">
-                                                                    <a class="product__media--view__icon--link glightbox" href="{{ asset('becute/assets/img/product/big-product/product4.webp') }}" data-gallery="product-media-preview">
-                                                                        <svg class="product__items--action__btn--svg" xmlns="http://www.w3.org/2000/svg" width="22.51" height="22.443" viewBox="0 0 512 512">
-                                                                            <path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"></path>
-                                                                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"></path>
-                                                                        </svg>
-                                                                        <span class="visually-hidden">product view</span>
-                                                                    </a>
+                                                            <div class="swiper-slide">
+                                                                <div class="product__media--preview__items">
+                                                                    <a class="product__media--preview__items--link glightbox" data-gallery="product-media-preview" href="{{ asset('becute/assets/img/product/big-product/product4.webp') }}"><img class="product__media--preview__items--img" src="assets/img/product/big-product/product4.webp" alt="product-media-img"></a>
+                                                                    <div class="product__media--view__icon">
+                                                                        <a class="product__media--view__icon--link glightbox" href="{{ asset('becute/assets/img/product/big-product/product4.webp') }}" data-gallery="product-media-preview">
+                                                                            <svg class="product__items--action__btn--svg" xmlns="http://www.w3.org/2000/svg" width="22.51" height="22.443" viewBox="0 0 512 512">
+                                                                                <path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"></path>
+                                                                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"></path>
+                                                                            </svg>
+                                                                            <span class="visually-hidden">product view</span>
+                                                                        </a>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="swiper-slide">
-                                                            <div class="product__media--preview__items">
-                                                                <a class="product__media--preview__items--link glightbox" data-gallery="product-media-preview" href="{{ asset('becute/assets/img/product/big-product/product5.webp') }}"><img class="product__media--preview__items--img" src="assets/img/product/big-product/product5.webp" alt="product-media-img"></a>
-                                                                <div class="product__media--view__icon">
-                                                                    <a class="product__media--view__icon--link glightbox" href="{{ asset('becute/assets/img/product/big-product/product5.webp') }}" data-gallery="product-media-preview">
-                                                                        <svg class="product__items--action__btn--svg" xmlns="http://www.w3.org/2000/svg" width="22.51" height="22.443" viewBox="0 0 512 512">
-                                                                            <path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"></path>
-                                                                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"></path>
-                                                                        </svg>
-                                                                        <span class="visually-hidden">product view</span>
-                                                                    </a>
+                                                            <div class="swiper-slide">
+                                                                <div class="product__media--preview__items">
+                                                                    <a class="product__media--preview__items--link glightbox" data-gallery="product-media-preview" href="{{ asset('becute/assets/img/product/big-product/product5.webp') }}"><img class="product__media--preview__items--img" src="assets/img/product/big-product/product5.webp" alt="product-media-img"></a>
+                                                                    <div class="product__media--view__icon">
+                                                                        <a class="product__media--view__icon--link glightbox" href="{{ asset('becute/assets/img/product/big-product/product5.webp') }}" data-gallery="product-media-preview">
+                                                                            <svg class="product__items--action__btn--svg" xmlns="http://www.w3.org/2000/svg" width="22.51" height="22.443" viewBox="0 0 512 512">
+                                                                                <path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"></path>
+                                                                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"></path>
+                                                                            </svg>
+                                                                            <span class="visually-hidden">product view</span>
+                                                                        </a>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </div> -->
+                                                            </div> -->
                                         </div>
                                     </div>
                                     <div class="single__product--nav swiper">
@@ -155,20 +155,20 @@
                                             </div>
 
                                             <!-- <div class="swiper-slide">
-                                                            <div class="product__media--nav__items">
-                                                                <img class="product__media--nav__items--img" src="{{ asset('becute/assets/img/product/small-product/product3.webp') }}" alt="product-nav-img">
+                                                                <div class="product__media--nav__items">
+                                                                    <img class="product__media--nav__items--img" src="{{ asset('becute/assets/img/product/small-product/product3.webp') }}" alt="product-nav-img">
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="swiper-slide">
-                                                            <div class="product__media--nav__items">
-                                                                <img class="product__media--nav__items--img" src="{{ asset('becute/assets/img/product/small-product/product4.webp') }}" alt="product-nav-img">
+                                                            <div class="swiper-slide">
+                                                                <div class="product__media--nav__items">
+                                                                    <img class="product__media--nav__items--img" src="{{ asset('becute/assets/img/product/small-product/product4.webp') }}" alt="product-nav-img">
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="swiper-slide">
-                                                            <div class="product__media--nav__items">
-                                                                <img class="product__media--nav__items--img" src="{{ asset('becute/assets/img/product/small-product/product5.webp') }}" alt="product-nav-img">
-                                                            </div>
-                                                        </div> -->
+                                                            <div class="swiper-slide">
+                                                                <div class="product__media--nav__items">
+                                                                    <img class="product__media--nav__items--img" src="{{ asset('becute/assets/img/product/small-product/product5.webp') }}" alt="product-nav-img">
+                                                                </div>
+                                                            </div> -->
                                         </div>
                                         <div class="swiper__nav--btn swiper-button-next">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -548,7 +548,8 @@
                                     <div class="reviews__comment--area">
                                         <div class="reviews__comment--list d-flex">
                                             <div class="reviews__comment--thumb">
-                                                <img src="assets/img/other/comment-thumb1.webp" alt="comment-thumb">
+                                                <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}"
+                                                    class="rounded-circle" alt="comment-thumb">
                                             </div>
                                             <div class="reviews__comment--content">
                                                 <div class="reviews__comment--top d-flex justify-content-between">
