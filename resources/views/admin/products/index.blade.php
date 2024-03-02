@@ -11,12 +11,12 @@
         max-width: 250px;
     }
 </style>
-<table class="table table-bordered">
-
-    <h2><a href="{{ route('products.create') }}">thêm</a></h2>
+<h2>Product</h2>
+<h2><a class="btn btn-primary mt-3 mb-3"  href="{{ route('products.create') }}">New Product</a></h2>
+<table class="table">
     <thead>
         <tr>
-            <th>ID</th>
+            <th scope="row">ID</th>
             <th>Danh mục</th>
             <th>Name</th>
             <th>Brand</th>
@@ -33,7 +33,7 @@
     <tbody>
         @foreach ($products as $product)
         <tr>
-            <td>{{ $product->id }}</td>
+            <td scope="row">{{ $product->id }}</td>
             <td>{{ $product->category->name }}</td>
             <td>{{ $product->name }}</td>
             <td>{{ $product->brand }}</td>
@@ -47,7 +47,7 @@
             <td>
 
                 @can('product_edit')
-                <a href="{{ route('products.edit', $product->id) }}" class="btn btn-danger">Edit</a>
+                <a href="{{ route('products.edit', $product->id) }}" class="btn btn-danger"><i class="fa-solid fa-pen"></i></a>
 
                 @endcan
 
@@ -57,7 +57,7 @@
                 <form action="{{ route('product.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Xóa</button>
+                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash mr-0"></i></button>
                 </form>
                 @endcan
             </td>
@@ -66,5 +66,3 @@
     </tbody>
 </table>
 @endsection
-
-

@@ -7,7 +7,7 @@
     <h1>Danh sách mã khuyến mãi</h1><br>
     <div class="table-responsive">
         @can('coupon_create')
-            <a class="btn btn-primary" href="{{ route('insert_coupon') }}">Thêm</a>
+            <a class="btn btn-primary" href="{{ route('insert_coupon') }}">New Coupon</a>
         @endcan
         <br>
         <br>
@@ -19,17 +19,15 @@
         }
         ?>
 
-        <table border="1">
+        <table class="table">
             <thead>
                 <tr>
-
-
-                    <th>Tên mã giảm giá</th>
-                    <th>Mã giảm giá</th>
-                    <th>Số lượng giảm giá</th>
-                    <th>Điều kiện giảm giá</th>
-                    <th>Số giảm</th>
-                    <th> Chức năng</th>
+                    <th scope="col">Tên mã giảm giá</th>
+                    <th scope="col">Mã giảm giá</th>
+                    <th scope="col">Số lượng giảm giá</th>
+                    <th scope="col">Điều kiện giảm giá</th>
+                    <th scope="col">Số giảm</th>
+                    <th scope="col"> Chức năng</th>
 
                 </tr>
             </thead>
@@ -37,7 +35,7 @@
 
                 @foreach ($coupon as $key => $cou)
                     <tr>
-                        <td>{{ $cou->coupon_name }}</td>
+                        <td scope="row">{{ $cou->coupon_name }}</td>
                         <td>{{ $cou->coupon_code }}</td>
                         <td>{{ $cou->coupon_time }}</td>
                         <td><span class="text-ellipsis">

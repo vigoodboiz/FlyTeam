@@ -20,7 +20,7 @@ class ProductController extends Controller
         // $products = Product::with('category')->get();
         // return view('products.index', compact('products'));
 
-        $products = Products::with('category')->get();
+        $products = Products::orderBy('created_at', 'DESC')->get();
         return view('admin.products.index', compact('products'));
     }
     /**
@@ -143,4 +143,19 @@ class ProductController extends Controller
     
         return redirect()->route('products.index')->with('success', 'Đã xóa sản phẩm thành công.');
     }
+
+    // public function upload(Request $request)
+    // {
+    //     $image = $request->file('upload');
+
+    //     // Lưu ảnh vào thư mục public/uploads (hoặc thư mục khác tuỳ chọn)
+    //     $path = $image->store('public/uploads');
+
+    //     // Trả về URL công khai của ảnh để CKEditor có thể hiển thị nó
+    //     $url = asset(str_replace('public/', 'storage/', $path));
+
+    //     return response()->json([
+    //         'url' => $url
+    //     ]);
+    // }
 }
