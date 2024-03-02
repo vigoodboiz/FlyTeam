@@ -8,7 +8,8 @@
             @csrf
             <div class="form-group">
                 <label for="images">Ảnh:</label>
-                <input type="file" name="images[]" id="images" class="form-control-file" multiple>
+                <input class="mb-3" type="file" name="images[]" id="image" class="form-control-file" multiple>
+                <img id="anh_the_preview" src="https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg" alt="your image" style="max-width: 200px; height:100px; margin-bottom: 10px;" class="img-fluid" />
             </div>
             <button type="submit" class="btn btn-primary">Thêm ảnh</button>
         </form>
@@ -16,7 +17,7 @@
 
     <h1>Gallery List</h1>
 
-    <table border='1'class="table" >
+    <table class="table" >
         <thead>
             <tr>
                 <th>id</th>
@@ -28,7 +29,7 @@
         <tbody>
             @foreach($gallery as $gallery)
                 <tr>
-                    <td>{{ $gallery->id }}</td>
+                    <td scope="row">{{ $gallery->id }}</td>
                     <td class="col-9"><img src="{{ asset('storage/images/' . $gallery->image) }}" alt="{{ $gallery->name }}" width="400" class="img-fluid">    
                     <td>
                         <form action="{{ route('gallery.destroy', $gallery->id) }}" method="POST">

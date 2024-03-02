@@ -111,7 +111,7 @@
                                                 </label>
                                                 <!-- <button  type="hidden"  type="button" class="quantity__value quickview__value--quantity increase" aria-label="quantity value" value="Increase Value">+</button> -->
                                             </div>
-                                            <h3 class="product__card--title"><a
+                                            <h3 class="product__card--title text-truncate"><a
                                                     href="{{ route('shopDetails', $pro_sale->id) }}">{{ $pro_sale->name }}
                                                 </a>
                                             </h3>

@@ -19,11 +19,9 @@ use Illuminate\Support\Facades\Session;
     }
     ?>
 
-    <table border="1">
+    <table class="table">
         <thead>
             <tr>
-
-
                 <th>Tên mã giảm giá</th>
                 <th>Ngày bắt đầu</th>
                 <th>Ngày kết thúc</th>
