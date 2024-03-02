@@ -23,7 +23,6 @@
             <td>{{ $oder->total }}</td>
             <td>{{ $oder->address }}</td>
             <td>
-
                 @can('order_edit')
                 <a href="{{ route('editoder', ['id' => $oder->id]) }}" class="btn btn-primary"><i class="fa-solid fa-pen"></i></a>
                 @endcan
