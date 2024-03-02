@@ -28,11 +28,11 @@ use Illuminate\Support\Facades\Session;
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Ngày bắt đầu</label>
-                            <input type="text" name="coupon_date_start" class="form-control" id="start_coupon" required>
+                            <input type="date" name="coupon_date_start" class="form-control" id="start_coupon" required>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Ngày kết thúc</label>
-                            <input type="text" name="coupon_date_end" class="form-control" id="end_coupon" required>
+                            <input type="date" name="coupon_date_end" class="form-control" id="end_coupon" required>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Mã giảm giá</label>
