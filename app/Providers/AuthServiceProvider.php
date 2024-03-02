@@ -29,7 +29,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
             return (new MailMessage)
-                ->subject('Xác thực email C.O.I Cosmestics')
+                ->subject('C.O.I Cosmestics - Xác nhận tài khoản')
                 ->line('Cảm ơn bạn đã đăng kí tài khoản của C.O.I Cosmestics. Để hoàn tất việc đăng kí vui lòng xác nhận email bằng cách click vào nút bên dưới!')
                 ->action('Xác thực email', $url);
         });
