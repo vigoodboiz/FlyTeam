@@ -45,7 +45,6 @@ class ProductController extends Controller
             'brand' => 'required',
             'describe' => 'required',
             'price' => 'required',
-            'price_sale' => 'nullable',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 

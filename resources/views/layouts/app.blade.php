@@ -35,6 +35,13 @@
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
     <!-- bootstrap icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css">
+ <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+
 
     <style>
         #weatherWidget .currentDesc {
@@ -126,6 +133,26 @@
 
 
     <!--Local Stuff-->
+    <script type="text/javascript">
+    $(function(){
+        $("#start_coupon").datepicker({
+            preText:"Tháng trước",
+            nextText:"Tháng sau",
+            dateFormat:"yy/mm/dd",
+            dayNamesMin:["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật"],
+            duration:"slow"
+        });
+        
+        $("#end_coupon").datepicker({
+            preText:"Tháng trước",
+            nextText:"Tháng sau",
+            dateFormat:"yy/mm/dd",
+            dayNamesMin:["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật"],
+            duration:"slow"
+        });
+
+    })
+    </script>
     <script>
         jQuery(document).ready(function($) {
             "use strict";
