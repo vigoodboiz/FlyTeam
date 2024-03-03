@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Session;
     <table class="table">
         <thead>
             <tr>
+
+
                 <th>Tên mã giảm giá</th>
                 <th>Ngày bắt đầu</th>
                 <th>Ngày kết thúc</th>
@@ -104,8 +106,8 @@ use Illuminate\Support\Facades\Session;
               
                 <td>
                     @can('coupon_create')
-                    <center><a onclick="return confirm('Bạn có chắc là muốn xóa mã này ko?')" href="{{ route('delete_coupon', $cou->id) }}">
-                            <i class="fa fa-times text-danger text"></i>
+                    <center><a class=" btn btn-danger" onclick="return confirm('Bạn có chắc là muốn xóa mã này ko?')" href="{{ route('delete_coupon', $cou->id) }}">
+                    <i class="fa fa-trash mr-0"></i>
                         </a></center>
                     @endcan
                 </td>

@@ -101,12 +101,12 @@
                                                         <div class="product__thumbnail border-radius-5">
                                                             <a class="display-block" href="product-details.html"><img
                                                                     class="display-block border-radius-5"
-                                                                    src="{{ asset('storage/images/'.$cart->product->image) }}"
+                                                                    src="{{ asset('upload/public/images/'.$cart->product->image) }}"
                                                                     alt="cart-product"></a>
                                                             
                                                         </div>
                                                         <div class="product__description">
-                                                            <label>Name</label>
+                                                            <label class="font-weight-bold">Name</label>
                                                             <h4 class="product__description--name"><a
                                                                     href="product-details.html">{{$cart->product->name}}</a></h4>
 
@@ -115,19 +115,17 @@
                                                 </td>
                                                 <td class="cart__table--body__list">
                                                 <div class="product__description">
-                                                <label>Quantity</label>
+                                                <label class="font-weight-bold">Quantity</label>
                                                         <span class="cart__price">{{$cart->quantity}}</span>
                                                         </div>
                                                 </td>
                                                 <td class="cart__table--body__list">
-                                                         <!-- @if(isset($cart->product->price_sale) && $cart->product->price_sale > 0)
+                                                <label class="font-weight-bold">Price</label>
+                                                         @if(isset($cart->product->price_sale) && $cart->product->price_sale > 0)
                                                         <span class="cart__price">${{$cart->product->price_sale}}</span>
                                                         @else
                                                         <span class="cart__price">${{$cart->product->price}}</span>
-                                                        @endif -->
-                                                        <label>Price</label>
-                                                        <span class="cart__price">${{$cart->product->price_sale}}</span>
-                                                  
+                                                        @endif                      
                                                 </td>
                                             </tr>
                                         @endforeach

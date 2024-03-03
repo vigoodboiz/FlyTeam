@@ -318,7 +318,7 @@
                                                 <span class="rating__review--text">(126) Review</span>
                                             </li>
                                         </ul>
-                                        <h3 class="product__card--title"><a href="#">{{ $pro_trending->name }}</a>
+                                        <h3 class="product__card--title text-truncate"><a href="#">{{ $pro_trending->name }}</a>
                                         </h3>
                                         <div class="product__card--price">
                                             @if (isset($pro_trending->price_sale) && $pro_trending->price_sale > 0)

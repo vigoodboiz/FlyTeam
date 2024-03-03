@@ -67,12 +67,12 @@
         <script>
             $(document).ready(function() {
                 var minPrice = 1;
-                var maxPrice = 1000; // Giá trị theo product
+                var maxPrice = 10000000; // Giá trị theo product
 
                 $("#slider").slider({
                     range: true,
                     min: 1,
-                    max: 1000,
+                    max: 1000000,
                     values: [minPrice, maxPrice],
                     slide: function(event, ui) {
                         $("#price_range").val(ui.values[0] + " - " + ui.values[1]);

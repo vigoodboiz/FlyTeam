@@ -41,7 +41,7 @@
             <td>{{ $product->describe }}</td>
             <td>{{ $product->price }}</td>
             <td>{{ $product->price_sale }}</td>
-            <td><img src="{{ asset('storage/images/' . $product->image) }}" alt="{{ $product->name }}" width="100">
+            <td><img src="{{ asset('upload/public/images/' . $product->image) }}" alt="{{ $product->name }}" width="100">
             <td>{{ $product->view_count }}</td>
             <td> <a href="{{ route('index', $product->id) }}" class="btn btn-success"> image</a></td>
             </td>
