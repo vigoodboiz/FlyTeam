@@ -19,7 +19,7 @@ class CartController extends Controller
 
     public function check_coupon(Request $request)
     {
-        $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y/mm/dd');
+        $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y/m/d');
         $data = $request->all();
         $coupon = Coupon::where('coupon_code', $data['coupon'])->where('coupon_status',1)->where('coupon_date_end','>=',$today)->first();
 
