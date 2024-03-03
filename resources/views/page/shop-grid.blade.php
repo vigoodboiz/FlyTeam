@@ -77,7 +77,7 @@
                                                 </li>
                                                 <li class="product__card--action__list">
                                                     <a class="product__card--action__btn" title="Wishlist"
-                                                        href="wishlist.html">
+                                                        href="{{ route('favorite', $pro_sale->id) }}">
                                                         <svg class="product__card--action__btn--svg" width="18"
                                                             height="18" viewBox="0 0 16 13" fill="none"
                                                             xmlns="http://www.w3.org/2000/svg">
@@ -116,8 +116,8 @@
                                                 </a>
                                             </h3>
                                             <div class="product__card--price">
-                                                <span class="current__price">${{ $pro_sale->price_sale }}</span>
-                                                <span class="old__price"> ${{ $pro_sale->price }}</span>
+                                                <span class="current__price">{{ $pro_sale->price_sale }}đ</span>
+                                                <span class="old__price"> {{ $pro_sale->price }}đ</span>
                                             </div>
                                         </div>
                                     </article>
@@ -452,7 +452,7 @@
                                                                 </li>
                                                                 <li class="product__card--action__list">
                                                                     <a class="product__card--action__btn" title="Wishlist"
-                                                                        href="wishlist.html">
+                                                                        href="{{ route('favorite', $pro->id) }}">
                                                                         <svg class="product__card--action__btn--svg"
                                                                             width="18" height="18"
                                                                             viewBox="0 0 16 13" fill="none"
@@ -548,11 +548,11 @@
                                                             <div class="product__card--price">
                                                                 @if (isset($pro->price_sale) && $pro->price_sale > 0)
                                                                     <span
-                                                                        class="current__price">${{ $pro->price_sale }}</span>
-                                                                    <span class="old__price">${{ $pro->price }}</span>
+                                                                        class="current__price">{{ $pro->price_sale }}đ</span>
+                                                                    <span class="old__price">{{ $pro->price }}đ</span>
                                                                 @else
                                                                     <span
-                                                                        class="current__price">${{ $pro->price }}</span>
+                                                                        class="current__price">{{ $pro->price }}đ</span>
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -613,7 +613,7 @@
                                                                 </li>
                                                                 <li class="product__card--action__list">
                                                                     <a class="product__card--action__btn" title="Wishlist"
-                                                                        href="wishlist.html">
+                                                                        href="{{ route('favorite', $pro->id) }}">
                                                                         <svg class="product__card--action__btn--svg"
                                                                             width="18" height="18"
                                                                             viewBox="0 0 16 13" fill="none"
@@ -695,11 +695,11 @@
                                                             <div class="product__list--price">
                                                                 @if (isset($pro->price_sale) && $pro->price_sale > 0)
                                                                     <span
-                                                                        class="current__price">${{ $pro->price_sale }}</span>
-                                                                    <span class="old__price">${{ $pro->price }}</span>
+                                                                        class="current__price">{{ $pro->price_sale }}đ</span>
+                                                                    <span class="old__price">{{ $pro->price }}đ</span>
                                                                 @else
                                                                     <span
-                                                                        class="current__price">${{ $pro->price }}</span>
+                                                                        class="current__price">{{ $pro->price }}đ</span>
                                                                 @endif
                                                             </div>
                                                             <p class="product__card--content__desc mb-15">

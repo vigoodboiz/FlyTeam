@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\GalleryController;
 
 // home
 use App\Http\Controllers\shopGridController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ShopDetailsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
@@ -213,7 +214,11 @@ Route::get('page/privacy', [PrivacyController::class, 'index'])->name('privacyPa
 Route::get('page/contact', [ContactController::class, 'index'])->name('contactPage');
 
 // Checkout
+Route::middleware('auth')->group(function () {
 Route::get('page/Checkout', [CheckoutController::class, 'index'])->name('checkoutPage');
+Route::get('page/Checkout/{cart}', [CheckoutController::class, 'post_checkout'])->name('checkoutPost');
+Route::get('verify/{token}', [CheckoutController::class, 'verify'])->name('oder.verify');
+});
 // acount
 Route::get('page/account', [AccountController::class, 'index'])->name('accountPage');
 Route::get('page/portfolio', [PortfolioController::class, 'index'])->name('portfolioPage');
@@ -225,3 +230,7 @@ Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');
 Route::post('add_to_cart/{product}', [CartController::class, 'store'])->name('addCart');
 Route::delete('/cart/products/{productId}', [CartController::class, 'removeProductFromCart'])->name('cart.removeProduct');
 Route::get('cart/delete/{cart}', [CartController::class, 'destroy'])->name('cart.delete');
+
+//whishlist
+Route::get('/favorite/{product}', [FavoriteController::class, 'index'])->name('favorite');
+Route::delete('/favorite/{product}', [FavoriteController::class, 'destroy'])->name('favorite.delete');

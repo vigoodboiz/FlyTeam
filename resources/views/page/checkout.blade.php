@@ -24,6 +24,11 @@
         <div class="checkout__page--area section--padding">
             <div class="container">
                 @if (Auth::check())
+                    @if (\Session::has('msg'))
+                        <div class="alert alert-success">
+                            {{ \Session::get('msg') }}
+                        </div>
+                    @endif
                     <div class="row">
                         <div class="col-lg-7 col-md-6">
                             <div class="main checkout__mian">
@@ -136,19 +141,19 @@
                                         </tbody>
                                     </table>
                                 </div>
-
-
                                 <div class="checkout__total">
                                     <table class="checkout__total--table">
                                         <tbody class="checkout__total--body">
                                             <tr class="checkout__total--items">
                                                 <td class="checkout__total--title text-left">Subtotal </td>
 
-                                                <td class="checkout__total--amount text-right">{{ $totalPrice }}</td>
+                                                <td class="checkout__total--amount text-right">{{ $totalPrice }}đ
+                                                </td>
                                             </tr>
                                             <tr class="checkout__total--items">
                                                 <td class="checkout__total--title text-left">Shipping</td>
-                                                <td class="checkout__total--calculated__text text-right">Free Ship</td>
+                                                <td class="checkout__total--calculated__text text-right">Free Ship
+                                                </td>
 
                                             </tr>
                                         </tbody>
@@ -160,7 +165,8 @@
                                                 <td
                                                     class="checkout__total--footer__amount checkout__total--footer__list text-right">
 
-                                                    {{ $totalPrice }}</td>
+                                                    {{ $totalPrice }}đ
+                                                </td>
 
                                             </tr>
                                         </tfoot>
@@ -178,7 +184,8 @@
                                             <input type="hidden" name="total_vnpay" value=" {{ $totalPrice }} ">
                                             <li class="payment__history--list"><button
                                                     class="payment__history--link primary__btn" type="submit"
-                                                    name="redirect" style="margin-right: 10px">VnPay</button> </li>
+                                                    name="redirect" style="margin-right: 10px">VnPay</button>
+                                            </li>
                                             <!-- <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">VnPay</button></li> -->
                                         </form>
 
@@ -197,10 +204,14 @@
                                         </li>
                                     </ul>
                                 </div>
-
-                                <button class="checkout__now--btn primary__btn" type="submit">Checkout Now</button>
+                                @foreach ($cartItems as $cart)
+                                    <button class="checkout__now--btn primary__btn" type="submit"><a
+                                            href="{{ route('checkoutPost', $cart->id) }}">Checkout now</a>
+                                    </button>
+                                @endforeach
                             </aside>
                         </div>
+
 
                     </div>
             </div>
@@ -256,5 +267,4 @@
     <p>Xin vui lòng đăng nhập để có thể tiếp tục mua hàng!</p><a class="account__menu--list"
         href="{{ route('login') }}">Đăng nhập</a>
     @endif
-
 @endsection
