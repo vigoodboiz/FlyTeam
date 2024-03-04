@@ -17,6 +17,20 @@ class CheckoutController extends Controller
         return view('page.checkout' , compact('cartItems','totalPrice') );
     }
 
+        // Kiểm tra trạng thái đơn hàng từ session
+        // $orderStatus = session('order_status');
+
+        // // Kiểm tra nếu đơn hàng đã được thanh toán thành công
+        // if ($orderStatus === 'completed') {
+        //     // Xoá dữ liệu đơn hàng từ session
+        //     session()->forget('order_status');
+        //     // Xoá các dữ liệu khác trên trang checkout
+        //     // ...
+
+        //     // Chuyển hướng đến trang khác
+        //     return redirect()->to('http://127.0.0.1:8000/page/account');
+        // }
+
     public function calculateTotalPrice()
     {
       

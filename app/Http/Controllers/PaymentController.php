@@ -27,18 +27,9 @@ class PaymentController extends Controller
         return $result;
     }
 
-
-
-
     public function momo_payment(Request $request)
     {
-
-       //     momo test 
-        // OTP
-        // 0923441111
-        // 9704 0000 0000 0018
-        // 03/07
-        // NGUYEN VAN A
+       
         $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
 
         $data=$request->all();
@@ -89,17 +80,8 @@ class PaymentController extends Controller
         
     }
 
-
-
     public function vnpay_payment(Request $request)
     {
-
-        // Ngân hàng: NCB
-        // Số thẻ: 9704198526191432198
-        // Tên chủ thẻ:NGUYEN VAN A
-        // Ngày phát hành:07/15
-        // Mật khẩu OTP:123456
-
         $data=$request->all();
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
         $vnp_Returnurl = "https://localhost/vnpay_php/vnpay_return.php";
