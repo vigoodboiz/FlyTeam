@@ -42,7 +42,7 @@
                                 @endif
                                 <li class="account__menu--list"><a
                                         href="{{ route('logout') }}"onclick="event.preventDefault();
-                                                                                                                                                                                                                                                                                                                                                                    document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Logout</a>
+                                                                                                                                                                                                                                                                                                                                                                        document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Logout</a>
                                 </li>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
@@ -56,7 +56,7 @@
                                         <div class="card-body text-center">
                                             @if (!empty(auth()->user()->profile_picture))
                                                 <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}"
-                                                    alt="Profile Picture">
+                                                    class="rounded-circle" alt="Profile Picture">
                                             @else
                                                 <form action="{{ route('profile.update') }}" method="POST"
                                                     enctype="multipart/form-data">

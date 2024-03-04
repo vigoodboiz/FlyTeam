@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Oder extends Model
+class Favorite extends Model
 {
     use HasFactory;
-    protected $table = 'oder';
     protected $fillable = [
         'user_id',
-        'date',
-        'total',
-        'address'
+        'product_id',
     ];
+    
+    public function prod(){
+        return $this->hasOne(Products::class, 'id', 'product_id');
+    }
 }

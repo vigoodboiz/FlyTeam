@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class OderDetail extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     protected $table = "oder_detail";
     protected $fillable = [
         'product_id',
@@ -15,4 +16,8 @@ class OderDetail extends Model
         'price',
         'quantity'
     ];
+
+    public function product(){
+        return $this->hasOne(Product::class, 'product_id', 'id');
+    }
 }
