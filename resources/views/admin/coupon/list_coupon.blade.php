@@ -19,19 +19,19 @@
         }
         ?>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Tên mã giảm giá</th>
-                    <th>Ngày bắt đầu</th>
-                    <th>Ngày kết thúc</th>
-                    <th>Mã giảm giá</th>
-                    {{-- <th>Số lượng mã</th> --}}
-                    <th>Điều kiện giảm giá</th>
-                    <th>Số giảm</th>
-                    <th>Trạng thái</th>
-                    <th>Hết hạn</th>
-                    <th> Chức năng</th>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tên mã giảm giá</th>
+                <th>Ngày bắt đầu</th>
+                <th>Ngày kết thúc</th>
+                <th>Mã giảm giá</th>
+                <th>Số lượng mã</th>
+                <th>Điều kiện giảm giá</th>
+                <th>Số giảm</th>
+                <th>Trạng thái</th>
+                <th>Hết hạn</th>
+                <th> Chức năng</th>
 
                 </tr>
             </thead>
@@ -99,21 +99,21 @@
                                 <?php
                         }
                         ?>
-                            </span>
-                        </td>
-                        <td>
-                            @can('coupon_create')
-                                <center><a onclick="return confirm('Bạn có chắc là muốn xóa mã này ko?')"
-                                        href="{{ route('delete_coupon', $cou->id) }}" class="btn btn-danger">
-                                        <i class="fa fa-trash mr-0"></i>
-                                    </a></center>
-                            @endcan
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+                    </span>
+                </td>
+              
+                <td>
+                    @can('coupon_create')
+                    <center><a onclick="return confirm('Bạn có chắc là muốn xóa mã này ko?')" href="{{ route('delete_coupon', $cou->id) }}">
+                            <i class="fa fa-times text-danger text"></i>
+                        </a></center>
+                    @endcan
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 
     </div>
 @endsection

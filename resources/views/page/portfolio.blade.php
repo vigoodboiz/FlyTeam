@@ -63,7 +63,7 @@
                                                     enctype="multipart/form-data">
                                                     @csrf
                                                     <input type="file" name="profile_picture">
-                                                    <button type="submit">Upload</button>
+                                                    <button type="submit" class="btn btn-success">Upload</button>
                                                 </form>
                                             @endif
                                         </div>
