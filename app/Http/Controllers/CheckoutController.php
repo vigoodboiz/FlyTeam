@@ -8,6 +8,7 @@ use App\Models\Products;
 use App\Models\User;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 use Mail;
 
 class CheckoutController extends Controller
@@ -17,8 +18,7 @@ class CheckoutController extends Controller
         $userId = Auth::id();
         $cartItems = Cart::where('user_id', $userId)->get();
         $totalPrice = $this->calculateTotalPrice();
-        $orders = Order::where('user_id', $userId)->get();
-        return view('page.checkout' , compact('cartItems','totalPrice', 'orders'));
+        return view('page.checkout' , compact('cartItems','totalPrice'));
     }
 
     public function calculateTotalPrice()
@@ -34,12 +34,19 @@ class CheckoutController extends Controller
         return $totalPrice;
     }
     public function post_checkout($cart_id){
+        $cartItems = Cart::all();
+
+        $totalQuantity = $cartItems->sum('quantity');
+        $totalAmount = $cartItems->sum('total_price');
+              
         $data = [
             'cart_id' => $cart_id,
             'user_id' => Auth::user()->id,
-            'payment_status' => 'pending',
+            'quantity' => $totalQuantity,
+            'total_price' => $totalAmount,
+            'payment_status' => 'Chờ xác nhận',
         ];
-        $orders = Order::where(['cart_id' => $cart_id, 'user_id' => Auth::user()->id])->first();
+        $orderd = Order::where(['cart_id' => $cart_id, 'user_id' => Auth::user()->id])->first();
             Order::create($data);
             $userId = auth::user()->id;
             $carts= Cart::where('user_id', $userId)->get();

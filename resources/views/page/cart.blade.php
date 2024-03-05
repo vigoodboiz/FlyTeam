@@ -22,166 +22,169 @@
 
         <!-- cart section start -->
         <section class="cart__section section--padding">
-            <div class="container-fluid">
-                <div class="cart__section--inner">
+            @if (Auth::check())
+                <div class="container-fluid">
+                    <div class="cart__section--inner">
 
-                    <h2 class="cart__title mb-35">Shopping Cart</h2>
+                        <h2 class="cart__title mb-35">Shopping Cart</h2>
 
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="cart__table">
-                                <table class="cart__table--inner">
-                                    <!-- thông báo -->
-                                    @if (\Session::has('message'))
-                                        <div class="alert alert-success">
-                                            {{ \Session::get('message') }}
-                                        </div>
-                                    @endif
-                                    <!-- thông báo -->
-                                    @if (\Session::has('error'))
-                                        <div class="alert alert-danger">
-                                            {{ \Session::get('error') }}
-                                        </div>
-                                    @endif
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="cart__table">
+                                    <table class="cart__table--inner">
+                                        <!-- thông báo -->
+                                        @if (\Session::has('message'))
+                                            <div class="alert alert-success">
+                                                {{ \Session::get('message') }}
+                                            </div>
+                                        @endif
+                                        <!-- thông báo -->
+                                        @if (\Session::has('error'))
+                                            <div class="alert alert-danger">
+                                                {{ \Session::get('error') }}
+                                            </div>
+                                        @endif
 
-                                    <thead class="cart__table--header">
-                                        <tr class="cart__table--header__items">
-                                            <th class="cart__table--header__list">Image</th>
-                                            <th class="cart__table--header__list">Product</th>
-                                            <th class="cart__table--header__list">Price</th>
-                                            <th class="cart__table--header__list">Sale Price</th>
-                                            <th class="cart__table--header__list">Quantity</th>
-                                            <th class="cart__table--header__list">Total</th>
-                                            <th class="cart__table--header__list">Action</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody class="cart__table--body">
-                                        @foreach ($cartItems as $cart)
-                                            <tr class="cart__table">
-                                                <th><img style="height: 80px" ;
-                                                        src="{{ asset('upload/public/images/' . $cart->product->image) }}">
-                                                </th>
-                                                <th>{{ $cart->product->name }}</th>
-                                                <th>{{ $cart->product->price }}đ</th>
-                                                <th>{{ $cart->product->price_sale }}đ</th>
-                                                <th>{{ $cart->quantity }}</th>
-                                                <th>{{ $cart->total_price }} đ</th>
-                                                <td class="product-close">
-                                                    <a href="{{ route('cart.delete', $cart->id) }}" class="product-remove"
-                                                        title="Remove this product">
-                                                        <i class="fas fa-times">Remove</i>
-                                                    </a>
-                                                </td>
+                                        <thead class="cart__table--header">
+                                            <tr class="cart__table--header__items">
+                                                <th class="cart__table--header__list">Image</th>
+                                                <th class="cart__table--header__list">Product</th>
+                                                <th class="cart__table--header__list">Price</th>
+                                                <th class="cart__table--header__list">Sale Price</th>
+                                                <th class="cart__table--header__list">Quantity</th>
+                                                <th class="cart__table--header__list">Total</th>
+                                                <th class="cart__table--header__list">Action</th>
                                             </tr>
-                                        @endforeach
+                                        </thead>
 
-                                    </tbody>
+                                        <tbody class="cart__table--body">
+                                            @foreach ($cartItems as $cart)
+                                                <tr class="cart__table">
+                                                    <th><img style="height: 80px" ;
+                                                            src="{{ asset('upload/public/images/' . $cart->product->image) }}">
+                                                    </th>
+                                                    <th>{{ $cart->product->name }}</th>
+                                                    <th>{{ $cart->product->price }}đ</th>
+                                                    <th>{{ $cart->product->price_sale }}đ</th>
+                                                    <th>{{ $cart->quantity }}</th>
+                                                    <th>{{ $cart->total_price }} đ</th>
+                                                    <td class="product-close">
+                                                        <a href="{{ route('cart.delete', $cart->id) }}"
+                                                            class="product-remove" title="Remove this product">
+                                                            <i class="fas fa-times">Remove</i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
+                                        </tbody>
 
 
-                                </table>
-                                <div class="continue__shopping d-flex justify-content-between">
-                                    <a class="continue__shopping--link" href="{{ route('shopGrid') }}">Continue
-                                        shopping</a>
+                                    </table>
+                                    <div class="continue__shopping d-flex justify-content-between">
+                                        <a class="continue__shopping--link" href="{{ route('shopGrid') }}">Continue
+                                            shopping</a>
 
 
-                                    <button type="submit">Clear Cart</button>
+                                        <button type="submit">Clear Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="cart__summary border-radius-10">
+                                    <form action="{{ route('check_coupon') }}" method="POST">
+                                        @csrf()
+                                        <div class="coupon__code mb-30">
+                                            <h3 class="coupon__code--title">Coupon</h3>
+                                            <p class="coupon__code--desc">Enter your coupon code if you have one.</p>
+                                            <div class="coupon__code--field d-flex">
+                                                <label>
+                                                    <input type="text" class="coupon__code--field__input border-radius-5"
+                                                        name="coupon" placeholder="Nhập mã giảm giá"><br>
+                                                </label>
+                                                <input name="check_coupon" class="coupon__code--field__btn primary__btn"
+                                                    type="submit" value="Aply Coupon">
+
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <td>
+                                        @if (Session::get('coupon'))
+                                            <a class="coupon__code--field__btn primary__btn"
+                                                href="{{ route('unset_coupon') }}">Unset Coupon</a>
+                                        @endif
+                                    </td>
+
+
+                                    <!-- <div class="cart__note mb-20">
+                                                                                                <h3 class="cart__note--title">Note</h3>
+                                                                                                <p class="cart__note--desc">Add special instructions for your seller...</p>
+                                                                                                <textarea class="cart__note--textarea border-radius-5"></textarea>
+                                                                                            </div> -->
+                                </div>
+
+                                <div class="cart__summary--total mb-20">
+                                    <table class="cart__summary--total__table">
+                                        <tbody>
+                                            <tr class="cart__summary--total__list">
+                                            </tr>
+                                            <tr class="cart__summary--total__list">
+                                                <td class="cart__summary--total__title text-left">GRAND TOTAL</td>
+                                                <td class="cart__summary--amount text-right">{{ $totalPrice }} VNĐ</td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                @if (Session::get('coupon'))
+                                    @foreach (Session::get('coupon') as $key => $cou)
+                                        @if ($cou['coupon_condition'] == 1)
+                                            Reduce : {{ $cou['coupon_number'] }} %
+                                            <p>
+                                                <?php
+                                                $total_coupon = ($totalPrice * $cou['coupon_number']) / 100;
+                                                echo '<p><li >Reduce :' . number_format($total_coupon, 0, ',', '.') . '</li></p>';
+                                                ?>
+                                            </p>
+                                            <p>
+                                                <li>Must pay :
+                                                    {{ number_format($totalPrice - $total_coupon, 0, ',', '.') }}
+                                                </li>
+                                            </p>
+                                        @elseif($cou['coupon_condition'] == 2)
+                                            Reduce : {{ number_format($cou['coupon_number'], 0, ',', '.') }}
+                                            <p>
+                                                <?php
+                                                $total_coupon = $totalPrice - $cou['coupon_number'];
+                                                
+                                                ?>
+                                            </p>
+                                            <p>
+                                                <li>Must pay : {{ number_format($total_coupon, 0, ',', '.') }}</li>
+                                            </p>
+                                        @endif
+                                    @endforeach
+                                @endif
+
+                                <div class="cart__summary--footer">
+                                    <p class="cart__summary--footer__desc">Shipping & taxes calculated at checkout</p>
+                                    <ul class="d-flex justify-content-between">
+                                        <li><button class="cart__summary--footer__btn primary__btn cart"
+                                                type="submit">Update
+                                                Cart</button></li>
+
+                                        <li><a class="cart__summary--footer__btn primary__btn checkout"
+                                                href="{{ route('checkoutPage') }}">Check Out</a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-lg-4">
-                            <div class="cart__summary border-radius-10">
-                                <form action="{{ route('check_coupon') }}" method="POST">
-                                    @csrf()
-                                    <div class="coupon__code mb-30">
-                                        <h3 class="coupon__code--title">Coupon</h3>
-                                        <p class="coupon__code--desc">Enter your coupon code if you have one.</p>
-                                        <div class="coupon__code--field d-flex">
-                                            <label>
-                                                <input type="text" class="coupon__code--field__input border-radius-5"
-                                                    name="coupon" placeholder="Nhập mã giảm giá"><br>
-                                            </label>
-                                            <input name="check_coupon" class="coupon__code--field__btn primary__btn"
-                                                type="submit" value="Aply Coupon">
-
-                                        </div>
-                                    </div>
-                                </form>
-                                <td>
-                                    @if (Session::get('coupon'))
-                                        <a class="coupon__code--field__btn primary__btn"
-                                            href="{{ route('unset_coupon') }}">Unset Coupon</a>
-                                    @endif
-                                </td>
-
-
-                                <!-- <div class="cart__note mb-20">
-                                                                                    <h3 class="cart__note--title">Note</h3>
-                                                                                    <p class="cart__note--desc">Add special instructions for your seller...</p>
-                                                                                    <textarea class="cart__note--textarea border-radius-5"></textarea>
-                                                                                </div> -->
-                            </div>
-
-                            <div class="cart__summary--total mb-20">
-                                <table class="cart__summary--total__table">
-                                    <tbody>
-                                        <tr class="cart__summary--total__list">
-                                        </tr>
-                                        <tr class="cart__summary--total__list">
-                                            <td class="cart__summary--total__title text-left">GRAND TOTAL</td>
-                                            <td class="cart__summary--amount text-right">{{ $totalPrice }} VNĐ</td>
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            @if (Session::get('coupon'))
-                                @foreach (Session::get('coupon') as $key => $cou)
-                                    @if ($cou['coupon_condition'] == 1)
-                                        Reduce : {{ $cou['coupon_number'] }} %
-                                        <p>
-                                            <?php
-                                            $total_coupon = ($totalPrice * $cou['coupon_number']) / 100;
-                                            echo '<p><li >Reduce :' . number_format($total_coupon, 0, ',', '.') . '</li></p>';
-                                            ?>
-                                        </p>
-                                        <p>
-                                            <li>Must pay : {{ number_format($totalPrice - $total_coupon, 0, ',', '.') }}
-                                            </li>
-                                        </p>
-                                    @elseif($cou['coupon_condition'] == 2)
-                                        Reduce : {{ number_format($cou['coupon_number'], 0, ',', '.') }}
-                                        <p>
-                                            <?php
-                                            $total_coupon = $totalPrice - $cou['coupon_number'];
-                                            
-                                            ?>
-                                        </p>
-                                        <p>
-                                            <li>Must pay : {{ number_format($total_coupon, 0, ',', '.') }}</li>
-                                        </p>
-                                    @endif
-                                @endforeach
-                            @endif
-
-                            <div class="cart__summary--footer">
-                                <p class="cart__summary--footer__desc">Shipping & taxes calculated at checkout</p>
-                                <ul class="d-flex justify-content-between">
-                                    <li><button class="cart__summary--footer__btn primary__btn cart" type="submit">Update
-                                            Cart</button></li>
-
-                                    <li><a class="cart__summary--footer__btn primary__btn checkout"
-                                            href="{{ route('checkoutPage') }}">Check Out</a></li>
-                                </ul>
-                            </div>
-                        </div>
                     </div>
 
                 </div>
-
-            </div>
-            </div>
+                </div>
         </section>
         <!-- cart section end -->
 
@@ -245,7 +248,8 @@
                                         </li>
                                     </ul>
                                     <div class="product__add--to__card">
-                                        <a class="product__card--btn" title="Add To Card" href="cart.html"> Add to Cart
+                                        <a class="product__card--btn" title="Add To Card" href="cart.html"> Add to
+                                            Cart
                                             <svg width="17" height="15" viewBox="0 0 14 11" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -372,7 +376,8 @@
                                         </li>
                                     </ul>
                                     <div class="product__add--to__card">
-                                        <a class="product__card--btn" title="Add To Card" href="cart.html"> Add to Cart
+                                        <a class="product__card--btn" title="Add To Card" href="cart.html"> Add to
+                                            Cart
                                             <svg width="17" height="15" viewBox="0 0 14 11" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -438,7 +443,8 @@
                                             <span class="rating__review--text">(126) Review</span>
                                         </li>
                                     </ul>
-                                    <h3 class="product__card--title"><a href="product-details.html">Lorem, ipsum dolor sit
+                                    <h3 class="product__card--title"><a href="product-details.html">Lorem, ipsum dolor
+                                            sit
                                             ame elit. </a></h3>
                                     <div class="product__card--price">
                                         <span class="current__price">$215.52</span>
@@ -500,7 +506,8 @@
                                         </li>
                                     </ul>
                                     <div class="product__add--to__card">
-                                        <a class="product__card--btn" title="Add To Card" href="cart.html"> Add to Cart
+                                        <a class="product__card--btn" title="Add To Card" href="cart.html"> Add to
+                                            Cart
                                             <svg width="17" height="15" viewBox="0 0 14 11" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -627,7 +634,8 @@
                                         </li>
                                     </ul>
                                     <div class="product__add--to__card">
-                                        <a class="product__card--btn" title="Add To Card" href="cart.html"> Add to Cart
+                                        <a class="product__card--btn" title="Add To Card" href="cart.html"> Add to
+                                            Cart
                                             <svg width="17" height="15" viewBox="0 0 14 11" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -755,7 +763,8 @@
                                         </li>
                                     </ul>
                                     <div class="product__add--to__card">
-                                        <a class="product__card--btn" title="Add To Card" href="cart.html"> Add to Cart
+                                        <a class="product__card--btn" title="Add To Card" href="cart.html"> Add to
+                                            Cart
                                             <svg width="17" height="15" viewBox="0 0 14 11" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -847,6 +856,10 @@
                     </div>
                 </div>
             </div>
+        @else
+            <p>Xin vui lòng đăng nhập để có thể tiếp tục mua hàng!</p><a class="account__menu--list"
+                href="{{ route('login') }}">Đăng nhập</a>
+            @endif
         </section>
         <!-- End product section -->
 

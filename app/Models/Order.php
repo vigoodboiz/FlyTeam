@@ -14,9 +14,22 @@ class Order extends Model
         'user_id',
         'cart_id',
         'payment_status',
+        'quantity',
+        'total_price',
     ];
     
     public function cart(){
         return $this->hasOne(Cart::class, 'id', 'cart_id');
+    }
+    public function user(){
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+    public function product()
+    {
+        return $this->belongsToMany(Products::class);
+    }
+    public function products()
+    {
+        return $this->hasMany(OrderProduct::class);
     }
 }

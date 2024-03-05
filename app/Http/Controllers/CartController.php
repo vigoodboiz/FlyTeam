@@ -85,7 +85,7 @@ class CartController extends Controller
             if ($cartItem) {
                 // Đã tồn tại thì tăng
                 $cartItem->quantity += $request->quantity;
-                $cartItem->total_price = $cartItem->quantity * $product->price_sale ;
+                $cartItem->total_price = $product->price_sale > 0 ? $cartItem->quantity * $product->price_sale : $cartItem->quantity * $product->price ;
                 $cartItem->save();
 
                 return back()->with('message', 'Product quantity increased successfully');
@@ -95,7 +95,7 @@ class CartController extends Controller
                     'quantity' => $request->quantity,
                     'product_id' => $id,
                     'user_id' => $userId,
-                    'total_price' => $request->quantity * $product->price_sale > 0 ? $product->price_sale : $product->price
+                    'total_price' =>  $product->price_sale > 0 ? $request->quantity * $product->price_sale : $request->quantity * $product->price
                 ]);
 
                 return back()->with('message', 'Product added to cart successfully');
