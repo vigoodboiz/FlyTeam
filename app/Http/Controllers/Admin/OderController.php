@@ -3,15 +3,35 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
+
+use Illuminate\Support\Facades\DB;
 use App\Models\Order;
+
+use Illuminate\Support\Facades\Auth;
+
+use App\Http\Controllers\Controller;
+
 use App\Models\Products;
 
 class OderController extends Controller
 {
-    public function listOder(){
-        $orders = Order::query()->with('product')->get();
-        return view('admin.oder.list', compact('orders'));
+
+    //
+    public function listOder(Request $request)
+    {
+        $title = "Danh Sách Đơn Hàng";
+        $keyword = $request->input('searchOder');
+        $oder = new Order();
+        if ($request->post() && $request->searchOder) {
+            $listOder = Order::where('address', 'like', '%' . $keyword . '%')->paginate(10);
+        }
+        else{
+            $listOder = $oder::paginate(3);
+        }
+        return view('admin.oder.list', compact('listOder', 'title'));
     }
+
+    
+
+    
 }

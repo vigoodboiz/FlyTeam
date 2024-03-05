@@ -57,8 +57,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Nhập số % hoặc tiền giảm</label>
-                                <input type="number" name="coupon_number" class="form-control" id="exampleInputEmail1"
-                                    required>
+                                <input type="number" name="coupon_number" class="form-control" id="exampleInputEmail1" required>
                             </div>
                             <button type="submit" name="add_coupon" class="btn btn-info">Thêm mã</button>
                         </form>

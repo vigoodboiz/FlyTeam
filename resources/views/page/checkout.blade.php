@@ -215,8 +215,6 @@
                                 @endforeach
                             </aside>
                         </div>
-
-
                     </div>
             </div>
         </div>

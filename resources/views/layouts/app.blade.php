@@ -22,8 +22,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
     <link rel="stylesheet" href="{{ asset('sb-admin/assets/css/cs-skin-elastic.css') }}">
     <link rel="stylesheet" href="{{ asset('sb-admin/assets/css/style.css') }}">
@@ -41,6 +40,8 @@
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
 
 
     <style>
@@ -398,6 +399,45 @@
             // Bar Chart #flotBarChart End
         });
     </script>
+
+
+    <script>
+        $(function() {
+            function readURL(input, selector) {
+                if (input.files && input.files[0]) {
+                    let reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        $(selector).attr('src', e.target.result);
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $("#image").change(function() {
+                readURL(this, '#anh_the_preview');
+            });
+
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    @yield('js-custom');
+    @yield('update-status');
+    @yield('update-delivery');
+
+    <!-- thống kê -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    @yield('js_Statistic')
+    
+
+
+
+
+
+</body>
+
+</html>
+
 
 </body>
 

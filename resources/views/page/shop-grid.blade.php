@@ -863,3 +863,28 @@
     </main>
 
 @endsection
+
+@section('price-range')
+<script>
+            $(document).ready(function() {
+                var minPrice = <?php echo $minPri ?>;
+                var maxPrice = <?php echo $maxPri ?>; // Giá trị theo product
+
+                $("#slider").slider({
+                    range: true,
+                    min: <?php echo $minPri ?>,
+                    max: <?php echo $maxPri ?>,
+
+                    values: [minPrice, maxPrice],
+                    slide: function(event, ui) {
+                        $("#price_range").val(ui.values[0] + " - " + ui.values[1]);
+                    },
+                    change: function(event, ui) {
+                        $("#price_range").val(ui.values[0] + " - " + ui.values[1]);
+                    }
+                });
+
+                $("#price_range").val("$" + minPrice + " - " + "$" + maxPrice);
+            });
+        </script>
+@endsection

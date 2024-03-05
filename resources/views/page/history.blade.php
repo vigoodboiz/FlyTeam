@@ -49,20 +49,21 @@
                             <td>{{ $item->user->phone }}</td>
                             <td>{{ $item->user->address }}</td>
                             <td>
-                                @foreach ($item->product as $products)
+                               
                                     <img class="border-radius-5"
-                                        src="{{ asset('upload/public/images/' . $products->image) }}" alt="cart-product">
-                                @endforeach
+                                    width="100"
+                                        src="{{ asset('upload/public/images/' . $item->product->image) }}" alt="cart-product">
+                                
                             </td>
                             <td>
-                                @foreach ($item->product as $products)
-                                    {{ $products->name }}
-                                @endforeach
+                                
+                                    {{ $item->product->name }}
+                                
                             </td>
                             <td>
-                                @foreach ($item->product as $products)
-                                    {{ $products->price }}
-                                @endforeach
+                                
+                                    {{ $item->product->price }}
+                                
                             </td>
                             <td>{{ $item->quantity }}</td>
                             <td>{{ $item->total_price }}đ</td>
