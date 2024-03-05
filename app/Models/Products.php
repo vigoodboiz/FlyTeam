@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Models\Favorite;
 
 class Products extends Model
@@ -37,6 +38,14 @@ class Products extends Model
     public function getFavoritedAttribute(){
         $favorited = Favorite::where(['product_id' => $this->id, 'user_id' => Auth::user()->id])->first();
         return $favorited ? true : false;
+    }
+    public function orders()
+    {
+        return $this->hasMany(OrderProduct::class);
+    }
+    public function order()
+    {
+        return $this->belongsToMany(Order::class);
     }
 }
 
