@@ -39,6 +39,7 @@ use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AcountController;
 use App\Http\Controllers\ErrosController;
+use App\Http\Controllers\HistoryController;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
@@ -232,3 +233,19 @@ Route::get('cart/delete/{cart}', [CartController::class, 'destroy'])->name('cart
 //whishlist
 Route::get('/favorite/{product}', [FavoriteController::class, 'index'])->name('favorite');
 Route::delete('/favorite/{product}', [FavoriteController::class, 'destroy'])->name('favorite.delete');
+
+//History order
+Route::get('page/history', [HistoryController::class, 'index'])->name('history');
+//Push Notification
+Route::get('/showNotification', function () {
+    return view('showNotification');
+});
+
+Route::get('getPusher', function (){
+   return view('form_pusher');
+});
+
+Route::get('/pusher', function(Illuminate\Http\Request $request) {
+    event(new App\Events\HelloPusherEvent($request));
+    return redirect('getPusher');
+});

@@ -188,6 +188,11 @@
         <!-- Start product section -->
         <section class="product__section section--padding ">
             <div class="container">
+                @if (\Session::has('msg'))
+                    <div class="alert alert-success">
+                        {{ \Session::get('msg') }}
+                    </div>
+                @endif
                 <div class="section__heading text-center mb-40">
                     <h2 class="section__heading--maintitle">TRENDING PRODUCT</h2>
                 </div>

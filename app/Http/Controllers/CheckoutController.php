@@ -8,6 +8,7 @@ use App\Models\Products;
 use App\Models\User;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 use Mail;
 
 class CheckoutController extends Controller
@@ -18,8 +19,9 @@ class CheckoutController extends Controller
         $userId = Auth::id();
         $cartItems = Cart::where('user_id', $userId)->get();
         $totalPrice = $this->calculateTotalPrice();
-        $orders = Order::where('user_id', $userId)->get();
-        return view('page.checkout', compact('cartItems', 'totalPrice', 'orders'));
+
+        return view('page.checkout' , compact('cartItems','totalPrice'));
+
     }
 
     public function calculateTotalPrice()
@@ -34,28 +36,35 @@ class CheckoutController extends Controller
         }
         return $totalPrice;
     }
+
     public function post_checkout($cart_id)
     {
-        
         $userId = Auth::user()->id;
         $cart = Cart::where('user_id', $userId)->first();
-        // $cart_id = $cart->id;
+
+        $totalQuantity = $cart->sum('quantity');
+        $totalAmount = $cart->sum('total_price');
+
+        
+        
         $data = [
             'cart_id' => $cart_id,
             'user_id' => Auth::user()->id,
             'product_id' => $cart->product_id,
+            'quantity' => $totalQuantity,
+            'total_price' => $totalAmount,
             'payment_status' => 'Đang Xác Nhận',
             'delivery_status' => 'Đang Xử Lý',
         ];
 
-        $order = Order::where(['cart_id' => $cart_id, 'user_id' => Auth::user()->id])->first();
+        $orderd = Order::where(['cart_id' => $cart_id, 'user_id' => Auth::user()->id])->first();
+            Order::create($data);
+            $userId = auth::user()->id;
+            $carts= Cart::where('user_id', $userId)->get();
+            foreach ($carts as $cart) {
+                $cart->delete();
+            }
+           return redirect()->back()->with('msg', 'Đặt hàng thành công');
 
-        if (!$order) {
-            $order = Order::create($data);
-        }
-
-        $cart->delete();
-
-        return redirect()->back()->with('msg', 'Đặt hàng thành công');
     }
 }

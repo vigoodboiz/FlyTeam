@@ -13,7 +13,7 @@
             <th scope="col">PRODUCT</th>
             <th scope="col">PRODUCT</th>
             <th scope="col">STATUS</th>
-            <th scope="col">OPPTION</th>
+           
         </tr>
     </thead>
     <tbody>
@@ -32,11 +32,7 @@
                     <option value="Đã thanh toán" {{ $oder->payment_status == 'Đã thanh toán' ? 'selected' : '' }}>Đã thanh toán</option>
                 </select> 
             </td>
-            <td>
-                @can('orderStt_delete')
-                <a onclick="return confirm('bạn có muốn xóa không?')" href="{{ route('deleteOder_status', ['id' => $oder->id]) }}" class="btn btn-danger"><i class="fa fa-trash mr-0"></i></a>
-                @endcan
-            </td>
+            
         </tr>
         @endforeach
     </tbody>

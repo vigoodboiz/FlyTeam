@@ -11,7 +11,7 @@
             <th scope="col">PRODUCT NAME</th>
             <th scope="col">STATUS_ODER</th>
             <th scope="col">STATUS</th>
-            <th scope="col">OPPTION</th>
+    
         </tr>
     </thead>
     <tbody>
@@ -28,11 +28,7 @@
                     <option value="Đã Giao Hàng" {{ $oder->delivery_status == 'Đã Giao Hàng' ? 'selected' : '' }}>Đã Giao Hàng</option>
                 </select>
             </td>
-            <td>
-                @can('delivery_delete')
-                <a onclick="return confirm('bạn có muốn xóa không?')" href="{{ route('deleteDelivery_status', ['id' => $oder->id]) }}" class="btn btn-danger"><i class="fa fa-trash mr-0"></i></a>
-                @endcan
-            </td>
+            
         </tr>
         @endforeach
     </tbody>

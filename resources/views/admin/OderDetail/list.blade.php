@@ -11,7 +11,7 @@
             <th scope="col">USER</th>
             <th scope="col">PRODUCT NAME</th>
             <th scope="col">PRODUCT PRICE</th>
-            <th scope="col">OPPTION</th>
+            
         </tr>
     </thead>
     <tbody>
@@ -22,11 +22,7 @@
             <td>{{ $oder->user->name }}</td>
             <td>{{ $oder->product->price }}</td>
             <td>{{ $oder->product->name }}</td>
-            <td>
-                @can('orderDetail_delete')
-                <a onclick="return confirm('bạn có muốn xóa không?')" href="{{ route('deleteOder_detail', ['id' => $oder->id]) }}" class="btn btn-danger"><i class="fa fa-trash mr-0"></i></a>
-                @endcan
-            </td>
+            
         </tr>
         @endforeach
     </tbody>

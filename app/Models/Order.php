@@ -17,20 +17,25 @@ class Order extends Model
         'cart_id',
         'product_id',
         'payment_status',
-        'delivery_status'
+        'delivery_status',
+        'quantity',
+        'total_price',
+
     ];
     
     public function cart(){
         return $this->hasOne(Cart::class, 'id', 'cart_id');
     }
 
-    public function user(): BelongsTo {
-        return $this->belongsTo(User::class);
+    public function user(){
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
-
     public function product(): BelongsTo {
         return $this->belongsTo(Products::class);
     }
+    public function products()
+    {
+        return $this->hasMany(OrderProduct::class);
+    }
 
-    
 }

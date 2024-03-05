@@ -20,11 +20,6 @@ class DeliveryStatusController extends Controller
     }
 
 
-    public function delete(Request $request , $id){
-        $delivery_status = DeliveryStatus::where('id',$id)->delete();
-        if($delivery_status){
-            return redirect()->route('listDelivery_status');
-        }
-    }
+    
 
 }
