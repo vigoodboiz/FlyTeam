@@ -23,10 +23,6 @@
             <td>{{ $oder->total }}</td>
             <td>{{ $oder->address }}</td>
             <td>
-
-                @can('order_edit')
-                <a href="{{ route('editoder', ['id' => $oder->id]) }}" class="btn btn-primary"><i class="fa-solid fa-pen"></i></a>
-                @endcan
                 @can('order_delete')
                 <a onclick="return confirm('Bạn có muốn xóa không?')" href="{{ route('deleteoder', ['id' => $oder->id]) }}" class="btn btn-danger"><i class="fa fa-trash mr-0"></i></a>
                 @endcan

@@ -7,7 +7,7 @@
                 <div class="card mb-4">
                     <div class="card-body text-center">
                         @if (!empty(auth()->user()->profile_picture))
-                            <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" class="img-circle"
+                            <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" class="rounded-circle"
                                 alt="Profile Picture">
                         @else
                             <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">

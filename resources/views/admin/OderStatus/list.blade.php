@@ -7,8 +7,11 @@
     <thead>
         <tr>
             <th scope="col">STT</th>
-            <th scope="col">ID</th>
             <th scope="col">ODER_ID</th>
+            <th scope="col">USER</th>
+            <th scope="col">CART</th>
+            <th scope="col">PRODUCT</th>
+            <th scope="col">PRODUCT</th>
             <th scope="col">STATUS</th>
             <th scope="col">OPPTION</th>
         </tr>
@@ -18,12 +21,18 @@
         <tr>
             <td>{{ ++$i }}</td>
             <th scope="row">{{ $oder->id }}</th>
-            <td>{{ $oder->oder_id }}</td>
-            <td>{{ $oder->status }}</td>
+            <td>{{ $oder->user->name }}</td>
+            <td>{{ $oder->cart_id }}</td>
+            <td>{{ $oder->product->name }}</td>
+            <td>{{ $oder->product->price }}</td>
+            <td class="form-group">
+                <select class="form-control status-select" data-oder-id="{{ $oder->id }}" >
+                    <option value="Đang Xác Nhận" {{ $oder->payment_status == 'Đang Xác Nhận' ? 'selected' : '' }}>Đang Xác Nhận</option>
+                    <option value="Đã xác nhận" {{ $oder->payment_status == 'Đã xác nhận' ? 'selected' : '' }}>Đã xác nhận</option>
+                    <option value="Đã thanh toán" {{ $oder->payment_status == 'Đã thanh toán' ? 'selected' : '' }}>Đã thanh toán</option>
+                </select> 
+            </td>
             <td>
-                @can('orderStt_edit')
-                <a href="{{ route('editOder_status', ['id' => $oder->id]) }}" class="btn btn-primary"><i class="fa-solid fa-pen"></i></a>
-                @endcan
                 @can('orderStt_delete')
                 <a onclick="return confirm('bạn có muốn xóa không?')" href="{{ route('deleteOder_status', ['id' => $oder->id]) }}" class="btn btn-danger"><i class="fa fa-trash mr-0"></i></a>
                 @endcan
@@ -34,3 +43,33 @@
 </table>
 {{ $listOder_status->links() }}
 @endsection
+
+@section('update-status')
+<script>
+    $(document).ready(function() {
+        $('.status-select').on('change', function() {
+            var oderId = $(this).data('oder-id');
+            var newStatus = $(this).val();
+
+            $.ajax({
+                url: '{{ route('updateOder_status') }}',
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: oderId,
+                    status: newStatus
+                },
+                success: function(response) {
+                    // Xử lý thành công
+                    console.log(response);
+                },
+                error: function(xhr) {
+                    // Xử lý lỗi
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
+@endsection
+

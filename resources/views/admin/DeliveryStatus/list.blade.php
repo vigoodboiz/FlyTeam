@@ -6,9 +6,10 @@
 
     <thead>
         <tr>
-            <th scope="col">STT</th>
-            <th scope="col">ID</th>
             <th scope="col">ODER_ID</th>
+            <th scope="col">USER</th>
+            <th scope="col">PRODUCT NAME</th>
+            <th scope="col">STATUS_ODER</th>
             <th scope="col">STATUS</th>
             <th scope="col">OPPTION</th>
         </tr>
@@ -16,14 +17,18 @@
     <tbody>
         @foreach ($listDelivery_status as $oder)
         <tr>
-            <td>{{ ++$i }}</td>
             <th scope="row">{{ $oder->id }}</th>
-            <td>{{ $oder->oder_id }}</td>
-            <td>{{ $oder->status }}</td>
+            <td>{{ $oder->user->name }}</td>
+            <td>{{ $oder->product->name }}</td>
+            <td>{{ $oder->payment_status }}</td>
+            <td class="form-group">
+                <select class="form-control delivery-select" data-delivery-id="{{ $oder->id }}">
+                    <option value="Đang Xử Lý" {{ $oder->delivery_status == 'Đang Xử Lý' ? 'selected' : '' }}>Đang Xử Lý</option>
+                    <option value="Đang Giao Hàng" {{ $oder->delivery_status == 'Đang Giao Hàng' ? 'selected' : '' }}>Đang Giao Hàng</option>
+                    <option value="Đã Giao Hàng" {{ $oder->delivery_status == 'Đã Giao Hàng' ? 'selected' : '' }}>Đã Giao Hàng</option>
+                </select>
+            </td>
             <td>
-                @can('delivery_edit')
-                <a href="{{ route('editDelivery_status', ['id' => $oder->id]) }}" class="btn btn-primary"><i class="fa-solid fa-pen"></i></a>
-                @endcan
                 @can('delivery_delete')
                 <a onclick="return confirm('bạn có muốn xóa không?')" href="{{ route('deleteDelivery_status', ['id' => $oder->id]) }}" class="btn btn-danger"><i class="fa fa-trash mr-0"></i></a>
                 @endcan
@@ -33,4 +38,33 @@
     </tbody>
 </table>
 {{ $listDelivery_status->links() }}
+@endsection
+
+@section('update-delivery')
+<script>
+    $(document).ready(function() {
+        $('.delivery-select').on('change', function() {
+            var oderId = $(this).data('delivery-id');
+            var newStatus = $(this).val();
+
+            $.ajax({
+                url: '{{ route('updateDelivery_status') }}',
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: oderId,
+                    status: newStatus
+                },
+                success: function(response) {
+                    // Xử lý thành công
+                    console.log(response);
+                },
+                error: function(xhr) {
+                    // Xử lý lỗi
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
 @endsection

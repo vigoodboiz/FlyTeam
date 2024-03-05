@@ -53,7 +53,7 @@
                         <li><i class="bi bi-truck text-Danger"></i><a href="{{ route('listDelivery_status') }}">Trạng
                                 thái giao hàng</a></li>
 
-                        <li><i class="bi bi-graph-up-arrow text-Danger"></i><a href="ui-typgraphy.html">Thống kê</a>
+                        <li><i class="bi bi-graph-up-arrow text-Danger"></i><a href="{{ route('statistics.index') }}">Thống kê</a>
                         </li>
 
                     </ul>

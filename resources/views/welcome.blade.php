@@ -64,27 +64,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-        <script>
-            $(document).ready(function() {
-                var minPrice = 1;
-                var maxPrice = 10000000; // Giá trị theo product
-
-                $("#slider").slider({
-                    range: true,
-                    min: 1,
-                    max: 1000000,
-                    values: [minPrice, maxPrice],
-                    slide: function(event, ui) {
-                        $("#price_range").val(ui.values[0] + " - " + ui.values[1]);
-                    },
-                    change: function(event, ui) {
-                        $("#price_range").val(ui.values[0] + " - " + ui.values[1]);
-                    }
-                });
-
-                $("#price_range").val("$" + minPrice + " - " + "$" + maxPrice);
-            });
-        </script>
+        @yield('price-range');
     </body>
 
 

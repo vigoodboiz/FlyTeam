@@ -19,9 +19,11 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\StatisticController;
 
 // home
 use App\Http\Controllers\shopGridController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ShopDetailsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
@@ -93,30 +95,27 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('members', MemberController::class);
 
     Route::get('/ranking', [MemberController::class, 'ranking'])->name('members.ranking');
+    Route::get('/statistics', [StatisticController::class, 'index'])->name('statistics.index');
 
     ///////// oder ///////////
     Route::get('/oder', [OderController::class, 'listOder'])->name('listOder');
     Route::match(['GET', 'POST'], '/oder/search', [OderController::class, 'listOder'])->name('searchOder');
-    Route::match(['GET', 'POST'], '/addoder', [OderController::class, 'addOder'])->name('addOder');
-    Route::match(['GET', 'POST'], '/editoder/{id}', [OderController::class, 'editoder'])->name('editoder');
     Route::get('/delete/{id}', [OderController::class, 'deleteoder'])->name('deleteoder');
+    
 
     ///////// oder_status ///////////
     Route::get('/oder/list_oder_status', [OderStatusController::class, 'list'])->name('listOder_status');
-    Route::match(['GET', 'POST'], '/oder/add_oder_status', [OderStatusController::class, 'add'])->name('addOder_status');
-    Route::match(['GET', 'POST'], '/oder/edit_oder_status/{id}', [OderStatusController::class, 'edit'])->name('editOder_status');
     Route::get('/oder/delete_oder_status/{id}', [OderStatusController::class, 'delete'])->name('deleteOder_status');
+    Route::post('/oder/updateOder_status', [OderStatusController::class, 'updateStatus'])->name('updateOder_status');
+    Route::post('/oder/updateDelivery_status', [OderStatusController::class, 'updateDelivery_status'])->name('updateDelivery_status');
+
 
     ///////// oder_detail ///////////
     Route::get('/oder/list_oder_detail', [OderDetailController::class, 'list'])->name('listOder_detail');
-    Route::match(['GET', 'POST'], '/oder/add_oder_detail', [OderDetailController::class, 'add'])->name('addOder_detail');
-    Route::match(['GET', 'POST'], '/oder/edit_oder_detail/{id}', [OderDetailController::class, 'edit'])->name('editOder_detail');
     Route::get('/oder/delete_oder_detail/{id}', [OderDetailController::class, 'delete'])->name('deleteOder_detail');
 
     ///////// delivery_status ///////////
     Route::get('/oder/list_delivery_status', [DeliveryStatusController::class, 'list'])->name('listDelivery_status');
-    Route::match(['GET', 'POST'], '/oder/add_delivery_status', [DeliveryStatusController::class, 'add'])->name('addDelivery_status');
-    Route::match(['GET', 'POST'], '/oder/edit_delivery_status/{id}', [DeliveryStatusController::class, 'edit'])->name('editDelivery_status');
     Route::get('/oder/delete_delivery_status/{id}', [DeliveryStatusController::class, 'delete'])->name('deleteDelivery_status');
 
     //Comments
@@ -213,7 +212,11 @@ Route::get('page/privacy', [PrivacyController::class, 'index'])->name('privacyPa
 Route::get('page/contact', [ContactController::class, 'index'])->name('contactPage');
 
 // Checkout
+Route::middleware('auth')->group(function () {
 Route::get('page/Checkout', [CheckoutController::class, 'index'])->name('checkoutPage');
+Route::match(['GET', 'POST'],'page/Checkout/{cart}', [CheckoutController::class, 'post_checkout'])->name('checkoutPost');
+Route::get('verify/{token}', [CheckoutController::class, 'verify'])->name('oder.verify');
+});
 // acount
 Route::get('page/account', [AccountController::class, 'index'])->name('accountPage');
 Route::get('page/portfolio', [PortfolioController::class, 'index'])->name('portfolioPage');
@@ -224,6 +227,8 @@ Route::get('page/wishlist', [WishlishController::class, 'index'])->name('wishlis
 Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');
 Route::post('add_to_cart/{product}', [CartController::class, 'store'])->name('addCart');
 Route::delete('/cart/products/{productId}', [CartController::class, 'removeProductFromCart'])->name('cart.removeProduct');
-
 Route::get('cart/delete/{cart}', [CartController::class, 'destroy'])->name('cart.delete');
 
+//whishlist
+Route::get('/favorite/{product}', [FavoriteController::class, 'index'])->name('favorite');
+Route::delete('/favorite/{product}', [FavoriteController::class, 'destroy'])->name('favorite.delete');

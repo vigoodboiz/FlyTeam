@@ -12,7 +12,7 @@
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('becute/assets/img/logo/logo_main.png')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('becute/assets/img/logo/logo_main.png') }}">
 
     <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
     <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
@@ -22,8 +22,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
     <link rel="stylesheet" href="{{ asset('sb-admin/assets/css/cs-skin-elastic.css') }}">
     <link rel="stylesheet" href="{{ asset('sb-admin/assets/css/style.css') }}">
@@ -36,13 +35,14 @@
     <!-- bootstrap icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css">
- <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
- <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
- <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
- <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
+
 
     <style>
         #weatherWidget .currentDesc {
@@ -135,24 +135,24 @@
 
     <!--Local Stuff-->
     <script type="text/javascript">
-    $(function(){
-        $("#start_coupon").datepicker({
-            preText:"Tháng trước",
-            nextText:"Tháng sau",
-            dateFormat:"yy/mm/dd",
-            dayNamesMin:["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật"],
-            duration:"slow"
-        });
-        
-        $("#end_coupon").datepicker({
-            preText:"Tháng trước",
-            nextText:"Tháng sau",
-            dateFormat:"yy/mm/dd",
-            dayNamesMin:["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật"],
-            duration:"slow"
-        });
+        $(function() {
+            $("#start_coupon").datepicker({
+                preText: "Tháng trước",
+                nextText: "Tháng sau",
+                dateFormat: "yy/mm/dd",
+                dayNamesMin: ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật"],
+                duration: "slow"
+            });
 
-    })
+            $("#end_coupon").datepicker({
+                preText: "Tháng trước",
+                nextText: "Tháng sau",
+                dateFormat: "yy/mm/dd",
+                dayNamesMin: ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật"],
+                duration: "slow"
+            });
+
+        })
     </script>
     <script>
         jQuery(document).ready(function($) {
@@ -400,7 +400,8 @@
         });
     </script>
 
-<script>
+
+    <script>
         $(function() {
             function readURL(input, selector) {
                 if (input.files && input.files[0]) {
@@ -421,7 +422,23 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     @yield('js-custom');
+    @yield('update-status');
+    @yield('update-delivery');
+
+    <!-- thống kê -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    @yield('js_Statistic')
+    
+
+
+
+
+
 </body>
 
 </html>
 
+
+</body>
+
+</html>

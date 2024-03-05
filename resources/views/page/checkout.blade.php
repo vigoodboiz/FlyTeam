@@ -24,6 +24,11 @@
         <div class="checkout__page--area section--padding">
             <div class="container">
                 @if (Auth::check())
+                    @if (\Session::has('msg'))
+                        <div class="alert alert-success">
+                            {{ \Session::get('msg') }}
+                        </div>
+                    @endif
                     <div class="row">
                         <div class="col-lg-7 col-md-6">
                             <div class="main checkout__mian">
@@ -94,57 +99,61 @@
                                 <div class="cart__table checkout__product--table">
                                     <table class="cart__table--inner">
                                         <tbody class="cart__table--body">
-                                        @foreach($cartItems as $cart)
-                                            <tr class="cart__table--body__items">
-                                                <td class="cart__table--body__list">
-                                                    <div class="product__image two  d-flex align-items-center">
-                                                        <div class="product__thumbnail border-radius-5">
-                                                            <a class="display-block" href="product-details.html"><img
-                                                                    class="display-block border-radius-5"
-                                                                    src="{{ asset('upload/public/images/'.$cart->product->image) }}"
-                                                                    alt="cart-product"></a>
-                                                            
-                                                        </div>
-                                                        <div class="product__description">
-                                                            <label class="font-weight-bold">Name</label>
-                                                            <h4 class="product__description--name"><a
-                                                                    href="product-details.html">{{$cart->product->name}}</a></h4>
+                                            @foreach ($cartItems as $cart)
+                                                <tr class="cart__table--body__items">
+                                                    <td class="cart__table--body__list">
+                                                        <div class="product__image two  d-flex align-items-center">
+                                                            <div class="product__thumbnail border-radius-5">
+                                                                <a class="display-block" href="product-details.html"><img
+                                                                        class="display-block border-radius-5"
+                                                                        src="{{ asset('upload/public/images/' . $cart->product->image) }}"
+                                                                        alt="cart-product"></a>
 
+                                                            </div>
+                                                            <div class="product__description">
+                                                                <label>Name</label>
+                                                                <h4 class="product__description--name"><a
+                                                                        href="product-details.html">{{ $cart->product->name }}</a>
+                                                                </h4>
+
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                                <td class="cart__table--body__list">
-                                                <div class="product__description">
-                                                <label class="font-weight-bold">Quantity</label>
-                                                        <span class="cart__price">{{$cart->quantity}}</span>
+                                                    </td>
+                                                    <td class="cart__table--body__list">
+                                                        <div class="product__description">
+                                                            <label>Quantity</label>
+                                                            <span class="cart__price">{{ $cart->quantity }}</span>
                                                         </div>
-                                                </td>
-                                                <td class="cart__table--body__list">
-                                                <label class="font-weight-bold">Price</label>
-                                                         @if(isset($cart->product->price_sale) && $cart->product->price_sale > 0)
-                                                        <span class="cart__price">${{$cart->product->price_sale}}</span>
+                                                    </td>
+                                                    <td class="cart__table--body__list">
+                                                        <label>Price</label>
+                                                        @if (isset($cart->product->price_sale) && $cart->product->price_sale > 0)
+                                                            <span
+                                                                class="cart__price">{{ $cart->product->price_sale }}đ</span>
                                                         @else
-                                                        <span class="cart__price">${{$cart->product->price}}</span>
-                                                        @endif                      
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                                            <span class="cart__price">{{ $cart->product->price }}đ</span>
+                                                        @endif
+
+
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
-                              
-
                                 <div class="checkout__total">
                                     <table class="checkout__total--table">
                                         <tbody class="checkout__total--body">
                                             <tr class="checkout__total--items">
                                                 <td class="checkout__total--title text-left">Subtotal </td>
 
-                                                <td class="checkout__total--amount text-right">{{$totalPrice}}</td>
+                                                <td class="checkout__total--amount text-right">{{ $totalPrice }}đ
+                                                </td>
                                             </tr>
                                             <tr class="checkout__total--items">
                                                 <td class="checkout__total--title text-left">Shipping</td>
-                                                <td class="checkout__total--calculated__text text-right">Free Ship</td>
+                                                <td class="checkout__total--calculated__text text-right">Free Ship
+                                                </td>
 
                                             </tr>
                                         </tbody>
@@ -156,7 +165,8 @@
                                                 <td
                                                     class="checkout__total--footer__amount checkout__total--footer__list text-right">
 
-                                                    {{$totalPrice}}</td>
+                                                    {{ $totalPrice }}đ
+                                                </td>
 
                                             </tr>
                                         </tfoot>
@@ -164,34 +174,43 @@
                                 </div>
                                 <div class="payment__history mb-30">
 
-                            <h3 class="payment__history--title mb-20">Payment</h3>
-                            <ul class="payment__history--inner d-flex">
-                               
+                                    <h3 class="payment__history--title mb-20">Payment</h3>
+                                    <ul class="payment__history--inner d-flex">
 
-                        
-                                <form action="{{route('vnpay_payment')}}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="total_vnpay" value=" {{$totalPrice}} ">
-                                    <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit" name="redirect" style="margin-right: 10px">VnPay</button> </li>
-                                    <!-- <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">VnPay</button></li> -->
-                                </form>
 
-                                <form action="{{route('momo_payment')}}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="total_momo" value=" {{$totalPrice}} ">
-                                    <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit" name="redirect" style="margin-right: 10px">MoMo</button> </li>
-                                    <!-- <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">VnPay</button></li> -->
-                                </form>
 
-                                <!-- <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">Bank Transfer</button></li> -->
-                                <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">Paypal</button></li>
-                            </ul>
-                        </div>
+                                        <form action="{{ route('vnpay_payment') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="total_vnpay" value=" {{ $totalPrice }} ">
+                                            <li class="payment__history--list"><button
+                                                    class="payment__history--link primary__btn" type="submit"
+                                                    name="redirect" style="margin-right: 10px">VnPay</button>
+                                            </li>
+                                            <!-- <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">VnPay</button></li> -->
+                                        </form>
 
-                                <button class="checkout__now--btn primary__btn" type="submit">Checkout Now</button>
+                                        <form action="{{ route('momo_payment') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="total_momo" value=" {{ $totalPrice }} ">
+                                            <li class="payment__history--list"><button
+                                                    class="payment__history--link primary__btn" type="submit"
+                                                    name="redirect" style="margin-right: 10px">MoMo</button> </li>
+                                            <!-- <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">VnPay</button></li> -->
+                                        </form>
+
+                                        <!-- <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">Bank Transfer</button></li> -->
+                                        <li class="payment__history--list"><button
+                                                class="payment__history--link primary__btn" type="submit">Paypal</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                @foreach ($cartItems as $cart)
+                                    <button class="checkout__now--btn primary__btn" type="submit"><a
+                                            href="{{ route('checkoutPost', $cart->id) }}">Checkout now</a>
+                                    </button>
+                                @endforeach
                             </aside>
                         </div>
-
                     </div>
             </div>
         </div>
@@ -246,9 +265,4 @@
     <p>Xin vui lòng đăng nhập để có thể tiếp tục mua hàng!</p><a class="account__menu--list"
         href="{{ route('login') }}">Đăng nhập</a>
     @endif
-
 @endsection
-
-
-
-

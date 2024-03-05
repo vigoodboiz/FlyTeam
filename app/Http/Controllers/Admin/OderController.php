@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Oder;
+use App\Models\Order;
 use App\Http\Controllers\Controller;
 
 class OderController extends Controller
@@ -14,9 +14,9 @@ class OderController extends Controller
     {
         $title = "Danh Sách Đơn Hàng";
         $keyword = $request->input('searchOder');
-        $oder = new oder();
+        $oder = new Order();
         if ($request->post() && $request->searchOder) {
-            $listOder = Oder::where('address', 'like', '%' . $keyword . '%')->paginate(10);
+            $listOder = Order::where('address', 'like', '%' . $keyword . '%')->paginate(10);
         }
         else{
             $listOder = $oder::paginate(3);
@@ -31,7 +31,7 @@ class OderController extends Controller
         $title = "Thêm Đơn Hàng";
         if ($request->isMethod('POST')) {
             $params = $request->except('_token');
-            $oder = Oder::create($params);
+            $oder = Order::create($params);
         }
         return view('admin.oder.add', compact('title'));
     }
@@ -42,7 +42,7 @@ class OderController extends Controller
         $oder = DB::table('oder')->where('id', $id)->first();
         if ($request->isMethod('POST')) {
             $params = $request->except('_token');
-            $resutl = Oder::where('id', $id)->update($params);
+            $resutl = Order::where('id', $id)->update($params);
             if ($resutl) {
                 return redirect()->route('listOder');
             }
@@ -52,7 +52,7 @@ class OderController extends Controller
 
     public function deleteoder(Request $request, $id)
     {
-        $oder = Oder::where('id', $id)->delete();
+        $oder = Order::where('id', $id)->delete();
         if ($oder) {
             return redirect()->route('listOder');
         }

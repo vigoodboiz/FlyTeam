@@ -2,7 +2,6 @@
 
 @section('content')
     <main class="main__content_wrapper">
-
         <!-- Start breadcrumb section -->
         <div class="breadcrumb__section breadcrumb__bg">
             <div class="container">
@@ -11,7 +10,7 @@
                         <div class="breadcrumb__content text-center">
                             <ul class="breadcrumb__content--menu d-flex justify-content-center">
                                 <li class="breadcrumb__content--menu__items"><a href="{{ route('home') }}">Home</a></li>
-                                <li class="breadcrumb__content--menu__items"><span>Shopping Cart</span></li>
+                                <li class="breadcrumb__content--menu__items"><span>Wishlist</span></li>
                             </ul>
                         </div>
                     </div>
@@ -22,169 +21,63 @@
 
         <!-- cart section start -->
         <section class="cart__section section--padding">
-            <div class="container-fluid">
+            <div class="container">
                 <div class="cart__section--inner">
-
-                    <h2 class="cart__title mb-35">Shopping Cart</h2>
-
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="cart__table">
-                                <table class="cart__table--inner">
-                                    <!-- thông báo -->
-                                    @if (\Session::has('message'))
-                                        <div class="alert alert-success">
-                                            {{ \Session::get('message') }}
-                                        </div>
-                                    @endif
-                                    <!-- thông báo -->
-                                    @if (\Session::has('error'))
-                                        <div class="alert alert-danger">
-                                            {{ \Session::get('error') }}
-                                        </div>
-                                    @endif
-
-                                    <thead class="cart__table--header">
-                                        <tr class="cart__table--header__items">
-                                            <th class="cart__table--header__list">Image</th>
-                                            <th class="cart__table--header__list">Product</th>
-                                            <th class="cart__table--header__list">Price</th>
-                                            <th class="cart__table--header__list">Sale Price</th>
-                                            <th class="cart__table--header__list">Quantity</th>
-                                            <th class="cart__table--header__list">Total</th>
-                                            <th class="cart__table--header__list">Action</th>
+                    <form action="#">
+                        <h2 class="cart__title mb-30">Wishlist</h2>
+                        <div class="cart__table">
+                            <table class="cart__table--inner">
+                                <thead class="cart__table--header">
+                                    <tr class="cart__table--header__items">
+                                        <th class="cart__table--header__list">Product</th>
+                                        <th class="cart__table--header__list">Price</th>
+                                        <th class="cart__table--header__list text-center">Date</th>
+                                        <th class="cart__table--header__list text-right">ADD TO CART</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="cart__table--body">
+                                    @foreach ($orders as $item)
+                                        <tr class="cart__table--body__items">
+                                            <td class="cart__table--body__list">
+                                                <div class="cart__product d-flex align-items-center">
+                                                    <div class="cart__thumbnail">
+                                                        <a href="{{ route('shopDetails', $item->product_id) }}"><img
+                                                                class="border-radius-5"
+                                                                src="{{ asset('upload/public/images/' . $item->prod->image) }}"
+                                                                alt="cart-product"></a>
+                                                    </div>
+                                                    <div class="cart__content">
+                                                        <h3 class="cart__content--title h4">
+                                                            {{ $item->cart->name }}
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="cart__table--body__list">
+                                                <span class="cart__price">{{ $item->prod->price }}đ /
+                                                    {{ $item->prod->price_sale }}đ</span>
+                                            </td>
+                                            <td class="cart__table--body__list text-center">
+                                                <span
+                                                    class="in__stock text__secondary">{{ $item->created_at->format('d/m/Y') }}</span>
+                                            </td>
+                                            <td class="cart__table--body__list text-right">
+                                                <a class="wishlist__cart--btn primary__btn" href="cart.html">Add To Cart</a>
+                                            </td>
                                         </tr>
-                                    </thead>
-
-                                    <tbody class="cart__table--body">
-                                        @foreach ($cartItems as $cart)
-                                            <tr class="cart__table">
-                                                <th><img style="height: 80px" ;
-                                                        src="{{ asset('upload/public/images/' . $cart->product->image) }}">
-                                                </th>
-                                                <th>{{ $cart->product->name }}</th>
-                                                <th>{{ $cart->product->price }}đ</th>
-                                                <th>{{ $cart->product->price_sale }}đ</th>
-                                                <th>{{ $cart->quantity }}</th>
-                                                <th>{{ $cart->total_price }} đ</th>
-                                                <td class="product-close">
-                                                    <a href="{{ route('cart.delete', $cart->id) }}" class="product-remove"
-                                                        title="Remove this product">
-                                                        <i class="bi bi-x-circle-fill display-3 text-danger"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-
-                                    </tbody>
-
-
-                                </table>
-                                <div class="continue__shopping d-flex justify-content-between">
-                                    <a class="continue__shopping--link" href="{{ route('shopGrid') }}">Continue
-                                        shopping</a>
-
-
-                                    <button type="submit" class="coupon__code--field__btn primary__btn">Clear Cart</button>
-                                </div>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <div class="continue__shopping d-flex justify-content-between">
+                                <a class="continue__shopping--link" href="{{ route('home') }}">Continue shopping</a>
+                                <a class="continue__shopping--clear" href="{{ route('shopGrid') }}">View All Products</a>
                             </div>
                         </div>
-
-                        <div class="col-lg-4">
-                            <div class="cart__summary border-radius-10">
-                                <form action="{{ route('check_coupon') }}" method="POST">
-                                    @csrf()
-                                    <div class="coupon__code mb-30">
-                                        <h3 class="coupon__code--title">Coupon</h3>
-                                        <p class="coupon__code--desc">Enter your coupon code if you have one.</p>
-                                        <div class="coupon__code--field d-flex">
-                                            <label>
-                                                <input type="text" class="coupon__code--field__input border-radius-5"
-                                                    name="coupon" placeholder="Nhập mã giảm giá"><br>
-                                            </label>
-                                            <input name="check_coupon" class="coupon__code--field__btn primary__btn"
-                                                type="submit" value="Aply Coupon">
-
-                                        </div>
-                                    </div>
-                                </form>
-                                <td>
-                                    @if (Session::get('coupon'))
-                                        <a class="coupon__code--field__btn primary__btn"
-                                            href="{{ route('unset_coupon') }}">Unset Coupon</a>
-                                    @endif
-                                </td>
-
-
-                                <!-- <div class="cart__note mb-20">
-                                                                                    <h3 class="cart__note--title">Note</h3>
-                                                                                    <p class="cart__note--desc">Add special instructions for your seller...</p>
-                                                                                    <textarea class="cart__note--textarea border-radius-5"></textarea>
-                                                                                </div> -->
-                            </div>
-
-                            <div class="cart__summary--total mb-20">
-                                <table class="cart__summary--total__table">
-                                    <tbody>
-                                        <tr class="cart__summary--total__list">
-                                        </tr>
-                                        <tr class="cart__summary--total__list">
-                                            <td class="cart__summary--total__title text-left">GRAND TOTAL</td>
-                                            <td class="cart__summary--amount text-right">{{ $totalPrice }} VNĐ</td>
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            @if (Session::get('coupon'))
-                                @foreach (Session::get('coupon') as $key => $cou)
-                                    @if ($cou['coupon_condition'] == 1)
-                                        Reduce : {{ $cou['coupon_number'] }} %
-                                        <p>
-                                            <?php
-                                            $total_coupon = ($totalPrice * $cou['coupon_number']) / 100;
-                                            echo '<p><li >Reduce :' . number_format($total_coupon, 0, ',', '.') . '</li></p>';
-                                            ?>
-                                        </p>
-                                        <p>
-                                            <li>Must pay : {{ number_format($totalPrice - $total_coupon, 0, ',', '.') }}
-                                            </li>
-                                        </p>
-                                    @elseif($cou['coupon_condition'] == 2)
-                                        Reduce : {{ number_format($cou['coupon_number'], 0, ',', '.') }}
-                                        <p>
-                                            <?php
-                                            $total_coupon = $totalPrice - $cou['coupon_number'];
-                                            
-                                            ?>
-                                        </p>
-                                        <p>
-                                            <li>Must pay : {{ number_format($total_coupon, 0, ',', '.') }}</li>
-                                        </p>
-                                    @endif
-                                @endforeach
-                            @endif
-
-                            <div class="cart__summary--footer">
-                                <p class="cart__summary--footer__desc">Shipping & taxes calculated at checkout</p>
-                                <ul class="d-flex justify-content-between">
-                                    <li><button class="cart__summary--footer__btn primary__btn cart" type="submit">Update
-                                            Cart</button></li>
-
-                                    <li><a class="cart__summary--footer__btn primary__btn checkout"
-                                            href="{{route('checkoutPage')}}">Check Out</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
+                    </form>
                 </div>
-
-            </div>
             </div>
         </section>
         <!-- cart section end -->
-
         <!-- Start product section -->
         <section class="product__section section--padding pt-0">
             <div class="container">
@@ -198,20 +91,17 @@
                                 <div class="product__card--thumbnail">
                                     <a class="product__card--thumbnail__link display-block" href="product-details.html">
                                         <img class="product__card--thumbnail__img product__primary--img"
-                                            src="{{ asset('becute/assets/img/product/main-product/product1.webp') }}"
-                                            alt="product-img">
+                                            src="assets/img/product/main-product/product1.webp" alt="product-img">
                                         <img class="product__card--thumbnail__img product__secondary--img"
-                                            src="{{ asset('becute/assets/img/product/main-product/product2.webp') }}"
-                                            alt="product-img">
+                                            src="assets/img/product/main-product/product2.webp" alt="product-img">
                                     </a>
                                     <span class="product__badge">-14%</span>
                                     <ul class="product__card--action">
                                         <li class="product__card--action__list">
                                             <a class="product__card--action__btn" title="Quick View" data-bs-toggle="modal"
                                                 data-bs-target="#examplemodal" href="javascript:void(0)">
-                                                <svg class="product__card--action__btn--svg" width="16"
-                                                    height="16" viewBox="0 0 16 16" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
+                                                <svg class="product__card--action__btn--svg" width="16" height="16"
+                                                    viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path
                                                         d="M15.6952 14.4991L11.7663 10.5588C12.7765 9.4008 13.33 7.94381 13.33 6.42703C13.33 2.88322 10.34 0 6.66499 0C2.98997 0 0 2.88322 0 6.42703C0 9.97085 2.98997 12.8541 6.66499 12.8541C8.04464 12.8541 9.35938 12.4528 10.4834 11.6911L14.4422 15.6613C14.6076 15.827 14.8302 15.9184 15.0687 15.9184C15.2944 15.9184 15.5086 15.8354 15.6711 15.6845C16.0166 15.364 16.0276 14.8325 15.6952 14.4991ZM6.66499 1.67662C9.38141 1.67662 11.5913 3.8076 11.5913 6.42703C11.5913 9.04647 9.38141 11.1775 6.66499 11.1775C3.94857 11.1775 1.73869 9.04647 1.73869 6.42703C1.73869 3.8076 3.94857 1.67662 6.66499 1.67662Z"
                                                         fill="currentColor"></path>
@@ -221,9 +111,8 @@
                                         </li>
                                         <li class="product__card--action__list">
                                             <a class="product__card--action__btn" title="Compare" href="compare.html">
-                                                <svg class="product__card--action__btn--svg" width="17"
-                                                    height="17" viewBox="0 0 14 13" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
+                                                <svg class="product__card--action__btn--svg" width="17" height="17"
+                                                    viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path
                                                         d="M6.89137 6.09375C6.89137 6.47656 7.16481 6.75 7.54762 6.75H10.1453C10.7195 6.75 11.0203 6.06641 10.5828 5.65625L9.8445 4.89062L12.907 1.82812C13.0437 1.69141 13.0437 1.47266 12.907 1.36328L12.2781 0.734375C12.1687 0.597656 11.95 0.597656 11.8132 0.734375L8.75075 3.79688L7.98512 3.05859C7.57496 2.62109 6.89137 2.92188 6.89137 3.49609V6.09375ZM1.94215 12.793L5.00465 9.73047L5.77028 10.4688C6.18043 10.9062 6.89137 10.6055 6.89137 10.0312V7.40625C6.89137 7.05078 6.59059 6.75 6.23512 6.75H3.61012C3.0359 6.75 2.73512 7.46094 3.17262 7.87109L3.9109 8.63672L0.848402 11.6992C0.711683 11.8359 0.711683 12.0547 0.848402 12.1641L1.47731 12.793C1.58668 12.9297 1.80543 12.9297 1.94215 12.793Z"
                                                         fill="currentColor" />
@@ -233,9 +122,8 @@
                                         </li>
                                         <li class="product__card--action__list">
                                             <a class="product__card--action__btn" title="Wishlist" href="wishlist.html">
-                                                <svg class="product__card--action__btn--svg" width="18"
-                                                    height="18" viewBox="0 0 16 13" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
+                                                <svg class="product__card--action__btn--svg" width="18" height="18"
+                                                    viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path
                                                         d="M13.5379 1.52734C11.9519 0.1875 9.51832 0.378906 8.01442 1.9375C6.48317 0.378906 4.04957 0.1875 2.46364 1.52734C0.412855 3.25 0.713636 6.06641 2.1902 7.57031L6.97536 12.4648C7.24879 12.7383 7.60426 12.9023 8.01442 12.9023C8.39723 12.9023 8.7527 12.7383 9.02614 12.4648L13.8386 7.57031C15.2879 6.06641 15.5886 3.25 13.5379 1.52734ZM12.8816 6.64062L8.09645 11.5352C8.04176 11.5898 7.98707 11.5898 7.90504 11.5352L3.11989 6.64062C2.10817 5.62891 1.91676 3.71484 3.31129 2.53906C4.3777 1.63672 6.01832 1.77344 7.05739 2.8125L8.01442 3.79688L8.97145 2.8125C9.98317 1.77344 11.6238 1.63672 12.6902 2.51172C14.0847 3.71484 13.8933 5.62891 12.8816 6.64062Z"
                                                         fill="currentColor" />
@@ -325,11 +213,9 @@
                                 <div class="product__card--thumbnail">
                                     <a class="product__card--thumbnail__link display-block" href="product-details.html">
                                         <img class="product__card--thumbnail__img product__primary--img"
-                                            src="{{ asset('becute/assets/img/product/main-product/product4.webp') }}"
-                                            alt="product-img">
+                                            src="assets/img/product/main-product/product4.webp" alt="product-img">
                                         <img class="product__card--thumbnail__img product__secondary--img"
-                                            src="{{ asset('becute/assets/img/product/main-product/product3.webp') }}"
-                                            alt="product-img">
+                                            src="assets/img/product/main-product/product3.webp" alt="product-img">
                                     </a>
                                     <ul class="product__card--action">
                                         <li class="product__card--action__list">
@@ -452,11 +338,9 @@
                                 <div class="product__card--thumbnail">
                                     <a class="product__card--thumbnail__link display-block" href="product-details.html">
                                         <img class="product__card--thumbnail__img product__primary--img"
-                                            src="{{ asset('becute/assets/img/product/main-product/product6.webp') }}"
-                                            alt="product-img">
+                                            src="assets/img/product/main-product/product6.webp" alt="product-img">
                                         <img class="product__card--thumbnail__img product__secondary--img"
-                                            src="{{ asset('becute/assets/img/product/main-product/product5.webp') }}"
-                                            alt="product-img">
+                                            src="assets/img/product/main-product/product5.webp" alt="product-img">
                                     </a>
                                     <span class="product__badge">-14%</span>
                                     <ul class="product__card--action">
@@ -580,11 +464,9 @@
                                 <div class="product__card--thumbnail">
                                     <a class="product__card--thumbnail__link display-block" href="product-details.html">
                                         <img class="product__card--thumbnail__img product__primary--img"
-                                            src="{{ asset('becute/assets/img/product/main-product/product2.webp') }}"
-                                            alt="product-img">
+                                            src="assets/img/product/main-product/product2.webp" alt="product-img">
                                         <img class="product__card--thumbnail__img product__secondary--img"
-                                            src="{{ asset('becute/assets/img/product/main-product/product1.webp') }}"
-                                            alt="product-img">
+                                            src="assets/img/product/main-product/product1.webp" alt="product-img">
                                     </a>
                                     <ul class="product__card--action">
                                         <li class="product__card--action__list">
@@ -707,11 +589,9 @@
                                 <div class="product__card--thumbnail">
                                     <a class="product__card--thumbnail__link display-block" href="product-details.html">
                                         <img class="product__card--thumbnail__img product__primary--img"
-                                            src="{{ asset('becute/assets/img/product/main-product/product8.webp') }}"
-                                            alt="product-img">
+                                            src="assets/img/product/main-product/product8.webp" alt="product-img">
                                         <img class="product__card--thumbnail__img product__secondary--img"
-                                            src="{{ asset('becute/assets/img/product/main-product/product7.webp') }}"
-                                            alt="product-img">
+                                            src="assets/img/product/main-product/product7.webp" alt="product-img">
                                     </a>
                                     <span class="product__badge">-14%</span>
                                     <ul class="product__card--action">
@@ -857,8 +737,8 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="brang__logo--items">
-                                <img class="brang__logo--img"
-                                    src="{{ asset('becute/assets/img/logo/brand-logo1.webp') }}" alt="brand-logo">
+                                <img class="brang__logo--img" src="{{ asset('becute/assets/img/logo/brand-logo1.webp') }}"
+                                    alt="brand-logo">
                             </div>
                         </div>
                         <div class="swiper-slide">
@@ -885,82 +765,94 @@
                                     src="{{ asset('becute/assets/img/logo/brand-logo5.webp') }}" alt="brand-logo">
                             </div>
                         </div>
-                        <div class="swiper-slide">
-                            <div class="brang__logo--items">
-                                <img class="brang__logo--img"
-                                    src="{{ asset('becute/assets/img/logo/brand-logo6.webp') }}" alt="brand-logo">
+                        <div class="swiper__nav--btn swiper-button-next">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class=" -chevron-right">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </div>
+                        <div class="swiper__nav--btn swiper-button-prev">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class=" -chevron-left">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                            <div class="swiper-slide">
+                                <div class="brang__logo--items">
+                                    <img class="brang__logo--img"
+                                        src="{{ asset('becute/assets/img/logo/brand-logo6.webp') }}" alt="brand-logo">
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="brang__logo--items">
+                                    <img class="brang__logo--img"
+                                        src="{{ asset('becute/assets/img/logo/brand-logo7.webp') }}" alt="brand-logo">
+                                </div>
                             </div>
                         </div>
-                        <div class="swiper-slide">
-                            <div class="brang__logo--items">
-                                <img class="brang__logo--img"
-                                    src="{{ asset('becute/assets/img/logo/brand-logo7.webp') }}" alt="brand-logo">
-                            </div>
+                        <div class="swiper__nav--btn swiper-button-next">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class=" -chevron-right">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
                         </div>
-                    </div>
-                    <div class="swiper__nav--btn swiper-button-next">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class=" -chevron-right">
-                            <polyline points="9 18 15 12 9 6"></polyline>
-                        </svg>
-                    </div>
-                    <div class="swiper__nav--btn swiper-button-prev">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class=" -chevron-left">
-                            <polyline points="15 18 9 12 15 6"></polyline>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End brand section -->
-
-        <!-- Start feature section -->
-        <section class="feature__section section--padding pt-0">
-            <div class="container">
-                <div class="feature__inner d-flex justify-content-between">
-                    <div class="feature__items d-flex align-items-center">
-                        <div class="feature__icon">
-                            <img src="{{ asset('becute/assets/img/other/feature1.webp') }}" alt="img">
-                        </div>
-                        <div class="feature__content">
-                            <h2 class="feature__content--title h3">Free Shipping</h2>
-                            <p class="feature__content--desc">Free shipping over $100</p>
-                        </div>
-                    </div>
-                    <div class="feature__items d-flex align-items-center">
-                        <div class="feature__icon ">
-                            <img src="{{ asset('becute/assets/img/other/feature2.webp') }}" alt="img">
-                        </div>
-                        <div class="feature__content">
-                            <h2 class="feature__content--title h3">Support 24/7</h2>
-                            <p class="feature__content--desc">Contact us 24 hours a day</p>
-                        </div>
-                    </div>
-                    <div class="feature__items d-flex align-items-center">
-                        <div class="feature__icon">
-                            <img src="{{ asset('becute/assets/img/other/feature3.webp') }}" alt="img">
-                        </div>
-                        <div class="feature__content">
-                            <h2 class="feature__content--title h3">100% Money Back</h2>
-                            <p class="feature__content--desc">You have 30 days to Return</p>
-                        </div>
-                    </div>
-                    <div class="feature__items d-flex align-items-center">
-                        <div class="feature__icon">
-                            <img src="{{ asset('becute/assets/img/other/feature4.webp') }}" alt="img">
-                        </div>
-                        <div class="feature__content">
-                            <h2 class="feature__content--title h3">Payment Secure</h2>
-                            <p class="feature__content--desc">We ensure secure payment</p>
+                        <div class="swiper__nav--btn swiper-button-prev">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class=" -chevron-left">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- End feature section -->
+            <!-- End brand section -->
 
+            <!-- Start feature section -->
+            <section class="feature__section section--padding pt-0">
+                <div class="container">
+                    <div class="feature__inner d-flex justify-content-between">
+                        <div class="feature__items d-flex align-items-center">
+                            <div class="feature__icon">
+                                <img src="{{ asset('becute/assets/img/other/feature1.webp') }}" alt="img">
+                            </div>
+                            <div class="feature__content">
+                                <h2 class="feature__content--title h3">Free Shipping</h2>
+                                <p class="feature__content--desc">Free shipping over $100</p>
+                            </div>
+                        </div>
+                        <div class="feature__items d-flex align-items-center">
+                            <div class="feature__icon ">
+                                <img src="{{ asset('becute/assets/img/other/feature2.webp') }}" alt="img">
+                            </div>
+                            <div class="feature__content">
+                                <h2 class="feature__content--title h3">Support 24/7</h2>
+                                <p class="feature__content--desc">Contact us 24 hours a day</p>
+                            </div>
+                        </div>
+                        <div class="feature__items d-flex align-items-center">
+                            <div class="feature__icon">
+                                <img src="{{ asset('becute/assets/img/other/feature3.webp') }}" alt="img">
+                            </div>
+                            <div class="feature__content">
+                                <h2 class="feature__content--title h3">100% Money Back</h2>
+                                <p class="feature__content--desc">You have 30 days to Return</p>
+                            </div>
+                        </div>
+                        <div class="feature__items d-flex align-items-center">
+                            <div class="feature__icon">
+                                <img src="{{ asset('becute/assets/img/other/feature4.webp') }}" alt="img">
+                            </div>
+                            <div class="feature__content">
+                                <h2 class="feature__content--title h3">Payment Secure</h2>
+                                <p class="feature__content--desc">We ensure secure payment</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- End feature section -->
     </main>
 @endsection
