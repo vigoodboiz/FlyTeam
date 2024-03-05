@@ -172,41 +172,45 @@
                                         </tfoot>
                                     </table>
                                 </div>
-                                <div class="payment__history mb-30">
-
-                                    <h3 class="payment__history--title mb-20">Payment</h3>
-                                    <ul class="payment__history--inner d-flex">
-
-
-
-                                        <form action="{{ route('vnpay_payment') }}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="total_vnpay" value=" {{ $totalPrice }} ">
-                                            <li class="payment__history--list"><button
-                                                    class="payment__history--link primary__btn" type="submit"
-                                                    name="redirect" style="margin-right: 10px">VnPay</button>
-                                            </li>
-                                            <!-- <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">VnPay</button></li> -->
-                                        </form>
-
-                                        <form action="{{ route('momo_payment') }}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="total_momo" value=" {{ $totalPrice }} ">
-                                            <li class="payment__history--list"><button
-                                                    class="payment__history--link primary__btn" type="submit"
-                                                    name="redirect" style="margin-right: 10px">MoMo</button> </li>
-                                            <!-- <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">VnPay</button></li> -->
-                                        </form>
-
-                                        <!-- <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">Bank Transfer</button></li> -->
-                                        <li class="payment__history--list"><button
-                                                class="payment__history--link primary__btn" type="submit">Paypal</button>
-                                        </li>
-                                    </ul>
-                                </div>
                                 @foreach ($cartItems as $cart)
-                                    <button class="checkout__now--btn primary__btn" type="submit"><a
-                                            href="{{ route('checkoutPost', $cart->id) }}">Checkout now</a>
+                                    <div class="payment__history mb-30">
+
+                                        <h3 class="payment__history--title mb-20">Payment</h3>
+                                        <ul class="payment__history--inner d-flex">
+
+
+
+                                            <form action="{{ route('vnpay_payment') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="total_vnpay" value=" {{ $totalPrice }} ">
+                                                <li class="payment__history--list"><button
+                                                        class="payment__history--link primary__btn" type="submit"
+                                                        name="redirect" style="margin-right: 10px">VnPay</button>
+                                                </li>
+                                                <!-- <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">VnPay</button></li> -->
+                                            </form>
+
+                                            <form action="{{ route('momo_payment') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="total_momo" value=" {{ $totalPrice }} ">
+                                                <li class="payment__history--list"><button
+                                                        class="payment__history--link primary__btn" type="submit"
+                                                        name="redirect" style="margin-right: 10px">MoMo</button> </li>
+                                                <!-- <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">VnPay</button></li> -->
+                                            </form>
+
+                                            <!-- <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">Bank Transfer</button></li> -->
+                                            <form action="{{ route('make.payment') }}" method="POST">
+                                                @csrf
+                                                <li class="payment__history--list"><button
+                                                        class="payment__history--link primary__btn"
+                                                        type="submit">Paypal</button>
+                                                </li>
+                                            </form>
+                                        </ul>
+                                    </div>
+                                    <button class="checkout__now--btn primary__btn" type="submit">
+                                        <a href="{{ route('checkoutPost', $cart->id) }}">Checkout now</a>
                                     </button>
                                 @endforeach
                             </aside>

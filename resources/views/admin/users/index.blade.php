@@ -36,7 +36,7 @@
                                 <th>Code</th>
                                 <th>Name</th>
                                 <th>Email</th>
-                                {{-- <th>Image</th> --}}
+                                <th>Image</th>
                                 <th>Gender</th>
                                 <th>SDT</th>
                                 <th>Address</th>
@@ -58,13 +58,20 @@
                                     <td>{{ $item->user_code }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
+                                    @if (!empty($item->profile_picture))
+                                        <td><img src="{{ asset('storage/' . $item->profile_picture) }}"
+                                                class="rounded-circle" alt="Profile Picture"></td>
+                                    @else{
+                                        <td>
+                                            <p>No images!</p>
+                                        </td>
+                                        }
+                                    @endif
                                     <td>{{ $item->gender }}</td>
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $item->address }}</td>
                                     <td>
-                                        @foreach ($item->roles as $role)
-                                            <span class="bg-primary">{{ $role->title }}</span>
-                                        @endforeach
+                                        {{-- <span class="bg-primary">{{ $item->roles->title }}</span> --}}
                                         {{ $item->role_id }}
                                     </td>
                                     <td>

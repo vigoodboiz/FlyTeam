@@ -4,20 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Order;
+use App\Models\User;
 
 class OderDetail extends Model
 {
     use HasFactory;
-    public $timestamps = false;
     protected $table = "oder_detail";
-    protected $fillable = [
-        'product_id',
-        'oder_id',
-        'price',
-        'quantity'
-    ];
-
-    public function product(){
-        return $this->hasOne(Product::class, 'product_id', 'id');
+    public function user(){
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+    public function orders(){
+        return $this->hasOne(Order::class, 'id', 'order_id');
     }
 }

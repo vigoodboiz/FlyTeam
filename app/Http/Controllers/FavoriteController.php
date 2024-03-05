@@ -24,6 +24,6 @@ class FavoriteController extends Controller
 
     public function destroy(Favorite $favorited){
         $favorited->delete();
-        return back();
+        return redirect()->back()->with('msg', 'Bạn đã xóa sản phẩm yêu thích!');
     }
 }

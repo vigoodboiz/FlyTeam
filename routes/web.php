@@ -30,6 +30,7 @@ use App\Http\Controllers\PrivacyController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\HistoryController;
 
 use App\Http\Controllers\WishlishController;
 use App\Http\Controllers\CheckoutController;
@@ -97,10 +98,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     ///////// oder ///////////
     Route::get('/oder', [OderController::class, 'listOder'])->name('listOder');
-    Route::match(['GET', 'POST'], '/oder/search', [OderController::class, 'listOder'])->name('searchOder');
-    Route::match(['GET', 'POST'], '/addoder', [OderController::class, 'addOder'])->name('addOder');
-    Route::match(['GET', 'POST'], '/editoder/{id}', [OderController::class, 'editoder'])->name('editoder');
-    Route::get('/delete/{id}', [OderController::class, 'deleteoder'])->name('deleteoder');
 
     ///////// oder_status ///////////
     Route::get('/oder/list_oder_status', [OderStatusController::class, 'list'])->name('listOder_status');
@@ -186,10 +183,17 @@ Route::controller(GoogleController::class)->group(function () {
     Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
     Route::get('auth/google/callback', 'handleGoogleCallback');
 });
+//Route paypal
+Route::controller(PaymentController::class)
+    ->prefix('paypal')
+    ->group(function () {
+        Route::view('payment', 'page.checkout')->name('create.payment');
+        Route::post('handle-payment', 'handlePayment')->name('make.payment');
+        Route::get('cancel-payment', 'paymentCancel')->name('cancel.payment');
+        Route::get('payment-success', 'paymentSuccess')->name('success.payment');
+    });
 // Send email
 Route::get('/send-mail{email}', [RegisteredUserController::class, 'store'])->name('send.email');
-
-
 
 
 // shop
@@ -214,11 +218,10 @@ Route::get('page/privacy', [PrivacyController::class, 'index'])->name('privacyPa
 Route::get('page/contact', [ContactController::class, 'index'])->name('contactPage');
 
 // Checkout
-Route::middleware('auth')->group(function () {
 Route::get('page/Checkout', [CheckoutController::class, 'index'])->name('checkoutPage');
 Route::get('page/Checkout/{cart}', [CheckoutController::class, 'post_checkout'])->name('checkoutPost');
 Route::get('verify/{token}', [CheckoutController::class, 'verify'])->name('oder.verify');
-});
+
 // acount
 Route::get('page/account', [AccountController::class, 'index'])->name('accountPage');
 Route::get('page/portfolio', [PortfolioController::class, 'index'])->name('portfolioPage');
@@ -234,3 +237,19 @@ Route::get('cart/delete/{cart}', [CartController::class, 'destroy'])->name('cart
 //whishlist
 Route::get('/favorite/{product}', [FavoriteController::class, 'index'])->name('favorite');
 Route::delete('/favorite/{product}', [FavoriteController::class, 'destroy'])->name('favorite.delete');
+
+//History order
+Route::get('page/history', [HistoryController::class, 'index'])->name('history');
+//Push Notification
+Route::get('/showNotification', function () {
+    return view('showNotification');
+});
+
+Route::get('getPusher', function (){
+   return view('form_pusher');
+});
+
+Route::get('/pusher', function(Illuminate\Http\Request $request) {
+    event(new App\Events\HelloPusherEvent($request));
+    return redirect('getPusher');
+});
