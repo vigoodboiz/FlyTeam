@@ -71,7 +71,7 @@
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $item->address }}</td>
                                     <td>
-                                        {{-- <span class="bg-primary">{{ $item->roles->title }}</span> --}}
+                                        <span class="bg-primary">{{ $item->roles->title }}</span>
                                         {{ $item->role_id }}
                                     </td>
                                     <td>
