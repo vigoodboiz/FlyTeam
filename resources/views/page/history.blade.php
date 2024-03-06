@@ -37,6 +37,7 @@
                         <th>Quantity</th>
                         <th>Total Price</th>
                         <th>Order Status</th>
+                        <th>Delivery Status</th>
                         <th>Order Date</th>
                     </tr>
                 </thead>
@@ -49,25 +50,25 @@
                             <td>{{ $item->user->phone }}</td>
                             <td>{{ $item->user->address }}</td>
                             <td>
-                               
-                                    <img class="border-radius-5"
-                                    width="100"
-                                        src="{{ asset('upload/public/images/' . $item->product->image) }}" alt="cart-product">
-                                
+
+                                <img class="border-radius-5" width="100"
+                                    src="{{ asset('upload/public/images/' . $item->product->image) }}" alt="cart-product">
+
                             </td>
                             <td>
-                                
-                                    {{ $item->product->name }}
-                                
+
+                                {{ $item->product->name }}
+
                             </td>
                             <td>
-                                
-                                    {{ $item->product->price }}
-                                
+
+                                {{ $item->product->price }}
+
                             </td>
                             <td>{{ $item->quantity }}</td>
                             <td>{{ $item->total_price }}đ</td>
                             <td>{{ $item->payment_status }}</td>
+                            <td>{{ $item->delievry_status }}</td>
                             <td>{{ $item->created_at->format('d/m/Y') }}</td>
                         </tr>
                     @endforeach

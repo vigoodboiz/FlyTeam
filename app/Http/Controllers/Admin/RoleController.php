@@ -50,7 +50,7 @@ class RoleController extends Controller
         $role = Role::create($request->all());
         $role->permissions()->sync($request->input('permissions',[]));
 
-        return redirect()->route('roles.index');
+        return redirect()->route('roles.index')->with('success', 'Role created successfully!');
     }
 
     /**
@@ -92,7 +92,7 @@ class RoleController extends Controller
         $role->update($request->all());
         $role->permissions()->sync($request->input('permissions',[]));
 
-        return redirect()->route('roles.index');
+        return redirect()->route('roles.index')->with('success', 'Role updated successfully!');
     }
     
     /**
@@ -106,7 +106,7 @@ class RoleController extends Controller
         abort_if(Gate::denies('role_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         
         $role->delete();
-        return back();
+        return back()->with('success', 'Role deleted successfully!');
     }
 
     public function massDestroy(MassDestroyRoleRequest $request) {

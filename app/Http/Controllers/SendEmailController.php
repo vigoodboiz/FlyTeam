@@ -23,6 +23,6 @@ class SendEmailController extends Controller
          
         Mail::to($user->email)->send(new DemoMail($mailData));
            
-        return view('auth.login')->with('Đăng kí thành công, vui lòng xác nhận qua email!');
+        return view('auth.login')->with('success', 'Đăng kí thành công, vui lòng xác nhận qua email!');
     }
 }

@@ -50,7 +50,7 @@ class UserController extends Controller
         $user = User::create($request->all());
         $user->roles()->sync($request->input('roles', []));
         
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'User created successfully!');
     }
 
     /**
@@ -92,7 +92,7 @@ class UserController extends Controller
         $user->update($request->all());
         $user->roles()->sync($request->input('roles', []));
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'User updated successfully!');
     }
 
     /**
@@ -106,7 +106,7 @@ class UserController extends Controller
         abort_if(Gate::denies('user_delete'), Response::HTTP_FORBIDDEN, '430 Forbidden');
         $user->delete();
 
-        return back()->with('msg', 'Thao tác thành công!');
+        return back()->with('success', 'User deleted successfully!');
     }
 
     public function massDestroy(MassDestroyUserRequest $request) {

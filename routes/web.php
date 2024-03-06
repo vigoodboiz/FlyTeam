@@ -237,15 +237,16 @@ Route::delete('/favorite/{product}', [FavoriteController::class, 'destroy'])->na
 //History order
 Route::get('page/history', [HistoryController::class, 'index'])->name('history');
 //Push Notification
-Route::get('/showNotification', function () {
-    return view('showNotification');
+Route::get('/pusher', function() {
+    $message = $request->message;
+    event(new FlyTeamPusher($message));
 });
-
-Route::get('getPusher', function (){
-   return view('form_pusher');
-});
-
-Route::get('/pusher', function(Illuminate\Http\Request $request) {
-    event(new App\Events\HelloPusherEvent($request));
-    return redirect('getPusher');
-});
+//Paypal
+Route::controller(PaymentController::class)
+    ->prefix('paypal')
+    ->group(function () {
+        Route::view('payment', 'paypal.index')->name('create.payment');
+        Route::get('handle-payment', 'handlePayment')->name('make.payment');
+        Route::get('cancel-payment', 'paymentCancel')->name('cancel.payment');
+        Route::get('payment-success', 'paymentSuccess')->name('success.payment');
+    });

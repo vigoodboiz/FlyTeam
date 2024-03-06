@@ -17,7 +17,8 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('cart_id');
             $table->foreign('cart_id')->references('id')->on('carts');
-            $table->string('payment_status')->default('Chờ xác nhận');
+            $table->string('payment_status')->default('Đang Xác Nhận');
+            $table->string('deleivery_status')->default('Đang Xử Lý');
             $table->timestamps();
         });
     }

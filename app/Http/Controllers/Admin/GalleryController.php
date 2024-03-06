@@ -49,7 +49,7 @@ class GalleryController extends Controller
                 }
                 }
 
-        return redirect()->route('index', $product_id)->with('success', 'Sản phẩm đã được thêm thành công');
+        return redirect()->route('index', $product_id)->with('success', 'Product updated successfully');
     }
 
 

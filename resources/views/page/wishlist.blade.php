@@ -40,8 +40,7 @@
                                         <tr class="cart__table--body__items">
                                             <td class="cart__table--body__list">
                                                 <div class="cart__product d-flex align-items-center">
-                                                    <form action="{{ route('favorite.delete', $item->product_id) }}"
-                                                        method="POST">
+                                                    <form action="{{ route('favorite.delete', $item->id) }}">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button class="cart__remove--btn" aria-label="search button"
