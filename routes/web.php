@@ -224,3 +224,4 @@ Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');
 Route::post('add_to_cart/{product}', [CartController::class, 'store'])->name('addCart');
 Route::delete('/cart/products/{productId}', [CartController::class, 'removeProductFromCart'])->name('cart.removeProduct');
 Route::get('cart/delete/{cart}', [CartController::class, 'destroy'])->name('cart.delete');
+//send Mail

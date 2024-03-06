@@ -41,7 +41,8 @@
  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
-
+ <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
 
     <style>
         #weatherWidget .currentDesc {
@@ -399,6 +400,27 @@
         });
     </script>
 
+<script>
+        $(function() {
+            function readURL(input, selector) {
+                if (input.files && input.files[0]) {
+                    let reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        $(selector).attr('src', e.target.result);
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $("#image").change(function() {
+                readURL(this, '#anh_the_preview');
+            });
+
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    @yield('js-custom');
 </body>
 
 </html>

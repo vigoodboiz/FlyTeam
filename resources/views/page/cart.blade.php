@@ -91,7 +91,7 @@
 
                         <div class="col-lg-4">
                             <div class="cart__summary border-radius-10">
-                                <form action="{{ route('check_coupon') }}" method="POST">
+                                <!-- <form action="{{ route('check_coupon') }}" method="POST">
                                     @csrf()
                                     <div class="coupon__code mb-30">
                                         <h3 class="coupon__code--title">Coupon</h3>
@@ -106,13 +106,13 @@
 
                                         </div>
                                     </div>
-                                </form>
-                                <td>
+                                </form> -->
+                                <!-- <td>
                                     @if (Session::get('coupon'))
                                         <a class="coupon__code--field__btn primary__btn"
                                             href="{{ route('unset_coupon') }}">Unset Coupon</a>
                                     @endif
-                                </td>
+                                </td> -->
 
 
                                 <!-- <div class="cart__note mb-20">
@@ -127,7 +127,7 @@
                                     <tbody>
                                         <tr class="cart__summary--total__list">
                                         </tr>
-                                        <tr class="cart__summary--total__list">
+                                        <tr class="cart__summary--total__list">     
                                             <td class="cart__summary--total__title text-left">GRAND TOTAL</td>
                                             <td class="cart__summary--amount text-right">{{ $totalPrice }} VNĐ</td>
 
@@ -135,7 +135,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            @if (Session::get('coupon'))
+                            <!-- @if (Session::get('coupon'))
                                 @foreach (Session::get('coupon') as $key => $cou)
                                     @if ($cou['coupon_condition'] == 1)
                                         Reduce : {{ $cou['coupon_number'] }} %
@@ -162,7 +162,7 @@
                                         </p>
                                     @endif
                                 @endforeach
-                            @endif
+                            @endif -->
 
                             <div class="cart__summary--footer">
                                 <p class="cart__summary--footer__desc">Shipping & taxes calculated at checkout</p>
