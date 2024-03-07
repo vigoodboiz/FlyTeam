@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 class MemberController extends Controller
 {
     // ... các phương thức khác
@@ -83,7 +84,9 @@ public function index()
             'points' => mt_rand(0, 100),
         ]);
     }
-    $members = Member::all();
+    $member = Auth::user()->role_id;
+    $members = Member::where('user_id',$member,3)->get();
+
     return view('admin.members.index', compact('members'));
 }
     public function show($id)

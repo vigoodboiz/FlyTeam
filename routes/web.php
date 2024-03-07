@@ -19,7 +19,7 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\GalleryController;
-
+use App\Http\Controllers\Admin\StatisticController;
 // home
 use App\Http\Controllers\shopGridController;
 use App\Http\Controllers\ShopDetailsController;
@@ -34,6 +34,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\AcountController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ErrosController;
+use App\Http\Controllers\PointController;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
@@ -67,8 +68,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
 });
-
+Route::get('page/point', [PointController::class, 'index'])->name('point');
 
 require __DIR__ . '/auth.php';
 Route::prefix('admin')->middleware(['auth'])->group(function () {
@@ -100,7 +102,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('members', MemberController::class);
 
     Route::get('/ranking', [MemberController::class, 'ranking'])->name('members.ranking');
-
+    Route::get('/statistics', [StatisticController::class, 'index'])->name('statistics.index');
     ///////// oder ///////////
     Route::get('/oder', [OderController::class, 'listOder'])->name('listOder');
     Route::match(['GET', 'POST'],'/oder/search', [OderController::class, 'listOder'])->name('searchOder');
@@ -232,6 +234,12 @@ Route::get('page/contact', [ContactController::class, 'index'])->name('contactPa
 // Checkout
 Route::get('page/Checkout', [CheckoutController::class, 'index'])->name('checkoutPage');
 // acount
+
+Route::get('page/portfolioPage', [AcountController::class, 'index'])->name('portfolioPage');
+///////////////////////
+
+// Route::get('/page/point/{id}', 'PointController@index');
+//
 Route::get('page/acount', [AcountController::class, 'index'])->name('acountPage');
 // wishlist
 Route::get('page/wishlist', [WishlishController::class, 'index'])->name('wishlistPage');
