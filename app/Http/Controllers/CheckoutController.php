@@ -59,7 +59,9 @@ class CheckoutController extends Controller
             foreach ($carts as $cart) {
                 $cart->delete();
             }
-           return redirect()->back()->with('message', 'Đặt hàng thành công');
+
+           return redirect()->back()->with('success', 'Order successfully!');
+
 
     }
 }

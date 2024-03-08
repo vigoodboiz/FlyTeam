@@ -48,10 +48,10 @@ class CartController extends Controller
                     Session::put('coupon', $cou);
                 }
                 Session::save();
-                return redirect()->back()->with('message', 'Thêm mã giảm giá thành công');
+                return redirect()->back()->with('success', 'Coupon created successfully!');
             }
         } else {
-            return redirect()->back()->with('error', 'Mã giảm giá không đúng hoặc đã hết hạn');
+            return redirect()->back()->with('error', 'The discount code is not correct or has expired!');
         }
 
     }
@@ -88,7 +88,7 @@ class CartController extends Controller
                 $cartItem->total_price = $product->price_sale > 0 ? $cartItem->quantity * $product->price_sale : $cartItem->quantity * $product->price ;
                 $cartItem->save();
 
-                return back()->with('message', 'Product quantity increased successfully');
+                return back()->with('success', 'Product quantity increased successfully!');
             } else {
                 // Sản phẩm chưa tồn tại thì thêm mới
                 Cart::create([
@@ -98,7 +98,7 @@ class CartController extends Controller
                     'total_price' =>  $product->price_sale > 0 ? $request->quantity * $product->price_sale : $request->quantity * $product->price
                 ]);
 
-                return back()->with('message', 'Product added to cart successfully');
+                return back()->with('success', 'Product add to cart successfully!');
             }
         } catch (\Exception $exception) {
             Log::error('CartController@store: ' . $exception->getMessage());
@@ -123,11 +123,13 @@ class CartController extends Controller
         try {
             $cart->delete();
 
-            return back()->with('message', 'Cart item deleted successfully');
+            return back()->with('success', 'Cart item deleted successfully!');
         } catch (\Exception $exception) {
             Log::error('CartController@destroy: ', [$exception->getMessage()]);
 
+
             return back()->with('error', 'Cart item delete failed');
+
         }
     }
     

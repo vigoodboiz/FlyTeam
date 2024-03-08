@@ -98,10 +98,10 @@
         });
     </script>
     <script>
-        @if(session('message'))
+        @if(session('success'))
         Swal.fire({
             title: 'Thành công!',
-            text: '{{ session('message') }}',
+            text: '{{ session('success') }}',
             icon: 'success',
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'OK'

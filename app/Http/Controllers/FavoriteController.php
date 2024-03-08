@@ -19,11 +19,11 @@ class FavoriteController extends Controller
         ];
         $favorited = Favorite::where(['product_id' => $product_id, 'user_id' => Auth::user()->id])->first();
             Favorite::create($data);
-            return redirect()->back()->with('msg', 'Bạn đã yêu thích sản phẩm!');
+            return redirect()->back()->with('success', 'You love this product!');
     }
 
-    public function destroy(Favorite $favorited){
-        $favorited->delete();
-        return redirect()->back()->with('msg', 'Bạn đã xóa sản phẩm yêu thích!');
+    public function destroy(Favorite $favorite){
+        $favorite->delete();
+        return redirect()->back()->with('success', 'You delete your favorite product!');
     }
 }

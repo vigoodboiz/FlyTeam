@@ -22,7 +22,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
     <link rel="stylesheet" href="{{ asset('sb-admin/assets/css/cs-skin-elastic.css') }}">
     <link rel="stylesheet" href="{{ asset('sb-admin/assets/css/style.css') }}">
@@ -93,6 +94,22 @@
             height: 160px;
         }
     </style>
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script>
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('316288bc080514b37816', {
+            cluster: 'ap1'
+        });
+
+        var channel = pusher.subscribe('FlyTeam');
+        channel.bind('FlyTeamPusher', function(data) {
+            alert(JSON.stringify(data));
+        });
+    </script>
 </head>
 
 <body>
@@ -435,6 +452,7 @@
     <!-- thống kê -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     @yield('js_Statistic')
+
 
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

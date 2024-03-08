@@ -24,11 +24,6 @@
     <div class="checkout__page--area section--padding">
         <div class="container">
             @if (Auth::check())
-            <!-- @if (\Session::has('msg'))
-            <div class="alert alert-success">
-                {{ \Session::get('msg') }}
-            </div>
-            @endif -->
             <div class="row">
                 <div class="col-lg-7 col-md-6">
                     <div class="main checkout__mian">

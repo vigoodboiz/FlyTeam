@@ -48,7 +48,9 @@ class PermissionController extends Controller
         Permission::create($request->all());
 
         return redirect()->route('permissions.index');
-        return back()->with('success', 'Thao tac thanh cong!');
+
+        return back()->with('success', 'Permission created successfully');
+
     }
 
     /**
@@ -89,7 +91,9 @@ class PermissionController extends Controller
         $permission->update($request->all());
 
         return redirect()->route('permissions.index');
-        return back()->with('success', 'Thao tac thanh cong!');
+
+        return back()->with('success', 'Permission updated successfully');
+
     }
 
     /**
@@ -103,8 +107,9 @@ class PermissionController extends Controller
         // abort_if(Gate::denies('permission_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $permission->delete();
-        return back();
-        return back()->with('success', 'Thao tac thanh cong!');
+
+        return back()->with('success', 'Permission deleted successfully');
+
     }
 
     /**
