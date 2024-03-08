@@ -13,8 +13,8 @@ class Products extends Model
 
     protected $table = 'products';
 
-    
-    protected $fillable = ['id_category', 'name', 'brand',  'describe' ,'price', 'price_sale', 'image'];
+
+    protected $fillable = ['id_category', 'name', 'brand',  'describe' ,'price', 'price_sale', 'quantity', 'image'];
 
 
     public function category()
@@ -32,9 +32,9 @@ class Products extends Model
     public function comments() {
         return $this->hasMany(Comment::class);
     }
-   
+
 
 }
 
 
-   
+

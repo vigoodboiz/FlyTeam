@@ -84,7 +84,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     //Users
     Route::delete('users/massDestroy', [UserController::class, 'massDestroy']);
     Route::resource('users', UserController::class);
-    
+
     /////////member////////////////
     Route::post('/members', [MemberController::class, 'show'])->name('members.show');
     Route::get('/members', [MemberController::class, 'index'])->name('members.index');
@@ -124,6 +124,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::match(['GET', 'POST'], '/comment/update/{id}', [CommentController::class, 'update'])->name('route_comment_update');
     Route::match(['GET', 'POST'], '/comment/delete/{id}', [CommentController::class, 'delete'])->name('route_comment_delete');
     Route::post('/newComment', [ShopDetailsController::class, 'newComment'])->name('route_new_comment');
+    Route::match(['GET', 'POST'], '/comment/delete/{id}', [ShopDetailsController::class, 'delete'])->name('route_comment_delete_fe');
 
 
      ///////////////////////// product //////////////////

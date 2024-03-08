@@ -23,6 +23,7 @@
             <th>Describe </th>
             <th>Price</th>
             <th>Price Sale</th>
+            <th>Quantity</th>
             <th>Image</th>
             <th>View</th>
             <th>Galery</th>
@@ -40,6 +41,7 @@
             <td class="description-cell">{{ $product->describe }}</td>
             <td>{{ $product->price }}</td>
             <td>{{ $product->price_sale }}</td>
+            <td>{{ $product->quantity }}</td>
             <td><img src="{{ asset('storage/images/' . $product->image) }}" alt="{{ $product->name }}" width="100">
             <td>{{ $product->view_count }}</td>
             <td> <a href="{{ route('index', $product->id) }}" class="btn btn-success"> image</a></td>

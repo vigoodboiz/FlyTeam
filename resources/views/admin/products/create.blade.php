@@ -34,6 +34,10 @@
                 <input type="number" name="price_sale" id="price_sale" class="form-control">
             </div>
             <div class="form-group">
+                <label for="quantity">Số lượng:</label>
+                <input type="number" name="quantity" id="quantity" class="form-control">
+            </div>
+            <div class="form-group">
                 <label for="image">Ảnh:</label>
                 <input type="file" name="image" id="image" class="form-control-file">
             </div>
