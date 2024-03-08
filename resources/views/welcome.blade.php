@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Becute - Product Gallery</title>
+    <title>C.O.I Cosmestics - Product Gallery</title>
     <meta name="description" content="Morden Bootstrap HTML5 Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('becute/assets/img/logo/logo_main.png') }}">
@@ -66,6 +66,7 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
         @yield('price-range');
+        </script>
     </body>
 
 

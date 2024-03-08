@@ -13,7 +13,9 @@
         }
     </style>
     <h2>Product</h2>
-    <h2><a class="btn btn-primary mt-3 mb-3" href="{{ route('products.create') }}">New Product</a></h2>
+    @can('product_create')
+        <h2><a class="btn btn-primary mt-3 mb-3" href="{{ route('products.create') }}">New Product</a></h2>
+    @endcan
     <table class="table">
         <thead>
             <tr>

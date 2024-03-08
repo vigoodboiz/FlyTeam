@@ -72,7 +72,6 @@
                                     <td>{{ $item->address }}</td>
                                     <td>
                                         <span class="bg-primary">{{ $item->roles->title }}</span>
-                                        {{ $item->role_id }}
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center list-action">
@@ -136,10 +135,10 @@
                             success: function(response) {
                                 location.reload();
                             }
-                        });
-                    });
+                        })
+                    })
 
-                });
+                })
             </script>
         @endcan
     @endpush

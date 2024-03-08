@@ -40,18 +40,6 @@
                                         <tr class="cart__table--body__items">
                                             <td class="cart__table--body__list">
                                                 <div class="cart__product d-flex align-items-center">
-                                                    <form action="{{ route('favorite.delete', $item->id) }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="cart__remove--btn" aria-label="search button"
-                                                            type="submit" onclick="return confirm('Có chắc xóa không?')">
-                                                            <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg"
-                                                                viewBox="0 0 24 24" width="16px" height="16px">
-                                                                <path
-                                                                    d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z" />
-                                                            </svg>
-                                                        </button>
-                                                    </form>
                                                     <div class="cart__thumbnail">
                                                         <a href="{{ route('shopDetails', $item->product_id) }}"><img
                                                                 class="border-radius-5"
@@ -136,9 +124,8 @@
                                         </li>
                                         <li class="product__card--action__list">
                                             <a class="product__card--action__btn" title="Wishlist" href="wishlist.html">
-                                                <svg class="product__card--action__btn--svg" width="18"
-                                                    height="18" viewBox="0 0 16 13" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
+                                                <svg class="product__card--action__btn--svg" width="18" height="18"
+                                                    viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path
                                                         d="M13.5379 1.52734C11.9519 0.1875 9.51832 0.378906 8.01442 1.9375C6.48317 0.378906 4.04957 0.1875 2.46364 1.52734C0.412855 3.25 0.713636 6.06641 2.1902 7.57031L6.97536 12.4648C7.24879 12.7383 7.60426 12.9023 8.01442 12.9023C8.39723 12.9023 8.7527 12.7383 9.02614 12.4648L13.8386 7.57031C15.2879 6.06641 15.5886 3.25 13.5379 1.52734ZM12.8816 6.64062L8.09645 11.5352C8.04176 11.5898 7.98707 11.5898 7.90504 11.5352L3.11989 6.64062C2.10817 5.62891 1.91676 3.71484 3.31129 2.53906C4.3777 1.63672 6.01832 1.77344 7.05739 2.8125L8.01442 3.79688L8.97145 2.8125C9.98317 1.77344 11.6238 1.63672 12.6902 2.51172C14.0847 3.71484 13.8933 5.62891 12.8816 6.64062Z"
                                                         fill="currentColor" />

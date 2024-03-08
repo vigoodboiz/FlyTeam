@@ -23,57 +23,83 @@
         <!-- cart section start -->
         <div class="container">
             <h2 class="cart__title mb-30">Order History</h2>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>User Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Address</th>
-                        <th>Product Image</th>
-                        <th>Product Name</th>
-                        <th>Product Price</th>
-                        <th>Quantity</th>
-                        <th>Total Price</th>
-                        <th>Order Status</th>
-                        <th>Delivery Status</th>
-                        <th>Order Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($orders as $item)
+            @if ($orders)
+                <table class="table table-hover">
+                    <thead>
                         <tr>
-                            <td>{{ $loop->index + 1 }}</td>
-                            <td>{{ $item->user->name }}</td>
-                            <td>{{ $item->user->email }}</td>
-                            <td>{{ $item->user->phone }}</td>
-                            <td>{{ $item->user->address }}</td>
-                            <td>
-
-                                <img class="border-radius-5" width="100"
-                                    src="{{ asset('upload/public/images/' . $item->product->image) }}" alt="cart-product">
-
-                            </td>
-                            <td>
-
-                                {{ $item->product->name }}
-
-                            </td>
-                            <td>
-
-                                {{ $item->product->price }}
-
-                            </td>
-                            <td>{{ $item->quantity }}</td>
-                            <td>{{ $item->total_price }}đ</td>
-                            <td>{{ $item->payment_status }}</td>
-                            <td>{{ $item->delievry_status }}</td>
-                            <td>{{ $item->created_at->format('d/m/Y') }}</td>
+                            <th>Id</th>
+                            {{-- <th>User Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Address</th> --}}
+                            <th>Product Image</th>
+                            <th>Product Name</th>
+                            <th>Product Price</th>
+                            <th>Quantity</th>
+                            <th>Total Price</th>
+                            <th>Order Status</th>
+                            <th>Delivery Status</th>
+                            <th>Order Date</th>
+                            <th>Cancel Order</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach ($orders as $item)
+                            <tr>
+                                <td>{{ $loop->index + 1 }}</td>
+                                {{-- <td>{{ $item->user->name }}</td>
+                                <td>{{ $item->user->email }}</td>
+                                <td>{{ $item->user->phone }}</td>
+                                <td>{{ $item->user->address }}</td> --}}
+                                <td>
+
+                                    <img class="border-radius-5" width="100"
+                                        src="{{ asset('upload/public/images/' . $item->product->image) }}"
+                                        alt="cart-product">
+
+                                </td>
+                                <td>
+
+                                    {{ $item->product->name }}
+
+                                </td>
+                                <td>
+
+                                    {{ $item->product->price }}
+
+                                </td>
+                                <td>{{ $item->quantity }}</td>
+                                <td>{{ $item->total_price }}đ</td>
+                                <td>{{ $item->payment_status }}</td>
+                                <td>{{ $item->delivery_status }}</td>
+                                <td>{{ $item->created_at->format('d/m/Y') }}</td>
+                                <td>
+                                    <div class="d-flex align-items-center list-action">
+                                        @if ($item->payment_status === 'Đã hủy đơn hàng' && $item->delivery_status === 'Không thể xử lý giao hàng')
+                                            <form action="{{ route('orders.process_reorder', $item->id) }}" method="POST">
+                                                @csrf
+                                                <button class="btn btn-success" type="submit"
+                                                    onclick="return confirm('Are you sure you want to buy this order?')">Buy
+                                                    back</button>
+                                            </form>
+                                        @else
+                                            <form action="{{ route('orders.cancel', $item->id) }}" method="POST">
+                                                @csrf
+                                                @method('POST')
+                                                <button class="btn btn-danger" type="submit" title="Cancel order"
+                                                    onclick="return confirm('Are you sure you want to cancel this order?')">Cancel
+                                                    order</button>
+                                            </form>
+                                        @endif
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @else
+                <h2>Bạn chưa có đơn hàng nào!</h2>
+            @endif
         </div>
         <!-- End product section -->
 

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('cart_id')->references('id')->on('carts');
             $table->string('payment_status')->default('Đang Xác Nhận');
             $table->string('deleivery_status')->default('Đang Xử Lý');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

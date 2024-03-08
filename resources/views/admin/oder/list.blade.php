@@ -25,7 +25,7 @@
                     </tr>
                 </thead>
                 <tbody class="ligth-body">
-                    @foreach ($orders as $item)
+                    @foreach ($listOder as $item)
                         <tr>
                             <td>{{ $loop->index + 1 }}</td>
                             <td>{{ $item->user->name }}</td>
@@ -35,17 +35,17 @@
                             <td>
 
                                 <img class="border-radius-5"
-                                    src="{{ asset('upload/public/images/' . $item->$product->image) }}" alt="cart-product">
+                                    src="{{ asset('upload/public/images/' . $item->product->image) }}" alt="cart-product">
 
                             </td>
                             <td>
 
-                                {{ $item->$product->name }}
+                                {{ $item->product->name }}
 
                             </td>
                             <td>
 
-                                {{ $item->$product->price }}
+                                {{ $item->product->price }}
 
                             </td>
                             <td>{{ $item->quantity }}</td>
@@ -57,6 +57,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{ $listOder->links() }}
         </div>
     </div>
 @endsection

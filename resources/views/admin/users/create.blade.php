@@ -83,7 +83,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="Role">Vai trò:</label>
                                         <select name="role_id" class="js-select-2 form-control" multiple>
-                                            @foreach ($role as $role)
+                                            @foreach ($roles as $role)
                                                 <option value="{{ $role->id }}">{{ $role->title }}</option>
                                             @endforeach
                                         </select>

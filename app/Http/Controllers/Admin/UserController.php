@@ -34,9 +34,9 @@ class UserController extends Controller
     public function create()
     {
         abort_if(Gate::denies('user_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $role = Role::all();
+        $roles = Role::all();
 
-        return view('admin.users.create', compact('role'));
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
