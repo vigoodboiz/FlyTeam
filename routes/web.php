@@ -256,10 +256,13 @@ Route::get('cart/delete/{cart}', [CartController::class, 'destroy'])->name('cart
 
 //whishlist
 Route::get('/favorite/{product}', [FavoriteController::class, 'index'])->name('favorite');
-Route::delete('/favorite/{product}', [FavoriteController::class, 'destroy'])->name('favorite.delete');
+// Route::delete('/favorite/{id}', [FavoriteController::class, 'destroy'])->name('favorite.delete');
 
 //History order
 Route::get('page/history', [HistoryController::class, 'index'])->name('history');
+Route::post('orders/{order}/cancel', [CheckoutController::class, 'cancel'])->name('orders.cancel');
+Route::get('orders/{id}/reorder', [CheckoutController::class, 'showReorderForm'])->name('orders.reorder');
+Route::post('orders/{id}/reorder', [CheckoutController::class, 'reorder'])->name('orders.process_reorder');
 //Push Notification
 Route::get('/pusher', function() {
     $message = $request->message;

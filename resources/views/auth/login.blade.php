@@ -31,16 +31,24 @@
 </head>
 
 <body class="bg-dark">
-
     <div class="sufee-login d-flex align-content-center flex-wrap">
         <div class="container">
             <div class="login-content">
                 <div class="login-logo">
-                    <a href="{{route('home')}}">
+                    <a href="{{ route('home') }}">
                         <img class="align-content" src="{{ asset('sb-admin/images/logo3.png') }}" alt="">
                     </a>
                 </div>
                 <div class="login-form">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 

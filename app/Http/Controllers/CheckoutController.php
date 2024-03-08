@@ -65,6 +65,31 @@ class CheckoutController extends Controller
 
 
     }
-    
-    
+    public function cancel(Order $order)
+{
+    $order->payment_status = 'Đã hủy đơn hàng';
+    $order->delivery_status = 'Không thể xử lý giao hàng';
+    $order->save();
+    return redirect()->back()->with('success', 'The order was successfully canceled!');
+}
+public function showReorderForm($id)
+    {
+        $order = Order::findOrFail($id);
+        return view('orders.reorder', ['order' => $order]);
+    }
+public function reorder($id)
+{
+        $order = Order::findOrFail($id);
+        if (!$order) {
+            return redirect()->route('home')->with('error', 'Đơn hàng không tồn tại!');
+        }
+        // Tái tạo lại đơn hàng
+        $newOrder = $order->replicate();
+        $newOrder->payment_status = 'Đang xác nhận';
+        $newOrder->delivery_status = 'Đang xử lý';
+        $newOrder->save();
+        // Xóa đơn hàng đã bị hủy đi
+        $order->delete();
+        return redirect()->route('history', $newOrder->id)->with('success', 'The order has been successfully acquired!');
+}
 }
