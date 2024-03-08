@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Member</h1>
-    <table class="table">
+    <table class="table mt-3" border="1">
         <thead>
             <tr>
                 <th>ID</th>
@@ -13,17 +13,41 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($members as $member)
+            @foreach ($Role as $role)
                 <tr>
-                    <td scope="row">{{ $member->id }}</td>
-                    <td>{{ $member->name }}</td>
-                    <td>{{ $member->updated_date }}</td>
-                    <td>{{ $member->reward_points }}</td>
-                    <td> <a href="{{ route('members.show', $member->id) }}" class="btn btn-info"><i
-                                class="fa fa-eye mr-0"></i></a></td>
+                    <td>{{ $role->id }}</td>
+                    <td>
+                        @foreach ($members as $member)
+                            @if ($member->user_id == $role->id)
+                                {{ $member->name }}
+                            @endif
+                        @endforeach
+                    </td>
+                    <td>
+                        @foreach ($members as $member)
+                            @if ($member->user_id == $role->id)
+                                {{ $member->updated_date }}
+                            @endif
+                        @endforeach
+                    </td>
+                    <td>
+                        @foreach ($members as $member)
+                            @if ($member->user_id == $role->id)
+                                {{ $member->reward_points }}
+                            @endif
+                        @endforeach
+                    </td>
+                    <td>
+                        @foreach ($members as $member)
+                            @if ($member->user_id == $role->id)
+                                <a href="{{ route('members.show', $member->id) }}" class="btn btn-info">View</a>
+                            @endif
+                        @endforeach
+                    </td>
                 </tr>
             @endforeach
         </tbody>
+
     </table>
     @can('member_ranking')
         <a href="{{ route('members.ranking') }}" class="btn btn-primary"> Ranking </a>

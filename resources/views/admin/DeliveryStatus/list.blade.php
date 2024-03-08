@@ -3,7 +3,6 @@
 @section('content')
     <h1>{{ $title }}</h1><br>
     <table class="table">
-
         <thead>
             <tr>
                 <th scope="col">ODER_ID</th>
@@ -17,7 +16,7 @@
         <tbody>
             @foreach ($listDelivery_status as $oder)
                 <tr>
-                    <th scope="row">{{ $oder->id }}</th>
+                    <th scope="row">#123{{ $oder->id }}</th>
                     <td>{{ $oder->user->name }}</td>
                     <td>{{ $oder->product->name }}</td>
                     <td>{{ $oder->payment_status }}</td>

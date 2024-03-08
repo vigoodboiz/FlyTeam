@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
     <?php
-    
     use Illuminate\Support\Facades\Session;
     ?>
     <h1>Danh sách mã khuyến mãi</h1><br>
@@ -11,14 +10,6 @@
         @endcan
         <br>
         <br>
-        <?php
-        $message = Session::get('message');
-        if ($message) {
-            echo '<span class="text-alert">' . $message . '</span>';
-            Session::put('message', null);
-        }
-        ?>
-
         <table class="table">
             <thead>
                 <tr>
@@ -26,13 +17,12 @@
                     <th>Ngày bắt đầu</th>
                     <th>Ngày kết thúc</th>
                     <th>Mã giảm giá</th>
-                    <th>Số lượng mã</th>
+                    {{-- <th>Số lượng mã</th> --}}
                     <th>Điều kiện giảm giá</th>
                     <th>Số giảm</th>
                     <th>Trạng thái</th>
-                    <th>Hết hạn</th>
                     <th> Chức năng</th>
-
+                    <th>Lựa chọn</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,61 +36,62 @@
                         {{-- <td>{{ $cou->coupon_time }}</td> --}}
                         <td><span class="text-ellipsis">
                                 <?php
-                        if ($cou->coupon_condition == 1) {
-                        ?>
+                            if ($cou->coupon_condition == 1) {
+                            ?>
                                 Giảm theo %
                                 <?php
-                        } else {
-                        ?>
+                            } else {
+                            ?>
                                 Giảm theo tiền
                                 <?php
-                        }
-                        ?>
+                            }
+                            ?>
                             </span>
                         </td>
                         <td><span class="text-ellipsis">
                                 <?php
-                        if ($cou->coupon_condition == 1) {
-                        ?>
+                            if ($cou->coupon_condition == 1) {
+                            ?>
                                 Giảm {{ $cou->coupon_number }} %
                                 <?php
-                        } else {
-                        ?>
+                            } else {
+                            ?>
                                 Giảm {{ $cou->coupon_number }} VNĐ
                                 <?php
-                        }
-                        ?>
+                            }
+                            ?>
                             </span></td>
                         <td><span class="text-ellipsis">
                                 <?php
-                        if ($cou->coupon_status == 1) {
-                        ?>
+                            if ($cou->coupon_status == 1) {
+                            ?>
                                 <span style="color: green">Đang hoạt động</span>
                                 <?php
-                        } else {
-                        ?>
+                            } else {
+                            ?>
                                 <span style="color: red">Đã khóa</span>
 
                                 <?php
-                        }
-                        ?>
+                            }
+                            ?>
                             </span>
                         </td>
                         <td><span class="text-ellipsis">
                                 <?php
-                        if ($cou->coupon_date_end >= $today) {
-                        ?>
+                            if ($cou->coupon_date_end >= $today) {
+                            ?>
                                 <span style="color: green">Còn hạn</span>
                                 <?php
-                        } else {
-                        ?>
+                            } else {
+                            ?>
                                 <span style="color: red">Đã hết hạn</span>
 
                                 <?php
-                        }
-                        ?>
+                            }
+                            ?>
                             </span>
                         </td>
+
 
                         <td>
                             @can('coupon_delete')
@@ -114,7 +105,5 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
-
     </div>
 @endsection

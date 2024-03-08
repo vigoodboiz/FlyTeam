@@ -1,9 +1,6 @@
 @extends('layouts.app')
 @section('content')
     <h1>Categories</h1>
-
-
-    <h2></h2>
     @can('category_create')
         <button type="submit" class="btn btn-primary"><a href="{{ route('categories.create') }}">thêm</a></button>
     @endcan

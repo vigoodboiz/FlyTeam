@@ -46,7 +46,6 @@ class PermissionController extends Controller
     public function store(StorePermissionRequest $request)
     {
         Permission::create($request->all());
-
         return redirect()->route('permissions.index')->with('success', 'Permission created successfully!');
     }
 
@@ -86,7 +85,6 @@ class PermissionController extends Controller
     public function update(UpdatePermissionRequest $request, Permission $permission)
     {
         $permission->update($request->all());
-
         return redirect()->route('permissions.index')->with('success', 'Permission updated successfully');
     }
 
@@ -101,7 +99,9 @@ class PermissionController extends Controller
         abort_if(Gate::denies('permission_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $permission->delete();
+
         return back()->with('success', 'Permission deleted successfully');
+
     }
 
     /**

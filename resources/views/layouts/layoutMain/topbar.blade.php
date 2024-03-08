@@ -290,6 +290,7 @@
                                              stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
                                      </svg>
                                  </span>
+                                 
                              </a>
                          </li>
                      </ul>
@@ -325,6 +326,7 @@
                  <path fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                      stroke-width="32" d="M368 368L144 144M368 144L144 368" />
              </svg>
+             
          </button>
      </div>
      <!-- End serch box area -->

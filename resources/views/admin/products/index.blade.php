@@ -1,10 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    @if (session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
-
-
     <style>
         .description-cell {
             white-space: pre-wrap;
@@ -36,7 +31,7 @@
         <tbody>
             @foreach ($products as $product)
                 <tr>
-                    <td scope="row">{{ $product->id }}</td>
+                    <td scope="row">#1234{{ $product->id }}</td>
                     <td>{{ $product->category->name }}</td>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->brand }}</td>

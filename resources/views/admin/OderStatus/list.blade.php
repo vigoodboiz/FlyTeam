@@ -20,7 +20,7 @@
             @foreach ($listOder_status as $oder)
                 <tr>
                     <td>{{ ++$i }}</td>
-                    <th scope="row">{{ $oder->id }}</th>
+                    <th scope="row">#1234{{ $oder->id }}</th>
                     <td>{{ $oder->user->name }}</td>
                     <td>{{ $oder->cart_id }}</td>
                     <td>{{ $oder->product->name }}</td>

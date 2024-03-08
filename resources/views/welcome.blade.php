@@ -14,9 +14,7 @@
     <!-- ======= All CSS Plugins here ======== -->
     <link rel="stylesheet" href="{{ asset('becute/assets/css/plugins/swiper-bundle.min.css') }}">
     <link rel="stylesheet" href="{{ asset('becute/assets/css/plugins/glightbox.min.css') }}">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&amp;family=Karma:wght@300;400;500;600;700&amp;display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&amp;family=Karma:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 
     <!-- Plugin css -->
     <link rel="stylesheet" href="{{ asset('becute/assets/css/vendor/bootstrap.min.css') }}">
@@ -28,6 +26,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+    <style>
+        .text-truncate {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
 </head>
 
 <body>
@@ -49,8 +56,7 @@
         <!-- Js Plugins -->
         <!-- Scroll top bar -->
         <button id="scroll__top"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
-                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                    stroke-width="48" d="M112 244l144-144 144 144M256 120v292" />
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M112 244l144-144 144 144M256 120v292" />
             </svg></button>
 
         <!-- All Script JS Plugins here  -->
@@ -66,7 +72,49 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
         @yield('price-range');
-        </script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        document.getElementById('delete-form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            Swal.fire({
+                title: 'Bạn có chắc chắn muốn xóa sản phẩm này?',
+                text: "Xóa là mất!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Xóa',
+                cancelButtonText: 'Hủy'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form').submit();
+                }
+            }).catch((error) => {
+                // Xử lý lỗi nếu có
+                console.log(error);
+            });
+        });
+    </script>
+    <script>
+        @if(session('success'))
+        Swal.fire({
+            title: 'Thành công!',
+            text: '{{ session('success') }}',
+            icon: 'success',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+        });
+        @elseif(session('error'))
+        Swal.fire({
+            title: 'có lỗi!',
+            text: '{{ session('error') }}',
+            icon: 'warning',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+        });
+        @endif
+    </script>
     </body>
 
 
