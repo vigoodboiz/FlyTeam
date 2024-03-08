@@ -67,13 +67,6 @@ class CheckoutController extends Controller
             }
            return redirect()->back()->with('success', 'Order successfully!');
 
-            // if($orderd && $orderd->delivery_status == 'Đã Giao Hàng'){
-            //     Member::where('user_id',$userId)->increment('reward_points');
-            // }
-            if($orderd && $orderd->delivery_status == 'Đã Giao Hàng'){
-                $userId = $orderd->user_id;
-                Member::where('user_id', $userId)->increment('reward_points');
-            }
     }
     
     
