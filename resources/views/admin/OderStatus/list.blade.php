@@ -3,7 +3,6 @@
 @section('content')
 <h1>{{ $title }}</h1> <br>
 <table class="table">
-
     <thead>
         <tr>
             <th scope="col">STT</th>
@@ -13,26 +12,24 @@
             <th scope="col">PRODUCT</th>
             <th scope="col">PRODUCT</th>
             <th scope="col">STATUS</th>
-           
         </tr>
     </thead>
     <tbody>
         @foreach ($listOder_status as $oder)
         <tr>
             <td>{{ ++$i }}</td>
-            <th scope="row">{{ $oder->id }}</th>
+            <th scope="row">#1234{{ $oder->id }}</th>
             <td>{{ $oder->user->name }}</td>
             <td>{{ $oder->cart_id }}</td>
-            <td>{{ $oder->product->name }}</td>
+            <td class="text-truncate">{{ $oder->product->name }}</td>
             <td>{{ $oder->product->price }}</td>
             <td class="form-group">
-                <select class="form-control status-select" data-oder-id="{{ $oder->id }}" >
+                <select class="form-control status-select" data-oder-id="{{ $oder->id }}">
                     <option value="Đang Xác Nhận" {{ $oder->payment_status == 'Đang Xác Nhận' ? 'selected' : '' }}>Đang Xác Nhận</option>
                     <option value="Đã xác nhận" {{ $oder->payment_status == 'Đã xác nhận' ? 'selected' : '' }}>Đã xác nhận</option>
                     <option value="Đã thanh toán" {{ $oder->payment_status == 'Đã thanh toán' ? 'selected' : '' }}>Đã thanh toán</option>
-                </select> 
+                </select>
             </td>
-            
         </tr>
         @endforeach
     </tbody>

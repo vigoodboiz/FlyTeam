@@ -37,34 +37,31 @@ class CheckoutController extends Controller
         return $totalPrice;
     }
 
-    public function post_checkout($cart_id)
+    public function post_checkout()
     {
         $userId = Auth::user()->id;
-        $cart = Cart::where('user_id', $userId)->first();
+        $cart = Cart::where('user_id', $userId)->get();
 
-        $totalQuantity = $cart->sum('quantity');
-        $totalAmount = $cart->sum('total_price');
-
+        foreach($cart as $cartItem){
+            $order = new Order();
+            $order->cart_id = $cartItem->id;
+            $order->user_id = Auth::user()->id;
+            $order->product_id = $cartItem->product_id;
+            $order->quantity = $cartItem->quantity;
+            $order->total_price = $cartItem->total_price;
+            $order->payment_status = 'Đang Xác Nhận';
+            $order->delivery_status = 'Đang Xử Lý';
+            $order->save();
+        }
         
-        
-        $data = [
-            'cart_id' => $cart_id,
-            'user_id' => Auth::user()->id,
-            'product_id' => $cart->product_id,
-            'quantity' => $totalQuantity,
-            'total_price' => $totalAmount,
-            'payment_status' => 'Đang Xác Nhận',
-            'delivery_status' => 'Đang Xử Lý',
-        ];
-
-        $orderd = Order::where(['cart_id' => $cart_id, 'user_id' => Auth::user()->id])->first();
-            Order::create($data);
             $userId = auth::user()->id;
             $carts= Cart::where('user_id', $userId)->get();
             foreach ($carts as $cart) {
                 $cart->delete();
             }
+
            return redirect()->back()->with('success', 'Order successfully!');
+
 
     }
 }

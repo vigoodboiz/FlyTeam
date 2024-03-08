@@ -74,6 +74,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{ $orders->links() }}
         </div>
         <!-- End product section -->
 
