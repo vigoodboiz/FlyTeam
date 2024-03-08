@@ -48,7 +48,7 @@ class PermissionController extends Controller
         Permission::create($request->all());
 
         return redirect()->route('permissions.index');
-        return back()->with('msg', 'Thao tac thanh cong!');
+        return back()->with('success', 'Thao tac thanh cong!');
     }
 
     /**
@@ -89,7 +89,7 @@ class PermissionController extends Controller
         $permission->update($request->all());
 
         return redirect()->route('permissions.index');
-        return back()->with('msg', 'Thao tac thanh cong!');
+        return back()->with('success', 'Thao tac thanh cong!');
     }
 
     /**
@@ -104,7 +104,7 @@ class PermissionController extends Controller
 
         $permission->delete();
         return back();
-        return back()->with('msg', 'Thao tac thanh cong!');
+        return back()->with('success', 'Thao tac thanh cong!');
     }
 
     /**

@@ -106,7 +106,7 @@ class UserController extends Controller
         abort_if(Gate::denies('user_delete'), Response::HTTP_FORBIDDEN, '430 Forbidden');
         $user->delete();
 
-        return back()->with('msg', 'Thao tác thành công!');
+        return back()->with('success', 'Thao tác thành công!');
     }
 
     public function massDestroy(MassDestroyUserRequest $request) {

@@ -39,7 +39,7 @@
                                             href="{{ route('portfolioPage') }}">Infomation</a>
                                     </li>
                                     <li class="account__menu--list"><a href="{{ route('wishlistPage') }}">Wishlist</a></li>
-                                    <li class="account__menu--list"><a href="{{ route('history') }}">History Order</a></li>
+                                    <li class="account__menu--list"><a href="{{ route('history') }}">Order</a></li>
                                 @endif
                                 <li class="account__menu--list"><a
                                         href="{{ route('logout') }}"onclick="event.preventDefault();

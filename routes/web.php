@@ -154,7 +154,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     //Coupon//
     Route::get('/insert-coupon', [CouponController::class, 'insert_coupon'])->name('insert_coupon');
-    Route::get('/delete-coupon/{coupon_id}', [CouponController::class, 'delete_coupon'])->name("delete_coupon");
+    Route::delete('/delete-coupon/{coupon_id}', [CouponController::class, 'delete_coupon'])->name("delete_coupon");
     Route::get('/list-coupon', [CouponController::class, 'list_coupon'])->name('list_coupon');
     Route::post('/insert-coupon-code', [CouponController::class, 'insert_coupon_code'])->name('insert_coupon_code');
     Route::post('/check-coupon', [CartController::class, 'check_coupon'])->name('check_coupon');
@@ -215,7 +215,7 @@ Route::get('page/contact', [ContactController::class, 'index'])->name('contactPa
 // Checkout
 Route::middleware('auth')->group(function () {
 Route::get('page/Checkout', [CheckoutController::class, 'index'])->name('checkoutPage');
-Route::match(['GET', 'POST'],'page/Checkout/{cart}', [CheckoutController::class, 'post_checkout'])->name('checkoutPost');
+Route::match(['GET', 'POST'],'page/Checkouto', [CheckoutController::class, 'post_checkout'])->name('checkoutPost');
 Route::get('verify/{token}', [CheckoutController::class, 'verify'])->name('oder.verify');
 });
 // acount

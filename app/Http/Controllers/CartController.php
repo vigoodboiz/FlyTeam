@@ -66,7 +66,7 @@ class CartController extends Controller
         } catch (Exception $exception) {
             Log::error('CartController: ', [$exception->getMessage()]);
             return back()->with([
-                'message' => 'Đã có lỗi nghiêm trọng xảy ra'
+                'error' => 'Đã có lỗi nghiêm trọng xảy ra'
             ]);
         }
     }
@@ -103,7 +103,7 @@ class CartController extends Controller
         } catch (\Exception $exception) {
             Log::error('CartController@store: ' . $exception->getMessage());
 
-            return back()->with('message', 'Failed to add product to cart');
+            return back()->with('error', 'Failed to add product to cart - Please log in to continue');
         }
     }
     public function calculateTotalPrice()
@@ -127,7 +127,7 @@ class CartController extends Controller
         } catch (\Exception $exception) {
             Log::error('CartController@destroy: ', [$exception->getMessage()]);
 
-            return back()->with('message', 'Cart item delete failed');
+            return back()->with('error', 'Cart item delete failed');
         }
     }
     

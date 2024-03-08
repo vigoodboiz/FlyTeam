@@ -6,6 +6,7 @@
 
     <thead>
         <tr>
+        <th scope="col">STT</th>
             <th scope="col">ODER_ID</th>
             <th scope="col">USER</th>
             <th scope="col">PRODUCT NAME</th>
@@ -17,9 +18,10 @@
     <tbody>
         @foreach ($listDelivery_status as $oder)
         <tr>
-            <th scope="row">{{ $oder->id }}</th>
+        <td>{{ ++$i }}</td>
+            <th scope="row">#1234{{ $oder->id }}</th>
             <td>{{ $oder->user->name }}</td>
-            <td>{{ $oder->product->name }}</td>
+            <td class="text-truncate">{{ $oder->product->name }}</td>
             <td>{{ $oder->payment_status }}</td>
             <td class="form-group">
                 <select class="form-control delivery-select" data-delivery-id="{{ $oder->id }}">
