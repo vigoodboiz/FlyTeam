@@ -1,4 +1,4 @@
-<!-- resources/views/statistics.blade.php -->
+
 @extends('layouts.app')
 
 @section('content')

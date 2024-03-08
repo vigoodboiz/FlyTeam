@@ -20,7 +20,7 @@ class ProductController extends Controller
         // $products = Product::with('category')->get();
         // return view('products.index', compact('products'));
 
-        $products = Products::with('category')->get();
+        $products = Products::orderBy('created_at', 'DESC')->paginate(5);
         return view('admin.products.index', compact('products'));
     }
     /**
@@ -45,7 +45,6 @@ class ProductController extends Controller
             'brand' => 'required',
             'describe' => 'required',
             'price' => 'required',
-            'price_sale' => 'nullable',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -59,7 +58,7 @@ class ProductController extends Controller
 
         Products::create($validatedData);
 
-        return redirect()->route('products.create')->with('success', 'Sản phẩm đã được thêm thành công');
+        return redirect()->route('products.create')->with('success', 'Product created successfully!');
 
       
     }
@@ -130,7 +129,7 @@ class ProductController extends Controller
         $product->price_sale = $request->input('price_sale');
         $product->save();
 
-        return redirect()->route('products.index')->with('success', 'Sản phẩm đã được cập nhật thành công.');
+        return redirect()->route('products.index')->with('success', 'Product updated successfully!');
     }
     
 
@@ -142,6 +141,7 @@ class ProductController extends Controller
         $product = Products::findOrFail($id);
         $product->delete();
     
-        return redirect()->route('products.index')->with('success', 'Đã xóa sản phẩm thành công.');
+        return redirect()->route('products.index')->with('success', 'Product delete successfully!');
     }
+
 }

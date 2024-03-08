@@ -9,62 +9,28 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     * 
-     * 
-     */
-    public function index()
+    public function update(Request $request)
     {
-        $id = Auth::user()->id;
-        $profileData = User::find(id);
-        return view('admin.profile.index', compact('profileData'));
-    }
 
-    public function edit(Request $request): View
-    {
-        return view('profile.edit', [
-            'user' => $request->user(),
+        $request->validate([
+            'profile_picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048' // Validate file type and size
         ]);
-    }
-
-    /**
-     * Update the user's profile information.
-     */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
-    {
-        $request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+    
+        if ($request->hasFile('profile_picture')) {
+            $image = $request->file('profile_picture');
+            $imageName = 'profile_' . auth()->user()->id . '.' . $image->getClientOriginalExtension();
+            Storage::disk('public')->putFileAs('profile_pictures', $image, $imageName);
+    
+            // Update user's profile picture path in database
+            auth()->user()->update(['profile_picture' => 'profile_pictures/' . $imageName]);
+    
+            return redirect()->back()->with('success', 'Profile picture updated successfully.');
         }
-
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
-    }
-
-    /**
-     * Delete the user's account.
-     */
-    public function destroy(Request $request): RedirectResponse
-    {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
-
-        $user = $request->user();
-
-        Auth::logout();
-
-        $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return Redirect::to('/');
+    
+        return redirect()->back()->with('error', 'Failed to update profile picture.');
     }
 }

@@ -5,6 +5,7 @@ use App\Models\Products;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
+use App\Events\FlyTeamPusher;
 class CategoryController extends Controller
 {
     /**
@@ -12,7 +13,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(5);
 
         return view('admin.categories.index', compact('categories'));
     }
@@ -48,7 +49,7 @@ class CategoryController extends Controller
 
         Category::create($validatedData);
 
-        return redirect()->route('categories.index')->with('success', 'Danh mục đã được tạo thành công');
+        return redirect()->route('categories.index')->with('success', 'Category created successfully!');
     }
 
     /**
@@ -97,7 +98,7 @@ class CategoryController extends Controller
     
         // Thực hiện các xử lý khác sau khi cập nhật danh mục
     
-        return redirect()->route('categories.index')->with('success', 'Category updated successfully');
+        return redirect()->route('categories.index')->with('success', 'Category updated successfully!');
     }
 
     /**
@@ -109,7 +110,7 @@ class CategoryController extends Controller
     {
         $category->products()->delete(); // Xóa tất cả các sản phẩm thuộc về category này
         $category->delete(); // Xóa category
-        return redirect()->route('categories.index')->with('success', 'Category deleted successfully.');
+        return redirect()->route('categories.index')->with('success', 'Category deleted successfully!');
     }
 
 

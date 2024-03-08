@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -37,6 +37,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'role_id',
         'facebook_id',
         'google_id',
+        'profile_picture',
     ];
 
     /**
@@ -81,11 +82,24 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Comment::class);
     }
 
-    public function roles(): BelongsToMany {
-       return $this->BelongsToMany(Role::class);
-}
-public function members()
-{
-    return $this->hasMany(Member::class);
-}
+    public function roles(): BelongsTo {
+       return $this->BelongsTo(Role::class);
+    }
+    public function members()
+    {
+        return $this->hasMany(Member::class);
+    }
+
+
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
+    }
+
+    public function favorites(){
+        return $this->hasMany(Favorite::class, 'user_id', 'id');
+    }
+    public function orders(){
+        return $this->hasMany(Order::class, 'user_id', 'id');
+    }
 }

@@ -30,27 +30,20 @@ class AuthGate
                 }
             }
 
-
             foreach ($permissionArray as $title => $roles) {
                 Gate::define($title, function (User $user) use ($roles) {
                     return in_array($user->role_id, $roles);
-                    return count(array_intersect($user->roles->pluck('id')->toArray(), $roles)) > 0;
                 });
             }
-        };
-        if ($user !== null) {
-            $roleId = $user->role_id;
         }
-        $roleId = optional($user)->role_id;
-        if (Auth::check() && Auth::user()->role_id == $roleId) {
-            if ($roleId == 1 && $roleId == 2) {
-                $redirectRoute = 'dashboard';
-            } else {
-                $redirectRoute = 'welcome';
-            }
-        };
+        // if (Auth::check()) {
+        //     if($user->role_id == 1 && $user->role_id == 2){
+        //         return redirect()->route('dashboard');
+        //     } else {
+        //         return redirect()->route('home');
+        //     }
+        // };
         return $next($request);
 
     }
 }
-

@@ -2,11 +2,10 @@
 
 namespace App\Providers;
 
-
-// use Illuminate\Support\Facades\Gate;
-
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Notifications\Messages\MailMessage;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -28,29 +27,11 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->registerPolicies();
-
-
-        Gate::define('guest', function ($user) {
-
-            if ($user->role_id == "3") {
-
-                return true;
-            }
-
-            return false;
+        VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
+            return (new MailMessage)
+                ->subject('C.O.I Cosmestics - Xác nhận tài khoản')
+                ->line('Cảm ơn bạn đã đăng kí tài khoản của C.O.I Cosmestics. Để hoàn tất việc đăng kí vui lòng xác nhận email bằng cách click vào nút bên dưới!')
+                ->action('Xác thực email', $url);
         });
-        Gate::define('dashboard', function ($user) {
-
-            if ($user->role_id == "1" && $user->role_id == '2') {
-
-      
-                return view('dashboard');
-      
-
-            }
-
-            return false;
-        });
-    }
+}
 }

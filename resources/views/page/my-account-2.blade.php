@@ -26,20 +26,22 @@
                                                 @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
                                                     <li class="account__menu--list"><a
                                                             href="{{ route('dashboard') }}">Dashboard</a></li>
-                                                            
                                                 @elseif(Auth::user()->role_id == 3)
                                                     <li class="account__menu--list"><a
                                                             href="{{ route('portfolioPage') }}">Infomation</a>
                                                     </li>
                                                     <li class="account__menu--list"><a
-                                                            href="{{ route('point') }}">Reward Points</a>
+
+                                                        href="{{ route('point') }}">Reward Points</a>
                                                     </li>
                                                     <li class="account__menu--list"><a
                                                             href="{{ route('wishlistPage') }}">Wishlist</a></li>
+                                                    <li class="account__menu--list"><a href="{{ route('history') }}">
+                                                            Order</a></li>
                                                 @endif
                                                 <li class="account__menu--list"><a
                                                         href="{{ route('logout') }}"onclick="event.preventDefault();
-                                                                                                                    document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Logout</a>
+                                                                                                                        document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Logout</a>
                                                 </li>
                                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                                     class="d-none">

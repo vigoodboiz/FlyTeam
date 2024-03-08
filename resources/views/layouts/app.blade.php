@@ -12,7 +12,7 @@
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('becute/assets/img/logo/logo_main.png')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('becute/assets/img/logo/logo_main.png') }}">
 
     <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
     <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
@@ -35,6 +35,15 @@
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
     <!-- bootstrap icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
+
 
     <style>
         #weatherWidget .currentDesc {
@@ -78,6 +87,22 @@
             height: 160px;
         }
     </style>
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script>
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('316288bc080514b37816', {
+            cluster: 'ap1'
+        });
+
+        var channel = pusher.subscribe('FlyTeam');
+        channel.bind('FlyTeamPusher', function(data) {
+            alert(JSON.stringify(data));
+        });
+    </script>
 </head>
 
 <body>
@@ -127,6 +152,26 @@
 
 
     <!--Local Stuff-->
+    <script type="text/javascript">
+        $(function() {
+            $("#start_coupon").datepicker({
+                preText: "Tháng trước",
+                nextText: "Tháng sau",
+                dateFormat: "yy/mm/dd",
+                dayNamesMin: ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật"],
+                duration: "slow"
+            });
+
+            $("#end_coupon").datepicker({
+                preText: "Tháng trước",
+                nextText: "Tháng sau",
+                dateFormat: "yy/mm/dd",
+                dayNamesMin: ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật"],
+                duration: "slow"
+            });
+
+        })
+    </script>
     <script>
         jQuery(document).ready(function($) {
             "use strict";
@@ -372,8 +417,51 @@
             // Bar Chart #flotBarChart End
         });
     </script>
+
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
    @yield('js_Statistic')
+
+
+
+    <script>
+        $(function() {
+            function readURL(input, selector) {
+                if (input.files && input.files[0]) {
+                    let reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        $(selector).attr('src', e.target.result);
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $("#image").change(function() {
+                readURL(this, '#anh_the_preview');
+            });
+
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    @yield('js-custom');
+    @yield('update-status');
+    @yield('update-delivery');
+
+    <!-- thống kê -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    @yield('js_Statistic')
+
+
+
+
+
+
+</body>
+
+</html>
+
+
+
 </body>
 
 </html>

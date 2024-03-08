@@ -1,7 +1,6 @@
 @extends('welcome')
 
 @section('content')
-
     <main class="main__content_wrapper">
 
         <!-- Start breadcrumb section -->
@@ -11,7 +10,7 @@
                     <div class="col">
                         <div class="breadcrumb__content text-center">
                             <ul class="breadcrumb__content--menu d-flex justify-content-center">
-                                <li class="breadcrumb__content--menu__items"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb__content--menu__items"><a href="{{ route('home') }}">Home</a></li>
                                 <li class="breadcrumb__content--menu__items"><span>Portfolio</span></li>
                             </ul>
                         </div>
@@ -25,96 +24,116 @@
         <section class="portfolio__section section--padding">
             <div class="container">
                 <div class="section__heading text-center mb-40">
-                    <h2 class="section__heading--maintitle">Watch Our Portfolio</h2>
+                    <h2 class="section__heading--maintitle">Watch Our Profile</h2>
                 </div>
-                <div class="portfolio__section--inner">
-                    <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2 mb--n30">
-                        <div class="col mb-30">
-                            <div class="portfolio__items">
-                                <div class="portfolio__items--thumbnail position__relative">
-                                    <a class="portfolio__items--thumbnail__link display-block glightbox" data-gallery="portfolio" href="assets/img/other/portfolio1.webp"><img class="portfolio__items--thumbnail__img" src="assets/img/other/portfolio1.webp" alt="portfolio-img">
-                                        <div class="portfolio__view--icon">
-                                            <span class="portfolio__view--icon__link "><svg xmlns="http://www.w3.org/2000/svg" width="25.697" height="20.066" viewBox="0 0 39.697 27.066">
-                                                    <path d="M20.849,4.5A21.341,21.341,0,0,0,1,18.033a21.322,21.322,0,0,0,39.7,0A21.341,21.341,0,0,0,20.849,4.5Zm0,22.555a9.022,9.022,0,1,1,9.022-9.022A9.025,9.025,0,0,1,20.849,27.055Zm0-14.435a5.413,5.413,0,1,0,5.413,5.413A5.406,5.406,0,0,0,20.849,12.62Z" transform="translate(-1 -4.5)" fill="currentColor" />
-                                                </svg>
-                                            </span>
+                @if (Auth::check())
+                    <h2 class="section__heading--maintitle">Xin chào, {{ Auth::user()->name }}</h2><br>
+                    <div class="my__account--section__inner border-radius-10 d-flex">
+                        <div class="account__left--sidebar">
+                            <h2 class="account__content--title mb-20">My Profile</h2>
+                            <ul class="account__menu">
+                                @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
+                                    <li class="account__menu--list"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                                @elseif(Auth::user()->role_id == 3)
+                                    <li class="account__menu--list active"><a
+                                            href="{{ route('portfolioPage') }}">Infomation</a>
+                                    </li>
+                                    <li class="account__menu--list"><a href="{{ route('wishlistPage') }}">Wishlist</a></li>
+                                    <li class="account__menu--list"><a href="{{ route('history') }}">History Order</a></li>
+                                @endif
+                                <li class="account__menu--list"><a
+                                        href="{{ route('logout') }}"onclick="event.preventDefault();
+                                                                                                                                                                                                                                                                                                                                                                                        document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Logout</a>
+                                </li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </ul>
+                        </div>
+                        <div class="container py-5">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="card mb-4">
+                                        <div class="card-body text-center">
+                                            @if (!empty(auth()->user()->profile_picture))
+                                                <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}"
+                                                    class="rounded-circle" alt="Profile Picture">
+                                            @else
+                                                <form action="{{ route('profile.update') }}" method="POST"
+                                                    enctype="multipart/form-data">
+                                                    @csrf
+                                                    <input type="file" name="profile_picture">
+                                                    <button type="submit" class="btn btn-success">Upload</button>
+                                                </form>
+                                            @endif
                                         </div>
-                                    </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="card mb-4">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <p class="mb-0">User code</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p class="text-muted mb-0">{{ Auth::user()->user_code }}</p>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <p class="mb-0">Full Name</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p class="text-muted mb-0">{{ Auth::user()->name }}</p>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <p class="mb-0">Email</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p class="text-muted mb-0">{{ Auth::user()->email }}</p>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <p class="mb-0">Phone</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p class="text-muted mb-0">{{ Auth::user()->phone }}</p>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <p class="mb-0">Gender</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p class="text-muted mb-0">{{ Auth::user()->gender }}</p>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <p class="mb-0">Address</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p class="text-muted mb-0">{{ Auth::user()->address }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col mb-30">
-                            <div class="portfolio__items">
-                                <div class="portfolio__items--thumbnail position__relative">
-                                    <a class="portfolio__items--thumbnail__link display-block glightbox" data-gallery="portfolio" href="assets/img/other/portfolio2.webp"><img class="portfolio__items--thumbnail__img" src="assets/img/other/portfolio2.webp" alt="portfolio-img">
-                                        <div class="portfolio__view--icon">
-                                            <span class="portfolio__view--icon__link "><svg xmlns="http://www.w3.org/2000/svg" width="25.697" height="20.066" viewBox="0 0 39.697 27.066">
-                                                    <path d="M20.849,4.5A21.341,21.341,0,0,0,1,18.033a21.322,21.322,0,0,0,39.7,0A21.341,21.341,0,0,0,20.849,4.5Zm0,22.555a9.022,9.022,0,1,1,9.022-9.022A9.025,9.025,0,0,1,20.849,27.055Zm0-14.435a5.413,5.413,0,1,0,5.413,5.413A5.406,5.406,0,0,0,20.849,12.62Z" transform="translate(-1 -4.5)" fill="currentColor" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col mb-30">
-                            <div class="portfolio__items">
-                                <div class="portfolio__items--thumbnail position__relative">
-                                    <a class="portfolio__items--thumbnail__link display-block glightbox" data-gallery="portfolio" href="assets/img/other/portfolio3.webp"><img class="portfolio__items--thumbnail__img" src="assets/img/other/portfolio3.webp" alt="portfolio-img">
-                                        <div class="portfolio__view--icon">
-                                            <span class="portfolio__view--icon__link "><svg xmlns="http://www.w3.org/2000/svg" width="25.697" height="20.066" viewBox="0 0 39.697 27.066">
-                                                    <path d="M20.849,4.5A21.341,21.341,0,0,0,1,18.033a21.322,21.322,0,0,0,39.7,0A21.341,21.341,0,0,0,20.849,4.5Zm0,22.555a9.022,9.022,0,1,1,9.022-9.022A9.025,9.025,0,0,1,20.849,27.055Zm0-14.435a5.413,5.413,0,1,0,5.413,5.413A5.406,5.406,0,0,0,20.849,12.62Z" transform="translate(-1 -4.5)" fill="currentColor" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col mb-30">
-                            <div class="portfolio__items">
-                                <div class="portfolio__items--thumbnail position__relative">
-                                    <a class="portfolio__items--thumbnail__link display-block glightbox" data-gallery="portfolio" href="assets/img/other/portfolio4.webp"><img class="portfolio__items--thumbnail__img" src="assets/img/other/portfolio4.webp" alt="portfolio-img">
-                                        <div class="portfolio__view--icon">
-                                            <span class="portfolio__view--icon__link "><svg xmlns="http://www.w3.org/2000/svg" width="25.697" height="20.066" viewBox="0 0 39.697 27.066">
-                                                    <path d="M20.849,4.5A21.341,21.341,0,0,0,1,18.033a21.322,21.322,0,0,0,39.7,0A21.341,21.341,0,0,0,20.849,4.5Zm0,22.555a9.022,9.022,0,1,1,9.022-9.022A9.025,9.025,0,0,1,20.849,27.055Zm0-14.435a5.413,5.413,0,1,0,5.413,5.413A5.406,5.406,0,0,0,20.849,12.62Z" transform="translate(-1 -4.5)" fill="currentColor" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col mb-30">
-                            <div class="portfolio__items">
-                                <div class="portfolio__items--thumbnail position__relative">
-                                    <a class="portfolio__items--thumbnail__link display-block glightbox" data-gallery="portfolio" href="assets/img/other/portfolio5.webp"><img class="portfolio__items--thumbnail__img" src="assets/img/other/portfolio5.webp" alt="portfolio-img">
-                                        <div class="portfolio__view--icon">
-                                            <span class="portfolio__view--icon__link "><svg xmlns="http://www.w3.org/2000/svg" width="25.697" height="20.066" viewBox="0 0 39.697 27.066">
-                                                    <path d="M20.849,4.5A21.341,21.341,0,0,0,1,18.033a21.322,21.322,0,0,0,39.7,0A21.341,21.341,0,0,0,20.849,4.5Zm0,22.555a9.022,9.022,0,1,1,9.022-9.022A9.025,9.025,0,0,1,20.849,27.055Zm0-14.435a5.413,5.413,0,1,0,5.413,5.413A5.406,5.406,0,0,0,20.849,12.62Z" transform="translate(-1 -4.5)" fill="currentColor" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col mb-30">
-                            <div class="portfolio__items">
-                                <div class="portfolio__items--thumbnail position__relative">
-                                    <a class="portfolio__items--thumbnail__link display-block glightbox" data-gallery="portfolio" href="assets/img/other/portfolio6.webp"><img class="portfolio__items--thumbnail__img" src="assets/img/other/portfolio6.webp" alt="portfolio-img">
-                                        <div class="portfolio__view--icon">
-                                            <span class="portfolio__view--icon__link "><svg xmlns="http://www.w3.org/2000/svg" width="25.697" height="20.066" viewBox="0 0 39.697 27.066">
-                                                    <path d="M20.849,4.5A21.341,21.341,0,0,0,1,18.033a21.322,21.322,0,0,0,39.7,0A21.341,21.341,0,0,0,20.849,4.5Zm0,22.555a9.022,9.022,0,1,1,9.022-9.022A9.025,9.025,0,0,1,20.849,27.055Zm0-14.435a5.413,5.413,0,1,0,5.413,5.413A5.406,5.406,0,0,0,20.849,12.62Z" transform="translate(-1 -4.5)" fill="currentColor" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    @else
+                        <p>Xin vui lòng đăng nhập để có thể tiếp tục mua hàng!</p><a class="account__menu--list"
+                            href="{{ route('login') }}">Đăng nhập</a>
+                @endif
             </div>
         </section>
         <!-- End portfolio section -->
@@ -125,7 +144,7 @@
                 <div class="feature__inner d-flex justify-content-between">
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
-                            <img src="assets/img/other/feature1.webp" alt="img">
+                            <img src="{{ asset('becute/assets/img/other/feature1.webp') }}" alt="img">
                         </div>
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">Free Shipping</h2>
@@ -134,7 +153,7 @@
                     </div>
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon ">
-                            <img src="assets/img/other/feature2.webp" alt="img">
+                            <img src="{{ asset('becute/assets/img/other/feature2.webp') }}" alt="img">
                         </div>
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">Support 24/7</h2>
@@ -143,7 +162,7 @@
                     </div>
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
-                            <img src="assets/img/other/feature3.webp" alt="img">
+                            <img src="{{ asset('becute/assets/img/other/feature3.webp') }}" alt="img">
                         </div>
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">100% Money Back</h2>
@@ -152,7 +171,7 @@
                     </div>
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
-                            <img src="assets/img/other/feature4.webp" alt="img">
+                            <img src="{{ asset('becute/assets/img/other/feature4.webp') }}" alt="img">
                         </div>
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">Payment Secure</h2>
@@ -164,4 +183,4 @@
         </section>
         <!-- End feature section -->
     </main>
-    @endsection
+@endsection
