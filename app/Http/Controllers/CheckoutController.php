@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Products;
 use App\Models\User;
+use App\Models\Member;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -64,4 +65,6 @@ class CheckoutController extends Controller
 
 
     }
+    
+    
 }

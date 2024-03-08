@@ -39,7 +39,11 @@ use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AcountController;
 use App\Http\Controllers\ErrosController;
+
+use App\Http\Controllers\PointController;
+
 use App\Http\Controllers\HistoryController;
+
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
@@ -69,7 +73,17 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+});
+Route::get('page/point', [PointController::class, 'index'])->name('point');
+
 Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
 
 
 require __DIR__ . '/auth.php';
@@ -219,8 +233,18 @@ Route::match(['GET', 'POST'],'page/Checkouto', [CheckoutController::class, 'post
 Route::get('verify/{token}', [CheckoutController::class, 'verify'])->name('oder.verify');
 });
 // acount
+
+
+Route::get('page/portfolioPage', [AcountController::class, 'index'])->name('portfolioPage');
+///////////////////////
+
+// Route::get('/page/point/{id}', 'PointController@index');
+//
+Route::get('page/acount', [AcountController::class, 'index'])->name('acountPage');
+
 Route::get('page/account', [AccountController::class, 'index'])->name('accountPage');
 Route::get('page/portfolio', [PortfolioController::class, 'index'])->name('portfolioPage');
+
 // wishlist
 Route::get('page/wishlist', [WishlishController::class, 'index'])->name('wishlistPage');
 
