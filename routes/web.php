@@ -39,7 +39,11 @@ use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AcountController;
 use App\Http\Controllers\ErrosController;
+
+use App\Http\Controllers\PointController;
+
 use App\Http\Controllers\HistoryController;
+
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
@@ -69,7 +73,17 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+});
+Route::get('page/point', [PointController::class, 'index'])->name('point');
+
 Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
 
 
 require __DIR__ . '/auth.php';
@@ -154,7 +168,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     //Coupon//
     Route::get('/insert-coupon', [CouponController::class, 'insert_coupon'])->name('insert_coupon');
-    Route::get('/delete-coupon/{coupon_id}', [CouponController::class, 'delete_coupon'])->name("delete_coupon");
+    Route::delete('/delete-coupon/{coupon_id}', [CouponController::class, 'delete_coupon'])->name("delete_coupon");
     Route::get('/list-coupon', [CouponController::class, 'list_coupon'])->name('list_coupon');
     Route::post('/insert-coupon-code', [CouponController::class, 'insert_coupon_code'])->name('insert_coupon_code');
     Route::post('/check-coupon', [CartController::class, 'check_coupon'])->name('check_coupon');
@@ -215,12 +229,22 @@ Route::get('page/contact', [ContactController::class, 'index'])->name('contactPa
 // Checkout
 Route::middleware('auth')->group(function () {
 Route::get('page/Checkout', [CheckoutController::class, 'index'])->name('checkoutPage');
-Route::match(['GET', 'POST'],'page/Checkout/{cart}', [CheckoutController::class, 'post_checkout'])->name('checkoutPost');
+Route::match(['GET', 'POST'],'page/Checkouto', [CheckoutController::class, 'post_checkout'])->name('checkoutPost');
 Route::get('verify/{token}', [CheckoutController::class, 'verify'])->name('oder.verify');
 });
 // acount
+
+
+Route::get('page/portfolioPage', [AcountController::class, 'index'])->name('portfolioPage');
+///////////////////////
+
+// Route::get('/page/point/{id}', 'PointController@index');
+//
+Route::get('page/acount', [AcountController::class, 'index'])->name('acountPage');
+
 Route::get('page/account', [AccountController::class, 'index'])->name('accountPage');
 Route::get('page/portfolio', [PortfolioController::class, 'index'])->name('portfolioPage');
+
 // wishlist
 Route::get('page/wishlist', [WishlishController::class, 'index'])->name('wishlistPage');
 

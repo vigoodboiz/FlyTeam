@@ -70,12 +70,11 @@
                                                             class="fa-solid fa-pen"></i></a></button>
                                             @endcan
                                             @can('role_delete')
-                                                <form action="{{ route('roles.destroy', ['role' => $item->id]) }}"
-                                                    method="POST">
+                                                <form id="delete-form"
+                                                    action="{{ route('roles.destroy', ['role' => $item->id]) }}" method="POST">
                                                     @csrf
                                                     @method('delete')
-                                                    <button class="btn btn-danger" type="submit"
-                                                        onclick="return confirm('Có chắc xóa không?')"><i
+                                                    <button class="btn btn-danger" type="submit" id="delete-button"><i
                                                             class="fa fa-trash mr-0"></i></button>
                                                 </form>
                                             @endcan

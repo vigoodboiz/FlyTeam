@@ -45,7 +45,14 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
 
-
+    <style>
+        .text-truncate {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
     <style>
         #weatherWidget .currentDesc {
             color: #ffffff !important;
@@ -148,6 +155,7 @@
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
     <script src="{{ asset('sb-admin/assets/js/init/fullcalendar-init.js') }}"></script>
+
     @stack('script')
 
 
@@ -418,6 +426,10 @@
         });
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    @yield('js_Statistic')
+
+
 
     <script>
         $(function() {
@@ -449,12 +461,46 @@
 
 
 
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        document.getElementById('delete-button').addEventListener('click', function(event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Bạn có chắc chắn muốn xóa không?',
+                text: "Xóa là mất!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Xóa',
+                cancelButtonText: 'Hủy'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form').submit();
+                }
+            }).catch((error) => {
+                console.log(error);
+            });
+        });
+    </script>
 
-
+    <script>
+        @if (session('success'))
+            Swal.fire({
+                title: 'Thành công!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+            });
+        @endif
+    </script>
 
 </body>
 
 </html>
+
 
 
 </body>

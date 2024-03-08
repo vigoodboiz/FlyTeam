@@ -1,10 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    @if (session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
-
-
     <style>
         .description-cell {
             white-space: pre-wrap;
@@ -36,7 +31,7 @@
         <tbody>
             @foreach ($products as $product)
                 <tr>
-                    <td scope="row">{{ $product->id }}</td>
+                    <td scope="row">#1234{{ $product->id }}</td>
                     <td>{{ $product->category->name }}</td>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->brand }}</td>
@@ -58,11 +53,11 @@
                     </td>
                     <td>
                         @can('product_delete')
-                            <form action="{{ route('product.destroy', $product->id) }}" method="POST"
-                                onsubmit="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')">
+                            <form id="delete-form" action="{{ route('product.destroy', $product->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger"><i class="fa fa-trash mr-0"></i></button>
+                                <button type="submit" class="btn btn-danger" id="delete-button"><i
+                                        class="fa fa-trash mr-0"></i></button>
                             </form>
                         @endcan
                     </td>

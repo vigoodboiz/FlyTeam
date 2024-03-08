@@ -14,10 +14,10 @@
                             <a href="#" id="deleteAll" class="btn btn-danger add-list"><i class="las la-trash"></i>Xóa lựa
                                 chọn</a>
                         @endcan
-                        
-                            <a href="{{ route('permissions.create') }}" class="btn btn-primary add-list"><i
-                                    class="las la-plus mr-3"></i>Thêm quyền truy cập</a>
-                        
+
+                        <a href="{{ route('permissions.create') }}" class="btn btn-primary add-list"><i
+                                class="las la-plus mr-3"></i>Thêm quyền truy cập</a>
+
                     </div>
                 </div>
             </div>
@@ -63,12 +63,12 @@
                                                             class="fa-solid fa-pen"></i></a></button>
                                             @endcan
                                             @can('permission_delete')
-                                                <form action="{{ route('permissions.destroy', ['permission' => $item->id]) }}"
+                                                <form id="delete-form"
+                                                    action="{{ route('permissions.destroy', ['permission' => $item->id]) }}"
                                                     method="POST" id="cateForm{{ $item->id }}">
                                                     @csrf
                                                     @method('delete')
-                                                    <button class="btn btn-danger" type="submit"
-                                                        onclick="return confirm('Có chắc xóa không?')"><i
+                                                    <button class="btn btn-danger" type="submit" id="delete-button"><i
                                                             class="fa fa-trash mr-0"></i></button>
                                                 </form>
                                             @endcan

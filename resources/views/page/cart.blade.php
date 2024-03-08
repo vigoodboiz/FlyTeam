@@ -31,19 +31,6 @@
                         <div class="col-lg-8">
                             <div class="cart__table">
                                 <table class="cart__table--inner">
-                                    <!-- thông báo -->
-                                    @if (\Session::has('message'))
-                                        <div class="alert alert-success">
-                                            {{ \Session::get('message') }}
-                                        </div>
-                                    @endif
-                                    <!-- thông báo -->
-                                    @if (\Session::has('error'))
-                                        <div class="alert alert-danger">
-                                            {{ \Session::get('error') }}
-                                        </div>
-                                    @endif
-
                                     <thead class="cart__table--header">
                                         <tr class="cart__table--header__items">
                                             <th class="cart__table--header__list">Image</th>
@@ -68,10 +55,14 @@
                                                 <th>{{ $cart->quantity }}</th>
                                                 <th>{{ $cart->total_price }} đ</th>
                                                 <td class="product-close">
-                                                    <a href="{{ route('cart.delete', $cart->id) }}" class="product-remove"
-                                                        title="Remove this product">
-                                                        <i class="bi bi-x-circle-fill display-3 text-danger"></i>
-                                                    </a>
+
+                                                    <form id="delete-form" action="{{ route('cart.delete', $cart->id) }}">
+                                                        @csrf
+                                                        <button id="delete-button" type="submit" class="btn product-remove"
+                                                            title="Remove this product">
+                                                            <i class="bi bi-x-circle-fill display-3 text-danger"></i>
+                                                        </button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -117,10 +108,10 @@
 
 
                                 <!-- <div class="cart__note mb-20">
-                                                                                    <h3 class="cart__note--title">Note</h3>
-                                                                                    <p class="cart__note--desc">Add special instructions for your seller...</p>
-                                                                                    <textarea class="cart__note--textarea border-radius-5"></textarea>
-                                                                                </div> -->
+                                                                                        <h3 class="cart__note--title">Note</h3>
+                                                                                        <p class="cart__note--desc">Add special instructions for your seller...</p>
+                                                                                        <textarea class="cart__note--textarea border-radius-5"></textarea>
+                                                                                    </div> -->
                             </div>
 
                             <div class="cart__summary--total mb-20">
@@ -172,7 +163,7 @@
                                             Cart</button></li>
 
                                     <li><a class="cart__summary--footer__btn primary__btn checkout"
-                                            href="{{route('checkoutPage')}}">Check Out</a></li>
+                                            href="{{ route('checkoutPage') }}">Check Out</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -207,8 +198,9 @@
                                     <span class="product__badge">-14%</span>
                                     <ul class="product__card--action">
                                         <li class="product__card--action__list">
-                                            <a class="product__card--action__btn" title="Quick View" data-bs-toggle="modal"
-                                                data-bs-target="#examplemodal" href="javascript:void(0)">
+                                            <a class="product__card--action__btn" title="Quick View"
+                                                data-bs-toggle="modal" data-bs-target="#examplemodal"
+                                                href="javascript:void(0)">
                                                 <svg class="product__card--action__btn--svg" width="16"
                                                     height="16" viewBox="0 0 16 16" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">

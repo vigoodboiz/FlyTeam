@@ -28,6 +28,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+    <style>
+        .text-truncate {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
 </head>
 
 <body>
@@ -66,6 +75,48 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
         @yield('price-range');
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script>
+            document.getElementById('delete-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                Swal.fire({
+                    title: 'Bạn có chắc chắn muốn xóa không?',
+                    text: "Xóa là mất!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Xóa',
+                    cancelButtonText: 'Hủy'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('delete-form').submit();
+                    }
+                }).catch((error) => {
+                    // Xử lý lỗi nếu có
+                    console.log(error);
+                });
+            });
+        </script>
+        <script>
+            @if (session('success'))
+                Swal.fire({
+                    title: 'Thành công!',
+                    text: '{{ session('success') }}',
+                    icon: 'success',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                });
+            @elseif (session('error'))
+                Swal.fire({
+                    title: 'có lỗi!',
+                    text: '{{ session('error') }}',
+                    icon: 'warning',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                });
+            @endif
         </script>
     </body>
 

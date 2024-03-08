@@ -88,12 +88,12 @@
                                                             class="fa-solid fa-pen"></i></a></button>
                                             @endcan
                                             @can('user_delete')
-                                                <form action="{{ route('users.destroy', ['user' => $item->id]) }}"
-                                                    method="POST" id="cateForm{{ $item->id }}">
+                                                <form id="delete-form"
+                                                    action="{{ route('users.destroy', ['user' => $item->id]) }}" method="POST"
+                                                    id="cateForm{{ $item->id }}">
                                                     @csrf
                                                     @method('delete')
-                                                    <button class="btn btn-danger" type="submit"
-                                                        onclick="return confirm('Có chắc xóa không?')"><i
+                                                    <button class="btn btn-danger" type="submit" id="delete-button"><i
                                                             class="fa fa-trash mr-0"></i></button>
                                                 </form>
                                             @endcan

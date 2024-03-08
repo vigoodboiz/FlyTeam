@@ -17,20 +17,23 @@
         <tbody>
             @foreach ($listDelivery_status as $oder)
                 <tr>
-                    <th scope="row">{{ $oder->id }}</th>
+                    <th scope="row">#1234{{ $oder->id }}</th>
                     <td>{{ $oder->user->name }}</td>
                     <td>{{ $oder->product->name }}</td>
                     <td>{{ $oder->payment_status }}</td>
                     <td class="form-group">
                         <select class="form-control delivery-select" data-delivery-id="{{ $oder->id }}">
-                            <option value="Đang Xử Lý" {{ $oder->delivery_status == 'Đang Xử Lý' ? 'selected' : '' }}>Đang
+                            <option value="Đang Xử Lý" {{ $oder->delivery_status == 'Đang Xử Lý' ? 'selected' : '' }}>
+                                Đang
                                 Xử Lý</option>
                             <option value="Đang Giao Hàng"
-                                {{ $oder->delivery_status == 'Đang Giao Hàng' ? 'selected' : '' }}>Đang Giao Hàng</option>
+                                {{ $oder->delivery_status == 'Đang Giao Hàng' ? 'selected' : '' }}>Đang Giao Hàng
+                            </option>
                             <option value="Đã Giao Hàng" {{ $oder->delivery_status == 'Đã Giao Hàng' ? 'selected' : '' }}>Đã
                                 Giao Hàng</option>
                             <option value="Không thể xử lí giao hàng"
-                                {{ $oder->delivery_status == 'Không thể xử lí giao hàng' ? 'selected' : '' }}>Không thể xử
+                                {{ $oder->delivery_status == 'Không thể xử lí giao hàng' ? 'selected' : '' }}>Không thể
+                                xử
                                 lí giao hàng</option>
                         </select>
                     </td>
