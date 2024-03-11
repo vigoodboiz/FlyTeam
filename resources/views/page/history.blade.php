@@ -22,15 +22,24 @@
 
         <!-- cart section start -->
         <div class="container">
+<<<<<<< HEAD
             <h2 class="cart__title mb-30">Lịch sử đơn hàng</h2>
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>Stt</th>
+=======
+            <h2 class="cart__title mb-30">Order History</h2>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+>>>>>>> 7f4b2cb8dffac4783173be1a8795b9a6a3c82cd8
                         {{-- <th>User Name</th>
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Address</th> --}}
+<<<<<<< HEAD
                         <th>Ảnh sản phẩm</th>
                         <th>Tên sản phẩm</th>
                         <th>Giá sản phẩm</th>
@@ -40,6 +49,17 @@
                         <th>Trạng thái giao hàng</th>
                         <th>Ngày đặt hàng</th>
                         <th>Hành động</th>
+=======
+                        <th>Product Image</th>
+                        <th>Product Name</th>
+                        <th>Product Price</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                        <th>Order Status</th>
+                        <th>Delivery Status</th>
+                        <th>Order Date</th>
+                        <th>Cancel Order</th>
+>>>>>>> 7f4b2cb8dffac4783173be1a8795b9a6a3c82cd8
                     </tr>
                 </thead>
                 <tbody>
@@ -74,6 +94,7 @@
                             <td>
                                 <div class="d-flex align-items-center list-action">
                                     @if ($item->payment_status === 'Đã hủy đơn hàng' && $item->delivery_status === 'Không thể xử lý giao hàng')
+<<<<<<< HEAD
                                         <form id="delete-Form" action="{{ route('orders.process_reorder', $item->id) }}"
                                             method="POST">
                                             @csrf
@@ -88,6 +109,21 @@
                                             <button class="btn btn-danger" type="submit" title="Cancel order"
                                                 id="delete-button">Hủy đơn
                                             </button>
+=======
+                                        <form action="{{ route('orders.process_reorder', $item->id) }}" method="POST">
+                                            @csrf
+                                            <button class="btn btn-success" type="submit"
+                                                onclick="return confirm('Are you sure you want to buy this order?')">Buy
+                                                back</button>
+                                        </form>
+                                    @else
+                                        <form action="{{ route('orders.cancel', $item->id) }}" method="POST">
+                                            @csrf
+                                            @method('POST')
+                                            <button class="btn btn-danger" type="submit" title="Cancel order"
+                                                onclick="return confirm('Are you sure you want to cancel this order?')">Cancel
+                                                order</button>
+>>>>>>> 7f4b2cb8dffac4783173be1a8795b9a6a3c82cd8
                                         </form>
                                     @endif
                                 </div>
