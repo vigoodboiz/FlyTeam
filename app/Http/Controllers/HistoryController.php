@@ -15,7 +15,7 @@ class HistoryController extends Controller
         if($orders){
         return view('page.history', compact('orders'));
         } else {
-            return redirect()->back()->with('error', 'Orders do not exist');
+            return redirect()->back()->with('error', 'Đơn đặt hàng không tồn tại!');
         }
     }
 }

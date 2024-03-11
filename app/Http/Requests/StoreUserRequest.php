@@ -32,7 +32,6 @@ class StoreUserRequest extends FormRequest
         return [
             'user_code'      => [
                 'required',
-                'unique'
             ],
             'name'           => [
                 'required',
@@ -55,7 +54,6 @@ class StoreUserRequest extends FormRequest
             ],
             'gender'         => [
                 'required',
-                'min:9'
             ],
             'address'         => [
                 'required',

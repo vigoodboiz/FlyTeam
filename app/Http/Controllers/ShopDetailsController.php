@@ -49,7 +49,7 @@ class ShopDetailsController extends Controller
         $user = Auth::user();
 
         if (!$user) {
-            return redirect()->back()->with('error', 'You have to login for comments!');
+            return redirect()->back()->with('error', 'Bạn phải đăng nhập để bình luận!');
         }
 
         Comment::create([
@@ -60,6 +60,6 @@ class ShopDetailsController extends Controller
             'date' => $request->input('date')
         ]);
 
-        return redirect()->back()->with('success', 'The comment has been successfully created!');
+        return redirect()->back()->with('success', 'Bình luận đã được tạo thành công!');
     }
 }

@@ -28,9 +28,9 @@ class ProfileController extends Controller
             // Update user's profile picture path in database
             auth()->user()->update(['profile_picture' => 'profile_pictures/' . $imageName]);
     
-            return redirect()->back()->with('success', 'Profile picture updated successfully.');
+            return redirect()->back()->with('success', 'Hình ảnh hồ sơ cập nhật thành công!');
         }
     
-        return redirect()->back()->with('error', 'Failed to update profile picture.');
+        return redirect()->back()->with('error', 'Hình ảnh hồ sơ cập nhật thất bại!');
     }
 }

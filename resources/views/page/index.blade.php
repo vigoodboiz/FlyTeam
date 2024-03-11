@@ -12,13 +12,14 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <div class="slider__content">
-                                            <h2 class="slider__maintitle text__primary h1">Beauty is Whatever <br>
-                                                Brings Perfect</h2>
-                                            <p class="slider__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                                ad minim veniam, aliquip ex ea commodo consequat. </p>
+                                            <h2 class="slider__maintitle text__primary h1">Vẻ đẹp là bất cứ điều gì <br>
+                                                Mang lại sự hoàn hảo</h2>
+                                            <p class="slider__desc">Không phải những người đẹp là những người hạnh phúc, mà
+                                                những người hạnh phúc là những người đẹp. Người phụ nữ đẹp sẽ biết dùng ngôn
+                                                ngữ nói lên sự thật, dùng giọng nói miêu tả sự chân thành, dùng đôi tai lắng
+                                                nghe lòng trắc ẩn, dùng trái tim của mình để dành cho tình yêu thật sự. </p>
                                             <a class="primary__btn slider__btn" href="{{ route('shopGrid') }}">
-                                                SHOP NOW
+                                                MUA NGAY
                                                 <svg width="17" height="12" viewBox="0 0 17 12" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -106,7 +107,7 @@
         <section class="shop__collection--section section--padding">
             <div class="container">
                 <div class="section__heading text-center mb-40">
-                    <h2 class="section__heading--maintitle">Shop By Category</h2>
+                    <h2 class="section__heading--maintitle">Mua sắm theo danh mục</h2>
                 </div>
                 <div class="shop__collection--column5 swiper">
                     <div class="swiper-wrapper">
@@ -118,7 +119,7 @@
                                         <img class="shop__collection--img" src="{{ asset('images/' . $cate->image) }}"
                                             alt="icon-img">
                                         <h3 class="shop__collection--title">{{ $cate->name }}</h3>
-                                        <span class="shop__collection--subtitle">25 Items</span>
+                                        {{-- <span class="shop__collection--subtitle">25 Items</span> --}}
                                     </a>
                                 </div>
                             </div>
@@ -150,19 +151,19 @@
                     <div class="image__width--text__thumbnail position-relative">
                         <img src="{{ asset('becute/assets/img/banner/banner1.webp') }}" alt="image">
                         <div class="image__width--text">
-                            <h2 class="image__width--text__title">Face Your Skin With Us</h2>
-                            <p class="image__width--text__desc">Kidlues ispum maruwes cnsectetur adipisicing elit, sed do
-                                eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            <h2 class="image__width--text__title">Đối mặt với làn da của bạn với chúng tôi</h2>
+                            <p class="image__width--text__desc">Mọi phụ nữ đều đẹp dù cho vẻ ngoài của họ có thế nào. Bạn
+                                chỉ cần cảm nhận linh hồn của cố ấy với sự tôn trọng và đánh giá đúng mực.</p>
                             <div class="image__width--text__footer">
 
-                                <a class="image__width--text__link" href="{{ route('shopGrid') }}">Shop Now
+                                <a class="image__width--text__link" href="{{ route('shopGrid') }}">Mua ngay
                                     <svg width="9" height="12" viewBox="0 0 10 16" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path d="M1 1L7.96317 7.96317L1 14.9263" stroke="currentColor" stroke-width="2" />
                                     </svg>
                                 </a>
                                 <a class="image__width--text__link glightbox" href="https://youtu.be/AJK5hVO3TLc"
-                                    data-gallery="video">Play Video
+                                    data-gallery="video">Xem video
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="10" cy="10" r="9.75" fill="#F7EEDD" stroke="black"
@@ -194,7 +195,7 @@
                     </div>
                 @endif
                 <div class="section__heading text-center mb-40">
-                    <h2 class="section__heading--maintitle">TRENDING PRODUCT</h2>
+                    <h2 class="section__heading--maintitle">SẢN PHẨM THỊNH HÀNH</h2>
                 </div>
                 <div class="product__section--inner">
                     <div class="row mb--n30">
@@ -272,8 +273,8 @@
                                             @endif
                                         </ul>
                                         <div class="product__add--to__card">
-                                            <a class="product__card--btn" title="Add To Card" href="cart.html"> Add to
-                                                Cart
+                                            <a class="product__card--btn" title="Add To Card" href="cart.html">Thêm giỏ
+                                                hàng
                                                 <svg width="17" height="15" viewBox="0 0 14 11" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -357,7 +358,7 @@
                         @endforeach
                     </div>
                     <div class="product__load--more text-center">
-                        <a class="load__more--btn primary__btn" href="{{ route('shopGrid') }}">Load More</a>
+                        <a class="load__more--btn primary__btn" href="{{ route('shopGrid') }}">Xem thêm</a>
                     </div>
                 </div>
             </div>
@@ -384,16 +385,16 @@
                                             d="M16.5 9.13398C17.1667 9.51888 17.1667 10.4811 16.5 10.866L1.5 19.5263C0.833335 19.9112 9.70611e-07 19.4301 1.00426e-06 18.6603L1.76136e-06 1.33975C1.79501e-06 0.569945 0.833335 0.0888201 1.5 0.47372L16.5 9.13398Z"
                                             fill="currentColor" />
                                     </svg>
-                                    <span class="visually-hidden">Video Play</span>
+                                    <span class="visually-hidden">Xem video</span>
                                 </a>
                             </div>
                         </div>
                         <div class="video__banner--content">
-                            <h2 class="video__banner--content__title">Beauty products that
-                                really work</h2>
-                            <p class="video__banner--content__desc">Our formulations have proven efficacy, contain organic
-                                ingredients only and are 100% cruelty free</p>
-                            <a class="video__banner--content__btn primary__btn" href="shop.html">SKINCARE</a>
+                            <h2 class="video__banner--content__title">Sản phẩm làm đẹp thực sự hiệu quả</h2>
+                            <p class="video__banner--content__desc">Công thức của chúng tôi đã được chứng minh hiệu quả,
+                                chỉ chứa các thành phần hữu cơ và 100% không có chất độc hại</p>
+                            <a class="video__banner--content__btn primary__btn" href="{{ route('shopGrid') }}">CHĂM SÓC
+                                DA</a>
                         </div>
                     </div>
                 </div>
@@ -405,7 +406,7 @@
         <section class="product__section section--padding ">
             <div class="container">
                 <div class="section__heading text-center mb-40">
-                    <h2 class="section__heading--maintitle">FEATURED PRODUCT</h2>
+                    <h2 class="section__heading--maintitle">SẢN PHẨM NỔI BẬT</h2>
                 </div>
                 <div class="product__section--inner product__swiper--column4 padding swiper">
                     <div class="swiper-wrapper">
@@ -460,7 +461,7 @@
                                         </li>
                                     </ul>
                                     <div class="product__add--to__card">
-                                        <a class="product__card--btn" title="Add To Card" href="cart.html"> Add to Cart
+                                        <a class="product__card--btn" title="Add To Card" href="cart.html"> Thêm giỏ hàng
                                             <svg width="17" height="15" viewBox="0 0 14 11" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -1061,7 +1062,7 @@
         <div class="before__after--section">
             <div class="container">
                 <div class="section__heading text-center mb-40">
-                    <h2 class="section__heading--maintitle">Before & After</h2>
+                    <h2 class="section__heading--maintitle">TRƯỚC & SAU</h2>
                 </div>
                 <div id="comparison">
                     <figure>
@@ -1079,7 +1080,7 @@
         <section class="product__section section--padding ">
             <div class="container">
                 <div class="section__heading text-center mb-40">
-                    <h2 class="section__heading--maintitle">Deals of the week!</h2>
+                    <h2 class="section__heading--maintitle">Ưu đãi trong tuần!</h2>
                 </div>
                 <div class="product__section--border position-relative">
                     <div class="product__section--countdown d-flex justify-content-center"
@@ -1770,12 +1771,13 @@
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div class="banner__fullwidth--content">
-                                <h3 class="banner__fullwidth--content__subtitle">SPECIAL OFFER</h3>
-                                <h2 class="banner__fullwidth--content__title">Set For A Good Time</h2>
-                                <p class="banner__fullwidth--content__desc">We are committed to offering the finest
-                                    selection of clean and natural skin care products created by the world’s leading brands
-                                    that are pioneers in innovation, science, technology, and sustainability.</p>
-                                <a class="banner__fullwidth--content__btn primary__btn" href="#">SHOP NOW</a>
+                                <h3 class="banner__fullwidth--content__subtitle">ƯU ĐÃI ĐẶC BIỆT</h3>
+                                <h2 class="banner__fullwidth--content__title">Đặt cho một thời gian tốt</h2>
+                                <p class="banner__fullwidth--content__desc">Chúng tôi cam kết cung cấp sự lựa chọn tốt
+                                    nhất các sản phẩm chăm sóc da sạch và tự nhiên được tạo ra bởi các thương hiệu hàng đầu
+                                    thế giới tiên phong trong đổi mới, khoa học, công nghệ và bền vững.</p>
+                                <a class="banner__fullwidth--content__btn primary__btn"
+                                    href="{{ route('shopGrid') }}">MUA NGAY</a>
                             </div>
                         </div>
                     </div>
@@ -1788,11 +1790,11 @@
         <section class="skin__advice--section section--padding">
             <div class="container">
                 <div class="skin__advice--content text-center">
-                    <h2 class="skin__advice--content__title">Truly love the skin you're in</h2>
-                    <p class="skin__advice--content__desc">Our vision is to give melanin rich skin the attention it
-                        deserves. We don't want to just nurture your skin—we want you to discover the beauty that lies
-                        within.</p>
-                    <h3 class="skin__advice--content__subtitle">Everyone needs a Iil' Buttah – baby!</h3>
+                    <h2 class="skin__advice--content__title">Thực sự yêu làn da bạn đang ở</h2>
+                    <p class="skin__advice--content__desc">Tầm nhìn của chúng tôi là cung cấp cho làn da giàu melanin sự
+                        chú ý xứng đáng. Chúng tôi không muốn chỉ nuôi dưỡng làn da của bạn - chúng tôi muốn bạn khám phá vẻ
+                        đẹp bên trong.</p>
+                    <h3 class="skin__advice--content__subtitle">Mọi người đều cần một Iil 'Buttah - em yêu!</h3>
                 </div>
             </div>
         </section>
@@ -1804,26 +1806,26 @@
                 <div class="row mb--n30">
                     <div class="col-lg-6 col-md-6 mb-30">
                         <div class="banner__box border-radius-5 position-relative">
-                            <a class="display-block" href="shop.html"><img
+                            <a class="display-block" href="{{ route('shopGrid') }}"><img
                                     class="banner__box--thumbnail border-radius-5"
                                     src="{{ asset('becute/assets/img/banner/banner7.webp') }}" alt="banner-img">
                                 <div class="banner__box--content">
-                                    <h2 class="banner__box--content__title ">Beauty Box</h2>
-                                    <p class="banner__box--content__desc">Freshwater pearl necklace and earrings</p>
-                                    <span class="banner__box--content__btn primary__btn">EXPLORE </span>
+                                    <h2 class="banner__box--content__title ">Hộp làm đẹp</h2>
+                                    <p class="banner__box--content__desc">Nước hoa và chăm sóc cơ thể</p>
+                                    <span class="banner__box--content__btn primary__btn">KHÁM PHÁ </span>
                                 </div>
                             </a>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 mb-30">
                         <div class="banner__box border-radius-5 position-relative">
-                            <a class="display-block" href="shop.html"><img
+                            <a class="display-block" href="{{ route('shopGrid') }}"><img
                                     class="banner__box--thumbnail border-radius-5"
                                     src="{{ asset('becute/assets/img/banner/banner8.webp') }}" alt="banner-img">
                                 <div class="banner__box--content">
                                     <h2 class="banner__box--content__title ">Organic Serium</h2>
-                                    <p class="banner__box--content__desc">Freshwater pearl necklace and</p>
-                                    <span class="banner__box--content__btn primary__btn style2">EXPLORE </span>
+                                    <p class="banner__box--content__desc">Serium dưỡng ẩm cấp tốc</p>
+                                    <span class="banner__box--content__btn primary__btn style2">KHÁM PHÁ </span>
                                 </div>
                             </a>
                         </div>
@@ -1837,7 +1839,7 @@
         <section class="testimonial__section testimonial__bg section--padding">
             <div class="container">
                 <div class="section__heading text-center mb-40">
-                    <h2 class="section__heading--maintitle">What Clients Are Saying</h2>
+                    <h2 class="section__heading--maintitle">Khách hàng đang nói gì</h2>
                 </div>
                 <div class="testimonial__section--inner testimonial__swiper--activation swiper">
                     <div class="swiper-wrapper">

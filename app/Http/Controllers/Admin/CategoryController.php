@@ -49,7 +49,7 @@ class CategoryController extends Controller
 
         Category::create($validatedData);
 
-        return redirect()->route('categories.index')->with('success', 'Category created successfully!');
+        return redirect()->route('categories.index')->with('success', 'Danh mục được thêm thành công!');
     }
 
     /**
@@ -98,7 +98,7 @@ class CategoryController extends Controller
     
         // Thực hiện các xử lý khác sau khi cập nhật danh mục
     
-        return redirect()->route('categories.index')->with('success', 'Category updated successfully!');
+        return redirect()->route('categories.index')->with('success', 'Danh mục được cập nhật thành công!');
     }
 
     /**
@@ -110,7 +110,7 @@ class CategoryController extends Controller
     {
         $category->products()->delete(); // Xóa tất cả các sản phẩm thuộc về category này
         $category->delete(); // Xóa category
-        return redirect()->route('categories.index')->with('success', 'Category deleted successfully!');
+        return redirect()->route('categories.index')->with('success', 'Danh mục được xóa thành công!');
     }
 
 

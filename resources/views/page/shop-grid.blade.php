@@ -10,10 +10,10 @@
                 <div class="row row-cols-1">
                     <div class="col">
                         <div class="breadcrumb__content text-center">
-                            <h1 class="breadcrumb__content--title">Product</h1>
+                            <h1 class="breadcrumb__content--title">Sản phẩm</h1>
                             <ul class="breadcrumb__content--menu d-flex justify-content-center">
-                                <li class="breadcrumb__content--menu__items"><a href="{{ route('home') }}">Home</a></li>
-                                <li class="breadcrumb__content--menu__items"><span>Product</span></li>
+                                <li class="breadcrumb__content--menu__items"><a href="{{ route('home') }}">Trang chủ</a></li>
+                                <li class="breadcrumb__content--menu__items"><span>Sản phẩm</span></li>
                             </ul>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                     </div>
                 @endif
                 <div class="section__heading text-center mb-40">
-                    <h2 class="section__heading--maintitle">Shop Product Sale</h2>
+                    <h2 class="section__heading--maintitle">Sản phẩm giảm giá</h2>
                 </div>
                 <div class="shop__collection--column5 swiper">
                     <div class="swiper-wrapper">
@@ -95,8 +95,8 @@
                                                 </li>
                                             </ul>
                                             <div class="product__add--to__card">
-                                                <button type='submit' class="product__card--btn" title="Add To Card"> Add
-                                                    to Cart
+                                                <button type='submit' class="product__card--btn" title="Add To Card">Thêm
+                                                    giỏ hàng
                                                     <svg width="17" height="15" viewBox="0 0 14 11" fill="none"
                                                         xmlns="http://www.w3.org/2000/svg">
                                                         <path
@@ -157,7 +157,7 @@
                     <div class="col-xl-3 col-lg-4 shop-col-width-lg-4">
                         <div class="shop__sidebar--widget widget__area d-none d-lg-block">
                             <div class="single__widget widget__bg">
-                                <h2 class="widget__title h3">Categories</h2>
+                                <h2 class="widget__title h3">Danh mục</h2>
 
                                 <ul class="widget__categories--menu">
                                     @foreach ($categories as $cate)
@@ -172,7 +172,7 @@
                                 </ul>
 
                             </div>
-                            <div class="single__widget widget__bg">
+                            {{-- <div class="single__widget widget__bg">
                                 <h2 class="widget__title h3">Dietary Needs</h2>
                                 <ul class="widget__form--check">
                                     <li class="widget__form--check__list">
@@ -201,15 +201,15 @@
                                         <span class="widget__form--checkmark"></span>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> --}}
                             <div class="single__widget price__filter widget__bg">
-                                <h2 class="widget__title h3">Filter By Price</h2>
+                                <h2 class="widget__title h3">Lọc theo giá</h2>
                                 <div class="price-range-wrap">
                                     <div class="range-slider">
                                         <form action="{{ route('fillPrice') }}" method="GET">
                                             <p>
                                                 <button class="primary__btn price__filter--btn"
-                                                    type="submit">Filter</button>
+                                                    type="submit">Lọc</button>
                                                 <input type="text" id="price_range" name="price_range"
                                                     style="border:0; color:#f6931f; font-weight:bold;" readonly>
                                             </p>
@@ -219,7 +219,7 @@
                                 </div>
                             </div>
                             <div class="single__widget widget__bg">
-                                <h2 class="widget__title h3">Top Rated Product</h2>
+                                <h2 class="widget__title h3">Sản phẩm được xếp hạng hàng đầu</h2>
                                 <div class="shop__sidebar--product">
                                     @foreach ($new_product as $pro_new)
                                         <div class="small__product--card d-flex">
@@ -292,7 +292,7 @@
                                 </div>
                             </div>
                             <div class="single__widget widget__bg">
-                                <h2 class="widget__title h3">Brands</h2>
+                                <h2 class="widget__title h3">Thương hiệu</h2>
                                 <ul class="widget__tagcloud">
                                     @foreach ($products as $pro)
                                         <li class="widget__tagcloud--list"><a class="widget__tagcloud--link"
@@ -326,13 +326,13 @@
                                     </button>
 
                                     <div class="product__view--mode__list product__short--by align-items-center d-flex">
-                                        <label class="product__view--label">Sort By :</label>
+                                        <label class="product__view--label">Sắp xếp theo:</label>
                                         <div class="select shop__header--select">
                                             <select class="product__view--select">
-                                                <option selected value="1">Sort by latest</option>
-                                                <option value="2">Sort by popularity</option>
-                                                <option value="3">Sort by newness</option>
-                                                <option value="4">Sort by rating </option>
+                                                <option selected value="1">Sắp xếp theo mới nhất</option>
+                                                <option value="2">Sắp xếp theo mức độ phổ biến</option>
+                                                <option value="3">Sắp xếp theo sự mới mẻ</option>
+                                                <option value="4">Sắp xếp theo xếp hạng</option>
                                             </select>
                                         </div>
 
@@ -401,7 +401,7 @@
                                     </div>
                                 </div>
 
-                                <p class="product__showing--count">Showing 1–6 of {{ $products->count() }} results</p>
+                                <p class="product__showing--count">Hiện thị 1–6 of {{ $products->count() }} kết quả</p>
                             </div>
                             <div class="tab_content">
                                 <div id="product_grid" class="tab_pane">
@@ -734,8 +734,7 @@
                                                                 <p class="product__card--content__desc mb-15">
                                                                     {{ $pro->describe }}</p>
                                                                 <button class="primary__btn quickview__cart--btn"
-                                                                    type="submit">+ Add To
-                                                                    Cart</button>
+                                                                    type="submit">+Thêm giỏ hàng</button>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -910,7 +909,7 @@
                 }
             });
 
-            $("#price_range").val("$" + minPrice + " - " + "$" + maxPrice);
+            $("#price_range").val(minPrice + "đ" + " - " + maxPrice + "đ");
         });
     </script>
 @endsection
