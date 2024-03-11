@@ -17,7 +17,7 @@ class CouponController extends Controller
             if($coupon==true){
             Session::forget('coupon');
 
-            return redirect()->back()->with('success', 'Coupon deleted successfully!');;
+            return redirect()->back()->with('success', 'Khuyến mại được xóa thành công!');;
 
         }
     }
@@ -31,7 +31,7 @@ class CouponController extends Controller
         $coupon = Coupon::find($id);
         $coupon->delete();
 
-        return Redirect::to('admin/list-coupon')->with('success', 'Coupon deleted successfully!');;
+        return Redirect::to('admin/list-coupon')->with('success', 'Khuyến mại được xóa thành công!');;
 
     }
     public function list_coupon()
@@ -54,7 +54,7 @@ class CouponController extends Controller
         $coupon->coupon_condition = $data['coupon_condition'];
         $coupon->save();
 
-        return Redirect::to('admin/list-coupon')->with('success', 'Coupon updated successfully!');
+        return Redirect::to('admin/list-coupon')->with('success', 'Khuyến mại được cập nhật thành công!');
 
     }
 }

@@ -6,11 +6,13 @@
 
         <thead>
             <tr>
-                <th scope="col">ODER_ID</th>
-                <th scope="col">USER</th>
-                <th scope="col">PRODUCT NAME</th>
-                <th scope="col">STATUS_ODER</th>
-                <th scope="col">STATUS</th>
+                <th scope="col">Mã đơn hàng</th>
+                <th scope="col">Tên khách hàng</th>
+                <th scope="col">Tên sản phẩm</th>
+                <th scope="col">Giá sản phẩm</th>
+                <th scope="col">Địa chỉ</th>
+                <th scope="col">Trạng thái đơn hàng</th>
+                <th scope="col">Trạng thái</th>
 
             </tr>
         </thead>
@@ -20,17 +22,20 @@
                     <th scope="row">#1234{{ $oder->id }}</th>
                     <td>{{ $oder->user->name }}</td>
                     <td>{{ $oder->product->name }}</td>
+                    <td>{{ $oder->product->price }}</td>
+                    <td>{{ $oder->user->address }}</td>
                     <td>{{ $oder->payment_status }}</td>
                     <td class="form-group">
                         <select class="form-control delivery-select" data-delivery-id="{{ $oder->id }}">
-                            <option value="Đang Xử Lý" {{ $oder->delivery_status == 'Đang Xử Lý' ? 'selected' : '' }}>
+                            <option value="Đang xử lý" {{ $oder->delivery_status == 'Đang xử lý' ? 'selected' : '' }}>
                                 Đang
                                 Xử Lý</option>
                             <option value="Đang Giao Hàng"
                                 {{ $oder->delivery_status == 'Đang Giao Hàng' ? 'selected' : '' }}>Đang Giao Hàng
                             </option>
-                            <option value="Đã Giao Hàng" {{ $oder->delivery_status == 'Đã Giao Hàng' ? 'selected' : '' }}>Đã
-                                Giao Hàng</option>
+                            <option value="Đã Giao Hàng" {{ $oder->delivery_status == 'Đã giao hàng' ? 'selected' : '' }}>
+                                Đã
+                                giao hàng</option>
                             <option value="Không thể xử lí giao hàng"
                                 {{ $oder->delivery_status == 'Không thể xử lí giao hàng' ? 'selected' : '' }}>Không thể
                                 xử

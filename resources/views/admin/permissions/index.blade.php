@@ -34,7 +34,7 @@
                                 </th>
                                 <th>STT</th>
                                 <th>Tên quyền truy cập</th>
-                                <th>Action</th>
+                                <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody class="ligth-body">
@@ -85,35 +85,35 @@
     @endsection
 
     @push('scripts')
-        {{-- @can('permission_delete') --}}
-        <script>
-            $(document).ready(function() {
+        @can('permission_delete')
+            <script>
+                $(document).ready(function() {
 
-                $("#selectAll").click(function() {
-                    $("input[type=checkbox]").prop('checked', $(this).prop('checked'));
-                });
-
-                $("#deleteAll").on("click", function() {
-                    var ids = [];
-                    $.each($("input[name='ids']:checked"), function() {
-                        ids.push($(this).val());
+                    $("#selectAll").click(function() {
+                        $("input[type=checkbox]").prop('checked', $(this).prop('checked'));
                     });
 
-                    $.ajax({
-                        type: "DELETE",
-                        url: 'permissions/massDestroy',
-                        data: {
-                            ids: ids,
-                            _token: $('meta[name="csrf-token"]').attr('content')
-                        },
-                        dataType: "json",
-                        success: function(response) {
-                            location.reload();
-                        }
-                    });
-                });
+                    $("#deleteAll").on("click", function() {
+                        var ids = [];
+                        $.each($("input[name='ids']:checked"), function() {
+                            ids.push($(this).val());
+                        });
 
-            });
-        </script>
-        {{-- @endcan --}}
+                        $.ajax({
+                            type: "DELETE",
+                            url: 'permissions/massDestroy',
+                            data: {
+                                ids: ids,
+                                _token: $('meta[name="csrf-token"]').attr('content')
+                            },
+                            dataType: "json",
+                            success: function(response) {
+                                location.reload();
+                            }
+                        });
+                    });
+
+                });
+            </script>
+        @endcan
     @endpush

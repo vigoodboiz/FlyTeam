@@ -199,11 +199,11 @@ class PaymentController extends Controller
             }
             return redirect()
                 ->route('cancel.payment')
-                ->with('error', 'Something went wrong.');
+                ->with('error', 'Có gì đó đã sai!');
         } else {
             return redirect()
                 ->route('create.payment')
-                ->with('error', $response['message'] ?? 'Something went wrong.');
+                ->with('error', $response['message'] ?? 'Có gì đó đã sai!');
         }
     }
 
@@ -211,7 +211,7 @@ class PaymentController extends Controller
     {
         return redirect()
             ->route('create.payment')
-            ->with('error', $response['message'] ?? 'You have canceled the transaction.');
+            ->with('error', $response['message'] ?? 'Bạn đã hủy giao dịch!');
     }
 
     public function paymentSuccess(Request $request)
@@ -223,11 +223,11 @@ class PaymentController extends Controller
         if (isset($response['status']) && $response['status'] == 'COMPLETED') {
             return redirect()
                 ->route('create.payment')
-                ->with('success', 'Transaction complete.');
+                ->with('success', 'Giao dịch hoàn thành!');
         } else {
             return redirect()
                 ->route('create.payment')
-                ->with('error', $response['message'] ?? 'Something went wrong.');
+                ->with('error', $response['message'] ?? 'Có gì đó đã sai!');
         }
     }
 

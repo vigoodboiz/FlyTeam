@@ -9,8 +9,8 @@
                     <div class="col">
                         <div class="breadcrumb__content text-center">
                             <ul class="breadcrumb__content--menu d-flex justify-content-center">
-                                <li class="breadcrumb__content--menu__items"><a href="{{ route('home') }}">Home</a></li>
-                                <li class="breadcrumb__content--menu__items"><span>Wishlist</span></li>
+                                <li class="breadcrumb__content--menu__items"><a href="{{ route('home') }}">Trang chủ</a></li>
+                                <li class="breadcrumb__content--menu__items"><span>Sản phẩm yêu thích</span></li>
                             </ul>
                         </div>
                     </div>
@@ -24,15 +24,15 @@
             <div class="container">
                 <div class="cart__section--inner">
                     <form action="#">
-                        <h2 class="cart__title mb-30">Wishlist</h2>
+                        <h2 class="cart__title mb-30">Sản phẩm yêu thích</h2>
                         <div class="cart__table">
                             <table class="cart__table--inner">
                                 <thead class="cart__table--header">
                                     <tr class="cart__table--header__items">
-                                        <th class="cart__table--header__list">Product</th>
-                                        <th class="cart__table--header__list">Price</th>
-                                        <th class="cart__table--header__list text-center">Date</th>
-                                        <th class="cart__table--header__list text-right">ADD TO CART</th>
+                                        <th class="cart__table--header__list">Sản phẩm</th>
+                                        <th class="cart__table--header__list">Giá sản phẩm</th>
+                                        <th class="cart__table--header__list text-center">Ngày yêu thích</th>
+                                        <th class="cart__table--header__list text-right">Thêm giỏ hàng</th>
                                     </tr>
                                 </thead>
                                 <tbody class="cart__table--body">
@@ -64,15 +64,17 @@
                                                     class="in__stock text__secondary">{{ $item->created_at->format('d/m/Y') }}</span>
                                             </td>
                                             <td class="cart__table--body__list text-right">
-                                                <a class="wishlist__cart--btn primary__btn" href="cart.html">Add To Cart</a>
+                                                <a class="wishlist__cart--btn primary__btn" href="cart.html">Thêm giỏ
+                                                    hàng</a>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                             <div class="continue__shopping d-flex justify-content-between">
-                                <a class="continue__shopping--link" href="{{ route('home') }}">Continue shopping</a>
-                                <a class="continue__shopping--clear" href="{{ route('shopGrid') }}">View All Products</a>
+                                <a class="continue__shopping--link" href="{{ route('home') }}">Tiếp tục mua sắm</a>
+                                <a class="continue__shopping--clear" href="{{ route('shopGrid') }}">Xem tất cả các sản
+                                    phẩm</a>
                             </div>
                         </div>
                     </form>
@@ -84,7 +86,7 @@
         <section class="product__section section--padding pt-0">
             <div class="container">
                 <div class="section__heading text-center mb-40">
-                    <h2 class="section__heading--maintitle">FEATURED PRODUCT</h2>
+                    <h2 class="section__heading--maintitle">SẢN PHẨM NỔI BẬT</h2>
                 </div>
                 <div class="product__section--inner product__swiper--column4 padding swiper">
                     <div class="swiper-wrapper">

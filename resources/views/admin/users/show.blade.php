@@ -42,11 +42,11 @@
                                 <th>{{ $user->phone }}</th>
                             </tr>
                             <tr>
-                                <th>Gender</th>
+                                <th>Giới tính</th>
                                 <th>{{ $user->gender }}</th>
                             </tr>
                             <tr>
-                                <th>Address</th>
+                                <th>Địa chỉ</th>
                                 <th>{{ $user->address }}</th>
                             </tr>
                             <tr>

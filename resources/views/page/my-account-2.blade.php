@@ -10,8 +10,8 @@
                     <div class="col">
                         <div class="breadcrumb__content text-center">
                             <ul class="breadcrumb__content--menu d-flex justify-content-center">
-                                <li class="breadcrumb__content--menu__items"><a href="{{ route('home') }}">Home</a></li>
-                                <li class="breadcrumb__content--menu__items"><span>My Account</span></li>
+                                <li class="breadcrumb__content--menu__items"><a href="{{ route('home') }}">Trang chủ</a></li>
+                                <li class="breadcrumb__content--menu__items"><span>Tài khoản của tôi</span></li>
                             </ul>
                         </div>
                         <!-- End breadcrumb section -->
@@ -21,26 +21,26 @@
                                 @if (Auth::check())
                                     <div class="my__account--section__inner border-radius-10 d-flex">
                                         <div class="account__left--sidebar">
-                                            <h2 class="account__content--title h3 mb-20">My Profile</h2>
+                                            <h2 class="account__content--title h3 mb-20">Hồ sơ của tôi</h2>
                                             <ul class="account__menu">
                                                 @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
                                                     <li class="account__menu--list"><a
                                                             href="{{ route('dashboard') }}">Dashboard</a></li>
                                                 @elseif(Auth::user()->role_id == 3)
                                                     <li class="account__menu--list"><a
-                                                            href="{{ route('portfolioPage') }}">Infomation</a>
+                                                            href="{{ route('portfolioPage') }}">Thông tin</a>
                                                     </li>
-                                                    <li class="account__menu--list"><a href="{{ route('point') }}">Reward
-                                                            Points</a>
+                                                    <li class="account__menu--list"><a href="{{ route('point') }}">Điểm
+                                                            thưởng</a>
                                                     </li>
                                                     <li class="account__menu--list"><a
-                                                            href="{{ route('wishlistPage') }}">Wishlist</a></li>
+                                                            href="{{ route('wishlistPage') }}">Sản phẩm yêu thích</a></li>
                                                     <li class="account__menu--list"><a href="{{ route('history') }}">
-                                                            History Order</a></li>
+                                                            Lịch sử đơn hàng</a></li>
                                                 @endif
                                                 <li class="account__menu--list"><a
                                                         href="{{ route('logout') }}"onclick="event.preventDefault();
-                                                                                                                                    document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Logout</a>
+                                                                                                                                                                                document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Logout</a>
                                                 </li>
                                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                                     class="d-none">

@@ -10,8 +10,8 @@
                     <div class="col">
                         <div class="breadcrumb__content text-center">
                             <ul class="breadcrumb__content--menu d-flex justify-content-center">
-                                <li class="breadcrumb__content--menu__items"><a href="{{ route('home') }}">Home</a></li>
-                                <li class="breadcrumb__content--menu__items"><span>Shopping Cart</span></li>
+                                <li class="breadcrumb__content--menu__items"><a href="{{ route('home') }}">Trang chủ</a></li>
+                                <li class="breadcrumb__content--menu__items"><span>Giỏ hàng</span></li>
                             </ul>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
             <div class="container-fluid">
                 <div class="cart__section--inner">
 
-                    <h2 class="cart__title mb-35">Shopping Cart</h2>
+                    <h2 class="cart__title mb-35">Giỏ hàng</h2>
 
                     <div class="row">
                         <div class="col-lg-8">
@@ -33,13 +33,13 @@
                                 <table class="cart__table--inner">
                                     <thead class="cart__table--header">
                                         <tr class="cart__table--header__items">
-                                            <th class="cart__table--header__list">Image</th>
-                                            <th class="cart__table--header__list">Product</th>
-                                            <th class="cart__table--header__list">Price</th>
-                                            <th class="cart__table--header__list">Sale Price</th>
-                                            <th class="cart__table--header__list">Quantity</th>
-                                            <th class="cart__table--header__list">Total</th>
-                                            <th class="cart__table--header__list">Action</th>
+                                            <th class="cart__table--header__list">Ảnh</th>
+                                            <th class="cart__table--header__list">Tên sản phẩm</th>
+                                            <th class="cart__table--header__list">Giá</th>
+                                            <th class="cart__table--header__list">Giá sale</th>
+                                            <th class="cart__table--header__list">Số lượng</th>
+                                            <th class="cart__table--header__list">Tổng tiền</th>
+                                            <th class="cart__table--header__list">Hành động</th>
                                         </tr>
                                     </thead>
 
@@ -72,11 +72,11 @@
 
                                 </table>
                                 <div class="continue__shopping d-flex justify-content-between">
-                                    <a class="continue__shopping--link" href="{{ route('shopGrid') }}">Continue
-                                        shopping</a>
+                                    <a class="continue__shopping--link" href="{{ route('shopGrid') }}">Tiếp tục mua sắm</a>
 
 
-                                    <button type="submit" class="coupon__code--field__btn primary__btn">Clear Cart</button>
+                                    <button type="submit" class="coupon__code--field__btn primary__btn">Xóa giỏ
+                                        hàng</button>
                                 </div>
                             </div>
                         </div>
@@ -86,15 +86,15 @@
                                 <form action="{{ route('check_coupon') }}" method="POST">
                                     @csrf()
                                     <div class="coupon__code mb-30">
-                                        <h3 class="coupon__code--title">Coupon</h3>
-                                        <p class="coupon__code--desc">Enter your coupon code if you have one.</p>
+                                        <h3 class="coupon__code--title">Khuyến mại</h3>
+                                        <p class="coupon__code--desc">Nhập mã phiếu giảm giá của bạn nếu bạn có một.</p>
                                         <div class="coupon__code--field d-flex">
                                             <label>
                                                 <input type="text" class="coupon__code--field__input border-radius-5"
                                                     name="coupon" placeholder="Nhập mã giảm giá"><br>
                                             </label>
                                             <input name="check_coupon" class="coupon__code--field__btn primary__btn"
-                                                type="submit" value="Aply Coupon">
+                                                type="submit" value="Áp dụng">
 
                                         </div>
                                     </div>
@@ -102,16 +102,16 @@
                                 <td>
                                     @if (Session::get('coupon'))
                                         <a class="coupon__code--field__btn primary__btn"
-                                            href="{{ route('unset_coupon') }}">Unset Coupon</a>
+                                            href="{{ route('unset_coupon') }}">Xóa khuyến mại</a>
                                     @endif
                                 </td>
 
 
                                 <!-- <div class="cart__note mb-20">
-                                                                                        <h3 class="cart__note--title">Note</h3>
-                                                                                        <p class="cart__note--desc">Add special instructions for your seller...</p>
-                                                                                        <textarea class="cart__note--textarea border-radius-5"></textarea>
-                                                                                    </div> -->
+                                                                                                                                                        <h3 class="cart__note--title">Note</h3>
+                                                                                                                                                        <p class="cart__note--desc">Add special instructions for your seller...</p>
+                                                                                                                                                        <textarea class="cart__note--textarea border-radius-5"></textarea>
+                                                                                                                                                    </div> -->
                             </div>
 
                             <div class="cart__summary--total mb-20">
@@ -120,7 +120,7 @@
                                         <tr class="cart__summary--total__list">
                                         </tr>
                                         <tr class="cart__summary--total__list">
-                                            <td class="cart__summary--total__title text-left">GRAND TOTAL</td>
+                                            <td class="cart__summary--total__title text-left">TỔNG CỘNG</td>
                                             <td class="cart__summary--amount text-right">{{ $totalPrice }} VNĐ</td>
 
                                         </tr>
@@ -157,13 +157,13 @@
                             @endif
 
                             <div class="cart__summary--footer">
-                                <p class="cart__summary--footer__desc">Shipping & taxes calculated at checkout</p>
+                                <p class="cart__summary--footer__desc">Vận chuyển & thuế được tính toán khi thanh toán</p>
                                 <ul class="d-flex justify-content-between">
-                                    <li><button class="cart__summary--footer__btn primary__btn cart" type="submit">Update
-                                            Cart</button></li>
+                                    <li><button class="cart__summary--footer__btn primary__btn cart" type="submit">Cập nhật
+                                            giỏ hàng</button></li>
 
                                     <li><a class="cart__summary--footer__btn primary__btn checkout"
-                                            href="{{ route('checkoutPage') }}">Check Out</a></li>
+                                            href="{{ route('checkoutPage') }}">Thanh toán</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -180,7 +180,7 @@
         <section class="product__section section--padding pt-0">
             <div class="container">
                 <div class="section__heading text-center mb-40">
-                    <h2 class="section__heading--maintitle">FEATURED PRODUCT</h2>
+                    <h2 class="section__heading--maintitle">SẢN PHẨM NỔI BẬT</h2>
                 </div>
                 <div class="product__section--inner product__swiper--column4 padding swiper">
                     <div class="swiper-wrapper">

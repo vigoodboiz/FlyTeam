@@ -57,9 +57,10 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <select name="" id="" class="form-control">
-                                            <option value="">Select one:</option>
-                                            <option value="1">Male</option>
-                                            <option value="0">Female</option>
+                                            <option value="">Chọn một:</option>
+                                            <option value="Nam">Nam</option>
+                                            <option value="Nữ">Nữ</option>
+                                            <option value="Khác">Khác</option>
                                         </select>
                                         @error('gender')
                                             <div class="alert alert-danger">{{ $message }}</div>

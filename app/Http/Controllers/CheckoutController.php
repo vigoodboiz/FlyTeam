@@ -42,27 +42,29 @@ class CheckoutController extends Controller
     {
         $userId = Auth::user()->id;
         $cart = Cart::where('user_id', $userId)->get();
-
-        foreach($cart as $cartItem){
-            $order = new Order();
-            $order->cart_id = $cartItem->id;
-            $order->user_id = Auth::user()->id;
-            $order->product_id = $cartItem->product_id;
-            $order->quantity = $cartItem->quantity;
-            $order->total_price = $cartItem->total_price;
-            $order->payment_status = 'Đang Xác Nhận';
-            $order->delivery_status = 'Đang Xử Lý';
-            $order->save();
-        }
-        
-            $userId = auth::user()->id;
-            $carts= Cart::where('user_id', $userId)->get();
-            foreach ($carts as $cart) {
-                $cart->delete();
+        if(!$cart) {
+                return redirect()->route('shopGrid')->with('error', 'Bạn không có đơn hàng nào cả!');
+        } else{
+            foreach($cart as $cartItem){
+                $order = new Order();
+                $order->cart_id = $cartItem->id;
+                $order->user_id = Auth::user()->id;
+                $order->product_id = $cartItem->product_id;
+                $order->quantity = $cartItem->quantity;
+                $order->total_price = $cartItem->total_price;
+                $order->payment_status = 'Đang xác nhận';
+                $order->delivery_status = 'Đang xử lý';
+                $order->save();
             }
-
-           return redirect()->back()->with('success', 'Order successfully!');
-
+            
+                $userId = auth::user()->id;
+                $carts= Cart::where('user_id', $userId)->get();
+                foreach ($carts as $cart) {
+                    $cart->delete();
+                }
+    
+               return redirect()->route('history')->with('success', 'Đặt hàng thành công!');
+        }
 
     }
     public function cancel(Order $order)
@@ -70,7 +72,7 @@ class CheckoutController extends Controller
     $order->payment_status = 'Đã hủy đơn hàng';
     $order->delivery_status = 'Không thể xử lý giao hàng';
     $order->save();
-    return redirect()->back()->with('success', 'The order was successfully canceled!');
+    return redirect()->back()->with('success', 'Đơn đặt hàng đã bị hủy thành công!');
 }
 public function showReorderForm($id)
     {
@@ -90,6 +92,6 @@ public function reorder($id)
         $newOrder->save();
         // Xóa đơn hàng đã bị hủy đi
         $order->delete();
-        return redirect()->route('history', $newOrder->id)->with('success', 'The order has been successfully acquired!');
+        return redirect()->route('history', $newOrder->id)->with('success', 'Đơn đặt hàng đã được mua lại thành công!');
 }
 }

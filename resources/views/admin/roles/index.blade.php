@@ -35,7 +35,7 @@
                                 <th>STT</th>
                                 <th>Tên vai trò</th>
                                 <th>Quyền truy cập</th>
-                                <th>Action</th>
+                                <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody class="ligth-body">
@@ -87,37 +87,38 @@
                 </div>
             </div>
         </div>
-    @endsection
-    @push('scripts')
-        @can('role_delete')
-            <script>
-                $(document).ready(function() {
+    </div>
+@endsection
+@push('scripts')
+    @can('role_delete')
+        <script>
+            $(document).ready(function() {
 
-                    $("#selectAll").click(function() {
-                        $("input[type=checkbox]").prop('checked', $(this).prop('checked'));
-                    });
-
-                    $("#deleteSelectRole").on("click", function() {
-                        var ids = [];
-                        $.each($("input[name='ids']:checked"), function() {
-                            ids.push($(this).val());
-                        });
-
-                        $.ajax({
-                            type: "DELETE",
-                            url: 'roles/massDestroy',
-                            data: {
-                                ids: ids,
-                                _token: $('meta[name="csrf-token"]').attr('content')
-                            },
-                            dataType: "json",
-                            success: function(response) {
-                                location.reload();
-                            }
-                        });
-                    });
-
+                $("#selectAll").click(function() {
+                    $("input[type=checkbox]").prop('checked', $(this).prop('checked'));
                 });
-            </script>
-        @endcan
-    @endpush
+
+                $("#deleteSelectRole").on("click", function() {
+                    var ids = [];
+                    $.each($("input[name='ids']:checked"), function() {
+                        ids.push($(this).val());
+                    });
+
+                    $.ajax({
+                        type: "DELETE",
+                        url: 'roles/massDestroy',
+                        data: {
+                            ids: ids,
+                            _token: $('meta[name="csrf-token"]').attr('content')
+                        },
+                        dataType: "json",
+                        success: function(response) {
+                            location.reload();
+                        }
+                    });
+                });
+
+            });
+        </script>
+    @endcan
+@endpush

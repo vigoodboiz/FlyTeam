@@ -9,8 +9,8 @@
                     <div class="col">
                         <div class="breadcrumb__content text-center">
                             <ul class="breadcrumb__content--menu d-flex justify-content-center">
-                                <li class="breadcrumb__content--menu__items"><a href="{{ route('home') }}">Home</a></li>
-                                <li class="breadcrumb__content--menu__items"><span>History Order</span></li>
+                                <li class="breadcrumb__content--menu__items"><a href="{{ route('home') }}">Trang chủ</a></li>
+                                <li class="breadcrumb__content--menu__items"><span>Lịch sử đơn hàng</span></li>
                             </ul>
                         </div>
                     </div>
@@ -22,24 +22,24 @@
 
         <!-- cart section start -->
         <div class="container">
-            <h2 class="cart__title mb-30">Order History</h2>
+            <h2 class="cart__title mb-30">Lịch sử đơn hàng</h2>
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Id</th>
+                        <th>Stt</th>
                         {{-- <th>User Name</th>
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Address</th> --}}
-                        <th>Product Image</th>
-                        <th>Product Name</th>
-                        <th>Product Price</th>
-                        <th>Quantity</th>
-                        <th>Total Price</th>
-                        <th>Order Status</th>
-                        <th>Delivery Status</th>
-                        <th>Order Date</th>
-                        <th>Cancel Order</th>
+                        <th>Ảnh sản phẩm</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Tổng tiền</th>
+                        <th>Trạng thái đơn hàng</th>
+                        <th>Trạng thái giao hàng</th>
+                        <th>Ngày đặt hàng</th>
+                        <th>Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -74,20 +74,20 @@
                             <td>
                                 <div class="d-flex align-items-center list-action">
                                     @if ($item->payment_status === 'Đã hủy đơn hàng' && $item->delivery_status === 'Không thể xử lý giao hàng')
-                                        <form id="delete-form" action="{{ route('orders.process_reorder', $item->id) }}"
+                                        <form id="delete-Form" action="{{ route('orders.process_reorder', $item->id) }}"
                                             method="POST">
                                             @csrf
-                                            <button class="btn btn-success" type="submit" id="delete-button">Buy
-                                                back</button>
+                                            <button class="btn btn-success" type="submit" id="delete-button">Mua
+                                                lại</button>
                                         </form>
-                                    @else
+                                    @elseif($item->payment_status === 'Đang xác nhận' && $item->delivery_status === 'Đang xử lý')
                                         <form id="delete-form" action="{{ route('orders.cancel', $item->id) }}"
                                             method="POST">
                                             @csrf
                                             @method('POST')
                                             <button class="btn btn-danger" type="submit" title="Cancel order"
-                                                id="delete-button">Cancel
-                                                order</button>
+                                                id="delete-button">Hủy đơn
+                                            </button>
                                         </form>
                                     @endif
                                 </div>

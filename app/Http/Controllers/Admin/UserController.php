@@ -50,7 +50,7 @@ class UserController extends Controller
         $user = User::create($request->all());
         $user->roles()->sync($request->input('roles', []));
         
-        return redirect()->route('users.index')->with('success', 'User created successfully!');
+        return redirect()->route('users.index')->with('success', 'Người dùng được thêm thành công!');
     }
 
     /**
@@ -92,7 +92,7 @@ class UserController extends Controller
         $user->update($request->all());
         $user->roles()->sync($request->input('roles', []));
 
-        return redirect()->route('users.index')->with('success', 'User updated successfully!');
+        return redirect()->route('users.index')->with('success', 'Người dùng được cập nhật thành công!');
     }
 
     /**
@@ -107,7 +107,7 @@ class UserController extends Controller
         $user->delete();
 
 
-        return back()->with('success', 'User deleted successfully!');
+        return back()->with('success', 'Người dùng được xóa thành công!');
 
     }
 
