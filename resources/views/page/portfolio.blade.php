@@ -48,7 +48,7 @@
                                 @endif
                                 <li class="account__menu--list"><a
                                         href="{{ route('logout') }}"onclick="event.preventDefault();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Logout</a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Logout</a>
                                 </li>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
@@ -82,7 +82,8 @@
                                                     <p class="mb-0">Mã khách hàng</p>
                                                 </div>
                                                 <div class="col-sm-9">
-                                                    <p class="text-muted mb-0">{{ Auth::user()->user_code }}</p>
+                                                    <p class="text-muted mb-0" scope="row">
+                                                        #1234{{ Auth::user()->user_code }}</p>
                                                 </div>
                                             </div>
                                             <hr>
