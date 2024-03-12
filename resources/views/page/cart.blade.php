@@ -171,7 +171,7 @@
     <!-- cart section end -->
 
     <!-- Start product section -->
-    <section class="product__section section--padding pt-0">
+    <!-- <section class="product__section section--padding pt-0">
         <div class="container">
             <div class="section__heading text-center mb-40">
                 <h2 class="section__heading--maintitle">FEATURED PRODUCT</h2>
@@ -649,7 +649,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- End product section -->
 
     <!-- Start brand section -->

@@ -34,6 +34,33 @@
             text-overflow: ellipsis;
             white-space: nowrap;
         }
+        .out-of-stock {
+            filter: blur(5px);
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .product__card--thumbnail__container {
+            position: relative;
+        }
+
+        .product__card--thumbnail__text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: black; 
+            font-weight: bold;
+            z-index: 2;
+        }
+        .product__card--thumbnail__text::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: -100px;
+            width: 500px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.2); 
+        }
     </style>
 </head>
 

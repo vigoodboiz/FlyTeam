@@ -68,7 +68,7 @@
                             <td>{{ $item->quantity }}</td>
                             <td>{{ $item->total_price }}đ</td>
                             <td>{{ $item->payment_status }}</td>
-                            <td>{{ $item->delievry_status }}</td>
+                            <td>{{ $item->delivery_status }}</td>
                             <td>{{ $item->created_at->format('d/m/Y') }}</td>
                         </tr>
                     @endforeach

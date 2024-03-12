@@ -52,6 +52,9 @@ class CheckoutController extends Controller
             $order->payment_status = 'Đang Xác Nhận';
             $order->delivery_status = 'Đang Xử Lý';
             $order->save();
+        
+            $product = Products::find($cartItem->product_id);
+            $product->decrement('quantity_product', $cartItem->quantity);
         }
         
             $userId = auth::user()->id;
