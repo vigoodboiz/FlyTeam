@@ -172,9 +172,149 @@
                                         </tfoot>
                                     </table>
                                 </div>
-                                @foreach ($cartItems as $cart)
-                                    <div class="payment__history mb-30">
+                                <style>
+    .image {
+        display: block;
+        margin-right: 10px;
+        width: 50px;
+    }
 
+    .method-item {
+        display: flex;
+        align-items: center;
+        border: 1px solid #d9d9d9;
+        border-radius: 16px;
+        padding: 15px 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        opacity: 0.6;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .method-item.selected {
+        opacity: 1;
+        font-weight: bold;
+    }
+
+    .method-item .image {
+        margin-right: 20px;
+    }
+
+    .method-item .image img {
+        min-width: 35px;
+        max-height: 35px;
+        max-width: 35px;
+    }
+
+    .cart-checkout {
+        border-radius: 16px;
+        background: #000;
+        height: 50px;
+        width: 100%;
+        padding: 15px 20px;
+        text-align: center;
+        cursor: pointer;
+        font-size: 14px;
+        color: #fff;
+        transition: all 0.3s ease;
+    }
+
+    .cart-checkout:hover {
+        background: #d9d9d9;
+        color: #000;
+    }
+    .hihi{
+        margin-left: 100px;
+    }
+</style>
+                                   
+
+<hr>
+<h3 class="hihi">Vui Lòng Chọn Phương Thức Thanh Toán </h3>
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
+<div class="payment__history mb-30">
+
+    <form action="{{ route('vnpay_payment') }}" method="POST">
+        @csrf
+        <input type="hidden" name="total_vnpay" value="{{ $totalPrice }}">
+        
+        <div class="uk-flex uk-flex-middle method-item">
+            <span class="image"> <img src="/core/xetaiicon.png" alt="" srcset=""></span>
+            <button class="payment__history--link primary__btn" type="submit" name="redirect" style="margin-right: 10px">
+                Thanh Toán Khi Nhận Hàng 
+            </button>
+        </div>
+    </form>
+
+    <form action="{{ route('vnpay_payment') }}" method="POST">
+        @csrf
+        <input type="hidden" name="total_vnpay" value="{{ $totalPrice }}">
+        
+        <div class="uk-flex uk-flex-middle method-item">
+            <span class="image"> <img src="/core/vnpayicon.png" alt="" srcset=""></span>
+            <button class="payment__history--link primary__btn" type="submit" name="redirect" style="margin-right: 10px">
+            Thanh Toán Qua VnPay
+            </button>
+        </div>
+    </form>
+
+    <form action="{{ route('vnpay_payment') }}" method="POST">
+        @csrf
+        <input type="hidden" name="total_vnpay" value="{{ $totalPrice }}">
+        
+        <div class="uk-flex uk-flex-middle method-item">
+            <span class="image"> <img src="/core/momo.png" alt="" srcset=""></span>
+            <button class="payment__history--link primary__btn" type="submit" name="redirect" style="margin-right: 10px">
+            Thanh Toán Qua MoMo
+            </button>
+        </div>
+    </form>
+
+
+    <form action="{{ route('vnpay_payment') }}" method="POST">
+        @csrf
+        <input type="hidden" name="total_vnpay" value="{{ $totalPrice }}">
+        
+        <div class="uk-flex uk-flex-middle method-item">
+            <span class="image"> <img src="/core/Paypal-icon.png" alt="" srcset=""></span>
+            <button class="payment__history--link primary__btn" type="submit" name="redirect" style="margin-right: 10px">
+                Thanh Toán Qua PayPal
+            </button>
+        </div>
+    </form>
+
+</div>
+
+
+
+                                <script>
+                                    // Bắt sự kiện click vào phần tử method-item
+                                    document.querySelectorAll('.method-item').forEach(function(element) {
+                                        element.addEventListener('click', function() {
+                                            // Xóa lớp 'selected' khỏi tất cả các phần tử method-item
+                                            document.querySelectorAll('.method-item').forEach(function(item) {
+                                                item.classList.remove('selected');
+                                            });
+                                            // Thêm lớp 'selected' vào phần tử được click
+                                            this.classList.add('selected');
+                                        });
+                                    });
+                                </script>
+                            </div>
+                                    
+<!--                         
                                         <h3 class="payment__history--title mb-20">Payment</h3>
                                         <ul class="payment__history--inner d-flex">
 
@@ -187,7 +327,7 @@
                                                         class="payment__history--link primary__btn" type="submit"
                                                         name="redirect" style="margin-right: 10px">VnPay</button>
                                                 </li>
-                                                <!-- <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">VnPay</button></li> -->
+                                             
                                             </form>
 
                                             <form action="{{ route('momo_payment') }}" method="POST">
@@ -196,24 +336,16 @@
                                                 <li class="payment__history--list"><button
                                                         class="payment__history--link primary__btn" type="submit"
                                                         name="redirect" style="margin-right: 10px">MoMo</button> </li>
-                                                <!-- <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">VnPay</button></li> -->
-                                            </form>
+                                               
+                                            </form> -->
 
-                                            <!-- <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">Bank Transfer</button></li> -->
-                                            <form action="{{ route('make.payment') }}" method="POST">
-                                                @csrf
-                                                <li class="payment__history--list"><button
-                                                        class="payment__history--link primary__btn"
-                                                        type="submit">Paypal</button>
-                                                </li>
-                                            </form>
+                                           
+                                        
                                         </ul>
                                     </div>
-                                    <button class="checkout__now--btn primary__btn" type="submit">
-                                        <a href="{{ route('checkoutPost', $cart->id) }}">Checkout now</a>
-                                    </button>
-                                @endforeach
-                            </aside>
+                                   
+                               
+                               </aside>
                         </div>
                     </div>
             </div>

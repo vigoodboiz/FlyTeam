@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\StatisticController;
 
+
 // home
 use App\Http\Controllers\shopGridController;
 use App\Http\Controllers\FavoriteController;
@@ -162,7 +163,17 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     ////////////////////////// thanh toán Vnpay /////////////////
     Route::match(['GET', 'POST'], '/vnpay_payment', [PaymentController::class, 'vnpay_payment'])->name('vnpay_payment');
+
+    Route::match(['GET', 'POST'], '/vnpay-checkout', [CheckoutController::class, 'vnpayCheckout'])->name('vnpayCheckout');
+
+    
+    // Route::post('/vnpay-checkout', [CheckoutController::class, 'vnpayCheckout'])->name('vnpayCheckout');
+
     Route::match(['GET', 'POST'], '/momo_payment', [PaymentController::class, 'momo_payment'])->name('momo_payment');
+
+    Route::post('/payment/vnpay', [PaymentController::class, 'vnpay_payment'])->name('vnpay');
+
+    Route::get('/checkout/return', 'YourController@handlePaymentReturn');
 });
 
 //Comments
