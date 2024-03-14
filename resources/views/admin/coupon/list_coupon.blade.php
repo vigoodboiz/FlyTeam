@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+    <?php
+    use Illuminate\Support\Facades\Session;
+    ?>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
@@ -113,6 +116,5 @@
                 </tbody>
             </table>
         </div>
-
     </div>
 @endsection

@@ -27,7 +27,8 @@
                                 <p class="mb-0">Mã người dùng</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0" scope="row">#1234{{ Auth::user()->user_code }}</p>
+                                <p class="text-muted mb-0" scope="row">
+                                    #1234{{ Auth::user()->id }}</p>
                             </div>
                         </div>
                         <hr>
@@ -55,15 +56,6 @@
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">{{ Auth::user()->phone }}</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Giới tính</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">{{ Auth::user()->gender }}</p>
                             </div>
                         </div>
                         <hr>

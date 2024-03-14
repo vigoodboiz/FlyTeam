@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\OderController;
 use App\Http\Controllers\Admin\OderStatusController;
 use App\Http\Controllers\Admin\OderDetailController;
 use App\Http\Controllers\Admin\DeliveryStatusController;
+use App\Http\Controllers\Admin\VariantController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ForgotPasswordController;
@@ -117,6 +118,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::match(['GET', 'POST'], '/oder/search', [OderController::class, 'listOder'])->name('searchOder');
     Route::get('/delete/{id}', [OderController::class, 'deleteoder'])->name('deleteoder');
     
+    //Forgot password
+    Route::post('forgot-password', [ForgotPasswordController::class, 'forgotPass'])->name('password.forgot');
+    Route::post('verify-otp', [ForgotPasswordController::class, 'verify'])->name('otp.verify');
 
     ///////// oder_status ///////////
     Route::get('/oder/list_oder_status', [OderStatusController::class, 'list'])->name('listOder_status');
@@ -150,7 +154,13 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
     // Route::post('/upload', [ProductController::class, 'upload'])->name('upload');
 
-
+   //variant
+   Route::get('/variants', [VariantController::class, 'index'])->name('variants.index');
+   Route::get('/variants/create', [VariantController::class, 'create'])->name('variants.create');
+   Route::post('/variants', [VariantController::class, 'store'])->name('variants.store');
+   Route::get('/variants/{id}/edit', [VariantController::class, 'edit'])->name('variants.edit');
+   Route::put('/variants/{id}', [VariantController::class, 'update'])->name('variants.update');
+   Route::delete('/variants/{id}', [VariantController::class, 'destroy'])->name('variants.destroy');
 
     ///////////////////////// gallery //////////////////
     Route::get('/index/{product_id}', [GalleryController::class, 'index'])->name('index');
@@ -189,16 +199,6 @@ Route::match(['GET', 'POST'], '/comment/delete/{id}', [CommentController::class,
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-//Route Facebook
-Route::controller(FacebookController::class)->group(function () {
-    Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
-    Route::get('auth/facebook/callback', 'handleFacebookCallback');
-});
-//Route Google
-Route::controller(GoogleController::class)->group(function () {
-    Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
-    Route::get('auth/google/callback', 'handleGoogleCallback');
-});
 // Send email
 Route::get('/send-mail{email}', [RegisteredUserController::class, 'store'])->name('send.email');
 
@@ -232,6 +232,7 @@ Route::get('page/Checkout', [CheckoutController::class, 'index'])->name('checkou
 Route::match(['GET', 'POST'],'page/Checkouto', [CheckoutController::class, 'post_checkout'])->name('checkoutPost');
 Route::get('verify/{token}', [CheckoutController::class, 'verify'])->name('oder.verify');
 });
+
 // acount
 
 

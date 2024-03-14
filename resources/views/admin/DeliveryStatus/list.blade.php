@@ -19,7 +19,6 @@
             @foreach ($listDelivery_status as $oder)
                 <tr>
                     <th scope="row">#1234{{ $oder->id }}</th>
-
                     <td>{{ $oder->user->name }}</td>
                     <td>{{ $oder->product->name }}</td>
                     <td>{{ $oder->product->price }}</td>

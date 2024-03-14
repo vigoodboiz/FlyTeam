@@ -27,16 +27,12 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_code',
         'name',
         'email',
         'password',
         'phone',
-        'gender',
         'address',
         'role_id',
-        'facebook_id',
-        'google_id',
         'profile_picture',
     ];
 
@@ -85,6 +81,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function roles() {
        return $this->hasOne(Role::class, 'id', 'role_id');
     }
+    public function hasAnyRole($roles)
+{
+    return null !== $this->roles()->whereIn('name', $roles)->first();
+}
     public function members()
     {
         return $this->hasMany(Member::class);

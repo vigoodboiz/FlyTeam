@@ -19,10 +19,8 @@
     </div>
     <br>
     <!-- End breadcrumb section -->
-
-    <!-- cart section start -->
-    <div class="container">
-
+        <!-- cart section start -->
+        <div class="container">
         <h2 class="cart__title mb-30">Lịch sử đơn hàng</h2>
         <table class="table table-hover">
             <thead>
@@ -57,49 +55,40 @@
                     <td>
 
                         <img class="border-radius-5" width="100" src="{{ asset('upload/public/images/' . $item->product->image) }}" alt="cart-product">
-
-                    </td>
-                    <td>
-
-                        {{ $item->product->name }}
-
-                    </td>
-                    <td>
-
-                        {{ $item->product->price }}
-
-                    </td>
-                    <td>{{ $item->quantity }}</td>
-                    <td>{{ $item->total_price }}đ</td>
-                    <td>{{ $item->payment_status }}</td>
-                    <td>{{ $item->delivery_status }}</td>
-                    <td>{{ $item->created_at->format('d/m/Y') }}</td>
-                    <td>
-                        <div class="d-flex align-items-center list-action">
-                            @if ($item->payment_status === 'Đã hủy đơn hàng' && $item->delivery_status === 'Không thể xử lý giao hàng')
-                            <form id="delete-Form" action="{{ route('orders.process_reorder', $item->id) }}" method="POST">
-                                @csrf
-                                <button class="btn btn-success" type="submit" id="delete-button">Mua
-                                    lại</button>
-                            </form>
-                            @elseif($item->payment_status === 'Đang xác nhận' && $item->delivery_status === 'Đang xử lý')
-                            <form id="delete-form" action="{{ route('orders.cancel', $item->id) }}" method="POST">
-                                @csrf
-                                @method('POST')
-                                <button class="btn btn-danger" type="submit" title="Cancel order" id="delete-button">Hủy đơn
-                                </button>
-                            </form>
-                            @endif
-                        </div>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-        {{ $orders->links() }}
-    </div>
-    <!-- End product section -->
-
+                       </td>
+                            <td>{{ $item->quantity }}</td>
+                            <td>{{ $item->total_price }}đ</td>
+                            <td>{{ $item->payment_status }}</td>
+                            <td>{{ $item->delivery_status }}</td>
+                            <td>{{ $item->created_at->format('d/m/Y') }}</td>
+                            <td>
+                                <div class="d-flex align-items-center list-action">
+                                    @if ($item->payment_status === 'Đã hủy đơn hàng' && $item->delivery_status === 'Không thể xử lý giao hàng')
+                                        <form id="delete-Form" action="{{ route('orders.process_reorder', $item->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            <button class="btn btn-success" type="submit" id="delete-button">Mua
+                                                lại</button>
+                                        </form>
+                                    @elseif($item->payment_status === 'Đang xác nhận' && $item->delivery_status === 'Đang xử lý')
+                                        <form id="delete-form" action="{{ route('orders.cancel', $item->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('POST')
+                                            <button class="btn btn-danger" type="submit" title="Cancel order"
+                                                id="delete-button">Hủy đơn
+                                            </button>
+                                        </form>
+                                    @endif
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            {{ $orders->links() }}
+        </div>
+        <!-- End product section -->
     <!-- Start brand section -->
     <div class="brand__section brand__section-two section--padding">
         <div class="container">

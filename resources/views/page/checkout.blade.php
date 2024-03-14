@@ -117,7 +117,7 @@
                                                     </td>
                                                     <td class="cart__table--body__list">
                                                         <div class="product__description">
-                                                            <label>Quantity</label>
+                                                            <label>SL</label>
                                                             <span class="cart__price">{{ $cart->quantity }}</span>
                                                         </div>
                                                     </td>

@@ -6,7 +6,6 @@
                     <a href="{{ route('dashboard') }}"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                 </li>
                 <li class="menu-title">Admin</li><!-- /.menu-title -->
-
                 <ul class="nav navbar-nav">
 
                     @can('user_access')
@@ -29,19 +28,22 @@
                     <li></i><a href="{{ route('products.index') }}"><i class="bi bi-inboxes-fill text-Danger"></i> Quản
                             lý sản phẩm</a></li>
                     @endcan
+                    @can('variant_access')
+                        <li></i><a href="{{ route('variants.index') }}"><i class="bi bi-inboxes-fill text-Danger"></i> Quản
+                                lý thuộc tính</a></li>
+                    @endcan
                     @can('category_access')
                     <li><a href="{{ route('categories.index') }}"><i class="bi bi-grid-3x3-gap text-Danger"></i> Quản
                             lý danh mục</a>
                     </li>
                     @endcan
                     @can('order_access')
-                    <li><a href="{{ route('listOder') }}"><i class="bi bi-bag-fill text-Danger"></i> Quản lý đơn
-
+                        <li><a href="{{ route('listOder') }}"><i class="bi bi-bag-fill text-Danger"></i> Quản lý đơn hàng
                             @endcan
                             @can('comment_access')
-                    <li><a href="{{ route('route_comment_index') }}"><i class="bi bi-chat-quote text-Danger"></i> Quản
-                            lý
-                            bình luận</a></li>
+                        <li><a href="{{ route('route_comment_index') }}"><i class="bi bi-chat-quote text-Danger"></i> Quản
+                                lý
+                                bình luận</a></li>
                     @endcan
                     @can('coupon_access')
                     <li><a href="{{ route('list_coupon') }}"><i class="bi bi-gift-fill text-Danger"></i> Quản lý

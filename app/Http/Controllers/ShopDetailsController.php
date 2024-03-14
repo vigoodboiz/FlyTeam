@@ -6,6 +6,8 @@ use App\Http\Requests\CommentRequest;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Products;
+use App\Models\Variant;
+use App\Models\Gallery;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -26,9 +28,10 @@ class ShopDetailsController extends Controller
             $product_detail = Products::where('id', $id_pro)->get();
             Products::where('id',$id_pro)->increment('view_count');
 
-            // $image = Gallery::where('product_id' , $id_pro)->get();
+            $galleries = Gallery::where('product_id' , $id_pro)->get();
             // $imagePro = $image->pluck('image_path')->toArray();
             // product same
+            $variants = Variant::where('product_id', $id_pro)->get();
             $id_cate = Products::where('id', $id_pro)->value('id_category');
             $product_same = Products::where('id_category', $id_cate)->where('id', '<>', $id_pro)->paginate(9);
         
@@ -41,7 +44,7 @@ class ShopDetailsController extends Controller
                 ->where('comments.product_id', $id_pro)
                 ->get();
         }
-        return view('page.product-details',['currentDateTime' => $currentDateTimeGMTPlus7], compact('product_detail', 'product_same', 'comments'));
+        return view('page.product-details',['currentDateTime' => $currentDateTimeGMTPlus7], compact('product_detail', 'product_same', 'comments', 'variants', 'galleries'));
     }
 
     public function newComment(CommentRequest $request)

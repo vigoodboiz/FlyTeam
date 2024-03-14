@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Products;
 use App\Models\Category;
-
+use App\Models\Variant;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -56,9 +56,12 @@ class ProductController extends Controller
             $image->storeAs('public/images', $imageName);
             $validatedData['image'] = $imageName;
         }
-
         Products::create($validatedData);
-
+        // if ($request->variants) {
+        //     foreach ($request->variants as $variantName) {
+        //         $validatedData->variants()->create(['name' => $variantName]);
+        //     }
+        // }
         return redirect()->back()->with('success', 'Sản phẩm được thêm thành công!');
 
       
