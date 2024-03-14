@@ -37,6 +37,10 @@
             <input type="number" name="price_sale" id="price_sale" class="form-control">
         </div>
         <div class="form-group">
+            <label for="quantity_product">số lượng sản phẩm:</label>
+            <input type="number" name="quantity_product" id="quantity_product" class="form-control">
+        </div>
+        <div class="form-group">
             <label for="image">Ảnh:</label>
             <input class="mb-3" type="file" name="image" id="image" class="form-control-file">
             <img id="anh_the_preview" src="https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg" alt="your image" style="max-width: 200px; height:100px; margin-bottom: 10px;" class="img-fluid" />

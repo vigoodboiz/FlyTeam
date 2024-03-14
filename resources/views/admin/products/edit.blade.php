@@ -42,7 +42,10 @@
         <label for="price_sale">Sale Price:</label>
         <input type="number" name="price_sale" class="form-control" value="{{ $product->price_sale }}" required>
     </div>
-
+    <div class="form-group">
+            <label for="quantity_product">số lượng sản phẩm:</label>
+            <input type="number" name="quantity_product" id="quantity_product" class="form-control" value="{{ $product->quantity_product }}">
+        </div>
     <div class="form-group">
         <label for="image">Image:</label>
         <input type="file" name="image" class="form-control-file">

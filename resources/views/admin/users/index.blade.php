@@ -59,8 +59,7 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
                                     @if (!empty($item->profile_picture))
-                                        <td><img src="{{ asset('storage/' . $item->profile_picture) }}"
-                                                class="rounded-circle" alt="Profile Picture"></td>
+                                        <td><img src="{{ asset('storage/' . $item->profile_picture) }}" class="rounded-circle" alt="Profile Picture"></td>
                                     @else{
                                         <td>
                                             <p>No images!</p>
