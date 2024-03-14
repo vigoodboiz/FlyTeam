@@ -18,12 +18,13 @@ class FavoriteController extends Controller
             'user_id' => Auth::user()->id,
         ];
         $favorited = Favorite::where(['product_id' => $product_id, 'user_id' => Auth::user()->id])->first();
+        if($favorited){
+            $favorited->delete();
+            return redirect()->back()->with('success', 'Bạn đã xóa sản phẩm yêu thích này!');
+        } else {
             Favorite::create($data);
-            return redirect()->back()->with('success', 'You love this product!');
+            return redirect()->back()->with('success', 'Bạn đã yêu thích sản phẩm này!');
+        }
     }
 
-    public function destroy(Favorite $favorite){
-        $favorite->delete();
-        return redirect()->back()->with('success', 'You delete your favorite product!');
-    }
 }

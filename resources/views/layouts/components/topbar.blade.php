@@ -84,14 +84,8 @@
                     </a>
 
                     <div class="user-menu dropdown-menu">
-                        <a class="nav-link" href="{{ route('profile.show') }}"><i class="fa fa- user"></i>My
-                            Profile</a>
-
-                        <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span
-                                class="count">13</span></a>
-
-                        <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
-
+                        <a class="nav-link" href="{{ route('profile.show') }}"><i class="fa fa- user"></i>Hồ sơ của
+                            tôi</a>
                         <a class="nav-link" href="{{ route('logout') }}"onclick="event.preventDefault();
                         document.getElementById('logout-form').submit(); return view('auth.login');"><i
                                 class="fa fa-power -off"></i>Logout</a>

@@ -15,59 +15,6 @@
                  <span data-text-preloader="A" class="letters-loading">
                      A
                  </span>
-                 <!-- Header Section Begin -->
-                 <!-- <header class="header">
-                     <div class="header__top">
-                         <div class="container">
-                             <div class="row">
-                                 <div class="col-lg-6">
-                                     <div class="header__top__left">
-                                         <ul>
-                                             <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                                             <li>Free Shipping for all Order of $99</li>
-                                         </ul>
-                                     </div>
-                                 </div>
-                                 <div class="col-lg-6">
-                                     <div class="header__top__right">
-                                         <div class="header__top__right__social">
-                                             <a href="#"><i class="fa fa-facebook"></i></a>
-                                             <a href="#"><i class="fa fa-twitter"></i></a>
-                                             <a href="#"><i class="fa fa-linkedin"></i></a>
-                                             <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                                         </div>
-                                         <div class="header__top__right__language">
-                                             <img src="img/language.png" alt="">
-                                             <div>
-                                                 @if (Auth::check())
-<a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                     <div>Xin chào, {{ Auth::user()->name }}</div>
-                                                 </a>
-@else
-<a href="{{ route('login') }}"><i class="fa fa-user"></i> Login</a>
-@endif
-                                             </div>
-                                             <span class="arrow_carrot-down"></span>
-                                             <ul>
-                                                 <li><a class="nav-link" href="{{ route('profile.show') }}"><i class="fa fa- user"></i>My
-                                                         Profile</a></li>
-                                                 <li><a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit(); return view('auth.login');"><i class="fa fa-power -off"></i>Logout</a>
-                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                         @csrf
-                                                     </form>
-                                                 </li>
-                                             </ul>
-                                         </div>
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                 </header> -->
-                 <!-- Header Section End -->
-
-                 <!-- Hero Section Begin -->
                  <span data-text-preloader="D" class="letters-loading">
                      D
                  </span>
@@ -290,7 +237,7 @@
                                              stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
                                      </svg>
                                  </span>
-                                 
+
                              </a>
                          </li>
                      </ul>
@@ -302,12 +249,12 @@
      <!-- Start serch box area -->
      <div class="predictive__search--box ">
          <div class="predictive__search--box__inner">
-             <h2 class="predictive__search--title">Search Products</h2>
+             <h2 class="predictive__search--title">Tìm kiếm</h2>
 
              <form class="predictive__search--form" action="{{ route('search') }}" method="POST">
                  @csrf
                  <label>
-                     <input class="predictive__search--input" placeholder="Search Here" name="searchPro"
+                     <input class="predictive__search--input" placeholder="Tìm kiếm tại đây" name="searchPro"
                          type="text">
                  </label>
                  <button class="predictive__search--button text-white" aria-label="search button"><svg
@@ -326,7 +273,7 @@
                  <path fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                      stroke-width="32" d="M368 368L144 144M368 144L144 368" />
              </svg>
-             
+
          </button>
      </div>
      <!-- End serch box area -->

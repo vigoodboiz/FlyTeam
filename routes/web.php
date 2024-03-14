@@ -39,7 +39,11 @@ use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AcountController;
 use App\Http\Controllers\ErrosController;
+
+use App\Http\Controllers\PointController;
+
 use App\Http\Controllers\HistoryController;
+
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
@@ -69,7 +73,17 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+});
+Route::get('page/point', [PointController::class, 'index'])->name('point');
+
 Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
 
 
 require __DIR__ . '/auth.php';
@@ -219,12 +233,22 @@ Route::match(['GET', 'POST'],'page/Checkouto', [CheckoutController::class, 'post
 Route::get('verify/{token}', [CheckoutController::class, 'verify'])->name('oder.verify');
 });
 // acount
+
+
+Route::get('page/portfolioPage', [AcountController::class, 'index'])->name('portfolioPage');
+///////////////////////
+
+// Route::get('/page/point/{id}', 'PointController@index');
+//
+Route::get('page/acount', [AcountController::class, 'index'])->name('acountPage');
+
 Route::get('page/account', [AccountController::class, 'index'])->name('accountPage');
 Route::get('page/portfolio', [PortfolioController::class, 'index'])->name('portfolioPage');
+
 // wishlist
 Route::get('page/wishlist', [WishlishController::class, 'index'])->name('wishlistPage');
 
-// cart
+// cartf
 Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');
 Route::post('add_to_cart/{product}', [CartController::class, 'store'])->name('addCart');
 Route::delete('/cart/products/{productId}', [CartController::class, 'removeProductFromCart'])->name('cart.removeProduct');
@@ -232,10 +256,13 @@ Route::get('cart/delete/{cart}', [CartController::class, 'destroy'])->name('cart
 
 //whishlist
 Route::get('/favorite/{product}', [FavoriteController::class, 'index'])->name('favorite');
-Route::delete('/favorite/{product}', [FavoriteController::class, 'destroy'])->name('favorite.delete');
+// Route::delete('/favorite/{id}', [FavoriteController::class, 'destroy'])->name('favorite.delete');
 
 //History order
 Route::get('page/history', [HistoryController::class, 'index'])->name('history');
+Route::post('orders/{order}/cancel', [CheckoutController::class, 'cancel'])->name('orders.cancel');
+Route::get('orders/{id}/reorder', [CheckoutController::class, 'showReorderForm'])->name('orders.reorder');
+Route::post('orders/{id}/reorder', [CheckoutController::class, 'reorder'])->name('orders.process_reorder');
 //Push Notification
 Route::get('/pusher', function() {
     $message = $request->message;
