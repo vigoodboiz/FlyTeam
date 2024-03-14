@@ -20,7 +20,7 @@ class Products extends Model implements HasMedia
     protected $table = 'products';
 
     
-    protected $fillable = ['id_category', 'name', 'brand',  'describe' ,'price', 'price_sale', 'image'];
+    protected $fillable = ['id_category', 'name', 'brand',  'describe' ,'price', 'price_sale','quantity_product', 'image'];
 
 
     public function category()

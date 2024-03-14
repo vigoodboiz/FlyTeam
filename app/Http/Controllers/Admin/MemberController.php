@@ -43,7 +43,7 @@ public function index()
     {
         $member = Member::findOrFail($id); // Tìm một thành viên theo ID
 
-        return view('admin.members.show', ['member' => $members]);
+        return view('admin.members.show', ['member' => $member]);
     }
     
 
