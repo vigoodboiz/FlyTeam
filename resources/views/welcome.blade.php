@@ -72,20 +72,8 @@
     <!-- fill price -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-<<<<<<< HEAD
     @yield('price-range');
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-=======
-        <!-- Customscript js -->
-        <script src="{{ asset('becute/assets/js/script.js') }}"></script>
-        <!-- fill price -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-        @yield('price-range');
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
->>>>>>> 7f4b2cb8dffac4783173be1a8795b9a6a3c82cd8
     <script>
         document.getElementById('delete-form').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -151,12 +139,8 @@
             });
         @endif
     </script>
-<<<<<<< HEAD
     {{-- @endcan --}}
 </body>
-=======
-    </body>
->>>>>>> 7f4b2cb8dffac4783173be1a8795b9a6a3c82cd8
 
 
 </html>

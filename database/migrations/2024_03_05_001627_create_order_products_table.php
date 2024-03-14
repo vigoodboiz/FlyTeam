@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('order_products', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('order_id');
+            $table->foreignId('order_id');
             $table->foreign('order_id')->references('id')->on('order');
-            $table->unsignedBigInteger('products_id');
+            $table->foreignId('products_id');
             $table->foreign('products_id')->references('id')->on('products');
             $table->timestamps();
         });
