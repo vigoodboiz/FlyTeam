@@ -39,12 +39,32 @@ public function index()
     // }
     // return view('admin.members.index', compact('Role', 'members'));
 }
-    public function show($id)
-    {
-        $member = Member::findOrFail($id); // Tìm một thành viên theo ID
+public function show($id)
+{
+    $member = Member::findOrFail($id);
+    $Role = User::where('role_id', 3)->get();
 
-        return view('admin.members.show', ['member' => $members]);
-    }
+    return view('admin.members.show', compact('member', 'Role'));
+}
+
+
+public function Ranking()
+{
+    $members = Member::orderBy('reward_points', 'desc')->get();
+
+    $rankings = $members->groupBy(function ($member) {
+        if ($member->reward_points >= 100) {
+            return 'A';
+        } elseif ($member->reward_points >= 50) {
+            return 'B';
+        } else {
+            return 'C';
+        }
+    });
+
+    return view('admin.members.Ranking', compact('rankings'));
+}
+
     
 
 
