@@ -30,7 +30,6 @@ class ProductController extends Controller
     {
       // Lấy danh sách các category để hiển thị trong form
       $categories = Category::all();
-
       return view('admin.products.create', compact('categories'));
     }
 
@@ -63,8 +62,6 @@ class ProductController extends Controller
         //     }
         // }
         return redirect()->back()->with('success', 'Sản phẩm được thêm thành công!');
-
-      
     }
     /**
      * Display the specified resource.
@@ -137,7 +134,7 @@ class ProductController extends Controller
 
         return redirect()->route('products.index')->with('success', 'Sản phẩm được cập nhật thành công!');
     }
-    
+
 
     /**
      * Remove the specified resource from storage.
@@ -146,7 +143,6 @@ class ProductController extends Controller
     {
         $product = Products::findOrFail($id);
         $product->delete();
-    
         return redirect()->route('products.index')->with('success', 'Sản phẩm được xóa thành công!');
     }
 

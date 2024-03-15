@@ -45,7 +45,7 @@ class CheckoutController extends Controller
     {
         $userId = Auth::user()->id;
         $cart = Cart::where('user_id', $userId)->get();
-        $note = $request->input('note');
+        $note = $request->input('note') ?? '';
         if($cart->isEmpty()) {
                 return redirect()->route('shopGrid')->with('error', 'Bạn không có đơn hàng cần thanh toán nào cả!');
         } else{

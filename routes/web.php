@@ -143,6 +143,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::match(['GET', 'POST'], '/comment/update/{id}', [CommentController::class, 'update'])->name('route_comment_update');
     Route::match(['GET', 'POST'], '/comment/delete/{id}', [CommentController::class, 'delete'])->name('route_comment_delete');
     Route::post('/newComment', [ShopDetailsController::class, 'newComment'])->name('route_new_comment');
+    Route::match(['GET', 'POST'], '/comment/delete/{id}', [ShopDetailsController::class, 'delete'])->name('route_comment_delete_fe');
 
 
     ///////////////////////// product //////////////////
@@ -184,16 +185,12 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('/check-coupon', [CartController::class, 'check_coupon'])->name('check_coupon');
     Route::get('/unset-coupon', [CouponController::class, 'unset_coupon'])->name('unset_coupon');
 
+
+
     ////////////////////////// thanh toán Vnpay /////////////////
     Route::match(['GET', 'POST'], '/vnpay_payment', [PaymentController::class, 'vnpay_payment'])->name('vnpay_payment');
     Route::match(['GET', 'POST'], '/momo_payment', [PaymentController::class, 'momo_payment'])->name('momo_payment');
 });
-
-//Comments
-Route::get('/getComments', [CommentController::class, 'index'])->name('route_comment_index');
-Route::match(['GET', 'POST'], '/comment/add', [CommentController::class, 'add'])->name('route_comment_add');
-Route::match(['GET', 'POST'], '/comment/update/{id}', [CommentController::class, 'update'])->name('route_comment_update');
-Route::match(['GET', 'POST'], '/comment/delete/{id}', [CommentController::class, 'delete'])->name('route_comment_delete');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

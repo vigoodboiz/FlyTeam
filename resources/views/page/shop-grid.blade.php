@@ -120,8 +120,8 @@
                                                 </div>
                                             </div>
                                         </article>
+                                    </form>
                                 </div>
-                                </form>
                             @endforeach
                         </div>
                         <div class="swiper__nav--btn swiper-button-next">
@@ -335,19 +335,21 @@
                                                         <div class="col-lg-4 col-md-4 col-sm-6 col-6 custom-col mb-30">
                                                             <article class="product__card">
                                                                 <div class="product__card--thumbnail">
-
                                                                     <a class="product__card--thumbnail__link display-block"
-                                                                        href="{{ route('shopDetails', $pro->id) }}"
-                                                                        data-product-id="{{ $pro->id }}">
-                                                                        <img class="product__card--thumbnail__img product__primary--img"
-                                                                            style="height: 200px;"
-                                                                            src="{{ asset('upload/public/images/' . $pro->image) }}"
-                                                                            alt="product-img">
-                                                                        <img class="product__card--thumbnail__img product__secondary--img"
-                                                                            src="{{ asset('upload/public/images/' . $pro->image) }}"
-                                                                            class="height:100px" alt="product-img">
+                                                                        href="{{ route('shopDetails', $pro->id) }}">
+                                                                        <div class="product__card--thumbnail__container">
+                                                                            <img class="product__card--thumbnail__img @if ($pro->quantity_product == 0) out-of-stock @endif"
+                                                                                src="{{ asset('upload/public/images/' . $pro->image) }}"
+                                                                                style="height: 200px;" alt="product-img">
+                                                                            @if ($pro->quantity_product == 0)
+                                                                                <h3>
+                                                                                    <p
+                                                                                        class="display-7 product__card--thumbnail__text">
+                                                                                        ĐÃ HẾT HÀNG</p>
+                                                                                </h3>
+                                                                            @endif
+                                                                        </div>
                                                                     </a>
-                                                                    <span class="product__badge">-14%</span>
                                                                     <ul class="product__card--action">
                                                                         <li class="product__card--action__list">
                                                                             <a class="product__card--action__btn"
@@ -428,7 +430,6 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="product__card--content text-center">
-
                                                                     <h3 class="product__card--title"><a
                                                                             href="{{ route('shopDetails', $pro->id) }}"
                                                                             data-product-id="{{ $pro->id }}">{{ $pro->name }}
@@ -464,14 +465,19 @@
                                                                 <div
                                                                     class="product__card--thumbnail product__list--thumbnail">
                                                                     <a class="product__card--thumbnail__link display-block"
-                                                                        href="{{ route('shopDetails', $pro->id) }}"
-                                                                        data-product-id="{{ $pro->id }}">
-                                                                        <img class="product__card--thumbnail__img product__primary--img"
-                                                                            src="{{ asset('upload/public/images/' . $pro->image) }}"
-                                                                            alt="product-img">
-                                                                        <img class="product__card--thumbnail__img product__secondary--img"
-                                                                            src="{{ asset('upload/public/images/' . $pro->image) }}"
-                                                                            alt="product-img">
+                                                                        href="{{ route('shopDetails', $pro->id) }}">
+                                                                        <div class="product__card--thumbnail__container">
+                                                                            <img class="product__card--thumbnail__img @if ($pro->quantity_product == 0) out-of-stock @endif"
+                                                                                src="{{ asset('upload/public/images/' . $pro->image) }}"
+                                                                                style="height: 200px;" alt="product-img">
+                                                                            @if ($pro->quantity_product == 0)
+                                                                                <h3>
+                                                                                    <p
+                                                                                        class="display-7 product__card--thumbnail__text">
+                                                                                        ĐÃ HẾT HÀNG</p>
+                                                                                </h3>
+                                                                            @endif
+                                                                        </div>
                                                                     </a>
                                                                     <span class="product__badge">-14%</span>
                                                                     <ul class="product__card--action">
@@ -530,6 +536,66 @@
                                                                             href="{{ route('shopDetails', $pro->id) }}"
                                                                             data-product-id="{{ $pro->id }}">{{ $pro->name }}</a>
                                                                     </h3>
+                                                                    {{-- <ul class="rating product__card--rating d-flex">
+                                                                <li class="rating__list">
+                                                                    <span class="rating__icon">
+                                                                        <svg width="14" height="13"
+                                                                            viewBox="0 0 14 13" fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path
+                                                                                d="M6.08398 0.921875L4.56055 4.03906L1.11523 4.53125C0.505859 4.625 0.271484 5.375 0.716797 5.82031L3.17773 8.23438L2.5918 11.6328C2.49805 12.2422 3.1543 12.7109 3.69336 12.4297L6.76367 10.8125L9.81055 12.4297C10.3496 12.7109 11.0059 12.2422 10.9121 11.6328L10.3262 8.23438L12.7871 5.82031C13.2324 5.375 12.998 4.625 12.3887 4.53125L8.9668 4.03906L7.41992 0.921875C7.16211 0.382812 6.36523 0.359375 6.08398 0.921875Z"
+                                                                                fill="currentColor" />
+                                                                        </svg>
+                                                                    </span>
+                                                                </li>
+                                                                <li class="rating__list">
+                                                                    <span class="rating__icon">
+                                                                        <svg width="14" height="13"
+                                                                            viewBox="0 0 14 13" fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path
+                                                                                d="M6.08398 0.921875L4.56055 4.03906L1.11523 4.53125C0.505859 4.625 0.271484 5.375 0.716797 5.82031L3.17773 8.23438L2.5918 11.6328C2.49805 12.2422 3.1543 12.7109 3.69336 12.4297L6.76367 10.8125L9.81055 12.4297C10.3496 12.7109 11.0059 12.2422 10.9121 11.6328L10.3262 8.23438L12.7871 5.82031C13.2324 5.375 12.998 4.625 12.3887 4.53125L8.9668 4.03906L7.41992 0.921875C7.16211 0.382812 6.36523 0.359375 6.08398 0.921875Z"
+                                                                                fill="currentColor" />
+                                                                        </svg>
+                                                                    </span>
+                                                                </li>
+                                                                <li class="rating__list">
+                                                                    <span class="rating__icon">
+                                                                        <svg width="14" height="13"
+                                                                            viewBox="0 0 14 13" fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path
+                                                                                d="M6.08398 0.921875L4.56055 4.03906L1.11523 4.53125C0.505859 4.625 0.271484 5.375 0.716797 5.82031L3.17773 8.23438L2.5918 11.6328C2.49805 12.2422 3.1543 12.7109 3.69336 12.4297L6.76367 10.8125L9.81055 12.4297C10.3496 12.7109 11.0059 12.2422 10.9121 11.6328L10.3262 8.23438L12.7871 5.82031C13.2324 5.375 12.998 4.625 12.3887 4.53125L8.9668 4.03906L7.41992 0.921875C7.16211 0.382812 6.36523 0.359375 6.08398 0.921875Z"
+                                                                                fill="currentColor" />
+                                                                        </svg>
+                                                                    </span>
+                                                                </li>
+                                                                <li class="rating__list">
+                                                                    <span class="rating__icon">
+                                                                        <svg width="14" height="13"
+                                                                            viewBox="0 0 14 13" fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path
+                                                                                d="M12.4141 4.53125L8.99219 4.03906L7.44531 0.921875C7.1875 0.382812 6.39062 0.359375 6.10938 0.921875L4.58594 4.03906L1.14062 4.53125C0.53125 4.625 0.296875 5.375 0.742188 5.82031L3.20312 8.23438L2.61719 11.6328C2.52344 12.2422 3.17969 12.7109 3.71875 12.4297L6.78906 10.8125L9.83594 12.4297C10.375 12.7109 11.0312 12.2422 10.9375 11.6328L10.3516 8.23438L12.8125 5.82031C13.2578 5.375 13.0234 4.625 12.4141 4.53125ZM9.53125 7.95312L10.1875 11.75L6.78906 9.96875L3.36719 11.75L4.02344 7.95312L1.25781 5.28125L5.07812 4.71875L6.78906 1.25L8.47656 4.71875L12.2969 5.28125L9.53125 7.95312Z"
+                                                                                fill="currentColor" />
+                                                                        </svg>
+                                                                    </span>
+                                                                </li>
+                                                                <li class="rating__list">
+                                                                    <span class="rating__icon">
+                                                                        <svg width="14" height="13"
+                                                                            viewBox="0 0 14 13" fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path
+                                                                                d="M12.4141 4.53125L8.99219 4.03906L7.44531 0.921875C7.1875 0.382812 6.39062 0.359375 6.10938 0.921875L4.58594 4.03906L1.14062 4.53125C0.53125 4.625 0.296875 5.375 0.742188 5.82031L3.20312 8.23438L2.61719 11.6328C2.52344 12.2422 3.17969 12.7109 3.71875 12.4297L6.78906 10.8125L9.83594 12.4297C10.375 12.7109 11.0312 12.2422 10.9375 11.6328L10.3516 8.23438L12.8125 5.82031C13.2578 5.375 13.0234 4.625 12.4141 4.53125ZM9.53125 7.95312L10.1875 11.75L6.78906 9.96875L3.36719 11.75L4.02344 7.95312L1.25781 5.28125L5.07812 4.71875L6.78906 1.25L8.47656 4.71875L12.2969 5.28125L9.53125 7.95312Z"
+                                                                                fill="currentColor" />
+                                                                        </svg>
+                                                                    </span>
+                                                                </li>
+                                                                <li>
+                                                                    <span class="rating__review--text">(106) Review</span>
+                                                                </li>
+                                                            </ul> --}}
                                                                     <div class="product__list--price">
                                                                         @if (isset($pro->price_sale) && $pro->price_sale > 0)
                                                                             <span
@@ -542,9 +608,12 @@
                                                                         @endif
                                                                     </div>
                                                                     <p class="product__card--content__desc mb-15">
-                                                                        {{ $pro->describe }}</p>
-                                                                    <button class="primary__btn quickview__cart--btn"
-                                                                        type="submit">+Thêm giỏ hàng</button>
+                                                                        {{ $pro->describe }}
+                                                                    </p>
+                                                                    @if ($pro->quantity_product > 0)
+                                                                        <button class="primary__btn quickview__cart--btn"
+                                                                            type="submit">+Thêm giỏ hàng</button>
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                         </form>
@@ -635,21 +704,19 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        @else
-            <div class="breadcrumb__section breadcrumb__bg">
-                <div class="container">
-                    <div class="row row-cols-1">
-                        <div class="col">
-                            <div class="breadcrumb__content text-center">
-                                <p>Xin vui lòng đăng nhập để có thể tiếp tục mua hàng!</p><a class="account__menu--list"
-                                    href="{{ route('login') }}">Đăng nhập</a>
+                @else
+                    <div class="breadcrumb__section breadcrumb__bg">
+                        <div class="container">
+                            <div class="row row-cols-1">
+                                <div class="col">
+                                    <div class="breadcrumb__content text-center">
+                                        <p>Xin vui lòng đăng nhập để có thể tiếp tục mua hàng!</p><a
+                                            class="account__menu--list" href="{{ route('login') }}">Đăng nhập</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
         @endif
         <!-- End shop section -->
         <!-- Start feature section -->
@@ -659,61 +726,63 @@
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
                             <img src="{{ asset('becute/assets/img/other/feature1.webp') }}" alt="img">
+
                         </div>
                         <div class="feature__content">
-                            <h2 class="feature__content--title h3">Free Shipping</h2>
-                            <p class="feature__content--desc">Free shipping over $100</p>
+                            <h2 class="feature__content--title h3">Miễn phí vận chuyển</h2>
+                            <p class="feature__content--desc">Miễn phí vận chuyển cho đơn hàng trên 2.000.000đ</p>
                         </div>
                     </div>
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon ">
                             <img src="{{ asset('becute/assets/img/other/feature2.webp') }}" alt="img">
+
                         </div>
                         <div class="feature__content">
-                            <h2 class="feature__content--title h3">Support 24/7</h2>
-                            <p class="feature__content--desc">Contact us 24 hours a day</p>
+                            <h2 class="feature__content--title h3">Hỗ trợ 24/7</h2>
+                            <p class="feature__content--desc">Liên hệ với chúng tôi 24 tiếng</p>
                         </div>
                     </div>
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
                             <img src="{{ asset('becute/assets/img/other/feature3.webp') }}" alt="img">
+
                         </div>
                         <div class="feature__content">
-                            <h2 class="feature__content--title h3">100% Money Back</h2>
-                            <p class="feature__content--desc">You have 30 days to Return</p>
+                            <h2 class="feature__content--title h3">100% hoàn tiền</h2>
+                            <p class="feature__content--desc">Bạn có 30 ngày để trả hàng</p>
                         </div>
                     </div>
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
                             <img src="{{ asset('becute/assets/img/other/feature4.webp') }}" alt="img">
+
                         </div>
                         <div class="feature__content">
-                            <h2 class="feature__content--title h3">Payment Secure</h2>
-                            <p class="feature__content--desc">We ensure secure payment</p>
+                            <h2 class="feature__content--title h3">Thanh toán an toàn</h2>
+                            <p class="feature__content--desc">Chúng tôi đảm bảo thanh toán an toàn</p>
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
         <!-- End feature section -->
 
-        <<<<<<< HEAD @if (session('message'))
+        @if (session('message'))
             <div class="alert alert-simple alert-btn" style="margin-top: 2rem">
                 <a href="page/cart" class="btn btn-success btn-md">View Cart</a>
                 <span>{{ session('message') }}</span>
                 <button type="button" class="btn btn-link btn-close"><i class="d-icon-times"></i></button>
             </div>
-            @endif
-            @if ($errors->any())
-                {{ dd($errors->all()) }}
-                <div class="alert alert-simple alert-btn">
-                    @foreach ($errors->all() as $error)
-                        <span>{{ $error }}</span>
-                    @endforeach
-                </div>
-            @endif
+        @endif
+        @if ($errors->any())
+            {{ dd($errors->all()) }}
+            <div class="alert alert-simple alert-btn">
+                @foreach ($errors->all() as $error)
+                    <span>{{ $error }}</span>
+                @endforeach
+            </div>
+        @endif
     </main>
-    =======
     @if (session('message'))
         <div class="alert alert-simple alert-btn" style="margin-top: 2rem">
             <a href="page/cart" class="btn btn-success btn-md">View Cart</a>
@@ -730,8 +799,6 @@
         </div>
     @endif
     </main>
-
-    >>>>>>> 8a02bffdbae0d7da0e0b00550fd3afdf186fb61c
 @endsection
 
 @section('price-range')
