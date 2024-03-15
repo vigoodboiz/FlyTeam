@@ -5,13 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DeliveryStatus extends Model
+class Favorite extends Model
 {
     use HasFactory;
-    protected $table = "delivery_status";
     protected $fillable = [
-        'oder_id',
-        'status'
+        'user_id',
+        'product_id',
     ];
+    
+    public function prod(){
+        return $this->hasOne(Products::class, 'id', 'product_id');
+    }
 }
-

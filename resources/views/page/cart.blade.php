@@ -10,7 +10,7 @@
                     <div class="col">
                         <div class="breadcrumb__content text-center">
                             <ul class="breadcrumb__content--menu d-flex justify-content-center">
-                                <li class="breadcrumb__content--menu__items"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb__content--menu__items"><a href="{{ route('home') }}">Home</a></li>
                                 <li class="breadcrumb__content--menu__items"><span>Shopping Cart</span></li>
                             </ul>
                         </div>
@@ -32,17 +32,17 @@
                             <div class="cart__table">
                                 <table class="cart__table--inner">
                                     <!-- thông báo -->
-                                @if (\Session::has('message'))
-                        <div class="alert alert-success">
-                            {{ \Session::get('message') }}
-                        </div>
-                    @endif
-                      <!-- thông báo -->
-                      @if (\Session::has('error'))
-                        <div class="alert alert-danger">
-                            {{ \Session::get('error') }}
-                        </div>
-                    @endif
+                                    @if (\Session::has('message'))
+                                        <div class="alert alert-success">
+                                            {{ \Session::get('message') }}
+                                        </div>
+                                    @endif
+                                    <!-- thông báo -->
+                                    @if (\Session::has('error'))
+                                        <div class="alert alert-danger">
+                                            {{ \Session::get('error') }}
+                                        </div>
+                                    @endif
 
                                     <thead class="cart__table--header">
                                         <tr class="cart__table--header__items">
@@ -55,23 +55,24 @@
                                             <th class="cart__table--header__list">Action</th>
                                         </tr>
                                     </thead>
-                                    
+
                                     <tbody class="cart__table--body">
                                         @foreach ($cartItems as $cart)
                                             <tr class="cart__table">
                                                 <th><img style="height: 80px" ;
-                                                        src="{{ asset('storage/images/' . $cart->product->image) }}"></th>
+                                                        src="{{ asset('upload/public/images/' . $cart->product->image) }}">
+                                                </th>
                                                 <th>{{ $cart->product->name }}</th>
-                                                <th>{{ $cart->product->price }}</th>
-                                                <th>{{ $cart->product->price_sale }}</th>
+                                                <th>{{ $cart->product->price }}đ</th>
+                                                <th>{{ $cart->product->price_sale }}đ</th>
                                                 <th>{{ $cart->quantity }}</th>
-                                                <th>{{ $cart->total_price }} VNĐ</th>
+                                                <th>{{ $cart->total_price }} đ</th>
                                                 <td class="product-close">
-                                                <a href="{{ route('cart.delete', $cart->id) }}" class="product-remove"
-                                            title="Remove this product">
-                                            <i class="fas fa-times">Remove</i>
-                                        </a>
-                                    </td>
+                                                    <a href="{{ route('cart.delete', $cart->id) }}" class="product-remove"
+                                                        title="Remove this product">
+                                                        <i class="bi bi-x-circle-fill display-3 text-danger"></i>
+                                                    </a>
+                                                </td>
                                             </tr>
                                         @endforeach
 
@@ -80,11 +81,11 @@
 
                                 </table>
                                 <div class="continue__shopping d-flex justify-content-between">
-                                    <a class="continue__shopping--link" href="http://127.0.0.1:8000/page/shop">Continue shopping</a>                         
-                                
-                                        <!-- <button type="submit" class="coupon__code--field__btn primary__btn">Clear Cart</button> -->
-       
+                                    <a class="continue__shopping--link" href="{{ route('shopGrid') }}">Continue
+                                        shopping</a>
 
+
+                                    <button type="submit" class="coupon__code--field__btn primary__btn">Clear Cart</button>
                                 </div>
                             </div>
                         </div>
@@ -116,10 +117,10 @@
 
 
                                 <!-- <div class="cart__note mb-20">
-                                            <h3 class="cart__note--title">Note</h3>
-                                            <p class="cart__note--desc">Add special instructions for your seller...</p>
-                                            <textarea class="cart__note--textarea border-radius-5"></textarea>
-                                        </div> -->
+                                                                                    <h3 class="cart__note--title">Note</h3>
+                                                                                    <p class="cart__note--desc">Add special instructions for your seller...</p>
+                                                                                    <textarea class="cart__note--textarea border-radius-5"></textarea>
+                                                                                </div> -->
                             </div>
 
                             <div class="cart__summary--total mb-20">
@@ -171,7 +172,7 @@
                                             Cart</button></li>
 
                                     <li><a class="cart__summary--footer__btn primary__btn checkout"
-                                            href="{{ route('checkoutPage') }}">Check Out</a></li>
+                                            href="{{route('checkoutPage')}}">Check Out</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -197,17 +198,20 @@
                                 <div class="product__card--thumbnail">
                                     <a class="product__card--thumbnail__link display-block" href="product-details.html">
                                         <img class="product__card--thumbnail__img product__primary--img"
-                                            src="assets/img/product/main-product/product1.webp" alt="product-img">
+                                            src="{{ asset('becute/assets/img/product/main-product/product1.webp') }}"
+                                            alt="product-img">
                                         <img class="product__card--thumbnail__img product__secondary--img"
-                                            src="assets/img/product/main-product/product2.webp" alt="product-img">
+                                            src="{{ asset('becute/assets/img/product/main-product/product2.webp') }}"
+                                            alt="product-img">
                                     </a>
                                     <span class="product__badge">-14%</span>
                                     <ul class="product__card--action">
                                         <li class="product__card--action__list">
                                             <a class="product__card--action__btn" title="Quick View" data-bs-toggle="modal"
                                                 data-bs-target="#examplemodal" href="javascript:void(0)">
-                                                <svg class="product__card--action__btn--svg" width="16" height="16"
-                                                    viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <svg class="product__card--action__btn--svg" width="16"
+                                                    height="16" viewBox="0 0 16 16" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
                                                     <path
                                                         d="M15.6952 14.4991L11.7663 10.5588C12.7765 9.4008 13.33 7.94381 13.33 6.42703C13.33 2.88322 10.34 0 6.66499 0C2.98997 0 0 2.88322 0 6.42703C0 9.97085 2.98997 12.8541 6.66499 12.8541C8.04464 12.8541 9.35938 12.4528 10.4834 11.6911L14.4422 15.6613C14.6076 15.827 14.8302 15.9184 15.0687 15.9184C15.2944 15.9184 15.5086 15.8354 15.6711 15.6845C16.0166 15.364 16.0276 14.8325 15.6952 14.4991ZM6.66499 1.67662C9.38141 1.67662 11.5913 3.8076 11.5913 6.42703C11.5913 9.04647 9.38141 11.1775 6.66499 11.1775C3.94857 11.1775 1.73869 9.04647 1.73869 6.42703C1.73869 3.8076 3.94857 1.67662 6.66499 1.67662Z"
                                                         fill="currentColor"></path>
@@ -321,9 +325,11 @@
                                 <div class="product__card--thumbnail">
                                     <a class="product__card--thumbnail__link display-block" href="product-details.html">
                                         <img class="product__card--thumbnail__img product__primary--img"
-                                            src="assets/img/product/main-product/product4.webp" alt="product-img">
+                                            src="{{ asset('becute/assets/img/product/main-product/product4.webp') }}"
+                                            alt="product-img">
                                         <img class="product__card--thumbnail__img product__secondary--img"
-                                            src="assets/img/product/main-product/product3.webp" alt="product-img">
+                                            src="{{ asset('becute/assets/img/product/main-product/product3.webp') }}"
+                                            alt="product-img">
                                     </a>
                                     <ul class="product__card--action">
                                         <li class="product__card--action__list">
@@ -446,9 +452,11 @@
                                 <div class="product__card--thumbnail">
                                     <a class="product__card--thumbnail__link display-block" href="product-details.html">
                                         <img class="product__card--thumbnail__img product__primary--img"
-                                            src="assets/img/product/main-product/product6.webp" alt="product-img">
+                                            src="{{ asset('becute/assets/img/product/main-product/product6.webp') }}"
+                                            alt="product-img">
                                         <img class="product__card--thumbnail__img product__secondary--img"
-                                            src="assets/img/product/main-product/product5.webp" alt="product-img">
+                                            src="{{ asset('becute/assets/img/product/main-product/product5.webp') }}"
+                                            alt="product-img">
                                     </a>
                                     <span class="product__badge">-14%</span>
                                     <ul class="product__card--action">
@@ -572,9 +580,11 @@
                                 <div class="product__card--thumbnail">
                                     <a class="product__card--thumbnail__link display-block" href="product-details.html">
                                         <img class="product__card--thumbnail__img product__primary--img"
-                                            src="assets/img/product/main-product/product2.webp" alt="product-img">
+                                            src="{{ asset('becute/assets/img/product/main-product/product2.webp') }}"
+                                            alt="product-img">
                                         <img class="product__card--thumbnail__img product__secondary--img"
-                                            src="assets/img/product/main-product/product1.webp" alt="product-img">
+                                            src="{{ asset('becute/assets/img/product/main-product/product1.webp') }}"
+                                            alt="product-img">
                                     </a>
                                     <ul class="product__card--action">
                                         <li class="product__card--action__list">
@@ -697,9 +707,11 @@
                                 <div class="product__card--thumbnail">
                                     <a class="product__card--thumbnail__link display-block" href="product-details.html">
                                         <img class="product__card--thumbnail__img product__primary--img"
-                                            src="assets/img/product/main-product/product8.webp" alt="product-img">
+                                            src="{{ asset('becute/assets/img/product/main-product/product8.webp') }}"
+                                            alt="product-img">
                                         <img class="product__card--thumbnail__img product__secondary--img"
-                                            src="assets/img/product/main-product/product7.webp" alt="product-img">
+                                            src="{{ asset('becute/assets/img/product/main-product/product7.webp') }}"
+                                            alt="product-img">
                                     </a>
                                     <span class="product__badge">-14%</span>
                                     <ul class="product__card--action">

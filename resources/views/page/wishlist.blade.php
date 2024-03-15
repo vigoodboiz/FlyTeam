@@ -31,149 +31,61 @@
                                     <tr class="cart__table--header__items">
                                         <th class="cart__table--header__list">Product</th>
                                         <th class="cart__table--header__list">Price</th>
-                                        <th class="cart__table--header__list text-center">STOCK STATUS</th>
+                                        <th class="cart__table--header__list text-center">Date</th>
                                         <th class="cart__table--header__list text-right">ADD TO CART</th>
                                     </tr>
                                 </thead>
                                 <tbody class="cart__table--body">
-                                    <tr class="cart__table--body__items">
-                                        <td class="cart__table--body__list">
-                                            <div class="cart__product d-flex align-items-center">
-                                                <button class="cart__remove--btn" aria-label="search button" type="button">
-                                                    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg"
-                                                        viewBox="0 0 24 24" width="16px" height="16px">
-                                                        <path
-                                                            d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z" />
-                                                    </svg>
-                                                </button>
-                                                <div class="cart__thumbnail">
-                                                    <a href="product-details.html"><img class="border-radius-5"
-                                                            src="assets/img/product/small-product/product1.webp"
-                                                            alt="cart-product"></a>
+                                    @foreach ($favorites as $item)
+                                        <tr class="cart__table--body__items">
+                                            <td class="cart__table--body__list">
+                                                <div class="cart__product d-flex align-items-center">
+                                                    <form action="{{ route('favorite.delete', $item->product_id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="cart__remove--btn" aria-label="search button"
+                                                            type="submit" onclick="return confirm('Có chắc xóa không?')">
+                                                            <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                                                                viewBox="0 0 24 24" width="16px" height="16px">
+                                                                <path
+                                                                    d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z" />
+                                                            </svg>
+                                                        </button>
+                                                    </form>
+                                                    <div class="cart__thumbnail">
+                                                        <a href="{{ route('shopDetails', $item->product_id) }}"><img
+                                                                class="border-radius-5"
+                                                                src="{{ asset('upload/public/images/' . $item->prod->image) }}"
+                                                                alt="cart-product"></a>
+                                                    </div>
+                                                    <div class="cart__content">
+                                                        <h3 class="cart__content--title h4"><a
+                                                                href="{{ route('shopDetails', $item->product_id) }}">{{ $item->prod->name }}</a>
+                                                        </h3>
+                                                        {{-- <span class="cart__content--variant">COLOR: Blue</span>
+                                                        <span class="cart__content--variant">WEIGHT: 2 Kg</span> --}}
+                                                    </div>
                                                 </div>
-                                                <div class="cart__content">
-                                                    <h3 class="cart__content--title h4"><a
-                                                            href="product-details.html">Fairness cream</a></h3>
-                                                    <span class="cart__content--variant">COLOR: Blue</span>
-                                                    <span class="cart__content--variant">WEIGHT: 2 Kg</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="cart__table--body__list">
-                                            <span class="cart__price">£65.00</span>
-                                        </td>
-                                        <td class="cart__table--body__list text-center">
-                                            <span class="in__stock text__secondary">in stock</span>
-                                        </td>
-                                        <td class="cart__table--body__list text-right">
-                                            <a class="wishlist__cart--btn primary__btn" href="cart.html">Add To Cart</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="cart__table--body__items">
-                                        <td class="cart__table--body__list">
-                                            <div class="cart__product d-flex align-items-center">
-                                                <button class="cart__remove--btn" aria-label="search button" type="button">
-                                                    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg"
-                                                        viewBox="0 0 24 24" width="16px" height="16px">
-                                                        <path
-                                                            d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z" />
-                                                    </svg>
-                                                </button>
-                                                <div class="cart__thumbnail">
-                                                    <a href="product-details.html"><img class="border-radius-5"
-                                                            src="assets/img/product/small-product/product2.webp"
-                                                            alt="cart-product"></a>
-                                                </div>
-                                                <div class="cart__content">
-                                                    <h3 class="cart__content--title h4"><a href="product-details.html">Matte
-                                                            Walnut</a></h3>
-                                                    <span class="cart__content--variant">COLOR: Blue</span>
-                                                    <span class="cart__content--variant">WEIGHT: 2 Kg</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="cart__table--body__list">
-                                            <span class="cart__price">£65.00</span>
-                                        </td>
-                                        <td class="cart__table--body__list text-center">
-                                            <span class="in__stock text__secondary">in stock</span>
-                                        </td>
-                                        <td class="cart__table--body__list text-right">
-                                            <a class="wishlist__cart--btn primary__btn" href="cart.html">Add To Cart</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="cart__table--body__items">
-                                        <td class="cart__table--body__list">
-                                            <div class="cart__product d-flex align-items-center">
-                                                <button class="cart__remove--btn" aria-label="search button" type="button">
-                                                    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg"
-                                                        viewBox="0 0 24 24" width="16px" height="16px">
-                                                        <path
-                                                            d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z" />
-                                                    </svg>
-                                                </button>
-                                                <div class="cart__thumbnail">
-                                                    <a href="product-details.html"><img class="border-radius-5"
-                                                            src="assets/img/product/small-product/product3.webp"
-                                                            alt="cart-product"></a>
-                                                </div>
-                                                <div class="cart__content">
-                                                    <h3 class="cart__content--title h4"><a
-                                                            href="product-details.html">Freshw Button</a></h3>
-                                                    <span class="cart__content--variant">COLOR: Blue</span>
-                                                    <span class="cart__content--variant">WEIGHT: 2 Kg</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="cart__table--body__list">
-                                            <span class="cart__price">£65.00</span>
-                                        </td>
-                                        <td class="cart__table--body__list text-center">
-                                            <span class="in__stock text__secondary">in stock</span>
-                                        </td>
-                                        <td class="cart__table--body__list text-right">
-                                            <a class="wishlist__cart--btn primary__btn" href="cart.html">Add To Cart</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="cart__table--body__items">
-                                        <td class="cart__table--body__list">
-                                            <div class="cart__product d-flex align-items-center">
-                                                <button class="cart__remove--btn" aria-label="search button"
-                                                    type="button">
-                                                    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg"
-                                                        viewBox="0 0 24 24" width="16px" height="16px">
-                                                        <path
-                                                            d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z" />
-                                                    </svg>
-                                                </button>
-                                                <div class="cart__thumbnail">
-                                                    <a href="product-details.html"><img class="border-radius-5"
-                                                            src="assets/img/product/small-product/product4.webp"
-                                                            alt="cart-product"></a>
-                                                </div>
-                                                <div class="cart__content">
-                                                    <h3 class="cart__content--title h4"><a
-                                                            href="product-details.html">White Cream</a></h3>
-                                                    <span class="cart__content--variant">COLOR: Blue</span>
-                                                    <span class="cart__content--variant">WEIGHT: 2 Kg</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="cart__table--body__list">
-                                            <span class="cart__price">£65.00</span>
-                                        </td>
-                                        <td class="cart__table--body__list text-center">
-                                            <span class="in__stock text__secondary">in stock</span>
-                                        </td>
-                                        <td class="cart__table--body__list text-right">
-                                            <a class="wishlist__cart--btn primary__btn" href="cart.html">Add To Cart</a>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                            <td class="cart__table--body__list">
+                                                <span class="cart__price">{{ $item->prod->price }}đ /
+                                                    {{ $item->prod->price_sale }}đ</span>
+                                            </td>
+                                            <td class="cart__table--body__list text-center">
+                                                <span
+                                                    class="in__stock text__secondary">{{ $item->created_at->format('d/m/Y') }}</span>
+                                            </td>
+                                            <td class="cart__table--body__list text-right">
+                                                <a class="wishlist__cart--btn primary__btn" href="cart.html">Add To Cart</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <div class="continue__shopping d-flex justify-content-between">
-                                <a class="continue__shopping--link" href="index.html">Continue shopping</a>
-                                <a class="continue__shopping--clear" href="shop.html">View All Products</a>
+                                <a class="continue__shopping--link" href="{{ route('home') }}">Continue shopping</a>
+                                <a class="continue__shopping--clear" href="{{ route('shopGrid') }}">View All Products</a>
                             </div>
                         </div>
                     </form>
@@ -201,12 +113,10 @@
                                     <span class="product__badge">-14%</span>
                                     <ul class="product__card--action">
                                         <li class="product__card--action__list">
-                                            <a class="product__card--action__btn" title="Quick View"
-                                                data-bs-toggle="modal" data-bs-target="#examplemodal"
-                                                href="javascript:void(0)">
-                                                <svg class="product__card--action__btn--svg" width="16"
-                                                    height="16" viewBox="0 0 16 16" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
+                                            <a class="product__card--action__btn" title="Quick View" data-bs-toggle="modal"
+                                                data-bs-target="#examplemodal" href="javascript:void(0)">
+                                                <svg class="product__card--action__btn--svg" width="16" height="16"
+                                                    viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path
                                                         d="M15.6952 14.4991L11.7663 10.5588C12.7765 9.4008 13.33 7.94381 13.33 6.42703C13.33 2.88322 10.34 0 6.66499 0C2.98997 0 0 2.88322 0 6.42703C0 9.97085 2.98997 12.8541 6.66499 12.8541C8.04464 12.8541 9.35938 12.4528 10.4834 11.6911L14.4422 15.6613C14.6076 15.827 14.8302 15.9184 15.0687 15.9184C15.2944 15.9184 15.5086 15.8354 15.6711 15.6845C16.0166 15.364 16.0276 14.8325 15.6952 14.4991ZM6.66499 1.67662C9.38141 1.67662 11.5913 3.8076 11.5913 6.42703C11.5913 9.04647 9.38141 11.1775 6.66499 11.1775C3.94857 11.1775 1.73869 9.04647 1.73869 6.42703C1.73869 3.8076 3.94857 1.67662 6.66499 1.67662Z"
                                                         fill="currentColor"></path>
@@ -216,9 +126,8 @@
                                         </li>
                                         <li class="product__card--action__list">
                                             <a class="product__card--action__btn" title="Compare" href="compare.html">
-                                                <svg class="product__card--action__btn--svg" width="17"
-                                                    height="17" viewBox="0 0 14 13" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
+                                                <svg class="product__card--action__btn--svg" width="17" height="17"
+                                                    viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path
                                                         d="M6.89137 6.09375C6.89137 6.47656 7.16481 6.75 7.54762 6.75H10.1453C10.7195 6.75 11.0203 6.06641 10.5828 5.65625L9.8445 4.89062L12.907 1.82812C13.0437 1.69141 13.0437 1.47266 12.907 1.36328L12.2781 0.734375C12.1687 0.597656 11.95 0.597656 11.8132 0.734375L8.75075 3.79688L7.98512 3.05859C7.57496 2.62109 6.89137 2.92188 6.89137 3.49609V6.09375ZM1.94215 12.793L5.00465 9.73047L5.77028 10.4688C6.18043 10.9062 6.89137 10.6055 6.89137 10.0312V7.40625C6.89137 7.05078 6.59059 6.75 6.23512 6.75H3.61012C3.0359 6.75 2.73512 7.46094 3.17262 7.87109L3.9109 8.63672L0.848402 11.6992C0.711683 11.8359 0.711683 12.0547 0.848402 12.1641L1.47731 12.793C1.58668 12.9297 1.80543 12.9297 1.94215 12.793Z"
                                                         fill="currentColor" />
@@ -844,32 +753,32 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="brang__logo--items">
-                                <img class="brang__logo--img" src="{{ asset('becute/assets/img/logo/brand-logo1.webp') }}"
-                                    alt="brand-logo">
+                                <img class="brang__logo--img"
+                                    src="{{ asset('becute/assets/img/logo/brand-logo1.webp') }}" alt="brand-logo">
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="brang__logo--items">
-                                <img class="brang__logo--img" src="{{ asset('becute/assets/img/logo/brand-logo2.webp') }}"
-                                    alt="brand-logo">
+                                <img class="brang__logo--img"
+                                    src="{{ asset('becute/assets/img/logo/brand-logo2.webp') }}" alt="brand-logo">
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="brang__logo--items">
-                                <img class="brang__logo--img" src="{{ asset('becute/assets/img/logo/brand-logo3.webp') }}"
-                                    alt="brand-logo">
+                                <img class="brang__logo--img"
+                                    src="{{ asset('becute/assets/img/logo/brand-logo3.webp') }}" alt="brand-logo">
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="brang__logo--items">
-                                <img class="brang__logo--img" src="{{ asset('becute/assets/img/logo/brand-logo4.webp') }}"
-                                    alt="brand-logo">
+                                <img class="brang__logo--img"
+                                    src="{{ asset('becute/assets/img/logo/brand-logo4.webp') }}" alt="brand-logo">
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="brang__logo--items">
-                                <img class="brang__logo--img" src="{{ asset('becute/assets/img/logo/brand-logo5.webp') }}"
-                                    alt="brand-logo">
+                                <img class="brang__logo--img"
+                                    src="{{ asset('becute/assets/img/logo/brand-logo5.webp') }}" alt="brand-logo">
                             </div>
                         </div>
                         <div class="swiper__nav--btn swiper-button-next">

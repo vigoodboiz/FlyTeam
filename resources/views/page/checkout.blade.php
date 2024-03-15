@@ -20,25 +20,61 @@
     </div>
     <!-- End breadcrumb section -->
 
-    <!-- Start checkout page area -->
-    <div class="checkout__page--area section--padding">
-        <div class="container">
-            @if (Auth::check())
-            <div class="row">
-                <div class="col-lg-7 col-md-6">
-                    <div class="main checkout__mian">
-                        <form action="#">
-                            <div class="checkout__content--step section__shipping--address">
-                                <div class="checkout__section--header mb-25">
-                                    <h2 class="checkout__header--title h3">Billing Details</h2>
-                                </div>
-                                <div class="section__shipping--address__content">
-                                    <div class="row">
-                                        <div class="col-12 mb-20">
-                                            <div class="checkout__input--list">
-                                                <label class="checkout__input--label mb-10" for="input3">Full name
-                                                    <span class="checkout__input--label__star">*</span></label>
-                                                <input class="checkout__input--field border-radius-5" value="{{ Auth::user()->name }}" id="input3" type="text" disabled>
+        <!-- Start checkout page area -->
+        <div class="checkout__page--area section--padding">
+            <div class="container">
+                @if (Auth::check())
+                    @if (\Session::has('msg'))
+                        <div class="alert alert-success">
+                            {{ \Session::get('msg') }}
+                        </div>
+                    @endif
+                    <div class="row">
+                        <div class="col-lg-7 col-md-6">
+                            <div class="main checkout__mian">
+                                <form action="#">
+                                    <div class="checkout__content--step section__shipping--address">
+                                        <div class="checkout__section--header mb-25">
+                                            <h2 class="checkout__header--title h3">Billing Details</h2>
+                                        </div>
+                                        <div class="section__shipping--address__content">
+                                            <div class="row">
+                                                <div class="col-12 mb-20">
+                                                    <div class="checkout__input--list">
+                                                        <label class="checkout__input--label mb-10" for="input3">Full name
+                                                            <span class="checkout__input--label__star">*</span></label>
+                                                        <input class="checkout__input--field border-radius-5"
+                                                            value="{{ Auth::user()->name }}" id="input3" type="text"
+                                                            disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mb-20">
+                                                    <div class="checkout__input--list">
+                                                        <label class="checkout__input--label mb-10" for="input3">Email
+                                                            <span class="checkout__input--label__star">*</span></label>
+                                                        <input class="checkout__input--field border-radius-5"
+                                                            value="{{ Auth::user()->email }}" id="input3" type="text"
+                                                            disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mb-20">
+                                                    <div class="checkout__input--list">
+                                                        <label class="checkout__input--label mb-10" for="input3">Phone
+                                                            number
+                                                            <span class="checkout__input--label__star">*</span></label>
+                                                        <input class="checkout__input--field border-radius-5"
+                                                            value="{{ Auth::user()->phone }}" id="input3" type="text"
+                                                            disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mb-20">
+                                                    <div class="checkout__input--list">
+                                                        <label class="checkout__input--label mb-10" for="input4">Address
+                                                            <span class="checkout__input--label__star">*</span></label>
+                                                        <input class="checkout__input--field border-radius-5"
+                                                            value="{{ Auth::user()->address }}" type="text" disabled>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-12 mb-20">
@@ -227,6 +263,7 @@
                                 </tfoot>
                             </table>
                         </div>
+                        @foreach ($cartItems as $cart)
                         <div class="payment__history mb-30">
 
                             <h3 class="payment__history--title mb-20">Payment</h3>
@@ -241,22 +278,43 @@
                                     <!-- <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">VnPay</button></li> -->
                                 </form>
 
-                                <form action="{{route('momo_payment')}}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="total_momo" value=" {{$totalPrice}} ">
-                                    <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit" name="redirect" style="margin-right: 10px">MoMo</button> </li>
-                                    <!-- <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">VnPay</button></li> -->
-                                </form>
 
-                                <!-- <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">Bank Transfer</button></li> -->
-                                <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">Paypal</button></li>
-                            </ul>
+                                            <form action="{{ route('vnpay_payment') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="total_vnpay" value=" {{ $totalPrice }} ">
+                                                <li class="payment__history--list"><button
+                                                        class="payment__history--link primary__btn" type="submit"
+                                                        name="redirect" style="margin-right: 10px">VnPay</button>
+                                                </li>
+                                                <!-- <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">VnPay</button></li> -->
+                                            </form>
+
+                                            <form action="{{ route('momo_payment') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="total_momo" value=" {{ $totalPrice }} ">
+                                                <li class="payment__history--list"><button
+                                                        class="payment__history--link primary__btn" type="submit"
+                                                        name="redirect" style="margin-right: 10px">MoMo</button> </li>
+                                                <!-- <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">VnPay</button></li> -->
+                                            </form>
+
+                                            <!-- <li class="payment__history--list"><button class="payment__history--link primary__btn" type="submit">Bank Transfer</button></li> -->
+                                            <form action="#" method="POST">
+                                                @csrf
+                                                <li class="payment__history--list"><button
+                                                        class="payment__history--link primary__btn"
+                                                        type="submit">Paypal</button>
+                                                </li>
+                                            </form>
+                                        </ul>
+                                    </div>
+                                    <button class="checkout__now--btn primary__btn" type="submit">
+                                        <a href="{{ route('checkoutPost', $cart->id) }}">Checkout now</a>
+                                    </button>
+                                @endforeach
+                            </aside>
                         </div>
-
-                        <button class="checkout__now--btn primary__btn" type="submit">Checkout Now</button>
-                    </aside>
-                </div>
-
+                    </div>
             </div>
         </div>
     </div>
@@ -308,7 +366,8 @@
     <!-- End feature section -->
 </main>
 @else
-<p>Xin vui lòng đăng nhập để có thể tiếp tục mua hàng!</p><a class="account__menu--list" href="{{ route('login') }}">Đăng nhập</a>
-@endif
 
+    <p>Xin vui lòng đăng nhập để có thể tiếp tục mua hàng!</p><a class="account__menu--list"
+        href="{{ route('login') }}">Đăng nhập</a>
+    @endif
 @endsection

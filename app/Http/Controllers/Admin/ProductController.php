@@ -20,7 +20,7 @@ class ProductController extends Controller
         // $products = Product::with('category')->get();
         // return view('products.index', compact('products'));
 
-        $products = Products::with('category')->get();
+        $products = Products::orderBy('created_at', 'DESC')->paginate(5);
         return view('admin.products.index', compact('products'));
     }
     /**
@@ -143,4 +143,6 @@ class ProductController extends Controller
     
         return redirect()->route('products.index')->with('success', 'Đã xóa sản phẩm thành công.');
     }
+
 }
+

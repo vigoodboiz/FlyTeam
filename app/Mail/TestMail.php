@@ -16,7 +16,7 @@ class TestMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($userName)
     {
         //
     }
@@ -27,7 +27,7 @@ class TestMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Test Mail Fly Team',
+            subject: ' Mail từ C.O.I Cosmestics',
         );
     }
 

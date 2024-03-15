@@ -7,16 +7,16 @@
 
 
     <div class="form-group">
-    <label for="id_category">ID Category:</label>
-    <select name="id_category" class="form-control" required>
-        @foreach($categories as $category)
+        <label for="id_category">ID Category:</label>
+        <select name="id_category" class="form-control" required>
+            @foreach($categories as $category)
             <option value="{{ $category->id }}" {{ $category->id == $product->id_category ? 'selected' : '' }}>
                 {{ $category->name }}
             </option>
-        @endforeach
-    </select>
-</div>
-            
+            @endforeach
+        </select>
+    </div>
+
 
     <div class="form-group">
         <label for="name">Name:</label>
@@ -46,7 +46,7 @@
     <div class="form-group">
         <label for="image">Image:</label>
         <input type="file" name="image" class="form-control-file">
-        <img src="{{ Storage::url('images/' . $product->image) }}" alt="Product Image" style="max-width: 200px;">
+        <img id="anh_the_preview" src="{{$product->image? Storage::url('images/' . $product->image): 'https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg'}}" alt="your image" style="max-width: 200px; height:100px; margin-bottom: 10px;" class="img-fluid" />
     </div>
 
     <button type="submit" class="btn btn-primary">Update</button>

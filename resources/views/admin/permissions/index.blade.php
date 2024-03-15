@@ -14,10 +14,10 @@
                             <a href="#" id="deleteAll" class="btn btn-danger add-list"><i class="las la-trash"></i>Xóa lựa
                                 chọn</a>
                         @endcan
-                        @can('permission_create')
+                        
                             <a href="{{ route('permissions.create') }}" class="btn btn-primary add-list"><i
                                     class="las la-plus mr-3"></i>Thêm quyền truy cập</a>
-                        @endcan
+                        
                     </div>
                 </div>
             </div>

@@ -19,13 +19,13 @@
         <input type="file" name="image" class="form-control-file">
 
         @if ($category->image)
-            <img src="{{ Storage::url('images/' . $category->image) }}" alt="Category Image" style="max-width: 200px;">
+        <img id="anh_the_preview" src="{{$category->image? Storage::url('images/' . $category->image): 'https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg'}}" alt="your image" style="max-width: 200px; height:100px; margin-bottom: 10px;" class="img-fluid" />
         @else
             <p>No image available</p>
         @endif
     </div>
 
-    <button type="submit">Update Category</button>
+    <button type="submit" class="btn btn-primary">Update Category</button>
 </form>
 
 @endsection

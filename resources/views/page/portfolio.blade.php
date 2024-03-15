@@ -39,10 +39,11 @@
                                             href="{{ route('portfolioPage') }}">Infomation</a>
                                     </li>
                                     <li class="account__menu--list"><a href="{{ route('wishlistPage') }}">Wishlist</a></li>
+                                    <li class="account__menu--list"><a href="{{ route('history') }}">History Order</a></li>
                                 @endif
                                 <li class="account__menu--list"><a
                                         href="{{ route('logout') }}"onclick="event.preventDefault();
-                                                                                                                                                                                                                                                                                                                                                                    document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Logout</a>
+                                                                                                                                                                                                                                                                                                                                                                                        document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Logout</a>
                                 </li>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
@@ -56,13 +57,13 @@
                                         <div class="card-body text-center">
                                             @if (!empty(auth()->user()->profile_picture))
                                                 <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}"
-                                                    alt="Profile Picture">
+                                                    class="rounded-circle" alt="Profile Picture">
                                             @else
                                                 <form action="{{ route('profile.update') }}" method="POST"
                                                     enctype="multipart/form-data">
                                                     @csrf
                                                     <input type="file" name="profile_picture">
-                                                    <button type="submit">Upload</button>
+                                                    <button type="submit" class="btn btn-success">Upload</button>
                                                 </form>
                                             @endif
                                         </div>
