@@ -78,7 +78,7 @@
                                         </li>
                                     </ul>
                                     <div class="product__add--to__card">
-                                    @if($pro_sale->quantity_product > 0)
+                                        @if($pro_sale->quantity_product > 0)
                                         <button type='submit' class="product__card--btn" title="Add To Card">Thêm
                                             giỏ hàng
                                             <svg width="17" height="15" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">

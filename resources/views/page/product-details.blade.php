@@ -165,6 +165,7 @@
                                     </ul> --}}
                             <p class="product__details--info__desc mb-15">{{ $pro_dt->describe }}</p>
                             <div class="product__variant">
+                                @if($pro_dt->quantity_product > 0)
                                 <div class="product__variant--list mb-15">
                                     <fieldset class="variant__input--fieldset">
                                         <legend class="product__variant--title mb-8">Color :</legend>
@@ -210,7 +211,7 @@
                                         </ul>
                                     </fieldset>
                                 </div>
-                                @if($pro_dt->quantity_product > 0)
+
                                 <div class="product__variant--list quantity d-flex align-items-center mb-20">
                                     <div class="quantity__box">
                                         <button type="button" class="quantity__value quickview__value--quantity decrease" aria-label="quantity value" value="Decrease Value">-</button>
@@ -232,9 +233,8 @@
                                     <button class="variant__buy--now__btn primary__btn" type="submit"><a href="{{ route('checkoutPage') }}">Mua ngay</a>
                                     </button>
                                 </div>
-                                @elseif($pro_dt->quantity_product <= 0)
-                                <span class="fw-bolder text-danger mt-5 mb-5">Xin lỗi , Sản phẩm đã hết . Khách hàng vui lòng lựa chọn sản phẩm khác!</span>
-                                @endif
+                                @elseif($pro_dt->quantity_product <= 0) <span class="fw-bolder text-danger mt-5 mb-5">Xin lỗi , Sản phẩm đã hết . Khách hàng vui lòng lựa chọn sản phẩm khác!</span>
+                                    @endif
             </form>
         </div>
         <div class="quickview__social d-flex align-items-center mb-20">
@@ -540,8 +540,13 @@
                         <article class="product__card">
                             <div class="product__card--thumbnail">
                                 <a class="product__card--thumbnail__link display-block" href="{{ route('shopDetails', $pro_same->id) }}">
-                                    <img class="product__card--thumbnail__img product__primary--img" src="{{ asset('upload/public/images/' . $pro_same->image) }}" style="height: 180px;" alt="product-img">
-                                    <img class="product__card--thumbnail__img product__secondary--img" src="{{ asset('upload/public/images/' . $pro_same->image) }}" alt="product-img">
+                                    <div class="product__card--thumbnail__container">
+                                        <img class="product__card--thumbnail__img @if ($pro_same->quantity_product <= 0) out-of-stock @endif" src="{{ asset('upload/public/images/' . $pro_same->image) }}" style="height: 200px;" alt="product-img">
+                                        @if ($pro_same->quantity_product <= 0) <h3>
+                                            <p class="display-7 product__card--thumbnail__text">ĐÃ HẾT HÀNG</p>
+                                            </h3>
+                                            @endif
+                                    </div>
                                 </a>
                                 <span class="product__badge">-14%</span>
                                 <ul class="product__card--action">
