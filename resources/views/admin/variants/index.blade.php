@@ -6,10 +6,12 @@
                 <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
                     <div>
                         <h4 class="mb-3">Danh sách thuộc tính</h4>
+                        <a href="{{ route('products.index') }}" class="btn btn-primary add-list"><i
+                                class="las la-plus mr-3"></i>Danh sách sản phẩm</a>
                     </div>
                     <div>
                         @can('variant_create')
-                            <a href="{{ route('variants.create') }}" class="btn btn-primary add-list"><i
+                            <a href="{{ route('variants.create', $products->id) }}" class="btn btn-primary add-list"><i
                                     class="las la-plus mr-3"></i>Thêm thuộc tính</a>
                         @endcan
                     </div>
@@ -55,6 +57,5 @@
                     @endforeach
                 </tbody>
             </table>
-            {{ $variants->links() }}
         </div>
     @endsection

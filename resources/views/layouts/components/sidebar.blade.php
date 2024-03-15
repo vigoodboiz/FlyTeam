@@ -28,10 +28,6 @@
                         <li></i><a href="{{ route('products.index') }}"><i class="bi bi-inboxes-fill text-Danger"></i> Quản
                                 lý sản phẩm</a></li>
                     @endcan
-                    @can('product_access')
-                        <li></i><a href="{{ route('variants.index') }}"><i class="bi bi-inboxes-fill text-Danger"></i> Quản
-                                lý thuộc tính</a></li>
-                    @endcan
                     @can('category_access')
                         <li><a href="{{ route('categories.index') }}"><i class="bi bi-grid-3x3-gap text-Danger"></i> Quản
                                 lý danh mục</a>

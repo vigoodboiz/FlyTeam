@@ -36,6 +36,7 @@
                         <th>Giá sản phẩm</th>
                         <th>Số lượng</th>
                         <th>Tổng tiền</th>
+                        <th>Ghi chú</th>
                         <th>Trạng thái đơn hàng</th>
                         <th>Trạng thái giao hàng</th>
                         <th>Ngày đặt hàng</th>
@@ -68,6 +69,7 @@
                             </td>
                             <td>{{ $item->quantity }}</td>
                             <td>{{ $item->total_price }}đ</td>
+                            <td>{{ $item->note }}</td>
                             <td>{{ $item->payment_status }}</td>
                             <td>{{ $item->delivery_status }}</td>
                             <td>{{ $item->created_at->format('d/m/Y') }}</td>

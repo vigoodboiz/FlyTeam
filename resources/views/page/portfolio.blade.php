@@ -48,7 +48,7 @@
                                 @endif
                                 <li class="account__menu--list"><a
                                         href="{{ route('logout') }}"onclick="event.preventDefault();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Logout</a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Logout</a>
                                 </li>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
@@ -128,8 +128,18 @@
                             </div>
                         </div>
                     @else
-                        <p>Xin vui lòng đăng nhập để có thể tiếp tục mua hàng!</p><a class="account__menu--list"
-                            href="{{ route('login') }}">Đăng nhập</a>
+                        <div class="breadcrumb__section breadcrumb__bg">
+                            <div class="container">
+                                <div class="row row-cols-1">
+                                    <div class="col">
+                                        <div class="breadcrumb__content text-center">
+                                            <p>Xin vui lòng đăng nhập để có thể tiếp tục mua hàng!</p><a
+                                                class="account__menu--list" href="{{ route('login') }}">Đăng nhập</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                 @endif
             </div>
         </section>

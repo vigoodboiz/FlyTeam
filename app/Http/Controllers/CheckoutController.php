@@ -19,10 +19,13 @@ class CheckoutController extends Controller
     {
         $userId = Auth::id();
         $cartItems = Cart::where('user_id', $userId)->get();
-        $totalPrice = $this->calculateTotalPrice();
+        if($cartItems->isEmpty()) {
+            return redirect()->route('shopGrid')->with('error', 'Bạn không có sản phẩm nào cả - Vui lòng thêm sản phẩm vào giỏ hàng!');
+        } else {
+           $totalPrice = $this->calculateTotalPrice();
 
-        return view('page.checkout' , compact('cartItems','totalPrice'));
-
+            return view('page.checkout' , compact('cartItems','totalPrice'));
+       }
     }
 
     public function calculateTotalPrice()
@@ -38,12 +41,13 @@ class CheckoutController extends Controller
         return $totalPrice;
     }
 
-    public function post_checkout()
+    public function post_checkout(Request $request)
     {
         $userId = Auth::user()->id;
         $cart = Cart::where('user_id', $userId)->get();
-        if(!$cart) {
-                return redirect()->route('shopGrid')->with('error', 'Bạn không có đơn hàng nào cả!');
+        $note = $request->input('note');
+        if($cart->isEmpty()) {
+                return redirect()->route('shopGrid')->with('error', 'Bạn không có đơn hàng cần thanh toán nào cả!');
         } else{
             foreach($cart as $cartItem){
                 $order = new Order();
@@ -52,6 +56,7 @@ class CheckoutController extends Controller
                 $order->product_id = $cartItem->product_id;
                 $order->quantity = $cartItem->quantity;
                 $order->total_price = $cartItem->total_price;
+                $order->note = $note;
                 $order->payment_status = 'Đang xác nhận';
                 $order->delivery_status = 'Đang xử lý';
                 $order->save();

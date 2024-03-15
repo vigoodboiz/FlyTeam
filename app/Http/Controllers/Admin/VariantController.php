@@ -11,18 +11,20 @@ class VariantController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($product_id)
     {
-        $variants = Variant::query()->paginate(5);
-        return view('admin.variants.index', compact('variants'));
+        // $variants = Variant::query()->paginate(5);
+        $variants = Variant::where('product_id', $product_id)->get();
+        $products = Products::findOrFail($product_id);
+        return view('admin.variants.index', compact('variants', 'products'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($product_id)
     {
-        $products = Products::all();
+        $products = Products::findOrFail($product_id);
         return view('admin.variants.create', compact('products'));
     }
 
@@ -32,7 +34,7 @@ class VariantController extends Controller
 
 
 
-    public function store(Request $request)
+    public function store(Request $request, $product_id)
     {
         // $validatedData = $request->validate([
         //     'name' => 'required',
@@ -47,7 +49,7 @@ class VariantController extends Controller
         $variant->value = $request->value;
         $variant->product_id = $request->product_id;
         $variant->save();
-        return redirect()->route('variants.index')->with('success', 'Thuộc tính được thêm thành công!');
+        return redirect()->route('variants.index', $product_id)->with('success', 'Thuộc tính được thêm thành công!');
     }
 
     /**
@@ -61,11 +63,11 @@ class VariantController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $product_id)
     {
-        $variant = Variant::find($id);
-        $products = Products::all();
-        return view('admin.variants.edit', compact('variant', 'products'));
+        $variants = Variant::find($product_id);
+        $products = Products::findOrFail($product_id);
+        return view('admin.variants.edit', compact('variants', 'products'));
     }
 
     /**
@@ -73,14 +75,14 @@ class VariantController extends Controller
      */
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $product_id)
     {
-            $variant = Variant::findOrFail($id);
+            $variant = Variant::findOrFail($product_id);
             $variant->name = $request->name;
             $variant->value = $request->value;
             $variant->product_id = $request->product_id;
             $variant->save();
-        return redirect()->route('variants.index')->with('success', 'Thuộc tính được cập nhật thành công!');
+        return redirect()->route('variants.index', $product_id)->with('success', 'Thuộc tính được cập nhật thành công!');
     }
 
     /**
@@ -92,7 +94,7 @@ class VariantController extends Controller
     {
         $variant = Variant::findOrFail($id);
         $variant->delete();
-        return redirect()->route('variants.index')->with('success', 'Thuộc tính được xóa thành công!');
+        return redirect()->back()->with('success', 'Thuộc tính được xóa thành công!');
     }
 
 
