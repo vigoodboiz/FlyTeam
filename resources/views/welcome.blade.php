@@ -29,6 +29,53 @@
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Custom CSS -->
+    <style>
+        .chi {
+           
+            font-family: Arial, sans-serif;
+        }
+        .chi1 {
+            max-width: 1000px;
+            margin: 50px auto;
+        }
+        .profile-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        .profile-card .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+        }
+        .profile-card .avatar img {
+            width: 100%;
+            height: auto;
+        }
+        .profile-card h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .profile-card p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .profile-card .btn {
+            width: 100%;
+        }
     <style>
         .text-truncate {
             max-width: 200px;
@@ -62,6 +109,7 @@
             width: 500px;
             height: 50px;
             background-color: rgba(0, 0, 0, 0.2); 
+
         }
     </style>
 </head>
@@ -94,6 +142,24 @@
     <script src="{{ asset('becute/assets/js/plugins/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('becute/assets/js/plugins/glightbox.min.js') }}"></script>
 
+
+        <!-- All Script JS Plugins here  -->
+        <script src="{{ asset('becute/assets/js/vendor/popper.js') }}" defer="defer"></script>
+        <script src="{{ asset('becute/assets/js/vendor/bootstrap.min.js') }}" defer="defer"></script>
+        <script src="{{ asset('becute/assets/js/plugins/swiper-bundle.min.js') }}"></script>
+        <script src="{{ asset('becute/assets/js/plugins/glightbox.min.js') }}"></script>
+
+        <!-- Customscript js -->
+        <script src="{{ asset('becute/assets/js/script.js') }}"></script>
+        <!-- fill price -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        @yield('price-range');
+    </body>
+
     <!-- Customscript js -->
     <script src="{{ asset('becute/assets/js/script.js') }}"></script>
     <!-- fill price -->
@@ -104,6 +170,7 @@
     <script>
         document.getElementById('delete-form').addEventListener('submit', function(event) {
             event.preventDefault();
+
 
             Swal.fire({
                 title: 'Bạn có muốn xóa nó hay không?',
