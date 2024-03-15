@@ -138,10 +138,10 @@
                                     <div class="product__variant">
                                         @foreach ($variants as $variant)
                                             @if ($variant->name == 'Màu sắc')
-                                                <div class="product__variant--list mb-15">
-                                                    <fieldset class="variant__input--fieldset">
-                                                        <legend class="product__variant--title mb-8">Màu sắc :</legend>
-                                                        <ul class="variant__size d-flex">
+                                                <ul class="variant__size d-flex">
+                                                    <div class="product__variant--list mb-15">
+                                                        <fieldset class="variant__input--fieldset">
+                                                            <legend class="product__variant--title mb-8">Màu sắc :</legend>
                                                             <div class="variant__color d-flex">
                                                                 <div class="variant__color--list">
                                                                     <input id="color" name="color" type="radio"
@@ -153,8 +153,8 @@
                                                                     </label>
                                                                 </div>
                                                             </div>
-                                                    </fieldset>
-                                                </div>
+                                                        </fieldset>
+                                                    </div>
                                                 </ul>
                                             @elseif($variant->name == 'Trọng lượng')
                                                 <ul class="variant__size d-flex">

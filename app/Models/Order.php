@@ -21,6 +21,7 @@ class Order extends Model
         'delivery_status',
         'quantity',
         'total_price',
+        'note',
 
     ];
     

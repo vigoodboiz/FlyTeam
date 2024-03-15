@@ -21,11 +21,44 @@
     <!-- End breadcrumb section -->
         <!-- cart section start -->
         <div class="container">
+<<<<<<< HEAD
+            <h2 class="cart__title mb-30">Lịch sử đơn hàng</h2>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Stt</th>
+                        {{-- <th>User Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Address</th> --}}
+                        <th>Ảnh sản phẩm</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Tổng tiền</th>
+                        <th>Ghi chú</th>
+                        <th>Trạng thái đơn hàng</th>
+                        <th>Trạng thái giao hàng</th>
+                        <th>Ngày đặt hàng</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($orders as $item)
+                        <tr>
+                            <td>{{ $loop->index + 1 }}</td>
+                            {{-- <td>{{ $item->user->name }}</td>
+                                <td>{{ $item->user->email }}</td>
+                                <td>{{ $item->user->phone }}</td>
+                                <td>{{ $item->user->address }}</td> --}}
+                            <td>
+=======
         <h2 class="cart__title mb-30">Lịch sử đơn hàng</h2>
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Stt</th>
+>>>>>>> 8a02bffdbae0d7da0e0b00550fd3afdf186fb61c
 
                     <!-- <th>User Name</th>
                     <th>Email</th>
@@ -58,6 +91,7 @@
                        </td>
                             <td>{{ $item->quantity }}</td>
                             <td>{{ $item->total_price }}đ</td>
+                            <td>{{ $item->note }}</td>
                             <td>{{ $item->payment_status }}</td>
                             <td>{{ $item->delivery_status }}</td>
                             <td>{{ $item->created_at->format('d/m/Y') }}</td>

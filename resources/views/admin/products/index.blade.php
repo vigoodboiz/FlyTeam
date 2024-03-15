@@ -37,6 +37,7 @@
                                 <th>Ảnh sản phẩm</th>
                                 <th>Lượt xem</th>
                                 <th>Trưng bày</th>
+                                <th>Thuộc tính</th>
                                 <th>Sửa</th>
                                 <th>Xóa</th>
                             </tr>
@@ -54,7 +55,12 @@
                                     <td><img src="{{ asset('upload/public/images/' . $product->image) }}"
                                             alt="{{ $product->name }}" width="500px">
                                     <td>{{ $product->view_count }}</td>
-                                    <td> <a href="{{ route('index', $product->id) }}" class="btn btn-success"> image</a>
+                                    <td> <a href="{{ route('index', $product->id) }}" class="btn btn-success">Ảnh
+                                        </a>
+                                    </td>
+                                    <td> <a href="{{ route('variants.index', $product->id) }}"
+                                            class="btn btn-success">Thuộc tính
+                                        </a>
                                     </td>
                                     </td>
                                     <td>
