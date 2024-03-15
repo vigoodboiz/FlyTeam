@@ -19,6 +19,7 @@ class Products extends Model implements HasMedia
     public $appends = ['favorited'];
     protected $table = 'products';
 
+
     
     protected $fillable = ['id_category', 'name', 'brand',  'describe' ,'price', 'price_sale','quantity_product', 'image'];
 

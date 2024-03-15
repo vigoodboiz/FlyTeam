@@ -24,7 +24,7 @@ class ShopDetailsController extends Controller
     public function index($id_pro)
     {
         if ($id_pro) {
-            
+
             $product_detail = Products::where('id', $id_pro)->get();
             Products::where('id',$id_pro)->increment('view_count');
 
@@ -34,7 +34,7 @@ class ShopDetailsController extends Controller
             $variants = Variant::where('product_id', $id_pro)->get();
             $id_cate = Products::where('id', $id_pro)->value('id_category');
             $product_same = Products::where('id_category', $id_cate)->where('id', '<>', $id_pro)->paginate(9);
-        
+
             $currentDateTime = Carbon::now();
             $currentDateTimeGMTPlus7 = $currentDateTime->setTimezone('Asia/Ho_Chi_Minh');
             $comments = DB::table('comments')
@@ -65,4 +65,9 @@ class ShopDetailsController extends Controller
 
         return redirect()->back()->with('success', 'Bình luận đã được tạo thành công!');
     }
+    public function delete($id){
+        Comment::where('id',$id)->delete();
+        return back();
+    }
 }
+
