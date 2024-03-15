@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Becute - Product Gallery</title>
+    <title>C.O.I Cosmestics - Product Gallery</title>
     <meta name="description" content="Morden Bootstrap HTML5 Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('becute/assets/img/logo/logo_main.png') }}">
@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -75,31 +76,72 @@
         .profile-card .btn {
             width: 100%;
         }
+    <style>
+        .text-truncate {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .out-of-stock {
+            filter: blur(5px);
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .product__card--thumbnail__container {
+            position: relative;
+        }
+
+        .product__card--thumbnail__text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: black; 
+            font-weight: bold;
+            z-index: 2;
+        }
+        .product__card--thumbnail__text::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: -100px;
+            width: 500px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.2); 
+
+        }
     </style>
 </head>
 
 <body>
+    {{-- @can('guest_access') --}}
+    <!-- topbar -->
+    <!-- topbar End -->
+    @include('layouts.layoutMain.topbar');
+    <!-- content -->
+    <div>
+        @yield('content')
+    </div>
+    <!-- end_content -->
 
-    <body>
-        <!-- topbar -->
-        <!-- topbar End -->
-        @include('layouts.layoutMain.topbar');
-        <!-- content -->
-        <div>
-            @yield('content')
-        </div>
-        <!-- end_content -->
+    <!-- Footer Section Begin -->
+    @include('layouts.layoutMain.footer')
+    <!-- Footer Section End -->
 
-        <!-- Footer Section Begin -->
-        @include('layouts.layoutMain.footer')
-        <!-- Footer Section End -->
+    <!-- Js Plugins -->
+    <!-- Scroll top bar -->
+    <button id="scroll__top"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48"
+                d="M112 244l144-144 144 144M256 120v292" />
+        </svg></button>
 
-        <!-- Js Plugins -->
-        <!-- Scroll top bar -->
-        <button id="scroll__top"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
-                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                    stroke-width="48" d="M112 244l144-144 144 144M256 120v292" />
-            </svg></button>
+    <!-- All Script JS Plugins here  -->
+    <script src="{{ asset('becute/assets/js/vendor/popper.js') }}" defer="defer"></script>
+    <script src="{{ asset('becute/assets/js/vendor/bootstrap.min.js') }}" defer="defer"></script>
+    <script src="{{ asset('becute/assets/js/plugins/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('becute/assets/js/plugins/glightbox.min.js') }}"></script>
+
 
         <!-- All Script JS Plugins here  -->
         <script src="{{ asset('becute/assets/js/vendor/popper.js') }}" defer="defer"></script>
@@ -118,5 +160,79 @@
         @yield('price-range');
     </body>
 
+    <!-- Customscript js -->
+    <script src="{{ asset('becute/assets/js/script.js') }}"></script>
+    <!-- fill price -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    @yield('price-range');
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        document.getElementById('delete-form').addEventListener('submit', function(event) {
+            event.preventDefault();
 
+
+            Swal.fire({
+                title: 'Bạn có muốn xóa nó hay không?',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ok',
+                cancelButtonText: 'Hủy'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form').submit();
+                }
+            }).catch((error) => {
+                // Xử lý lỗi nếu có
+                console.log(error);
+            });
+        });
+    </script>
+    <script>
+        document.getElementById('delete-Form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            Swal.fire({
+                title: 'Bạn có muốn mua lại đơn hàng này không?',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ok',
+                cancelButtonText: 'Hủy'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-Form').submit();
+                }
+            }).catch((error) => {
+                // Xử lý lỗi nếu có
+                console.log(error);
+            });
+        });
+    </script>
+    <script>
+        @if (session('success'))
+            Swal.fire({
+                title: 'Thành công!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+            });
+        @elseif (session('error'))
+            Swal.fire({
+                title: 'có lỗi!',
+                text: '{{ session('error') }}',
+                icon: 'warning',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+            });
+        @endif
+    </script>
+    {{-- @endcan --}}
+</body>
 </html>

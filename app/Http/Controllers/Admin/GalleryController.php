@@ -49,7 +49,7 @@ class GalleryController extends Controller
                 }
                 }
 
-        return redirect()->route('index', $product_id)->with('success', 'Product updated successfully');
+        return redirect()->route('index', $product_id)->with('success', 'Ảnh sản phẩm được cập nhật thành công');
     }
 
 
@@ -63,7 +63,7 @@ public function destroy(Gallery $gallery)
     // Xoá bản ghi trong database
     $gallery->delete();
 
-    return redirect()->back()->with('success', 'Image deleted successfully.');
+    return redirect()->back()->with('success', 'Ảnh sản phẩm được xóa thành công!');
 }
 
 

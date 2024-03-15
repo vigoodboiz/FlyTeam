@@ -16,9 +16,13 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('cart_id');
-            $table->foreign('cart_id')->references('id')->on('carts');
+            $table->integer('product_id');
+            $table->integer('total_price');
+            $table->integer('quantity');
+            $table->string('delivery_status')->default('Đang Xử Lý');
             $table->string('payment_status')->default('Đang Xác Nhận');
-            $table->string('deleivery_status')->default('Đang Xử Lý');
+            $table->foreign('cart_id')->references('id')->on('carts');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

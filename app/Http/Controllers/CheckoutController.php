@@ -19,10 +19,13 @@ class CheckoutController extends Controller
     {
         $userId = Auth::id();
         $cartItems = Cart::where('user_id', $userId)->get();
-        $totalPrice = $this->calculateTotalPrice();
+        if($cartItems->isEmpty()) {
+            return redirect()->route('shopGrid')->with('error', 'Bạn không có sản phẩm nào cả - Vui lòng thêm sản phẩm vào giỏ hàng!');
+        } else {
+           $totalPrice = $this->calculateTotalPrice();
 
-        return view('page.checkout' , compact('cartItems','totalPrice'));
-
+            return view('page.checkout' , compact('cartItems','totalPrice'));
+       }
     }
 
     public function calculateTotalPrice()
@@ -38,36 +41,64 @@ class CheckoutController extends Controller
         return $totalPrice;
     }
 
-    public function post_checkout($cart_id)
+    public function post_checkout(Request $request)
     {
         $userId = Auth::user()->id;
-        $cart = Cart::where('user_id', $userId)->first();
+        $cart = Cart::where('user_id', $userId)->get();
+        $note = $request->input('note') ?? '';
+        if($cart->isEmpty()) {
+                return redirect()->route('shopGrid')->with('error', 'Bạn không có đơn hàng cần thanh toán nào cả!');
+        } else{
+            foreach($cart as $cartItem){
+                $order = new Order();
+                $order->cart_id = $cartItem->id;
+                $order->user_id = Auth::user()->id;
+                $order->product_id = $cartItem->product_id;
+                $order->quantity = $cartItem->quantity;
+                $order->total_price = $cartItem->total_price;
+                $order->note = $note;
+                $order->payment_status = 'Đang xác nhận';
+                $order->delivery_status = 'Đang xử lý';
+                $order->save();
 
-        $totalQuantity = $cart->sum('quantity');
-        $totalAmount = $cart->sum('total_price');
+                $product = Products::find($cartItem->product_id);
+                $product->decrement('quantity_product', $cartItem->quantity);
+            }
 
-        
-        
-        $data = [
-            'cart_id' => $cart_id,
-            'user_id' => Auth::user()->id,
-            'product_id' => $cart->product_id,
-            'quantity' => $totalQuantity,
-            'total_price' => $totalAmount,
-            'payment_status' => 'Đang Xác Nhận',
-            'delivery_status' => 'Đang Xử Lý',
-        ];
-
-        $orderd = Order::where(['cart_id' => $cart_id, 'user_id' => Auth::user()->id])->first();
-            Order::create($data);
             $userId = auth::user()->id;
-            $carts= Cart::where('user_id', $userId)->get();
+            $carts = Cart::where('user_id', $userId)->get();
             foreach ($carts as $cart) {
                 $cart->delete();
             }
-           return redirect()->back()->with('success', 'Order successfully!');
 
+            return redirect()->route('history')->with('success', 'Đặt hàng thành công!');
+        }
     }
-    
-    
+    public function cancel(Order $order)
+    {
+        $order->payment_status = 'Đã hủy đơn hàng';
+        $order->delivery_status = 'Không thể xử lý giao hàng';
+        $order->save();
+        return redirect()->back()->with('success', 'Đơn đặt hàng đã bị hủy thành công!');
+    }
+    public function showReorderForm($id)
+    {
+        $order = Order::findOrFail($id);
+        return view('orders.reorder', ['order' => $order]);
+    }
+    public function reorder($id)
+    {
+        $order = Order::findOrFail($id);
+        if (!$order) {
+            return redirect()->route('home')->with('error', 'Đơn hàng không tồn tại!');
+        }
+        // Tái tạo lại đơn hàng
+        $newOrder = $order->replicate();
+        $newOrder->payment_status = 'Đang xác nhận';
+        $newOrder->delivery_status = 'Đang xử lý';
+        $newOrder->save();
+        // Xóa đơn hàng đã bị hủy đi
+        $order->delete();
+        return redirect()->route('history', $newOrder->id)->with('success', 'Đơn đặt hàng đã được mua lại thành công!');
+    }
 }

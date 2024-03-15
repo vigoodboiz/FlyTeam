@@ -32,16 +32,14 @@
                                         <label for="selectAll" class="mb-0"></label>
                                     </div>
                                 </th>
-                                <th>Id</th>
-                                <th>Code</th>
-                                <th>Name</th>
+                                <th>Mã số</th>
+                                <th>Tên</th>
                                 <th>Email</th>
-                                <th>Image</th>
-                                <th>Gender</th>
-                                <th>SDT</th>
-                                <th>Address</th>
-                                <th>Role</th>
-                                <th>Action</th>
+                                <th>Ảnh</th>
+                                <th>Điện thoại</th>
+                                <th>Địa chỉ</th>
+                                <th>Quyền</th>
+                                <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody class="ligth-body">
@@ -54,25 +52,21 @@
                                             <label for="ids" class="mb-0"></label>
                                         </div>
                                     </td>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->user_code }}</td>
+                                    <th scope="row">#1234{{ $loop->iteration }}</th>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
                                     @if (!empty($item->profile_picture))
-                                        <td><img src="{{ asset('storage/' . $item->profile_picture) }}"
-                                                class="rounded-circle" alt="Profile Picture"></td>
+                                        <td><img src="{{ asset('storage/' . $item->profile_picture) }}" class="rounded-circle" alt="Profile Picture"></td>
                                     @else{
                                         <td>
                                             <p>No images!</p>
                                         </td>
                                         }
                                     @endif
-                                    <td>{{ $item->gender }}</td>
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $item->address }}</td>
                                     <td>
                                         <span class="bg-primary">{{ $item->roles->title }}</span>
-                                        {{ $item->role_id }}
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center list-action">
@@ -89,12 +83,12 @@
                                                             class="fa-solid fa-pen"></i></a></button>
                                             @endcan
                                             @can('user_delete')
-                                                <form action="{{ route('users.destroy', ['user' => $item->id]) }}"
-                                                    method="POST" id="cateForm{{ $item->id }}">
+                                                <form id="delete-form"
+                                                    action="{{ route('users.destroy', ['user' => $item->id]) }}"
+                                                    method="POST">
                                                     @csrf
                                                     @method('delete')
-                                                    <button class="btn btn-danger" type="submit"
-                                                        onclick="return confirm('Có chắc xóa không?')"><i
+                                                    <button class="btn btn-danger" type="submit" id="delete-button"><i
                                                             class="fa fa-trash mr-0"></i></button>
                                                 </form>
                                             @endcan
@@ -108,38 +102,39 @@
                 </div>
             </div>
         </div>
-    @endsection
+    </div>
+@endsection
 
-    @push('scripts')
-        @can('user_delete')
-            <script>
-                $(document).ready(function() {
+@push('scripts')
+    @can('user_delete')
+        <script>
+            $(document).ready(function() {
 
-                    $("#selectAll").click(function() {
-                        $("input[type=checkbox]").prop('checked', $(this).prop('checked'));
-                    });
-
-                    $("#deleteAllUserSelected").on("click", function() {
-                        var ids = [];
-                        $.each($("input[name='ids']:checked"), function() {
-                            ids.push($(this).val());
-                        });
-
-                        $.ajax({
-                            type: "DELETE",
-                            url: 'users/massDestroy',
-                            data: {
-                                ids: ids,
-                                _token: $('meta[name="csrf-token"]').attr('content')
-                            },
-                            dataType: "json",
-                            success: function(response) {
-                                location.reload();
-                            }
-                        });
-                    });
-
+                $("#selectAll").click(function() {
+                    $("input[type=checkbox]").prop('checked', $(this).prop('checked'));
                 });
-            </script>
-        @endcan
-    @endpush
+
+                $("#deleteAllUserSelected").on("click", function() {
+                    var ids = [];
+                    $.each($("input[name='ids']:checked"), function() {
+                        ids.push($(this).val());
+                    });
+
+                    $.ajax({
+                        type: "DELETE",
+                        url: 'users/massDestroy',
+                        data: {
+                            ids: ids,
+                            _token: $('meta[name="csrf-token"]').attr('content')
+                        },
+                        dataType: "json",
+                        success: function(response) {
+                            location.reload();
+                        }
+                    })
+                })
+
+            })
+        </script>
+    @endcan
+@endpush

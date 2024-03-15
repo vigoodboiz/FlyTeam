@@ -64,8 +64,9 @@
                                         <label for="email">Gender:</label>
                                         <select name="gender" class="form-control" id="">
                                             <option value="">{{ $user->gender }}</option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
+                                            <option value="Nam">Nam</option>
+                                            <option value="Nữ">Nữ</option>
+                                            <option value="Khác">Khác</option>
                                         </select>
                                         @error('email')
                                             <div class="alert alert-danger">{{ $message }}</div>
@@ -73,11 +74,12 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="Role">Vai trò:</label>
-                                        <select name="roles[]" class="js-select-2 form-control" multiple>
-                                            @foreach ($role as $id => $role)
-                                                <option value="{{ $id }}"
-                                                    {{ in_array($id, old('roles', [])) || (isset($role) && $user->roles->contains($id)) ? 'selected' : '' }}>
-                                                    {{ $role }}</option>
+                                        <select name="role_id" class="js-select-2 form-control" multiple>
+                                            @foreach ($roles as $role)
+                                                <option value="{{ $role->id }}"
+                                                    {{ $role->id == $user->role_id ? 'selected' : '' }}>
+                                                    {{ $role->title }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>

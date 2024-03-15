@@ -50,7 +50,7 @@ class RoleController extends Controller
         $role = Role::create($request->all());
         $role->permissions()->sync($request->input('permissions',[]));
 
-        return redirect()->route('roles.index')->with('success', 'Role created successfully!');
+        return redirect()->route('roles.index')->with('success', 'Vai trò được thêm thành công!');
     }
 
     /**
@@ -92,7 +92,7 @@ class RoleController extends Controller
         $role->update($request->all());
         $role->permissions()->sync($request->input('permissions',[]));
 
-        return redirect()->route('roles.index')->with('success', 'Role updated successfully!');
+        return redirect()->route('roles.index')->with('success', 'Vai trò được cập nhật thành công!');
     }
     
     /**
@@ -106,7 +106,7 @@ class RoleController extends Controller
         abort_if(Gate::denies('role_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         
         $role->delete();
-        return back()->with('success', 'Role deleted successfully!');
+        return back()->with('success', 'Vai trò được xóa thành công!');
     }
 
     public function massDestroy(MassDestroyRoleRequest $request) {

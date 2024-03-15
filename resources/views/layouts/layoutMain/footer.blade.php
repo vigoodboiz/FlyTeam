@@ -4,7 +4,7 @@
             <div class="row ">
                 <div class="col-lg-4 col-md-8">
                     <div class="footer__widget">
-                        <h2 class="footer__widget--title d-none d-sm-u-block">About Us <button
+                        <h2 class="footer__widget--title d-none d-sm-u-block">Về chúng tôi <button
                                 class="footer__widget--button" aria-label="footer widget button"></button>
                             <svg class="footer__widget--title__arrowdown--icon" xmlns="http://www.w3.org/2000/svg"
                                 width="12.355" height="8.394" viewBox="0 0 10.355 6.394">
@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-lg-2 col-md-4">
                     <div class="footer__widget">
-                        <h2 class="footer__widget--title ">Our Offer <button class="footer__widget--button"
+                        <h2 class="footer__widget--title ">ƯU ĐÃI CỦA CHÚNG TÔI <button class="footer__widget--button"
                                 aria-label="footer widget button"></button>
                             <svg class="footer__widget--title__arrowdown--icon" xmlns="http://www.w3.org/2000/svg"
                                 width="12.355" height="8.394" viewBox="0 0 10.355 6.394">
@@ -34,21 +34,21 @@
                         </h2>
                         <ul class="footer__widget--menu footer__widget--inner">
                             <li class="footer__widget--menu__list"><a class="footer__widget--menu__text"
-                                    href="contact.html">Contact Us</a></li>
+                                    href="contact.html">Liên hệ với chúng tôi</a></li>
                             <li class="footer__widget--menu__list"><a class="footer__widget--menu__text"
-                                    href="about.html">About Us</a></li>
+                                    href="about.html">Về chúng tôi</a></li>
                             <li class="footer__widget--menu__list"><a class="footer__widget--menu__text"
-                                    href="wishlist.html">Wishlist</a></li>
+                                    href="wishlist.html">Danh sách ưa thích</a></li>
                             <li class="footer__widget--menu__list"><a class="footer__widget--menu__text"
-                                    href="privacy-policy.html">Privacy Policy</a></li>
+                                    href="privacy-policy.html">Chính sách bảo mật</a></li>
                             <li class="footer__widget--menu__list"><a class="footer__widget--menu__text"
-                                    href="faq.html">Frequently</a></li>
+                                    href="faq.html">Câu hỏi Thường gặp</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-5">
                     <div class="footer__widget">
-                        <h2 class="footer__widget--title ">Quick Links <button class="footer__widget--button"
+                        <h2 class="footer__widget--title ">Đường dẫn nhanh <button class="footer__widget--button"
                                 aria-label="footer widget button"></button>
                             <svg class="footer__widget--title__arrowdown--icon" xmlns="http://www.w3.org/2000/svg"
                                 width="12.355" height="8.394" viewBox="0 0 10.355 6.394">
@@ -59,21 +59,22 @@
                         <ul class="footer__widget--menu footer__widget--inner">
 
                             <li class="footer__widget--menu__list"><a class="footer__widget--menu__text"
-                                    href="my-account.html">My Account</a></li>
+                                    href="my-account.html">Tài khoản</a></li>
                             <li class="footer__widget--menu__list"><a class="footer__widget--menu__text"
-                                    href="cart.html">Shopping Cart</a></li>
+                                    href="cart.html">Giỏ hàng</a></li>
                             <li class="footer__widget--menu__list"><a class="footer__widget--menu__text"
-                                    href="login.html">Login</a></li>
+                                    href="{{ route('login') }}">Đăng nhập</a></li>
                             <li class="footer__widget--menu__list"><a class="footer__widget--menu__text"
-                                    href="login.html">Register</a></li>
+                                    href="{{ route('register') }}">Đăng ký</a></li>
                             <li class="footer__widget--menu__list"><a class="footer__widget--menu__text"
-                                    href="checkout.html">Checkout</a></li>
+                                    href="checkout.html">Thanh toán</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-7">
                     <div class="footer__widget">
-                        <h2 class="footer__widget--title ">Newsletter <button class="footer__widget--button"
+
+                        <h2 class="footer__widget--title ">Bản tin<button class="footer__widget--button"
                                 aria-label="footer widget button"></button>
                             <svg class="footer__widget--title__arrowdown--icon" xmlns="http://www.w3.org/2000/svg"
                                 width="12.355" height="8.394" viewBox="0 0 10.355 6.394">
@@ -82,15 +83,15 @@
                             </svg>
                         </h2>
                         <div class="footer__widget--inner">
-                            <p class="footer__widget--desc">Subscribe to our weekly Newsletter and receive updates via
-                                email.</p>
+                            <p class="footer__widget--desc">Đăng ký nhận Bản tin hàng tuần của chúng tôi và nhận thông
+                                tin cập nhật qua email.</p>
                             <div class="newsletter__subscribe footer__newsletter">
                                 <form class="newsletter__subscribe--form" action="#">
                                     <label>
-                                        <input class="newsletter__subscribe--input" placeholder=" Enter Your Email"
-                                            type="text">
+                                        <input class="newsletter__subscribe--input"
+                                            placeholder=" Nhập địa chỉ email của bạn" type="text">
                                     </label>
-                                    <button class="newsletter__subscribe--button" type="submit">Subscribe</button>
+                                    <button class="newsletter__subscribe--button" type="submit">Đăng ký</button>
                                 </form>
                             </div>
                             <ul class="social__share footer__social d-flex">

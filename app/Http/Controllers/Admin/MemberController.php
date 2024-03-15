@@ -23,21 +23,6 @@ public function index()
     
     return view('admin.members.index', compact('Role', 'members'));
 
-    // $Role = User::where('role_id', 3)->get();
-    // $users = User::with('members')->get();
-    // foreach ($Role as $user) {
-        
-    //     if ($user->members && !$user->members->isEmpty()) {
-    //         continue;
-    //     }
-    //     $user->members()->create([
-    //         'name' => $user->name,
-    //         'updated_date' => now(),
-    //         'reward_points' => 0, 
-    //     ]);
-    //     $members = Member::all();
-    // }
-    // return view('admin.members.index', compact('Role', 'members'));
 }
 public function show($id)
 {
@@ -65,8 +50,6 @@ public function Ranking()
     return view('admin.members.Ranking', compact('rankings'));
 }
 
-    
-
-
-    
 }
+
+

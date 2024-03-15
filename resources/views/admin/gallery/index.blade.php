@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h2>thêm ảnh </h2>
+        <h2>Thêm ảnh sản phẩm </h2>
         <form action="{{ route('gallery.store', $product_id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
@@ -22,8 +22,8 @@
         <thead>
             <tr>
                 <th>id</th>
-                <th>Image</th>
-                <th>Chức Năng </th>
+                <th>Ảnh</th>
+                <th>Hành động </th>
 
             </tr>
         </thead>
@@ -34,10 +34,11 @@
                     <td class="col-9"><img src="{{ asset('upload/public/images/' . $gallery->image) }}"
                             alt="{{ $gallery->name }}" width="400" class="img-fluid">
                     <td>
-                        <form action="{{ route('gallery.destroy', $gallery->id) }}" method="POST">
+                        <form id="delete-form" action="{{ route('gallery.destroy', $gallery->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Xoá</button>
+                            <button type="submit" class="btn btn-danger" id="delete-button"><i
+                                    class="fa fa-trash mr-0"></i></button>
                         </form>
                     </td>
                 </tr>

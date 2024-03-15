@@ -42,21 +42,19 @@
                                 <th>{{ $user->phone }}</th>
                             </tr>
                             <tr>
-                                <th>Gender</th>
+                                <th>Giới tính</th>
                                 <th>{{ $user->gender }}</th>
                             </tr>
                             <tr>
-                                <th>Address</th>
+                                <th>Địa chỉ</th>
                                 <th>{{ $user->address }}</th>
                             </tr>
                             <tr>
                                 <th>Vai trò</th>
-                                {{-- <th>
-                                    @foreach ($user->roles as $role)
-                                        <span class="text-primary">{{ $role->title }}</span>
-                                    @endforeach
-                                </th> --}}
-                                <th>{{ $user->role_id }}</th>
+
+                                <th>
+                                    <span class="text-primary">{{ $user->roles->title }}</span>
+                                </th>
                             </tr>
                         </tbody>
                     </table>
