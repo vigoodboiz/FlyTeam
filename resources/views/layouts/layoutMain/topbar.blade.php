@@ -15,9 +15,12 @@
                  <span data-text-preloader="A" class="letters-loading">
                      A
                  </span>
+<<<<<<< HEAD
                  <!-- Header Section End -->
 
                  <!-- Hero Section Begin -->
+=======
+>>>>>>> 8a02bffdbae0d7da0e0b00550fd3afdf186fb61c
                  <span data-text-preloader="D" class="letters-loading">
                      D
                  </span>
@@ -163,7 +166,11 @@
                                  </a>
                              </li>
                              <li class="header__menu--items">
+<<<<<<< HEAD
                                  <a class="header__menu--link active" href="#">Tin tức
+=======
+                                 <a class="header__menu--link active" href="#">About
+>>>>>>> 8a02bffdbae0d7da0e0b00550fd3afdf186fb61c
                                      <svg class="menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg"
                                          width="12" height="7.41" viewBox="0 0 12 7.41">
                                          <path d="M16.59,8.59,12,13.17,7.41,8.59,6,10l6,6,6-6Z"
