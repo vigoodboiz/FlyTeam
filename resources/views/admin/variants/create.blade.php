@@ -7,26 +7,26 @@
         <div class="mb-3">
             @csrf
             <div class="mb-3">
-                <label for="attribute" class="form-label">Tên thuộc tính</label><br>
-                <select id="attribute" name="attribute" class="form-control" required="required">
+                <label for="name" class="form-label">Tên thuộc tính</label><br>
+                <select id="name" name="name" class="form-control" required="required">
                     <option value="Màu sắc">Màu sắc</option>
                     <option value="Trọng lượng">Trọng lượng</option>
                 </select>
             </div>
-            <div class="mb-3" id="colorField">
+            {{-- <div class="mb-3" id="colorField">
                 <label for="color">Chọn màu sắc:</label>
                 <input type="color" class="form-control" id="color" name="color">
-            </div>
+            </div> --}}
 
-            <div class="mb-3" id="weightField" style="display:none;">
-                <label for="weight">Nhập trọng lượng:</label>
-                <input type="text" class="form-control" id="weight" name="weight">
+            <div class="mb-3">
+                <label for="value">Nhập giá trị</label>
+                <input type="text" class="form-control" id="value" name="value">
             </div>
 
             <button type="submit" class="btn btn-primary">Thêm thuộc tính</button>
 
     </form>
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
     <script>
         document.getElementById('attribute').addEventListener('change', function() {
             var selectedAttribute = this.value;
@@ -41,5 +41,5 @@
                 weightField.style.display = 'block';
             }
         });
-    </script>
+    </script> --}}
 @endsection

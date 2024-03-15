@@ -139,20 +139,16 @@
                                         @foreach ($variants as $variant)
                                             @if ($variant->name == 'Màu sắc')
                                                 <ul class="variant__size d-flex">
-                                                    <div class="product__variant--list mb-15">
+                                                    <div class="product__variant--list mb-20">
                                                         <fieldset class="variant__input--fieldset">
-                                                            <legend class="product__variant--title mb-8">Màu sắc :</legend>
-                                                            <div class="variant__color d-flex">
-                                                                <div class="variant__color--list">
-                                                                    <input id="color" name="color" type="radio"
-                                                                        checked>
-                                                                    <label class="variant__color--value red"
-                                                                        for="color" title="Red">
-                                                                        <i class="fa-solid fa-droplet"
-                                                                            style="color:{{ $variant->value }}"></i>
-                                                                    </label>
-                                                                </div>
-                                                            </div>
+                                                            <legend class="product__variant--title mb-8">Màu sắc
+                                                            </legend>
+                                                            <li class="variant__size--list">
+                                                                <input id="weight4" name="weight" type="radio"
+                                                                    checked>
+                                                                <label class="variant__size--value red" for="color4">
+                                                                    {{ $variant->value }}</label>
+                                                            </li>
                                                         </fieldset>
                                                     </div>
                                                 </ul>
@@ -696,7 +692,7 @@
                 <div class="feature__inner d-flex justify-content-between">
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
-                            <img src="{{asset('becute/assets/img/other/feature1.webp')}}" alt="img">
+                            <img src="{{ asset('becute/assets/img/other/feature1.webp') }}" alt="img">
                         </div>
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">Miễn phí vận chuyển</h2>
@@ -706,7 +702,7 @@
                     </div>
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon ">
-                            <img src="{{asset('becute/assets/img/other/feature2.webp')}}" alt="img">
+                            <img src="{{ asset('becute/assets/img/other/feature2.webp') }}" alt="img">
                         </div>
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">Hỗ trợ 24/7</h2>
@@ -716,7 +712,7 @@
                     </div>
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
-                            <img src="{{asset('becute/assets/img/other/feature3.webp')}}" alt="img">
+                            <img src="{{ asset('becute/assets/img/other/feature3.webp') }}" alt="img">
                         </div>
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">100% hoàn tiền</h2>
@@ -726,7 +722,7 @@
                     </div>
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
-                            <img src="{{asset('becute/assets/img/other/feature4.webp')}}" alt="img">
+                            <img src="{{ asset('becute/assets/img/other/feature4.webp') }}" alt="img">
                         </div>
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">Thanh toán an toàn</h2>

@@ -228,7 +228,7 @@
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
 
-                            <img src="{{asset('becute/assets/img/other/feature1.webp')}}" alt="img">
+                            <img src="{{ asset('becute/assets/img/other/feature1.webp') }}" alt="img">
                         </div>
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">Miễn phí vận chuyển</h2>
@@ -238,7 +238,7 @@
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon ">
 
-                            <img src="{{asset('becute/assets/img/other/feature2.webp')}}" alt="img">
+                            <img src="{{ asset('becute/assets/img/other/feature2.webp') }}" alt="img">
                         </div>
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">Hỗ trợ 24/7</h2>
@@ -248,7 +248,7 @@
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
 
-                            <img src="{{asset('becute/assets/img/other/feature3.webp')}}" alt="img">
+                            <img src="{{ asset('becute/assets/img/other/feature3.webp') }}" alt="img">
                         </div>
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">100% hoàn tiền</h2>
@@ -258,7 +258,7 @@
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
 
-                            <img src="{{asset('becute/assets/img/other/feature4.webp')}}" alt="img">
+                            <img src="{{ asset('becute/assets/img/other/feature4.webp') }}" alt="img">
                         </div>
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">Thanh toán an toàn</h2>
@@ -269,11 +269,21 @@
             </div>
         </section>
         <!-- End feature section -->
+    @else
+        <div class="breadcrumb__section breadcrumb__bg">
+            <div class="container">
+                <div class="row row-cols-1">
+                    <div class="col">
+                        <div class="breadcrumb__content text-center">
+                            <p>Xin vui lòng đăng nhập để có thể tiếp tục mua hàng!</p><a class="account__menu--list"
+                                href="{{ route('login') }}">Đăng nhập</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
     </main>
-@else
-    <p>Xin vui lòng đăng nhập để có thể tiếp tục mua hàng!</p><a class="account__menu--list"
-        href="{{ route('login') }}">Đăng nhập</a>
-    @endif
     <script>
         document.getElementById('payment-form').addEventListener('submit', function(event) {
             var noteValue = document.getElementById('note').value;
