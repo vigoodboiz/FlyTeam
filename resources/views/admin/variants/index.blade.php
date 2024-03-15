@@ -33,11 +33,7 @@
                             <td>{{ $variant->id }}</td>
                             <th scope="row">#1234{{ $variant->product->id }}</th>
                             <td>{{ $variant->name }}</td>
-                            @if ($variant->name == 'Màu sắc')
-                                <td><i class="fa-solid fa-heart" style="color:{{ $variant->value }}"></i></td>
-                            @else
-                                <td>{{ $variant->value }}</td>
-                            @endif
+                            <td>{{ $variant->value }}</td>
                             <td>
                                 @can('variant_edit')
                                     <a href="{{ route('variants.edit', $variant->id) }}" class="btn btn-primary"><i
