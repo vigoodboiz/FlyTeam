@@ -143,6 +143,9 @@ return [
         'driver' => 'file',
         // 'store' => 'redis',
     ],
+    'oder' => [
+        'taxes' => 21,
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -165,12 +168,13 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Yoeunes\Toastr\ToastrServiceProvider::class,
     ])->toArray(),
 
     /*

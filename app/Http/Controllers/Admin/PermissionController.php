@@ -46,9 +46,7 @@ class PermissionController extends Controller
     public function store(StorePermissionRequest $request)
     {
         Permission::create($request->all());
-
-        return redirect()->route('permissions.index');
-        return back()->with('msg', 'Thao tac thanh cong!');
+         return redirect()->route('permissions.index')->with('success', 'Quyền được thêm thành công!');
     }
 
     /**
@@ -87,9 +85,7 @@ class PermissionController extends Controller
     public function update(UpdatePermissionRequest $request, Permission $permission)
     {
         $permission->update($request->all());
-
-        return redirect()->route('permissions.index');
-        return back()->with('msg', 'Thao tac thanh cong!');
+        return redirect()->route('permissions.index')->with('success', 'Quyền được cập nhật thành công!');
     }
 
     /**
@@ -103,8 +99,9 @@ class PermissionController extends Controller
         abort_if(Gate::denies('permission_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $permission->delete();
-        return back();
-        return back()->with('msg', 'Thao tac thanh cong!');
+
+        return back()->with('success', 'Quyền được xóa thành công!');
+
     }
 
     /**

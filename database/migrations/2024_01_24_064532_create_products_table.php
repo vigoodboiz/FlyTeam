@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer('quantity')->default(0);
             $table->string('image')->nullable();
             $table->integer('view_count')->default(0);
+            $table->integer('quantity_product');
             $table->timestamps();
 
             $table->foreign('id_category')->references('id')->on('category');

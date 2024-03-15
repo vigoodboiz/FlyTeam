@@ -10,8 +10,8 @@
                 <div class="col">
                     <div class="breadcrumb__content text-center">
                         <ul class="breadcrumb__content--menu d-flex justify-content-center">
-                            <li class="breadcrumb__content--menu__items"><a href="index.html">Home</a></li>
-                            <li class="breadcrumb__content--menu__items"><span>About Us</span></li>
+                            <li class="breadcrumb__content--menu__items"><a href="index.html">Trang chủ</a></li>
+                            <li class="breadcrumb__content--menu__items"><span>Về chúng tôi</span></li>
                         </ul>
                     </div>
                 </div>
@@ -29,17 +29,17 @@
                         <img src="{{asset('becute/assets/img/other/about.webp')}}" alt="img">
                         <div class="about__experience--text text-center">
                             <span class="about__experience--years"><span class="about__experience--years__inner">15</span>+</span>
-                            <span class="about__experience--title">YEARS
-                                EXPERIENCE</span>
+                            <span class="about__experience--title">NĂM
+                                KINH NGHIỆM</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="about__content padding__left">
-                        <h3 class="about__content--subtitle">About</h3>
-                        <h2 class="about__content--title">Curated by color</h2>
-                        <p class="about__content--desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
-                        <a class="about__conten--btn primary__btn" href="about.html">VIEW MORE</a>
+                        <h3 class="about__content--subtitle">Về chúng tôi</h3>
+                        <h2 class="about__content--title">Khám Phá Vẻ Đẹp Tự Nhiên - Trải Nghiệm Mỹ Phẩm Chất Lượng Tại Chúng Tôi!</h2>
+                        <p class="about__content--desc">Chào mừng bạn đến với trang web bán mỹ phẩm của chúng tôi - nơi mang đến cho bạn không chỉ là những sản phẩm làm đẹp chất lượng mà còn là trải nghiệm thú vị của sự tự tin và quyến rũ. Với sứ mệnh làm đẹp cho mọi phụ nữ, chúng tôi tự hào cung cấp một loạt các sản phẩm mỹ phẩm đa dạng từ các thương hiệu uy tín trong và ngoài nước. Từ skincare đến makeup, từ những sản phẩm tiêu chuẩn đến những xu hướng mới nhất, chúng tôi cam kết mang đến cho bạn sự lựa chọn hoàn hảo để phát huy vẻ đẹp tự nhiên của bạn mỗi ngày. Hãy khám phá và trải nghiệm cùng chúng tôi, vì vẻ đẹp của bạn xứng đáng được chăm sóc và tôn vinh!</p>
+                        <a class="about__conten--btn primary__btn" href="about.html">Đọc thêm</a>
                     </div>
                 </div>
             </div>
@@ -54,23 +54,24 @@
                 <div class="col">
                     <div class="counterup__banner--inner position__relative d-flex align-items-center justify-content-between">
                         <div class="counterup__items text-center">
-                            <h2 class="counterup__title">YEARS OF <br>
-                                FOUNDATION</h2>
-                            <span class="counterup__number js-counter" data-count="2022">0</span>
+                            <h2 class="counterup__title">NĂM <br>
+                                THÀNH LẬP</h2>
+                            <span class="counterup__number js-counter" data-count="2018">0</span>
                         </div>
                         <div class="counterup__items text-center">
-                            <h2 class="counterup__title">SKILLED TEAM <br>
-                                MEMBERS </h2>
+                            <h2 class="counterup__title">SỐ THÀNH VIÊN  <br>
+                                TRONG ĐỘI NGŨ <br>
+                                CÓ KĨ NĂNG </h2>
                             <span class="counterup__number js-counter" data-count="6">0</span>
                         </div>
                         <div class="counterup__items text-center">
-                            <h2 class="counterup__title">HAPPY <br>
-                                CUSTOMERS</h2>
+                            <h2 class="counterup__title">KHÁCH HÀNG <br>
+                                HÀI LÒNG</h2>
                             <span class="counterup__number js-counter" data-count="1000">0</span>
                         </div>
                         <div class="counterup__items text-center">
-                            <h2 class="counterup__title">MONTHLY <br>
-                                ORDERS</h2>
+                            <h2 class="counterup__title">ĐƠN HÀNG <br>
+                                HÀNG THÁNG</h2>
                             <span class="counterup__number js-counter" data-count="60">0</span>
                         </div>
                     </div>
@@ -84,7 +85,7 @@
     <section class="team__section section--padding">
         <div class="container">
             <div class="section__heading style2 text-center mb-40">
-                <h2 class="section__heading--maintitle">Our Team Member</h2>
+                <h2 class="section__heading--maintitle">THÀNH VIÊN TRONG NHÓM CỦA CHÚNG TÔI</h2>
             </div>
             <div class="team__container">
                 <div class="row mb--n30">
@@ -95,7 +96,7 @@
                             </div>
                             <div class="team__content ">
                                 <h3 class="team__content--title">Bruce Sutton</h3>
-                                <span class="team__content--subtitle">CEO - Founder</span>
+                                <span class="team__content--subtitle">CEO - Nhà sáng lập</span>
                                 <ul class="team__social d-flex justify-content-center align-items-center">
                                     <li class="team__social--list">
                                         <a class="team__social--icon" target="_blank" href="https://www.facebook.com/">
@@ -140,7 +141,7 @@
                             </div>
                             <div class="team__content">
                                 <h3 class="team__content--title">Ellen Thornton</h3>
-                                <span class="team__content--subtitle">Spa Manager</span>
+                                <span class="team__content--subtitle">Spa Quản lý</span>
                                 <ul class="team__social d-flex justify-content-center align-items-center">
                                     <li class="team__social--list">
                                         <a class="team__social--icon" target="_blank" href="https://www.facebook.com/">
@@ -185,7 +186,7 @@
                             </div>
                             <div class="team__content">
                                 <h3 class="team__content--title">Milton Marsh</h3>
-                                <span class="team__content--subtitle">Products Manager</span>
+                                <span class="team__content--subtitle">Quản lý sản phẩm</span>
                                 <ul class="team__social d-flex justify-content-center align-items-center">
                                     <li class="team__social--list">
                                         <a class="team__social--icon" target="_blank" href="https://www.facebook.com/">
@@ -226,11 +227,11 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 col-6 custom-col mb-30">
                         <div class="team__items text-center">
                             <div class="team__thumb">
-                                <img class="team__thumb--img" src="{{asset('becute/assets/img/other/team1.webp')}}" alt="team img">
+                                <img class="team__thumb--img" width="276" src="{{asset('becute/assets/img/other/team4.webp')}}" alt="team img">
                             </div>
                             <div class="team__content">
                                 <h3 class="team__content--title">Jackly Smith</h3>
-                                <span class="team__content--subtitle">Senior Maneger</span>
+                                <span class="team__content--subtitle">Quản lý cấp cao</span>
                                 <ul class="team__social d-flex justify-content-center align-items-center">
                                     <li class="team__social--list">
                                         <a class="team__social--icon" target="_blank" href="https://www.facebook.com/">
@@ -278,7 +279,7 @@
     <section class="testimonial__section testimonial__bg section--padding">
         <div class="container">
             <div class="section__heading text-center mb-40">
-                <h2 class="section__heading--maintitle">What Clients Are Saying</h2>
+                <h2 class="section__heading--maintitle">Khách Hàng Nói Gì</h2>
             </div>
             <div class="testimonial__section--inner testimonial__swiper--activation swiper">
                 <div class="swiper-wrapper">
@@ -290,7 +291,7 @@
                                 </div>
                                 <div class="testimonial__author--text">
                                     <h3 class="testimonial__author--title">Michael Linda</h3>
-                                    <span class="testimonial__author--subtitle">Beautician</span>
+                                    <span class="testimonial__author--subtitle">Khách hàng</span>
                                     <ul class="rating testimonial__rating d-flex">
                                         <li class="rating__list">
                                             <span class="rating__icon">
@@ -332,7 +333,7 @@
                             </div>
                             <div class="testimonial__content">
                                 <p class="testimonial__desc">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
+                                Trang web của bạn cung cấp một trải nghiệm mua sắm dễ dàng và thuận tiện. Giao diện được thiết kế rõ ràng và dễ sử dụng, giúp khách hàng tìm kiếm và mua các sản phẩm mỹ phẩm một cách nhanh chóng</p>
                                 <img class="testimonial__vector--icon" src="{{asset('becute/assets/img/icon/vector-icon.webp')}}" alt="icon">
                             </div>
 
@@ -346,7 +347,7 @@
                                 </div>
                                 <div class="testimonial__author--text">
                                     <h3 class="testimonial__author--title">Lee Barners</h3>
-                                    <span class="testimonial__author--subtitle">Beautician</span>
+                                    <span class="testimonial__author--subtitle">Khách hàng</span>
                                     <ul class="rating testimonial__rating d-flex">
                                         <li class="rating__list">
                                             <span class="rating__icon">
@@ -388,7 +389,7 @@
                             </div>
                             <div class="testimonial__content">
                                 <p class="testimonial__desc">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
+                                Chúng tôi đánh giá cao việc trang web của bạn cung cấp một loạt các sản phẩm mỹ phẩm đa dạng từ các thương hiệu uy tín trong và ngoài nước. Điều này mang lại sự lựa chọn phong phú cho khách hàng, phản ánh cam kết của bạn trong việc đáp ứng nhu cầu đa dạng của họ.</p>
                                 <img class="testimonial__vector--icon" src="{{asset('becute/assets/img/icon/vector-icon.webp')}}" alt="icon">
                             </div>
 
@@ -402,7 +403,7 @@
                                 </div>
                                 <div class="testimonial__author--text">
                                     <h3 class="testimonial__author--title">Michael Linda</h3>
-                                    <span class="testimonial__author--subtitle">Beautician</span>
+                                    <span class="testimonial__author--subtitle">Khách hàng</span>
                                     <ul class="rating testimonial__rating d-flex">
                                         <li class="rating__list">
                                             <span class="rating__icon">
@@ -444,7 +445,7 @@
                             </div>
                             <div class="testimonial__content">
                                 <p class="testimonial__desc">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
+                                Các sản phẩm được bán trên trang web của bạn đều được đánh giá cao về chất lượng. Điều này giúp xây dựng lòng tin từ phía khách hàng và tạo ra sự hài lòng sau khi sử dụng sản phẩm.</p>
                                 <img class="testimonial__vector--icon" src="{{asset('becute/assets/img/icon/vector-icon.webp')}}" alt="icon">
                             </div>
 
@@ -458,7 +459,7 @@
                                 </div>
                                 <div class="testimonial__author--text">
                                     <h3 class="testimonial__author--title">Lee Barners</h3>
-                                    <span class="testimonial__author--subtitle">Beautician</span>
+                                    <span class="testimonial__author--subtitle">Khách hàng</span>
                                     <ul class="rating testimonial__rating d-flex">
                                         <li class="rating__list">
                                             <span class="rating__icon">
@@ -500,7 +501,7 @@
                             </div>
                             <div class="testimonial__content">
                                 <p class="testimonial__desc">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
+                                Chúng tôi cũng đánh giá cao dịch vụ khách hàng của bạn, với đội ngũ nhân viên chuyên nghiệp và thân thiện. Khách hàng có thể nhận được sự hỗ trợ và giải đáp mọi thắc mắc một cách nhanh chóng và hiệu quả, giúp tăng cường mối quan hệ giữa bạn và khách hàng.</p>
                                 <img class="testimonial__vector--icon" src="{{asset('becute/assets/img/icon/vector-icon.webp')}}" alt="icon">
                             </div>
 

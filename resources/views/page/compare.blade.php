@@ -177,38 +177,42 @@
             <div class="feature__inner d-flex justify-content-between">
                 <div class="feature__items d-flex align-items-center">
                     <div class="feature__icon">
-                        <img src="assets/img/other/feature1.webp" alt="img">
+
+                        <img src="{{asset('becute/assets/img/other/feature1.webp')}}" alt="img">
                     </div>
                     <div class="feature__content">
-                        <h2 class="feature__content--title h3">Free Shipping</h2>
-                        <p class="feature__content--desc">Free shipping over $100</p>
+                        <h2 class="feature__content--title h3">Miễn phí vận chuyển</h2>
+                        <p class="feature__content--desc">Miễn phí vận chuyển cho đơn hàng trên 2.000.000đ</p>
                     </div>
                 </div>
                 <div class="feature__items d-flex align-items-center">
                     <div class="feature__icon ">
-                        <img src="assets/img/other/feature2.webp" alt="img">
+
+                        <img src="{{asset('becute/assets/img/other/feature2.webp')}}" alt="img">
                     </div>
                     <div class="feature__content">
-                        <h2 class="feature__content--title h3">Support 24/7</h2>
-                        <p class="feature__content--desc">Contact us 24 hours a day</p>
+                        <h2 class="feature__content--title h3">Hỗ trợ 24/7</h2>
+                        <p class="feature__content--desc">Liên hệ với chúng tôi 24 tiếng</p>
                     </div>
                 </div>
                 <div class="feature__items d-flex align-items-center">
                     <div class="feature__icon">
-                        <img src="assets/img/other/feature3.webp" alt="img">
+
+                        <img src="{{asset('becute/assets/img/other/feature3.webp')}}" alt="img">
                     </div>
                     <div class="feature__content">
-                        <h2 class="feature__content--title h3">100% Money Back</h2>
-                        <p class="feature__content--desc">You have 30 days to Return</p>
+                        <h2 class="feature__content--title h3">100% hoàn tiền</h2>
+                        <p class="feature__content--desc">Bạn có 30 ngày để trả hàng</p>
                     </div>
                 </div>
                 <div class="feature__items d-flex align-items-center">
                     <div class="feature__icon">
-                        <img src="assets/img/other/feature4.webp" alt="img">
+
+                        <img src="{{asset('becute/assets/img/other/feature4.webp')}}" alt="img">
                     </div>
                     <div class="feature__content">
-                        <h2 class="feature__content--title h3">Payment Secure</h2>
-                        <p class="feature__content--desc">We ensure secure payment</p>
+                        <h2 class="feature__content--title h3">Thanh toán an toàn</h2>
+                        <p class="feature__content--desc">Chúng tôi đảm bảo thanh toán an toàn</p>
                     </div>
                 </div>
             </div>

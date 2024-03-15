@@ -47,8 +47,7 @@ class CommentController extends Controller
             $comment = Comment::create($commentData);
 
             if ($comment->id) {
-                Session::flash('success', 'Add comment successfully');
-                return redirect()->route('route_comment_index');
+                return redirect()->route('route_comment_index')->with('success', 'Bình luận được cập nhật thành công!');
             }
         }
         $currentDateTime = Carbon::now();

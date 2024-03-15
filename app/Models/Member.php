@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Member extends Model
 {
-    protected $fillable = ['user_id', 'name','updated_date'];
+    protected $fillable = ['user_id', 'name','reward_points','updated_date'];
 
     public function user()
     {

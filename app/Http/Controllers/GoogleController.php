@@ -38,7 +38,7 @@ class GoogleController extends Controller
          
                 Auth::login($finduser);
         
-                return view('welcome');
+                return view('page.index');
          
             }else{
                 $newUser = User::updateOrCreate(['email' => $user->email],[

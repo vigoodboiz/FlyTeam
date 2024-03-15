@@ -41,19 +41,22 @@
                     </a>
                 </div>
                 <div class="login-form">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <!-- User code -->
-                        <div>
-                            <x-input-label for="user_code" :value="__('Use code')" />
-                            <x-text-input id="user_code" class="form-control" type="text" name="user_code"
-                                :value="old('user_code')" required autofocus autocomplete="user_code" />
-                            <x-input-error :messages="$errors->get('user_code')" class="mt-2" />
-                        </div>
 
                         <!-- Name -->
                         <div class="mt-4">
-                            <x-input-label for="name" :value="__('Name')" />
+                            <x-input-label for="name" :value="__('Họ và tên')" />
                             <x-text-input id="name" class="form-control" type="text" name="name"
                                 :value="old('name')" required autofocus autocomplete="name" />
                             <x-input-error :messages="$errors->get('name')" class="mt-2" />
@@ -69,7 +72,7 @@
 
                         <!-- Password -->
                         <div class="mt-4">
-                            <x-input-label for="password" :value="__('Password')" />
+                            <x-input-label for="password" :value="__('Mật khẩu')" />
 
                             <x-text-input id="password" class="form-control" type="password" name="password" required
                                 autocomplete="new-password" />
@@ -79,7 +82,7 @@
 
                         <!-- Confirm Password -->
                         <div class="mt-4">
-                            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                            <x-input-label for="password_confirmation" :value="__('Xác nhận mật khẩu')" />
 
                             <x-text-input id="password_confirmation" class="form-control" type="password"
                                 name="password_confirmation" required autocomplete="new-password" />
@@ -88,19 +91,10 @@
                         </div>
 
                         <!-- Gender -->
-                        <div class="mt-4">
-                            <x-input-label for="gender" :value="__('Gender')" />
-                            <select class="form-control" name="gender" id="">
-                                <option value="">Select one:</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                            </select>
-                            <x-input-error :messages="$errors->get('gender')" class="mt-2" />
-                        </div>
 
                         <!-- Phone -->
                         <div class="mt-4">
-                            <x-input-label for="phone" :value="__('Phone')" />
+                            <x-input-label for="phone" :value="__('Số điện thoại')" />
 
                             <x-text-input id="phone" class="form-control" type="text" name="phone" required
                                 autocomplete="new-phone" />
@@ -110,7 +104,7 @@
 
                         <!-- Address -->
                         <div class="mt-4">
-                            <x-input-label for="address" :value="__('Address')" />
+                            <x-input-label for="address" :value="__('Địa chỉ')" />
 
                             <x-text-input id="address" class="form-control" type="text" name="address" required
                                 autocomplete="new-address" />
@@ -118,21 +112,17 @@
                             <x-input-error :messages="$errors->get('address')" class="mt-2" />
                         </div>
                         <br>
-                        <x-primary-button class="btn btn-primary btn-flat m-b-30 m-t-30">
-                            {{ __('Register') }}
-                        </x-primary-button>
+                        {{-- <x-primary-button class="btn btn-primary btn-flat m-b-30 m-t-30">
+                            {{ __('Đăng ký') }}
+                        </x-primary-button> --}}
                         <div class="social-login-content">
                             <div class="social-button">
-                                <a href="{{ route('auth.facebook') }}"> <button type="button"
-                                        class="btn social facebook btn-flat btn-addon mb-3"><i
-                                            class="ti-facebook"></i>Register with facebook</button></a>
-                                <a href="{{ route('auth.google') }}"><button type="button"
-                                        class="btn social twitter btn-flat btn-addon mt-2"><i
-                                            class="ti-google"></i>Register with google</button></a>
+                                <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">
+                                    Đăng ký</button>
                             </div>
                         </div>
                         <div class="register-link m-t-15 text-center">
-                            <p>Already have account ? <a href="{{ route('login') }}"> Sign in</a></p>
+                            <p>Bạn đã có tài khoản? <a href="{{ route('login') }}"> Đăng nhập</a></p>
                         </div>
                     </form>
                 </div>
