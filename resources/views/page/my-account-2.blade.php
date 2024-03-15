@@ -21,7 +21,6 @@
                                 @if (Auth::check())
                                     <div class="my__account--section__inner border-radius-10 d-flex">
                                         <div class="account__left--sidebar">
-
                                             <h2 class="account__content--title h3 mb-20">Hồ sơ của tôi</h2>
                                             <ul class="account__menu">
                                                 @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
@@ -115,6 +114,7 @@
                             @endif
                         </section>
                         <!-- End feature section -->
+
 
     </main>
 @endsection

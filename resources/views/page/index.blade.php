@@ -468,6 +468,7 @@
             </div>
             <div class="product__section--border position-relative">
                 <div class="product__section--countdown d-flex justify-content-center" data-countdown="Sep 30, 2024 00:00:00"></div>
+
                 <div class="product__section--inner product__swiper--column4  padding swiper">
                     <div class="swiper-wrapper">
                         @foreach($sale_product as $sale_pro)
@@ -641,7 +642,7 @@
                         <div class="testimonial__items">
                             <div class="testimonial__author d-flex align-items-center">
                                 <div class="testimonial__author__thumbnail">
-                                    <img src="{{asset('becute/assets/img/other/testimonial1.webp')}}" alt="testimonial-img">
+                                    <img src="{{ asset('becute/assets/img/other/testimonial1.webp') }}" alt="testimonial-img">
                                 </div>
                                 <div class="testimonial__author--text">
                                     <h3 class="testimonial__author--title">Michael Linda</h3>
@@ -689,6 +690,7 @@
                                 <p class="testimonial__desc">
                                 Trang web của bạn cung cấp một trải nghiệm mua sắm dễ dàng và thuận tiện. Giao diện được thiết kế rõ ràng và dễ sử dụng, giúp khách hàng tìm kiếm và mua các sản phẩm mỹ phẩm một cách nhanh chóng</p>
                                 <img class="testimonial__vector--icon" src="{{asset('becute/assets/img/icon/vector-icon.webp')}}" alt="icon">
+
                             </div>
 
                         </div>
@@ -697,7 +699,7 @@
                         <div class="testimonial__items">
                             <div class="testimonial__author d-flex align-items-center">
                                 <div class="testimonial__author__thumbnail">
-                                    <img src="{{asset('becute/assets/img/other/testimonial2.webp')}}" alt="testimonial-img">
+                                    <img src="{{ asset('becute/assets/img/other/testimonial2.webp') }}" alt="testimonial-img">
                                 </div>
                                 <div class="testimonial__author--text">
                                     <h3 class="testimonial__author--title">Lee Barners</h3>
@@ -745,6 +747,7 @@
                                 <p class="testimonial__desc">
                                 Chúng tôi đánh giá cao việc trang web của bạn cung cấp một loạt các sản phẩm mỹ phẩm đa dạng từ các thương hiệu uy tín trong và ngoài nước. Điều này mang lại sự lựa chọn phong phú cho khách hàng, phản ánh cam kết của bạn trong việc đáp ứng nhu cầu đa dạng của họ.</p>
                                 <img class="testimonial__vector--icon" src="{{asset('becute/assets/img/icon/vector-icon.webp')}}" alt="icon">
+
                             </div>
 
                         </div>
@@ -753,7 +756,7 @@
                         <div class="testimonial__items">
                             <div class="testimonial__author d-flex align-items-center">
                                 <div class="testimonial__author__thumbnail">
-                                    <img src="{{asset('becute/assets/img/other/testimonial3.webp')}}" alt="testimonial-img">
+                                    <img src="{{ asset('becute/assets/img/other/testimonial3.webp') }}" alt="testimonial-img">
                                 </div>
                                 <div class="testimonial__author--text">
                                     <h3 class="testimonial__author--title">Michael Linda</h3>
@@ -801,6 +804,7 @@
                                 <p class="testimonial__desc">
                                 Các sản phẩm được bán trên trang web của bạn đều được đánh giá cao về chất lượng. Điều này giúp xây dựng lòng tin từ phía khách hàng và tạo ra sự hài lòng sau khi sử dụng sản phẩm.</p>
                                 <img class="testimonial__vector--icon" src="{{asset('becute/assets/img/icon/vector-icon.webp')}}" alt="icon">
+
                             </div>
 
                         </div>
@@ -809,7 +813,7 @@
                         <div class="testimonial__items">
                             <div class="testimonial__author d-flex align-items-center">
                                 <div class="testimonial__author__thumbnail">
-                                    <img src="{{asset('becute/assets/img/other/testimonial4.webp')}}" alt="testimonial-img">
+                                    <img src="{{ asset('becute/assets/img/other/testimonial4.webp') }}" alt="testimonial-img">
                                 </div>
                                 <div class="testimonial__author--text">
                                     <h3 class="testimonial__author--title">Lee Barners</h3>
@@ -857,6 +861,7 @@
                                 <p class="testimonial__desc">
                                 Chúng tôi cũng đánh giá cao dịch vụ khách hàng của bạn, với đội ngũ nhân viên chuyên nghiệp và thân thiện. Khách hàng có thể nhận được sự hỗ trợ và giải đáp mọi thắc mắc một cách nhanh chóng và hiệu quả, giúp tăng cường mối quan hệ giữa bạn và khách hàng.</p>
                                 <img class="testimonial__vector--icon" src="{{asset('becute/assets/img/icon/vector-icon.webp')}}" alt="icon">
+
                             </div>
 
                         </div>
@@ -876,6 +881,7 @@
                     <div class="feature__icon">
 
                         <img src="{{asset('becute/assets/img/other/feature1.webp')}}" alt="img">
+
                     </div>
                     <div class="feature__content">
                         <h2 class="feature__content--title h3">Miễn phí vận chuyển</h2>
@@ -884,8 +890,8 @@
                 </div>
                 <div class="feature__items d-flex align-items-center">
                     <div class="feature__icon ">
-
                         <img src="{{asset('becute/assets/img/other/feature2.webp')}}" alt="img">
+
                     </div>
                     <div class="feature__content">
                         <h2 class="feature__content--title h3">Hỗ trợ 24/7</h2>
@@ -894,8 +900,8 @@
                 </div>
                 <div class="feature__items d-flex align-items-center">
                     <div class="feature__icon">
-
                         <img src="{{asset('becute/assets/img/other/feature3.webp')}}" alt="img">
+
                     </div>
                     <div class="feature__content">
                         <h2 class="feature__content--title h3">100% hoàn tiền</h2>
@@ -904,7 +910,6 @@
                 </div>
                 <div class="feature__items d-flex align-items-center">
                     <div class="feature__icon">
-
                         <img src="{{asset('becute/assets/img/other/feature4.webp')}}" alt="img">
                     </div>
                     <div class="feature__content">

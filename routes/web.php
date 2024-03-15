@@ -185,6 +185,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('/check-coupon', [CartController::class, 'check_coupon'])->name('check_coupon');
     Route::get('/unset-coupon', [CouponController::class, 'unset_coupon'])->name('unset_coupon');
 
+
+
     ////////////////////////// thanh toán Vnpay /////////////////
     Route::match(['GET', 'POST'], '/vnpay_payment', [PaymentController::class, 'vnpay_payment'])->name('vnpay_payment');
     Route::match(['GET', 'POST'], '/momo_payment', [PaymentController::class, 'momo_payment'])->name('momo_payment');

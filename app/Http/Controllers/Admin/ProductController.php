@@ -62,8 +62,6 @@ class ProductController extends Controller
         //     }
         // }
         return redirect()->back()->with('success', 'Sản phẩm được thêm thành công!');
-
-
     }
     /**
      * Display the specified resource.

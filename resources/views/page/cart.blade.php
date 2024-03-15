@@ -717,6 +717,7 @@
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">Miễn phí vận chuyển</h2>
                             <p class="feature__content--desc">Miễn phí vận chuyển cho đơn hàng trên 2.000.000đ</p>
+
                         </div>
                     </div>
                     <div class="feature__items d-flex align-items-center">
@@ -727,6 +728,7 @@
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">Hỗ trợ 24/7</h2>
                             <p class="feature__content--desc">Liên hệ với chúng tôi 24 tiếng</p>
+
                         </div>
                     </div>
                     <div class="feature__items d-flex align-items-center">
@@ -737,6 +739,7 @@
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">100% hoàn tiền</h2>
                             <p class="feature__content--desc">Bạn có 30 ngày để trả hàng</p>
+
                         </div>
                     </div>
                     <div class="feature__items d-flex align-items-center">
@@ -747,6 +750,7 @@
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">Thanh toán an toàn</h2>
                             <p class="feature__content--desc">Chúng tôi đảm bảo thanh toán an toàn</p>
+
                         </div>
                     </div>
                 </div>

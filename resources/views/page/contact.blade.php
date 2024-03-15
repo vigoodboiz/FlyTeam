@@ -12,6 +12,7 @@
                             <ul class="breadcrumb__content--menu d-flex justify-content-center">
                                 <li class="breadcrumb__content--menu__items"><a href="index.html">Trang chủ</a></li>
                                 <li class="breadcrumb__content--menu__items"><span>Liên hệ với chúng tôi</span></li>
+
                             </ul>
                         </div>
                     </div>
@@ -30,6 +31,7 @@
                 <div class="main__contact--area position__relative">
                     <div class="contact__form">
                         <h3 class="contact__form--title mb-30">Hãy điền form dưới đây và chúng tôi chủ động liên lạc với bạn</h3>
+
                         <form class="contact__form--inner" action="#">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
@@ -38,6 +40,7 @@
                                                 class="contact__form--label__star">*</span></label>
                                         <input class="contact__form--input" name="firstname" id="input1"
                                             placeholder="Họ của bạn" type="text">
+
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
@@ -46,6 +49,7 @@
                                                 class="contact__form--label__star">*</span></label>
                                         <input class="contact__form--input" name="lastname" id="input2"
                                             placeholder="Tên của bạn" type="text">
+
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
@@ -54,6 +58,7 @@
                                                 class="contact__form--label__star">*</span></label>
                                         <input class="contact__form--input" name="number" id="input3"
                                             placeholder="Số điện thoại" type="text">
+
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
@@ -62,6 +67,7 @@
                                                 class="contact__form--label__star">*</span></label>
                                         <input class="contact__form--input" name="email" id="input4"
                                             placeholder="Địa chỉ email" type="text">
+
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -73,11 +79,13 @@
                                 </div>
                             </div>
                             <button class="contact__form--btn primary__btn" type="submit"> <span>Gửi</span></button>
+
                         </form>
                     </div>
                     <div class="contact__info border-radius-5">
                         <div class="contact__info--items">
                             <h3 class="contact__info--content__title text-white mb-15">Liên hệ với chúng tôi</h3>
+
                             <div class="contact__info--items__inner d-flex">
                                 <div class="contact__info--icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="31.568" height="31.128"
@@ -89,6 +97,7 @@
                                 </div>
                                 <div class="contact__info--content">
                                     <p class="contact__info--content__desc text-white">Thay Đổi Thiết Kế Theo Một Loạt Lựa Chọn
+
                                         <br> <a href="tel:+01234-567890">0345166934</a> <a
                                             href="tel:++01234-5688765">0987267886</a>
                                     </p>
@@ -97,6 +106,7 @@
                         </div>
                         <div class="contact__info--items">
                             <h3 class="contact__info--content__title text-white mb-15">Địa chỉ email</h3>
+
                             <div class="contact__info--items__inner d-flex">
                                 <div class="contact__info--icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="31.57" height="31.13"
@@ -110,11 +120,13 @@
                                     <p class="contact__info--content__desc text-white"> <a
                                             href="mailto:nguyenngocvi37@gmail.com">nguyenngocvi37@gmail.com</a> <br> <a
                                             href="mailto:info@example.com">coicosmetics@gmail.com</a></p>
+
                                 </div>
                             </div>
                         </div>
                         <div class="contact__info--items">
                             <h3 class="contact__info--content__title text-white mb-15">Địa chỉ văn phòng</h3>
+
                             <div class="contact__info--items__inner d-flex">
                                 <div class="contact__info--icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="31.57" height="31.13"
@@ -133,6 +145,7 @@
                         </div>
                         <div class="contact__info--items">
                             <h3 class="contact__info--content__title text-white mb-15">Theo dõi chúng tôi</h3>
+
                             <ul class="contact__info--social d-flex">
                                 <li class="contact__info--social__list">
                                     <a class="contact__info--social__icon" target="_blank"
@@ -277,6 +290,7 @@
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">Miễn phí vận chuyển</h2>
                             <p class="feature__content--desc">Miễn phí vận chuyển cho đơn hàng trên 2.000.000đ</p>
+
                         </div>
                     </div>
                     <div class="feature__items d-flex align-items-center">
@@ -287,6 +301,7 @@
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">Hỗ trợ 24/7</h2>
                             <p class="feature__content--desc">Liên hệ với chúng tôi 24 tiếng</p>
+
                         </div>
                     </div>
                     <div class="feature__items d-flex align-items-center">
@@ -308,6 +323,7 @@
                             <h2 class="feature__content--title h3">Thanh toán an toàn</h2>
                             <p class="feature__content--desc">Chúng tôi đảm bảo thanh toán an toàn</p>
                         </div>
+
                     </div>
                 </div>
             </div>
