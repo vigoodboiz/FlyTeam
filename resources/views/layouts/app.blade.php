@@ -448,7 +448,7 @@
                 $("#image").change(function() {
                     readURL(this, '#anh_the_preview');
                 });
-                
+
             });
         </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
@@ -497,6 +497,8 @@
                 });
             @endif
         </script>
+
+
     @endcan
 
 </body>
