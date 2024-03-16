@@ -47,6 +47,21 @@
 
                                         </div>
                                     </div>
+
+                                    <div class="swiper-slide">
+                                        <div class="product__media--preview__items">
+                                            <a class="product__media--preview__items--link glightbox" data-gallery="product-media-preview" href="{{ asset('upload/public/images/' . $pro_dt->image) }}"><img class="product__media--preview__items--img" src="{{ asset('upload/public/images/' . $pro_dt->image) }}" alt="product-media-img"></a>
+                                            <div class="product__media--view__icon">
+                                                <a class="product__media--view__icon--link glightbox" href="{{ asset('upload/public/images/' . $pro_dt->image) }}" data-gallery="product-media-preview">
+                                                    <svg class="product__items--action__btn--svg" xmlns="http://www.w3.org/2000/svg" width="22.51" height="22.443" viewBox="0 0 512 512">
+                                                        <path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"></path>
+                                                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"></path>
+                                                    </svg>
+                                                    <span class="visually-hidden">product view</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <!-- <div class="swiper-slide">                                                                                                                                                                                                             </div> -->
                                 </div>
                             </div>
@@ -55,7 +70,7 @@
                                     @foreach ($galleries as $gallery)
                                     <div class="swiper-slide">
                                         <div class="product__media--nav__items">
-                                            <img class="product__media--nav__items--img" src="{{ asset('upload/public/images/' . $gallery->image) }}" alt="product-nav-img">
+                                            <img class="product__media--nav__items--img" style="width: 300px; height: 100px;" src="{{ asset('upload/public/images/' . $gallery->image) }}" alt="product-nav-img">
                                         </div>
                                     </div>
                                     @endforeach
@@ -89,20 +104,18 @@
                             <div class="product__variant">
                                 @foreach ($variants as $variant)
                                 @if ($variant->name == 'Màu sắc')
-                                <div class="product__variant--list mb-15">
-                                    <fieldset class="variant__input--fieldset">
-                                        <legend class="product__variant--title mb-8">Màu sắc :</legend>
-                                        <ul class="variant__size d-flex">
-                                            <div class="variant__color d-flex">
-                                                <div class="variant__color--list">
-                                                    <input id="color" name="color" type="radio" checked>
-                                                    <label class="variant__color--value red" for="color" title="Red">
-                                                        <i class="fa-solid fa-droplet" style="color:{{ $variant->value }}"></i>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                    </fieldset>
-                                </div>
+                                <ul class="variant__size d-flex">
+                                    <div class="product__variant--list mb-20">
+                                        <fieldset class="variant__input--fieldset">
+                                            <legend class="product__variant--title mb-8">Màu sắc
+                                            </legend>
+                                            <li class="variant__size--list">
+                                                <input id="weight4" name="weight" type="radio" checked>
+                                                <label style="background-color:{{ $variant->value }}" class="variant__size--value red" for="color4">
+                                                    {{ $variant->value }}</label>
+                                            </li>
+                                        </fieldset>
+                                    </div>
                                 </ul>
                                 @elseif($variant->name == 'Trọng lượng')
                                 <ul class="variant__size d-flex">
@@ -146,8 +159,6 @@
                             </div>
                             @elseif($pro_dt->quantity_product <= 0) <span class="fw-bolder text-danger mt-5 mb-5">Xin lỗi , Sản phẩm đã hết . Khách hàng vui lòng lựa chọn sản phẩm khác!</span>
                                 @endif
-
-
             </form>
         </div>
         <div class="quickview__social d-flex align-items-center mb-20">
@@ -452,16 +463,15 @@
                     <div class="swiper-slide">
                         <article class="product__card">
                             <div class="product__card--thumbnail">
-                            <a class="product__card--thumbnail__link display-block" href="{{ route('shopDetails', $pro_same->id) }}">
-                                        <div class="product__card--thumbnail__container">
-                                            <img class="product__card--thumbnail__img @if ($pro_same->quantity_product <= 0) out-of-stock @endif" src="{{ asset('upload/public/images/' . $pro_same->image) }}" style="height: 200px;" alt="product-img">
-                                            @if ($pro_same->quantity_product <= 0)
-                                            <h3>
-                                                <p class="display-7 product__card--thumbnail__text">ĐÃ HẾT HÀNG</p>
+                                <a class="product__card--thumbnail__link display-block" href="{{ route('shopDetails', $pro_same->id) }}">
+                                    <div class="product__card--thumbnail__container">
+                                        <img class="product__card--thumbnail__img @if ($pro_same->quantity_product <= 0) out-of-stock @endif" src="{{ asset('upload/public/images/' . $pro_same->image) }}" style="height: 200px;" alt="product-img">
+                                        @if ($pro_same->quantity_product <= 0) <h3>
+                                            <p class="display-7 product__card--thumbnail__text">ĐÃ HẾT HÀNG</p>
                                             </h3>
                                             @endif
-                                        </div>
-                                    </a>
+                                    </div>
+                                </a>
                                 <span class="product__badge">-14%</span>
                                 <ul class="product__card--action">
                                     <li class="product__card--action__list">
@@ -490,15 +500,13 @@
                                     </li>
                                 </ul>
                                 <div class="product__add--to__card">
-                                @if ($pro_same->quantity_product > 0)
-                                    <button class="product__card--btn" title="Add To Card" href="cart.html">Thêm giỏ
+                                    <a class="product__card--btn" title="Add To Card" href="cart.html">Thêm giỏ
                                         hàng
                                         <svg width="17" height="15" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M13.2371 4H11.5261L8.5027 0.460938C8.29176 0.226562 7.9402 0.203125 7.70582 0.390625C7.47145 0.601562 7.44801 0.953125 7.63551 1.1875L10.0496 4H3.46364L5.8777 1.1875C6.0652 0.953125 6.04176 0.601562 5.80739 0.390625C5.57301 0.203125 5.22145 0.226562 5.01051 0.460938L1.98707 4H0.299574C0.135511 4 0.0183239 4.14062 0.0183239 4.28125V4.84375C0.0183239 5.00781 0.135511 5.125 0.299574 5.125H0.721449L1.3777 9.78906C1.44801 10.3516 1.91676 10.75 2.47926 10.75H11.0339C11.5964 10.75 12.0652 10.3516 12.1355 9.78906L12.7918 5.125H13.2371C13.3777 5.125 13.5183 5.00781 13.5183 4.84375V4.28125C13.5183 4.14062 13.3777 4 13.2371 4ZM11.0339 9.625H2.47926L1.86989 5.125H11.6433L11.0339 9.625ZM7.33082 6.4375C7.33082 6.13281 7.07301 5.875 6.76832 5.875C6.4402 5.875 6.20582 6.13281 6.20582 6.4375V8.3125C6.20582 8.64062 6.4402 8.875 6.76832 8.875C7.07301 8.875 7.33082 8.64062 7.33082 8.3125V6.4375ZM9.95582 6.4375C9.95582 6.13281 9.69801 5.875 9.39332 5.875C9.0652 5.875 8.83082 6.13281 8.83082 6.4375V8.3125C8.83082 8.64062 9.0652 8.875 9.39332 8.875C9.69801 8.875 9.95582 8.64062 9.95582 8.3125V6.4375ZM4.70582 6.4375C4.70582 6.13281 4.44801 5.875 4.14332 5.875C3.8152 5.875 3.58082 6.13281 3.58082 6.4375V8.3125C3.58082 8.64062 3.8152 8.875 4.14332 8.875C4.44801 8.875 4.70582 8.64062 4.70582 8.3125V6.4375Z" fill="currentColor" />
                                         </svg>
-                                    </button>
+                                    </a>
                                 </div>
-                                @endif
                             </div>
                             <div class="product__card--content text-center">
                                 {{-- <ul class="rating product__card--rating d-flex justify-content-center">
@@ -592,7 +600,7 @@
             <div class="feature__inner d-flex justify-content-between">
                 <div class="feature__items d-flex align-items-center">
                     <div class="feature__icon">
-                        <img src="{{asset('becute/assets/img/other/feature1.webp')}}" alt="img">
+                        <img src="{{ asset('becute/assets/img/other/feature1.webp') }}" alt="img">
                     </div>
                     <div class="feature__content">
                         <h2 class="feature__content--title h3">Miễn phí vận chuyển</h2>
@@ -602,7 +610,7 @@
                 </div>
                 <div class="feature__items d-flex align-items-center">
                     <div class="feature__icon ">
-                        <img src="{{asset('becute/assets/img/other/feature2.webp')}}" alt="img">
+                        <img src="{{ asset('becute/assets/img/other/feature2.webp') }}" alt="img">
                     </div>
                     <div class="feature__content">
                         <h2 class="feature__content--title h3">Hỗ trợ 24/7</h2>
@@ -612,7 +620,7 @@
                 </div>
                 <div class="feature__items d-flex align-items-center">
                     <div class="feature__icon">
-                        <img src="{{asset('becute/assets/img/other/feature3.webp')}}" alt="img">
+                        <img src="{{ asset('becute/assets/img/other/feature3.webp') }}" alt="img">
                     </div>
                     <div class="feature__content">
                         <h2 class="feature__content--title h3">100% hoàn tiền</h2>
@@ -622,7 +630,7 @@
                 </div>
                 <div class="feature__items d-flex align-items-center">
                     <div class="feature__icon">
-                        <img src="{{asset('becute/assets/img/other/feature4.webp')}}" alt="img">
+                        <img src="{{ asset('becute/assets/img/other/feature4.webp') }}" alt="img">
                     </div>
                     <div class="feature__content">
                         <h2 class="feature__content--title h3">Thanh toán an toàn</h2>

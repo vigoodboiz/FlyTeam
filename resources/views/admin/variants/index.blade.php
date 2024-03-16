@@ -6,10 +6,12 @@
                 <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
                     <div>
                         <h4 class="mb-3">Danh sách thuộc tính</h4>
+                        <a href="{{ route('products.index') }}" class="btn btn-primary add-list"><i
+                                class="las la-plus mr-3"></i>Danh sách sản phẩm</a>
                     </div>
                     <div>
                         @can('variant_create')
-                            <a href="{{ route('variants.create') }}" class="btn btn-primary add-list"><i
+                            <a href="{{ route('variants.create', $products->id) }}" class="btn btn-primary add-list"><i
                                     class="las la-plus mr-3"></i>Thêm thuộc tính</a>
                         @endcan
                     </div>
@@ -31,11 +33,7 @@
                             <td>{{ $variant->id }}</td>
                             <th scope="row">#1234{{ $variant->product->id }}</th>
                             <td>{{ $variant->name }}</td>
-                            @if ($variant->name == 'Màu sắc')
-                                <td><i class="fa-solid fa-heart" style="color:{{ $variant->value }}"></i></td>
-                            @else
-                                <td>{{ $variant->value }}</td>
-                            @endif
+                            <td>{{ $variant->value }}</td>
                             <td>
                                 @can('variant_edit')
                                     <a href="{{ route('variants.edit', $variant->id) }}" class="btn btn-primary"><i
@@ -55,6 +53,5 @@
                     @endforeach
                 </tbody>
             </table>
-            {{ $variants->links() }}
         </div>
     @endsection

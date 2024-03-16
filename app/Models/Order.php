@@ -21,6 +21,7 @@ class Order extends Model
         'delivery_status',
         'quantity',
         'total_price',
+        'note',
 
     ];
     
@@ -37,6 +38,19 @@ class Order extends Model
     public function products()
     {
         return $this->hasMany(OrderProduct::class);
+    }
+
+    
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::updated(function ($order) {
+            if ($order->delivery_status == 'Đã Giao Hàng') {
+                $userId = $order->user_id;
+                Member::where('user_id', $userId)->increment('reward_points');
+            }
+        });
     }
 
 }

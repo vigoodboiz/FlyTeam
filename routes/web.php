@@ -156,11 +156,11 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     // Route::post('/upload', [ProductController::class, 'upload'])->name('upload');
 
    //variant
-   Route::get('/variants', [VariantController::class, 'index'])->name('variants.index');
-   Route::get('/variants/create', [VariantController::class, 'create'])->name('variants.create');
-   Route::post('/variants', [VariantController::class, 'store'])->name('variants.store');
-   Route::get('/variants/{id}/edit', [VariantController::class, 'edit'])->name('variants.edit');
-   Route::put('/variants/{id}', [VariantController::class, 'update'])->name('variants.update');
+   Route::get('/variants/{product_id}', [VariantController::class, 'index'])->name('variants.index');
+   Route::get('/variants/create/{product_id}', [VariantController::class, 'create'])->name('variants.create');
+   Route::post('/variants/store/{product_id}', [VariantController::class, 'store'])->name('variants.store');
+   Route::get('/variants/edit/{product_id}', [VariantController::class, 'edit'])->name('variants.edit');
+   Route::put('/variants/update/{product_id}', [VariantController::class, 'update'])->name('variants.update');
    Route::delete('/variants/{id}', [VariantController::class, 'destroy'])->name('variants.destroy');
 
     ///////////////////////// gallery //////////////////

@@ -20,9 +20,9 @@
         <!-- End breadcrumb section -->
 
         <!-- cart section start -->
-        <section class="cart__section section--padding">
-            <div class="container">
-                @if (Auth::check())
+        @if (Auth::check())
+            <section class="cart__section section--padding">
+                <div class="container">
                     <div class="cart__section--inner">
                         <form action="#">
                             <h2 class="cart__title mb-30">Sản phẩm yêu thích</h2>
@@ -37,39 +37,41 @@
                                         </tr>
                                     </thead>
                                     <tbody class="cart__table--body">
-                                        @foreach ($favorites as $item)
-                                            <tr class="cart__table--body__items">
-                                                <td class="cart__table--body__list">
-                                                    <div class="cart__product d-flex align-items-center">
-                                                        <div class="cart__thumbnail">
-                                                            <a href="{{ route('shopDetails', $item->product_id) }}"><img
-                                                                    class="border-radius-5"
-                                                                    src="{{ asset('upload/public/images/' . $item->prod->image) }}"
-                                                                    alt="cart-product"></a>
-                                                        </div>
-                                                        <div class="cart__content">
-                                                            <h3 class="cart__content--title h4"><a
-                                                                    href="{{ route('shopDetails', $item->product_id) }}">{{ $item->prod->name }}</a>
-                                                            </h3>
-                                                            {{-- <span class="cart__content--variant">COLOR: Blue</span>
+                                        @if ($favorites)
+                                            @foreach ($favorites as $item)
+                                                <tr class="cart__table--body__items">
+                                                    <td class="cart__table--body__list">
+                                                        <div class="cart__product d-flex align-items-center">
+                                                            <div class="cart__thumbnail">
+                                                                <a href="{{ route('shopDetails', $item->product_id) }}"><img
+                                                                        class="border-radius-5"
+                                                                        src="{{ asset('upload/public/images/' . $item->prod->image) }}"
+                                                                        alt="cart-product"></a>
+                                                            </div>
+                                                            <div class="cart__content">
+                                                                <h3 class="cart__content--title h4"><a
+                                                                        href="{{ route('shopDetails', $item->product_id) }}">{{ $item->prod->name }}</a>
+                                                                </h3>
+                                                                {{-- <span class="cart__content--variant">COLOR: Blue</span>
                                                         <span class="cart__content--variant">WEIGHT: 2 Kg</span> --}}
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                                <td class="cart__table--body__list">
-                                                    <span class="cart__price">{{ $item->prod->price }}đ /
-                                                        {{ $item->prod->price_sale }}đ</span>
-                                                </td>
-                                                <td class="cart__table--body__list text-center">
-                                                    <span
-                                                        class="in__stock text__secondary">{{ $item->created_at->format('d/m/Y') }}</span>
-                                                </td>
-                                                <td class="cart__table--body__list text-right">
-                                                    <a class="wishlist__cart--btn primary__btn" href="cart.html">Thêm giỏ
-                                                        hàng</a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                                    </td>
+                                                    <td class="cart__table--body__list">
+                                                        <span class="cart__price">{{ $item->prod->price }}đ /
+                                                            {{ $item->prod->price_sale }}đ</span>
+                                                    </td>
+                                                    <td class="cart__table--body__list text-center">
+                                                        <span
+                                                            class="in__stock text__secondary">{{ $item->created_at->format('d/m/Y') }}</span>
+                                                    </td>
+                                                    <td class="cart__table--body__list text-right">
+                                                        <a class="wishlist__cart--btn primary__btn" href="cart.html">Thêm
+                                                            giỏ
+                                                            hàng</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                     </tbody>
                                 </table>
                                 <div class="continue__shopping d-flex justify-content-between">
@@ -80,7 +82,21 @@
                             </div>
                         </form>
                     </div>
-            </div>
+                </div>
+            @else
+                <div class="breadcrumb__section breadcrumb__bg">
+                    <div class="container">
+                        <div class="row row-cols-1">
+                            <div class="col">
+                                <div class="breadcrumb__content text-center">
+                                    <p>Xin vui lòng đăng nhập để có thể tiếp tục mua hàng!</p><a class="account__menu--list"
+                                        href="{{ route('login') }}">Đăng nhập</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        @endif
         </section>
         <!-- cart section end -->
 
@@ -91,32 +107,32 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="brang__logo--items">
-                                <img class="brang__logo--img"
-                                    src="{{ asset('becute/assets/img/logo/brand-logo1.webp') }}" alt="brand-logo">
+                                <img class="brang__logo--img" src="{{ asset('becute/assets/img/logo/brand-logo1.webp') }}"
+                                    alt="brand-logo">
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="brang__logo--items">
-                                <img class="brang__logo--img"
-                                    src="{{ asset('becute/assets/img/logo/brand-logo2.webp') }}" alt="brand-logo">
+                                <img class="brang__logo--img" src="{{ asset('becute/assets/img/logo/brand-logo2.webp') }}"
+                                    alt="brand-logo">
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="brang__logo--items">
-                                <img class="brang__logo--img"
-                                    src="{{ asset('becute/assets/img/logo/brand-logo3.webp') }}" alt="brand-logo">
+                                <img class="brang__logo--img" src="{{ asset('becute/assets/img/logo/brand-logo3.webp') }}"
+                                    alt="brand-logo">
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="brang__logo--items">
-                                <img class="brang__logo--img"
-                                    src="{{ asset('becute/assets/img/logo/brand-logo4.webp') }}" alt="brand-logo">
+                                <img class="brang__logo--img" src="{{ asset('becute/assets/img/logo/brand-logo4.webp') }}"
+                                    alt="brand-logo">
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="brang__logo--items">
-                                <img class="brang__logo--img"
-                                    src="{{ asset('becute/assets/img/logo/brand-logo5.webp') }}" alt="brand-logo">
+                                <img class="brang__logo--img" src="{{ asset('becute/assets/img/logo/brand-logo5.webp') }}"
+                                    alt="brand-logo">
                             </div>
                         </div>
                         <div class="swiper__nav--btn swiper-button-next">
@@ -170,7 +186,7 @@
                     <div class="feature__inner d-flex justify-content-between">
                         <div class="feature__items d-flex align-items-center">
                             <div class="feature__icon">
-                                <img src="{{asset('becute/assets/img/other/feature1.webp')}}" alt="img">
+                                <img src="{{ asset('becute/assets/img/other/feature1.webp') }}" alt="img">
                             </div>
                             <div class="feature__content">
                                 <h2 class="feature__content--title h3">Miễn phí vận chuyển</h2>
@@ -180,7 +196,7 @@
                         </div>
                         <div class="feature__items d-flex align-items-center">
                             <div class="feature__icon ">
-                                <img src="{{asset('becute/assets/img/other/feature2.webp')}}" alt="img">
+                                <img src="{{ asset('becute/assets/img/other/feature2.webp') }}" alt="img">
                             </div>
                             <div class="feature__content">
                                 <h2 class="feature__content--title h3">Hỗ trợ 24/7</h2>
@@ -190,7 +206,7 @@
                         </div>
                         <div class="feature__items d-flex align-items-center">
                             <div class="feature__icon">
-                                <img src="{{asset('becute/assets/img/other/feature3.webp')}}" alt="img">
+                                <img src="{{ asset('becute/assets/img/other/feature3.webp') }}" alt="img">
                             </div>
                             <div class="feature__content">
                                 <h2 class="feature__content--title h3">100% hoàn tiền</h2>
@@ -200,7 +216,7 @@
                         <div class="feature__items d-flex align-items-center">
                             <div class="feature__icon">
 
-                                <img src="{{asset('becute/assets/img/other/feature4.webp')}}" alt="img">
+                                <img src="{{ asset('becute/assets/img/other/feature4.webp') }}" alt="img">
                             </div>
                             <div class="feature__content">
                                 <h2 class="feature__content--title h3">Thanh toán an toàn</h2>
