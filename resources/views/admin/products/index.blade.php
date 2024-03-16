@@ -7,6 +7,7 @@
             max-width: 250px;
         }
     </style>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
@@ -18,6 +19,7 @@
                         @can('product_create')
                             <a href="{{ route('products.create') }}" class="btn btn-primary add-list"><i
                                     class="las la-plus mr-3"></i>Thêm sản phẩm</a>
+
                         @endcan
                     </div>
                 </div>
@@ -66,6 +68,7 @@
                                     </td>
                                     </td>
                                     <td>
+
                                         @can('product_edit')
                                             <a href="{{ route('products.edit', $product->id) }}" class="btn btn-danger"><i
                                                     class="fa-solid fa-pen"></i></a>
@@ -92,3 +95,5 @@
             </div>
         </div>
     @endsection
+
+
