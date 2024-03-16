@@ -52,6 +52,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return view('auth.login');
+        return view('auth.login')->with('success', 'Đăng kí tài khoản thành công!');
     }
 }

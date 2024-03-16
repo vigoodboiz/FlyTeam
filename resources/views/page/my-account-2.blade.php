@@ -25,11 +25,10 @@
                                             <h2 class="account__content--title h3 mb-20">Hồ sơ của tôi</h2>
                                             <ul class="account__menu">
                                                 @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
-                                                    <li class="account__menu--list"><a
-                                                            href="{{ route('dashboard') }}">Dashboard</a></li>
+                                                    <li class="account__menu--list"><a href="{{ route('dashboard') }}">Trang
+                                                            quản trị</a></li>
                                                 @elseif(Auth::user()->role_id == 3)
                                                     <li class="account__menu--list"><a
-
                                                             href="{{ route('portfolioPage') }}">Thông tin</a>
                                                     </li>
                                                     <li class="account__menu--list"><a href="{{ route('point') }}">Điểm
@@ -42,7 +41,8 @@
                                                 @endif
                                                 <li class="account__menu--list"><a
                                                         href="{{ route('logout') }}"onclick="event.preventDefault();
-                                                                                                                                                                                                            document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Logout</a>
+                                                                                                                                                                                                                    document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Đăng
+                                                        xuất</a>
                                                 </li>
                                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                                     class="d-none">
@@ -66,18 +66,19 @@
                                         <div class="feature__icon">
 
 
-                                            <img src="{{asset('becute/assets/img/other/feature1.webp')}}" alt="img">
+                                            <img src="{{ asset('becute/assets/img/other/feature1.webp') }}" alt="img">
                                         </div>
                                         <div class="feature__content">
                                             <h2 class="feature__content--title h3">Miễn phí vận chuyển</h2>
-                                            <p class="feature__content--desc">Miễn phí vận chuyển cho đơn hàng trên 2.000.000đ</p>
+                                            <p class="feature__content--desc">Miễn phí vận chuyển cho đơn hàng trên
+                                                2.000.000đ</p>
                                         </div>
                                     </div>
                                     <div class="feature__items d-flex align-items-center">
                                         <div class="feature__icon ">
 
 
-                                            <img src="{{asset('becute/assets/img/other/feature2.webp')}}" alt="img">
+                                            <img src="{{ asset('becute/assets/img/other/feature2.webp') }}" alt="img">
                                         </div>
                                         <div class="feature__content">
                                             <h2 class="feature__content--title h3">Hỗ trợ 24/7</h2>
@@ -88,7 +89,7 @@
                                         <div class="feature__icon">
 
 
-                                            <img src="{{asset('becute/assets/img/other/feature3.webp')}}" alt="img">
+                                            <img src="{{ asset('becute/assets/img/other/feature3.webp') }}" alt="img">
                                         </div>
                                         <div class="feature__content">
                                             <h2 class="feature__content--title h3">100% hoàn tiền</h2>
@@ -99,7 +100,7 @@
                                         <div class="feature__icon">
 
 
-                                            <img src="{{asset('becute/assets/img/other/feature4.webp')}}" alt="img">
+                                            <img src="{{ asset('becute/assets/img/other/feature4.webp') }}" alt="img">
                                         </div>
                                         <div class="feature__content">
                                             <h2 class="feature__content--title h3">Thanh toán an toàn</h2>
@@ -108,7 +109,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         @else
                             <div class="breadcrumb__section breadcrumb__bg">
                                 <div class="container">

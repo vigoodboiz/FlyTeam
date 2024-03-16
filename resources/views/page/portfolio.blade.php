@@ -33,7 +33,8 @@
                             <h2 class="account__content--title mb-20">Hồ sơ của tôi</h2>
                             <ul class="account__menu">
                                 @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
-                                    <li class="account__menu--list"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                                    <li class="account__menu--list"><a href="{{ route('dashboard') }}">Trang quản trị</a>
+                                    </li>
                                 @elseif(Auth::user()->role_id == 3)
                                     <li class="account__menu--list active"><a href="{{ route('portfolioPage') }}">Thông
                                             tin</a>
@@ -48,7 +49,8 @@
                                 @endif
                                 <li class="account__menu--list"><a
                                         href="{{ route('logout') }}"onclick="event.preventDefault();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Logout</a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Đăng
+                                        xuất</a>
                                 </li>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
@@ -68,13 +70,13 @@
                                                     enctype="multipart/form-data">
                                                     @csrf
                                                     <input type="file" name="profile_picture">
-                                                    <button type="submit" class="btn btn-success">Upload</button>
+                                                    <button type="submit" class="btn btn-success">Tải lên</button>
                                                 </form>
                                             @endif
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-8">
+                                {{-- <div class="col-lg-8">
                                     <div class="card mb-4">
                                         <div class="card-body">
                                             <div class="row">
@@ -124,22 +126,111 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <form action="{{ route('profile.update') }}" method="POST"
+                                        enctype="multipart/form-data">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success">Cập nhật hồ sơ</button>
+                                    </form>
+                                </div> --}}
+                                <div class="col-lg-8">
+                                    <div class="card mb-4">
+                                        <div class="card-body">
+                                            <form id="profileForm" action="{{ route('profile.update') }}" method="POST">
+                                                @csrf
+                                                <div class="section__shipping--address__content">
+                                                    <div class="row">
+                                                        <div class="col-12 mb-20">
+                                                            <div class="checkout__input--list">
+                                                                <label class="checkout__input--label mb-10"
+                                                                    for="input3">Họ và
+                                                                    tên
+                                                                    <span
+                                                                        class="checkout__input--label__star">*</span></label>
+                                                                <input class="checkout__input--field border-radius-5"
+                                                                    value="{{ Auth::user()->name }}" id="nameDisplay"
+                                                                    name="name" id="nameEdit" type="text">
+                                                                <div id="nameEdit" style="display: none;">
+                                                                    <input type="text" id="nameInput" readonly>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 mb-20">
+                                                            <div class="checkout__input--list">
+                                                                <label class="checkout__input--label mb-10"
+                                                                    for="input3">Email
+                                                                    <span
+                                                                        class="checkout__input--label__star">*</span></label>
+                                                                <input class="checkout__input--field border-radius-5"
+                                                                    value="{{ Auth::user()->email }}" name="email"
+                                                                    id="emailDisplay" type="text">
+                                                                <div id="emailEdit" style="display: none;">
+                                                                    <input type="email" id="emailInput" readonly>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 mb-20">
+                                                            <div class="checkout__input--list">
+                                                                <label class="checkout__input--label mb-10"
+                                                                    for="input3">Số điện thoại
+                                                                    <span
+                                                                        class="checkout__input--label__star">*</span></label>
+                                                                <input class="checkout__input--field border-radius-5"
+                                                                    value="{{ Auth::user()->phone }}" name="phone"
+                                                                    id="phoneDisplay" type="text">
+                                                                <div id="phoneEdit" style="display: none;">
+                                                                    <input type="email" id="phoneInput" readonly>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 mb-20">
+                                                            <div class="checkout__input--list">
+                                                                <label class="checkout__input--label mb-10"
+                                                                    for="input4">Địa
+                                                                    chỉ
+                                                                    <span
+                                                                        class="checkout__input--label__star">*</span></label>
+                                                                <input id="addressDisplay"
+                                                                    class="checkout__input--field border-radius-5"
+                                                                    value="{{ Auth::user()->address }}" name="address"
+                                                                    type="text">
+                                                                <div id="addressEdit" style="display: none;">
+                                                                    <input type="email" id="addressInput" readonly>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="cart__summary--footer">
+                                        <ul class="d-flex justify-content-between">
+
+                                            <li><button type="submit" id="saveProfileBtn" style="display: none;"
+                                                    class="cart__summary--footer__btn primary__btn checkout">Lưu hồ sơ
+                                                </button></li>
+                                            </form>
+                                            <li><button id="toggleEditBtn"
+                                                    class="cart__summary--footer__btn primary__btn cart">Cập nhật
+                                                    hồ sơ</button></li>
+                                        </ul>
+                                    </div>
+
                                 </div>
-                            </div>
-                        </div>
-                    @else
-                        <div class="breadcrumb__section breadcrumb__bg">
-                            <div class="container">
-                                <div class="row row-cols-1">
-                                    <div class="col">
-                                        <div class="breadcrumb__content text-center">
-                                            <p>Xin vui lòng đăng nhập để có thể tiếp tục mua hàng!</p><a
-                                                class="account__menu--list" href="{{ route('login') }}">Đăng nhập</a>
+                            @else
+                                <div class="breadcrumb__section breadcrumb__bg">
+                                    <div class="container">
+                                        <div class="row row-cols-1">
+                                            <div class="col">
+                                                <div class="breadcrumb__content text-center">
+                                                    <p>Xin vui lòng đăng nhập để có thể tiếp tục mua hàng!</p><a
+                                                        class="account__menu--list" href="{{ route('login') }}">Đăng
+                                                        nhập</a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
                 @endif
             </div>
         </section>
@@ -152,7 +243,7 @@
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
 
-                            <img src="{{asset('becute/assets/img/other/feature1.webp')}}" alt="img">
+                            <img src="{{ asset('becute/assets/img/other/feature1.webp') }}" alt="img">
                         </div>
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">Miễn phí vận chuyển</h2>
@@ -162,7 +253,7 @@
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon ">
 
-                            <img src="{{asset('becute/assets/img/other/feature2.webp')}}" alt="img">
+                            <img src="{{ asset('becute/assets/img/other/feature2.webp') }}" alt="img">
                         </div>
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">Hỗ trợ 24/7</h2>
@@ -172,7 +263,7 @@
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
 
-                            <img src="{{asset('becute/assets/img/other/feature3.webp')}}" alt="img">
+                            <img src="{{ asset('becute/assets/img/other/feature3.webp') }}" alt="img">
                         </div>
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">100% hoàn tiền</h2>
@@ -182,7 +273,7 @@
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
 
-                            <img src="{{asset('becute/assets/img/other/feature4.webp')}}" alt="img">
+                            <img src="{{ asset('becute/assets/img/other/feature4.webp') }}" alt="img">
                         </div>
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">Thanh toán an toàn</h2>
@@ -194,4 +285,62 @@
         </section>
         <!-- End feature section -->
     </main>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#toggleEditBtn').click(function() {
+                var editMode = $(this).data('edit');
+
+                if (!editMode) {
+                    $(this).text('Hủy chỉnh sửa').data('edit', true);
+                    $('#saveProfileBtn').show();
+                    $('#nameInput').removeAttr('readonly').val($('#nameDisplay').text());
+                    $('#emailInput').removeAttr('readonly').val($('#emailDisplay').text());
+                    $('#phoneInput').removeAttr('readonly').val($('#phoneDisplay').text());
+                    $('#addressInput').removeAttr('readonly').val($('#addressDisplay').text());
+                    $('#nameDisplay, #emailDisplay, #phoneDisplay, #addressDisplay').hide();
+                    $('#nameEdit, #emailEdit, #phoneEdit, addressEdit').show();
+                } else {
+                    $(this).text('Cập nhật hồ sơ').data('edit', false);
+                    $('#saveProfileBtn').hide();
+                    $('#nameInput').attr('readonly', true);
+                    $('#emailInput').attr('readonly', true);
+                    $('#phoneInput').attr('readonly', true);
+                    $('#addressInput').attr('readonly', true);
+                    $('#nameDisplay, #emailDisplay, #phoneDisplay, #addressDisplay').show();
+                    $('#nameEdit, #emailEdit, #phoneEdit, addressEdit').hide();
+                }
+            });
+
+            $('#saveProfileBtn').click(function() {
+                // Thực hiện lưu hồ sơ (cập nhật trên server)
+                var newName = $('#nameInput').val();
+                var newEmail = $('#emailInput').val();
+                var newPhone = $('#phoneInput').val();
+                var newAddress = $('#addressInput').val();
+
+                // Thực hiện lưu các thay đổi vào cơ sở dữ liệu
+                $('#nameDisplay').text(newName);
+                $('#emailDisplay').text(newEmail);
+                $('#phoneDisplay').text(newPhone);
+                $('#addressDisplay').text(newAddress);
+
+                // Ẩn trường nhập dữ liệu
+                $('#nameEdit').hide();
+                $('#emailEdit').hide();
+                $('#phoneEdit').hide();
+                $('#addressEdit').hide();
+
+                // Hiển thị lại các giá trị đã cập nhật
+                $('#nameDisplay').show();
+                $('#emailDisplay').show();
+                $('#phoneDisplay').show();
+                $('#addressDisplay').show();
+
+                // Đặt trạng thái chỉnh sửa về false và ẩn nút "Lưu hồ sơ"
+                $('#toggleEditBtn').text('Cập nhật hồ sơ').data('edit', false);
+                $('#saveProfileBtn').hide();
+            });
+        });
+    </script>
 @endsection

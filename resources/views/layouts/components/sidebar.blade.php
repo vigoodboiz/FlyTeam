@@ -3,7 +3,7 @@
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a href="{{ route('dashboard') }}"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+                    <a href="{{ route('dashboard') }}"><i class="menu-icon fa fa-laptop"></i>Trang quản trị </a>
                 </li>
                 <li class="menu-title">Admin</li><!-- /.menu-title -->
                 <ul class="nav navbar-nav">
