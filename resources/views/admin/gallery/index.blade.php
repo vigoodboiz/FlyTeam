@@ -32,7 +32,7 @@
                 <tr>
                     <td scope="row">{{ $gallery->id }}</td>
                     <td class="col-9"><img src="{{ asset('upload/public/images/' . $gallery->image) }}"
-                            alt="{{ $gallery->name }}" width="400" class="img-fluid">
+                            alt="{{ $gallery->name }}" width="200" class="img-fluid">
                     <td>
                         <form id="delete-form" action="{{ route('gallery.destroy', $gallery->id) }}" method="POST">
                             @csrf

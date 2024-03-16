@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Coupon;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
+
 class CartController extends Controller
 {
     //
@@ -46,12 +47,11 @@ class CartController extends Controller
           Session::save();
     
           return redirect()->back()->with('message', 'Thêm mã giảm giá thành công');
+
         } else {
           return redirect()->back()->with('error', 'Mã giảm giá không đúng, đã hết hạn hoặc bạn đã sử dụng rồi');
         }
-      } else {
-        return redirect()->back()->with('error', 'Mã giảm giá không đúng hoặc đã hết hạn');
-      }
+
     }
     
     public function index()
@@ -84,7 +84,7 @@ class CartController extends Controller
             if ($cartItem) {
                 // Đã tồn tại thì tăng
                 $cartItem->quantity += $request->quantity;
-                $cartItem->total_price = $product->price_sale > 0 ? $cartItem->quantity * $product->price_sale : $cartItem->quantity * $product->price ;
+                $cartItem->total_price = $product->price_sale > 0 ? $cartItem->quantity * $product->price_sale : $cartItem->quantity * $product->price;
                 $cartItem->save();
 
                 return back()->with('success', 'Số lượng sản phẩm tăng thành công!');
@@ -117,6 +117,24 @@ class CartController extends Controller
         return $totalPrice;
     }
 
+    public function updateCart(Request $request)
+    {
+        $userId = Auth::id();
+        $cartItems = Cart::where('user_id', $userId)->get();
+    
+        foreach ($cartItems as $cartItem) {
+            $quantityFieldName = 'quantity_' . $cartItem->id;
+            $quantity = $request->input($quantityFieldName);
+    
+            if ($quantity > 0) {
+                $cartItem->quantity = $quantity;
+                $cartItem->total_price = $cartItem->product->price_sale > 0 ? $cartItem->product->price_sale * $quantity : $cartItem->product->price * $quantity;
+                $cartItem->save();
+            }
+        }
+    
+        return redirect()->route('cartPage')->with('success', 'Giỏ hàng đã được cập nhật');
+    }
     public function destroy(Cart $cart)
     {
         try {
@@ -128,8 +146,6 @@ class CartController extends Controller
 
 
             return back()->with('error', 'Sản phẩm giỏ hàng đã xóa thất bại!');
-
         }
     }
-    
 }

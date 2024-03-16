@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\StatisticController;
 
+
 // home
 use App\Http\Controllers\shopGridController;
 use App\Http\Controllers\FavoriteController;
@@ -79,7 +80,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
+
 });
 Route::get('page/point', [PointController::class, 'index'])->name('point');
 
@@ -117,7 +118,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/oder', [OderController::class, 'listOder'])->name('listOder');
     Route::match(['GET', 'POST'], '/oder/search', [OderController::class, 'listOder'])->name('searchOder');
     Route::get('/delete/{id}', [OderController::class, 'deleteoder'])->name('deleteoder');
-    
+
     //Forgot password
     Route::post('forgot-password', [ForgotPasswordController::class, 'forgotPass'])->name('password.forgot');
     Route::post('verify-otp', [ForgotPasswordController::class, 'verify'])->name('otp.verify');
@@ -144,6 +145,10 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::match(['GET', 'POST'], '/comment/delete/{id}', [CommentController::class, 'delete'])->name('route_comment_delete');
     Route::post('/newComment', [ShopDetailsController::class, 'newComment'])->name('route_new_comment');
     Route::match(['GET', 'POST'], '/comment/delete/{id}', [ShopDetailsController::class, 'delete'])->name('route_comment_delete_fe');
+
+    Route::get('/comments/{id}/edit', [ShopDetailsController::class, 'edit'])->name('comments.edit');
+    Route::patch('/comments/{id}', [ShopDetailsController::class, 'update'])->name('comments.update');
+
 
 
     ///////////////////////// product //////////////////
@@ -189,7 +194,13 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     ////////////////////////// thanh toán Vnpay /////////////////
     Route::match(['GET', 'POST'], '/vnpay_payment', [PaymentController::class, 'vnpay_payment'])->name('vnpay_payment');
+    Route::match(['GET', 'POST'], '/vnpay-checkout', [CheckoutController::class, 'vnpayCheckout'])->name('vnpayCheckout');
+    ////////////////////////// thanh toán momo /////////////////
     Route::match(['GET', 'POST'], '/momo_payment', [PaymentController::class, 'momo_payment'])->name('momo_payment');
+    Route::match(['GET', 'POST'], '/momoCheckout', [CheckoutController::class, 'momoCheckout'])->name('momoCheckout');
+    ////////////////////////// thanh toán paypal /////////////////
+    Route::get('/paypal/execute-payment', 'CheckoutController@executePayment')->name('paypalExecutePayment');
+    Route::get('/paypal/cancel-payment', 'CheckoutController@cancelPayment')->name('paypalCancelPayment');
 });
 
 
@@ -249,6 +260,7 @@ Route::get('page/wishlist', [WishlishController::class, 'index'])->name('wishlis
 // cartf
 Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');
 Route::post('add_to_cart/{product}', [CartController::class, 'store'])->name('addCart');
+Route::match(['GET', 'POST'],'/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
 Route::delete('/cart/products/{productId}', [CartController::class, 'removeProductFromCart'])->name('cart.removeProduct');
 Route::get('cart/delete/{cart}', [CartController::class, 'destroy'])->name('cart.delete');
 

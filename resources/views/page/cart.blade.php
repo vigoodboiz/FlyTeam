@@ -41,26 +41,33 @@
                                         </thead>
 
                                         <tbody class="cart__table--body">
-                                            @foreach ($cartItems as $cart)
-                                            <tr class="cart__table">
-                                                <th><img style="height: 80px" ; src="{{ asset('upload/public/images/' . $cart->product->image) }}">
-                                                </th>
-                                                <th>{{ $cart->product->name }}</th>
-                                                <th>{{ $cart->product->price }}đ</th>
-                                                <th>{{ $cart->product->price_sale }}đ</th>
-                                                <th>{{ $cart->quantity }}</th>
-                                                <th>{{ $cart->total_price }} đ</th>
-                                                <td class="product-close">
-
-                                                    <form id="delete-form" action="{{ route('cart.delete', $cart->id) }}">
-                                                        @csrf
-                                                        <button id="delete-button" type="submit" class="btn product-remove" title="Remove this product">
-                                                            <i class="bi bi-x-circle-fill display-3 text-danger"></i>
-                                                        </button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                            @endforeach
+                                            <form action="{{ route('cart.update') }}">
+                                                @csrf
+                                                @foreach ($cartItems as $cart)
+                                                @method('PUT')
+                                                <tr class="cart__table">
+                                                    <th><img style="height: 80px" ; src="{{ asset('upload/public/images/' . $cart->product->image) }}">
+                                                    </th>
+                                                    <th class="text-truncate">{{ $cart->product->name }}</th>
+                                                    <th>{{ $cart->product->price }}đ</th>
+                                                    <th>{{ $cart->product->price_sale }}đ</th>
+                                                    <th>
+                                                        <div class="quantity__box">
+                                                            <button type="button" class="quantity__value quickview__value--quantity decrease" aria-label="quantity value" value="Decrease Value">-</button>
+                                                            <label>
+                                                                <input name="quantity_{{ $cart->id }}" type="number" class="quantity__number quickview__value--number" value="{{ $cart->quantity }}" data-counter />
+                                                            </label>
+                                                            <button type="button" class="quantity__value quickview__value--quantity increase" aria-label="quantity value" value="Increase Value">+</button>
+                                                        </div>
+                                                    </th>
+                                                    <th>{{ $cart->total_price }} đ</th>
+                                                    <td class="product-close">
+                                                    <a href="{{ route('cart.delete', ['cart' => $cart->id]) }}" class="btn product-remove" title="Remove this product" >
+                                                        <i class="bi bi-x-circle-fill text-danger display-5"></i>
+                                                    </a>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
 
                                         </tbody>
 
@@ -68,10 +75,10 @@
                                     </table>
                                     <div class="continue__shopping d-flex justify-content-between">
                                         <a class="continue__shopping--link" href="{{ route('shopGrid') }}">Tiếp tục mua sắm</a>
-
-
                                         <button type="submit" class="coupon__code--field__btn primary__btn">Xóa giỏ
                                             hàng</button>
+                                        <button class="cart__summary--footer__btn primary__btn cart" type="submit">Cập nhật giỏ hàng</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -151,9 +158,6 @@
                                 <div class="cart__summary--footer">
                                     <p class="cart__summary--footer__desc">Vận chuyển & thuế được tính toán khi thanh toán</p>
                                     <ul class="d-flex justify-content-between">
-                                        <li><button class="cart__summary--footer__btn primary__btn cart" type="submit">Cập nhật
-                                                giỏ hàng</button></li>
-
                                         <li><a class="cart__summary--footer__btn primary__btn checkout" href="{{ route('checkoutPage') }}">Thanh toán</a></li>
                                     </ul>
                                 </div>
