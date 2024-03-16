@@ -72,6 +72,9 @@ class CheckoutController extends Controller
                 $order->payment_status = 'Đang xác nhận';
                 $order->delivery_status = 'Đang xử lý';
                 $order->save();
+
+                $product = Products::find($cartItem->product_id);
+                $product->decrement('quantity_product', $cartItem->quantity);
             }
             
                 $userId = auth::user()->id;
@@ -109,6 +112,9 @@ class CheckoutController extends Controller
                     $order->payment_status = 'Đã Thanh Toán';
                     $order->delivery_status = 'Đang xử lý';
                     $order->save();
+
+                    $product = Products::find($cartItem->product_id);
+                    $product->decrement('quantity_product', $cartItem->quantity);
                 }
     
                 // Xóa giỏ hàng
@@ -162,6 +168,9 @@ class CheckoutController extends Controller
                     $order->payment_status = 'Đã Thanh Toán';
                     $order->delivery_status = 'Đang xử lý';
                     $order->save();
+
+                    $product = Products::find($cartItem->product_id);
+                    $product->decrement('quantity_product', $cartItem->quantity);
                 }
 
                 // Xóa giỏ hàng
