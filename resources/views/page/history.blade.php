@@ -74,6 +74,13 @@
                                 <button class="btn btn-danger" type="submit" title="Cancel order" id="delete-button">Hủy đơn
                                 </button>
                             </form>
+                            @elseif($item->payment_status === 'Đã Thanh Toán' && $item->delivery_status === 'Đang xử lý')
+                            <form id="delete-form" action="{{ route('orders.cancel', $item->id) }}" method="POST">
+                                @csrf
+                                @method('POST')
+                                <button class="btn btn-danger" type="submit" title="Cancel order" id="delete-button">Hủy đơn
+                                </button>
+                            </form>
                             @endif
                         </div>
                     </td>

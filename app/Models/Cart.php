@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
+use App\Models\Item;
+use App\Models\CartItem;
+
+use App\Models\User;
+use App\Models\Products;
 
 class Cart extends Model
 {
@@ -32,4 +37,14 @@ class Cart extends Model
         return $orderd ? true : false;
     }
 
+    public function items()
+{
+    return $this->hasMany(Item::class);
+}
+
+public function cartItems()
+{
+    return $this->hasMany(CartItem::class);
+}
+  
 }
