@@ -34,9 +34,9 @@ class UserController extends Controller
     public function create()
     {
         abort_if(Gate::denies('user_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $role = Role::all();
+        $roles = Role::all();
 
-        return view('admin.users.create', compact('role'));
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
@@ -50,7 +50,7 @@ class UserController extends Controller
         $user = User::create($request->all());
         $user->roles()->sync($request->input('roles', []));
         
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'Người dùng được thêm thành công!');
     }
 
     /**
@@ -92,7 +92,7 @@ class UserController extends Controller
         $user->update($request->all());
         $user->roles()->sync($request->input('roles', []));
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'Người dùng được cập nhật thành công!');
     }
 
     /**
@@ -106,7 +106,9 @@ class UserController extends Controller
         abort_if(Gate::denies('user_delete'), Response::HTTP_FORBIDDEN, '430 Forbidden');
         $user->delete();
 
-        return back()->with('msg', 'Thao tác thành công!');
+
+        return back()->with('success', 'Người dùng được xóa thành công!');
+
     }
 
     public function massDestroy(MassDestroyUserRequest $request) {

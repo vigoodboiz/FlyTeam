@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\User;
 class Coupon extends Model
 {   
     public $timestamps = false; //set time to false
@@ -14,6 +14,9 @@ class Coupon extends Model
     protected $primaryKey = 'id';
  	protected $table = 'coupon';
 
+public function user(){
+        return $this->hasOne(User::class, 'id', 'coupon_used');
+    }
     
 }
 

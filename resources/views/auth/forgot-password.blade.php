@@ -1,5 +1,8 @@
 <x-guest-layout>
     <x-authentication-card>
+        @if (session('status'))
+            <div>{{ session('status') }}</div>
+        @endif
         <a class="navbar-brand" href="./"><img src="{{ asset('sb-admin/images/logo3.png') }}" alt="Logo"></a><br>
         <div class="mb-4 text-sm text-gray-600">
             {{ __('Bạn đã quên mật khẩu của mình? Không sao hết cả, bạn chỉ cần nhập địa chỉ email của bạn vào đây chúng tôi sẽ gửi liên kết để lấy lại mật khẩu cho bạn.') }}
@@ -13,7 +16,7 @@
 
         <x-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('password.email') }}">
+        <form method="POST" action="{{ route('password.forgot') }}">
             @csrf
 
             <div class="block">

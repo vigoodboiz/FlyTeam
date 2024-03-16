@@ -6,6 +6,8 @@ use App\Http\Requests\CommentRequest;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Products;
+use App\Models\Variant;
+use App\Models\Gallery;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -22,16 +24,17 @@ class ShopDetailsController extends Controller
     public function index($id_pro)
     {
         if ($id_pro) {
-            
+
             $product_detail = Products::where('id', $id_pro)->get();
             Products::where('id',$id_pro)->increment('view_count');
 
-            // $image = Gallery::where('product_id' , $id_pro)->get();
+            $galleries = Gallery::where('product_id' , $id_pro)->get();
             // $imagePro = $image->pluck('image_path')->toArray();
             // product same
+            $variants = Variant::where('product_id', $id_pro)->get();
             $id_cate = Products::where('id', $id_pro)->value('id_category');
             $product_same = Products::where('id_category', $id_cate)->where('id', '<>', $id_pro)->paginate(9);
-        
+
             $currentDateTime = Carbon::now();
             $currentDateTimeGMTPlus7 = $currentDateTime->setTimezone('Asia/Ho_Chi_Minh');
             $comments = DB::table('comments')
@@ -41,7 +44,7 @@ class ShopDetailsController extends Controller
                 ->where('comments.product_id', $id_pro)
                 ->get();
         }
-        return view('page.product-details',['currentDateTime' => $currentDateTimeGMTPlus7], compact('product_detail', 'product_same', 'comments'));
+        return view('page.product-details',['currentDateTime' => $currentDateTimeGMTPlus7], compact('product_detail', 'product_same', 'comments', 'variants', 'galleries'));
     }
 
     public function newComment(CommentRequest $request)
@@ -49,7 +52,7 @@ class ShopDetailsController extends Controller
         $user = Auth::user();
 
         if (!$user) {
-            return redirect()->back()->with('error', 'Bạn phải đăng nhập để bình luận.');
+            return redirect()->back()->with('error', 'Bạn phải đăng nhập để bình luận!');
         }
 
         Comment::create([
@@ -60,6 +63,11 @@ class ShopDetailsController extends Controller
             'date' => $request->input('date')
         ]);
 
-        return redirect()->back()->with('success', 'Bình luận đã được tạo thành công.');
+        return redirect()->back()->with('success', 'Bình luận đã được tạo thành công!');
+    }
+    public function delete($id){
+        Comment::where('id',$id)->delete();
+        return back();
     }
 }
+

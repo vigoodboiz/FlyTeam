@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
@@ -26,16 +26,12 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_code',
         'name',
         'email',
         'password',
         'phone',
-        'gender',
         'address',
         'role_id',
-        'facebook_id',
-        'google_id',
         'profile_picture',
     ];
 
@@ -81,9 +77,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Comment::class);
     }
 
-    public function roles(): BelongsToMany {
-       return $this->BelongsToMany(Role::class);
+    public function roles() {
+       return $this->hasOne(Role::class, 'id', 'role_id');
     }
+    public function hasAnyRole($roles)
+{
+    return null !== $this->roles()->whereIn('name', $roles)->first();
+}
     public function members()
     {
         return $this->hasMany(Member::class);
@@ -100,5 +100,8 @@ class User extends Authenticatable implements MustVerifyEmail
     }
     public function orders(){
         return $this->hasMany(Order::class, 'user_id', 'id');
+    }
+    public function coupons(){
+        return $this->hasMany(Coupon::class, 'coupon_used', 'id');
     }
 }

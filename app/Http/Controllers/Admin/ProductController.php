@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Products;
 use App\Models\Category;
-
+use App\Models\Variant;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -30,7 +30,6 @@ class ProductController extends Controller
     {
       // Lấy danh sách các category để hiển thị trong form
       $categories = Category::all();
-
       return view('admin.products.create', compact('categories'));
     }
 
@@ -45,6 +44,7 @@ class ProductController extends Controller
             'brand' => 'required',
             'describe' => 'required',
             'price' => 'required',
+            'quantity_product' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -55,12 +55,13 @@ class ProductController extends Controller
             $image->storeAs('public/images', $imageName);
             $validatedData['image'] = $imageName;
         }
-
         Products::create($validatedData);
-
-        return redirect()->route('products.create')->with('success', 'Sản phẩm đã được thêm thành công');
-
-      
+        // if ($request->variants) {
+        //     foreach ($request->variants as $variantName) {
+        //         $validatedData->variants()->create(['name' => $variantName]);
+        //     }
+        // }
+        return redirect()->back()->with('success', 'Sản phẩm được thêm thành công!');
     }
     /**
      * Display the specified resource.
@@ -100,6 +101,7 @@ class ProductController extends Controller
             'describe' => 'required',
             'price' => 'required|numeric',
             'price_sale' => 'required|numeric',
+            'quantity_product' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -127,11 +129,12 @@ class ProductController extends Controller
         $product->describe = $request->input('describe');
         $product->price = $request->input('price');
         $product->price_sale = $request->input('price_sale');
+        $product->quantity_product = $request->input('quantity_product');
         $product->save();
 
-        return redirect()->route('products.index')->with('success', 'Sản phẩm đã được cập nhật thành công.');
+        return redirect()->route('products.index')->with('success', 'Sản phẩm được cập nhật thành công!');
     }
-    
+
 
     /**
      * Remove the specified resource from storage.
@@ -140,9 +143,8 @@ class ProductController extends Controller
     {
         $product = Products::findOrFail($id);
         $product->delete();
-    
-        return redirect()->route('products.index')->with('success', 'Đã xóa sản phẩm thành công.');
+        return redirect()->route('products.index')->with('success', 'Sản phẩm được xóa thành công!');
     }
 
 }
-
+        

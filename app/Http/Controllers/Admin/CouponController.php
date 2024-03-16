@@ -16,7 +16,9 @@ class CouponController extends Controller
             $coupon = Session::get('coupon');
             if($coupon==true){
             Session::forget('coupon');
-            return redirect()->back()->with('message','Xóa mã khuyến mãi thành công');
+
+            return redirect()->back()->with('success', 'Khuyến mại được xóa thành công!');;
+
         }
     }
 
@@ -28,8 +30,9 @@ class CouponController extends Controller
     {
         $coupon = Coupon::find($id);
         $coupon->delete();
-        Session::put('message', 'Xóa mã giảm giá thành công');
-        return Redirect::to('admin/list-coupon');
+
+        return Redirect::to('admin/list-coupon')->with('success', 'Khuyến mại được xóa thành công!');;
+
     }
     public function list_coupon()
     {
@@ -50,7 +53,8 @@ class CouponController extends Controller
         $coupon->coupon_time = $data['coupon_time'];
         $coupon->coupon_condition = $data['coupon_condition'];
         $coupon->save();
-        Session::put('message', 'Thêm mã giảm giá thành công');
-        return Redirect::to('admin/list-coupon');
+
+        return Redirect::to('admin/list-coupon')->with('success', 'Khuyến mại được cập nhật thành công!');
+
     }
 }

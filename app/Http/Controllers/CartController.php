@@ -26,9 +26,7 @@ class CartController extends Controller
                      ->where('coupon_status', 1)
                      ->where('coupon_date_end', '>=', $today)
                      ->first();
-    //                  $user_id = auth()->user()->id;
-    // Coupon::where('coupon_code', $data['coupon'])
-    //   ->update(['coupon_used' => $user_id]);
+
     
       if ($coupon) {
 
@@ -67,7 +65,7 @@ class CartController extends Controller
         } catch (Exception $exception) {
             Log::error('CartController: ', [$exception->getMessage()]);
             return back()->with([
-                'message' => 'Đã có lỗi nghiêm trọng xảy ra'
+                'error' => 'Đã có lỗi nghiêm trọng xảy ra'
             ]);
         }
     }
@@ -89,7 +87,7 @@ class CartController extends Controller
                 $cartItem->total_price = $product->price_sale > 0 ? $cartItem->quantity * $product->price_sale : $cartItem->quantity * $product->price ;
                 $cartItem->save();
 
-                return back()->with('message', 'Product quantity increased successfully');
+                return back()->with('success', 'Số lượng sản phẩm tăng thành công!');
             } else {
                 // Sản phẩm chưa tồn tại thì thêm mới
                 Cart::create([
@@ -99,12 +97,12 @@ class CartController extends Controller
                     'total_price' =>  $product->price_sale > 0 ? $request->quantity * $product->price_sale : $request->quantity * $product->price
                 ]);
 
-                return back()->with('message', 'Product added to cart successfully');
+                return back()->with('success', 'Sản phẩm thêm vào giỏ hàng thành công!');
             }
         } catch (\Exception $exception) {
             Log::error('CartController@store: ' . $exception->getMessage());
 
-            return back()->with('message', 'Failed to add product to cart');
+            return back()->with('error', 'Không thể thêm sản phẩm vào giỏ hàng - Vui lòng đăng nhập để tiếp tục!');
         }
     }
     public function calculateTotalPrice()
@@ -124,11 +122,13 @@ class CartController extends Controller
         try {
             $cart->delete();
 
-            return back()->with('message', 'Cart item deleted successfully');
+            return back()->with('success', 'Sản phẩm giỏ hàng đã xóa thành công!');
         } catch (\Exception $exception) {
             Log::error('CartController@destroy: ', [$exception->getMessage()]);
 
-            return back()->with('message', 'Cart item delete failed');
+
+            return back()->with('error', 'Sản phẩm giỏ hàng đã xóa thất bại!');
+
         }
     }
     
