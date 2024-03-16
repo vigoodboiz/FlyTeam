@@ -13,48 +13,47 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Coupon;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
+
 class CartController extends Controller
 {
     //
 
     public function check_coupon(Request $request)
     {
-        $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y/m/d');
-        $data = $request->all();
-        $coupon = Coupon::where('coupon_code', $data['coupon'])->where('coupon_status',1)->where('coupon_date_end','>=',$today)->first();
+      $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y/m/d');
+      $data = $request->all();
+    
+      $coupon = Coupon::where('coupon_code', $data['coupon'])
+                     ->where('coupon_status', 1)
+                     ->where('coupon_date_end', '>=', $today)
+                     ->first();
 
-        if ($coupon) {
-            $count_coupon = $coupon->count();
-            if ($count_coupon > 0) {
-                $coupon_session = Session::get('coupon');
-                if ($coupon_session == true) {
-                    $is_avaiable = 0;
-                    if ($is_avaiable == 0) {
-                        $cou[] = array(
-                            'coupon_code' => $coupon->coupon_code,
-                            'coupon_condition' => $coupon->coupon_condition,
-                            'coupon_number' => $coupon->coupon_number,
+    
+      if ($coupon) {
 
-                        );
-                        Session::put('coupon', $cou);
-                    }
-                } else {
-                    $cou[] = array(
-                        'coupon_code' => $coupon->coupon_code,
-                        'coupon_condition' => $coupon->coupon_condition,
-                        'coupon_number' => $coupon->coupon_number,
+        $user_id = auth()->user()->id; 
+        $used_coupons = Coupon::where('coupon_used', $user_id)
+                              ->where('coupon_code', $data['coupon'])
+                              ->exists();
+    
+        if ($coupon && !$used_coupons) {
+          $cou[] = array(
+            'coupon_code' => $coupon->coupon_code,
+            'coupon_condition' => $coupon->coupon_condition,
+            'coupon_number' => $coupon->coupon_number,
+          );
+    
+          Session::put('coupon', $cou);
+          Session::save();
+    
+          return redirect()->back()->with('message', 'Thêm mã giảm giá thành công');
 
-                    );
-                    Session::put('coupon', $cou);
-                }
-                Session::save();
-                return redirect()->back()->with('success', 'Khuyễn mại được thêm thành công!');
-            }
         } else {
-            return redirect()->back()->with('error', 'Mã giảm giá không chính xác hoặc đã hết hạn!');
+          return redirect()->back()->with('error', 'Mã giảm giá không đúng, đã hết hạn hoặc bạn đã sử dụng rồi');
         }
 
     }
+    
     public function index()
     {
         try {
@@ -85,7 +84,7 @@ class CartController extends Controller
             if ($cartItem) {
                 // Đã tồn tại thì tăng
                 $cartItem->quantity += $request->quantity;
-                $cartItem->total_price = $product->price_sale > 0 ? $cartItem->quantity * $product->price_sale : $cartItem->quantity * $product->price ;
+                $cartItem->total_price = $product->price_sale > 0 ? $cartItem->quantity * $product->price_sale : $cartItem->quantity * $product->price;
                 $cartItem->save();
 
                 return back()->with('success', 'Số lượng sản phẩm tăng thành công!');
@@ -118,6 +117,24 @@ class CartController extends Controller
         return $totalPrice;
     }
 
+    public function updateCart(Request $request)
+    {
+        $userId = Auth::id();
+        $cartItems = Cart::where('user_id', $userId)->get();
+    
+        foreach ($cartItems as $cartItem) {
+            $quantityFieldName = 'quantity_' . $cartItem->id;
+            $quantity = $request->input($quantityFieldName);
+    
+            if ($quantity > 0) {
+                $cartItem->quantity = $quantity;
+                $cartItem->total_price = $cartItem->product->price_sale > 0 ? $cartItem->product->price_sale * $quantity : $cartItem->product->price * $quantity;
+                $cartItem->save();
+            }
+        }
+    
+        return redirect()->route('cartPage')->with('success', 'Giỏ hàng đã được cập nhật');
+    }
     public function destroy(Cart $cart)
     {
         try {
@@ -129,8 +146,6 @@ class CartController extends Controller
 
 
             return back()->with('error', 'Sản phẩm giỏ hàng đã xóa thất bại!');
-
         }
     }
-    
 }

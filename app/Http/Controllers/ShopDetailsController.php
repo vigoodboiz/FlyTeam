@@ -65,6 +65,8 @@ class ShopDetailsController extends Controller
 
         return redirect()->back()->with('success', 'Bình luận đã được tạo thành công!');
     }
+
+
     public function delete($id){
         Comment::where('id',$id)->delete();
         return back();

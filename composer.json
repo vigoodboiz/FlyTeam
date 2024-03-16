@@ -18,12 +18,13 @@
         "laravel/ui": "^4.4",
         "livewire/livewire": "^3.0",
         "nesbot/carbon": "^2.72",
+        "paypal/rest-api-sdk-php": "^1.6",
         "pusher/pusher-php-server": "^7.2",
         "spatie/laravel-medialibrary": "^10.15",
         "spatie/laravel-permission": "^6.3",
         "srmklive/paypal": "~3.0",
         "usernotnull/tall-toasts": "^2.0",
-        "yoeunes/toastr": "^2.3"
+        "yoeunes/toastr": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

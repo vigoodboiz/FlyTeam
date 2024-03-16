@@ -39,10 +39,10 @@ class Products extends Model implements HasMedia
         return $this->hasMany(Comment::class);
     }
    
-    public function getFavoritedAttribute(){
-        $favorited = Favorite::where(['product_id' => $this->id, 'user_id' => Auth::user()->id])->first();
-        return $favorited ? true : false;
-    }
+    // public function getFavoritedAttribute(){
+    //     $favorited = Favorite::where(['product_id' => $this->id, 'user_id' => Auth::user()->id])->first();
+    //     return $favorited ? true : false;
+    // }
     public function orders()
     {
         return $this->hasMany(OrderProduct::class);

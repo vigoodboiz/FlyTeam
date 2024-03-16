@@ -4,7 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use Srmklive\PayPal\Services\PayPal as PayPalClient;
+use Illuminate\Support\Facades\Session; 
+// use Srmklive\PayPal\Services\PayPal as PayPalClient;
+// use PayPal\Api\Amount;
+// use PayPal\Api\Payer;
+// use PayPal\Api\Payment;
+// use PayPal\Api\RedirectUrls;
+// use PayPal\Api\Transaction;
+// use PayPal\Auth\OAuthTokenCredential;
+// use PayPal\Rest\ApiContext;
+
 use Vnpay;
 
 class PaymentController extends Controller
@@ -29,92 +38,75 @@ class PaymentController extends Controller
     }
 
 
-
-
     public function momo_payment(Request $request)
     {
-
-       //     momo test 
-        // OTP
-        // 0923441111
-        // 9704 0000 0000 0018
-        // 03/07
-        // NGUYEN VAN A
         $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
 
-        $data=$request->all();
+        $data = $request->all();
 
         $partnerCode = 'MOMOBKUN20180529';
         $accessKey = 'klm05TvNBzhg7h7j';
         $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
-        $orderInfo = "Thanh toán qua atm MoMo";
-        $amount =  intval($data['total_momo']);
+        $orderInfo = "Thanh toán qua ATM MoMo";
+        $amount = intval($data['total_momo']);
         $orderId = time() . "";
-        $redirectUrl = "http://127.0.0.1:8000/page/Checkout";
+        $redirectUrl = route('momoCheckout');
         $ipnUrl = "http://127.0.0.1:8000/page/Checkout";
         $extraData = "";
-        
-        
-       
-           
-        
-            $requestId = time() . "";
-            $requestType = "payWithATM";
-            // $extraData = ($_POST["extraData"] ? $_POST["extraData"] : "");
-            //before sign HMAC SHA256 signature
-            $rawHash = "accessKey=" . $accessKey . "&amount=" . $amount . "&extraData=" . $extraData . "&ipnUrl=" . $ipnUrl . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&partnerCode=" . $partnerCode . "&redirectUrl=" . $redirectUrl . "&requestId=" . $requestId . "&requestType=" . $requestType;
-            $signature = hash_hmac("sha256", $rawHash, $secretKey);
-            // dd($signature);
-            $data = array('partnerCode' => $partnerCode,
-                'partnerName' => "Test",
-                "storeId" => "MomoTestStore",
-                'requestId' => $requestId,
-                'amount' => $amount,
-                'orderId' => $orderId,
-                'orderInfo' => $orderInfo,
-                'redirectUrl' => $redirectUrl,
-                'ipnUrl' => $ipnUrl,
-                'lang' => 'vi',
-                'extraData' => $extraData,
-                'requestType' => $requestType,
-                'signature' => $signature);
 
-            $result = $this->execPostRequest($endpoint, json_encode($data));
-            // dd($result);
-            $jsonResult = json_decode($result, true);  // decode json
-        
-            //Just a example, please check more in there    
-        
-           return  redirect()->to($jsonResult['payUrl']);
-            // header('Location: ' . $jsonResult['payUrl']);
-        
+        $requestId = time() . "";
+        $requestType = "payWithATM";
+
+        // Before signing, create the HMAC SHA256 signature
+        $rawHash = "accessKey=" . $accessKey . "&amount=" . $amount .
+            "&extraData=" . $extraData . "&ipnUrl=" . $ipnUrl . "&orderId=" . $orderId .
+            "&orderInfo=" . $orderInfo . "&partnerCode=" . $partnerCode . "&redirectUrl=" . $redirectUrl .
+            "&requestId=" . $requestId . "&requestType=" . $requestType;
+        $signature = hash_hmac("sha256", $rawHash, $secretKey);
+
+        // Prepare the data for the POST request
+        $requestData = array(
+            'partnerCode' => $partnerCode,
+            'partnerName' => "Test",
+            "storeId" => "MomoTestStore",
+            'requestId' => $requestId,
+            'amount' => $amount,
+            'orderId' => $orderId,
+            'orderInfo' => $orderInfo,
+            'redirectUrl' => $redirectUrl,
+            'ipnUrl' => $ipnUrl,
+            'lang' => 'vi',
+            'extraData' => $extraData,
+            'requestType' => $requestType,
+            'signature' => $signature
+        );
+
+        // Send the POST request
+        $result = $this->execPostRequest($endpoint, json_encode($requestData));
+        $jsonResult = json_decode($result, true);
+
+        // Redirect the user to the MoMo payment page
+        return redirect()->to($jsonResult['payUrl']);
     }
-
-
 
     public function vnpay_payment(Request $request)
     {
-
-        // Ngân hàng: NCB
-        // Số thẻ: 9704198526191432198
-        // Tên chủ thẻ:NGUYEN VAN A
-        // Ngày phát hành:07/15
-        // Mật khẩu OTP:123456
-
-        $data=$request->all();
+        $data = $request->all();
+        
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Returnurl = "https://localhost/vnpay_php/vnpay_return.php";
-        $vnp_TmnCode = "0BY79GGQ"; // Mã website tại VNPAY
-        $vnp_HashSecret = "OOTJVSNCEKISGSHRIGKOKHJIOZVTEZAS"; // Chuỗi bí mật
-
-        $vnp_TxnRef = "100000"; // Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
-        $vnp_OrderInfo = "thanh toán";
-        $vnp_OrderType = "flyteam shop";
+        // $vnp_Returnurl = "http://127.0.0.1:8000/page/Checkout";
+        $vnp_Returnurl = route('vnpayCheckout');
+        $vnp_TmnCode = env('VNP_TMN_CODE'); // Mã trang web của bạn tại VNPAY
+        $vnp_HashSecret = env('VNP_HASH_SECRET'); // Khóa bí mật của bạn
+    
+        $vnp_TxnRef = uniqid(); // Mã đơn hàng. Trong thực tế, bạn nên thêm đơn hàng vào cơ sở dữ liệu và gửi ID này đến VNPAY
+        $vnp_OrderInfo = "Thanh toán";
+        $vnp_OrderType = "Cửa hàng Flyteam";
         $vnp_Amount = intval($data['total_vnpay']) * 100;
         $vnp_Locale = "VN";
         $vnp_BankCode = "NCB";
         $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
-
+    
         $inputData = array(
             "vnp_Version" => "2.1.0",
             "vnp_TmnCode" => $vnp_TmnCode,
@@ -128,12 +120,13 @@ class PaymentController extends Controller
             "vnp_OrderType" => $vnp_OrderType,
             "vnp_ReturnUrl" => $vnp_Returnurl,
             "vnp_TxnRef" => $vnp_TxnRef,
+            
         );
-
+    
         if (isset($vnp_BankCode) && $vnp_BankCode != "") {
             $inputData['vnp_BankCode'] = $vnp_BankCode;
         }
-
+    
         ksort($inputData);
         $query = "";
         $i = 0;
@@ -147,91 +140,81 @@ class PaymentController extends Controller
             }
             $query .= urlencode($key) . "=" . urlencode($value) . '&';
         }
-
+    
+        // Lưu mã đơn hàng vào session để sử dụng sau khi thanh toán thành công
+        Session::put('cart_id', $vnp_TxnRef);
+    
         $vnp_Url = $vnp_Url . "?" . $query;
         if (isset($vnp_HashSecret)) {
             $vnpSecureHash = hash_hmac('sha512', $hashdata, $vnp_HashSecret);
             $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
         }
-
-        $returnData = array(
-            'code' => '00',
-            'message' => 'success',
-            'data' => $vnp_Url
-        );
-
-        if (isset($_POST['redirect'])) {
-            return Redirect::away($vnp_Url);
-        } else {
-            return response()->json($returnData);
-        }
+        
+        return redirect()->away($vnp_Url);
     }
-    public function handlePayment(Request $request)
-    {
-        //test paypal
-//         Card number: 4032036131861211
+////////////////////////////////////////////////////////////////////////////////////////////
+    // public function handlePayment(Request $request)
+    // {
+    //     //test paypal         Card number: 4032036131861211
 
-// Expiry date: Any
-// CVC code: Any
-        $provider = new PayPalClient;
-        $provider->setApiCredentials(config('paypal'));
-        $paypalToken = $provider->getAccessToken();
-        $response = $provider->createOrder([
-            "intent" => "CAPTURE",
-            "application_context" => [
-                "return_url" => route('success.payment'),
-                "cancel_url" => route('cancel.payment'),
-            ],
-            "purchase_units" => [
-                0 => [
-                    "amount" => [
-                        "currency_code" => "USD",
-                        "value" => "100.00"
-                    ]
-                ]
-            ]
-        ]);
-        if (isset($response['id']) && $response['id'] != null) {
-            foreach ($response['links'] as $links) {
-                if ($links['rel'] == 'approve') {
-                    return redirect()->away($links['href']);
-                }
-            }
-            return redirect()
-                ->route('cancel.payment')
-                ->with('error', 'Có gì đó đã sai!');
-        } else {
-            return redirect()
-                ->route('create.payment')
-                ->with('error', $response['message'] ?? 'Có gì đó đã sai!');
-        }
-    }
+    //     // Expiry date: Any
+    //     // CVC code: Any
+    //     $provider = new PayPalClient;
+    //     $provider->setApiCredentials(config('paypal'));
+    //     $paypalToken = $provider->getAccessToken();
+    //     $response = $provider->createOrder([
+    //         "intent" => "CAPTURE",
+    //         "application_context" => [
+    //             "return_url" => route('success.payment'),
+    //             "cancel_url" => route('cancel.payment'),
+    //         ],
+    //         "purchase_units" => [
+    //             0 => [
+    //                 "amount" => [
+    //                     "currency_code" => "USD",
+    //                     "value" => "100.00"
+    //                 ]
+    //             ]
+    //         ]
+    //     ]);
+    //     if (isset($response['id']) && $response['id'] != null) {
+    //         foreach ($response['links'] as $links) {
+    //             if ($links['rel'] == 'approve') {
+    //                 return redirect()->away($links['href']);
+    //             }
+    //         }
+    //         return redirect()
+    //             ->route('cancel.payment')
+    //             ->with('error', 'Có gì đó đã sai!');
+    //     } else {
+    //         return redirect()
+    //             ->route('create.payment')
+    //             ->with('error', $response['message'] ?? 'Có gì đó đã sai!');
+    //     }
+    // }
 
-    public function paymentCancel()
-    {
-        return redirect()
-            ->route('create.payment')
-            ->with('error', $response['message'] ?? 'Bạn đã hủy giao dịch!');
-    }
+    // public function paymentCancel()
+    // {
+    //     return redirect()
+    //         ->route('create.payment')
+    //         ->with('error', $response['message'] ?? 'Bạn đã hủy giao dịch!');
+    // }
 
-    public function paymentSuccess(Request $request)
-    {
-        $provider = new PayPalClient;
-        $provider->setApiCredentials(config('paypal'));
-        $provider->getAccessToken();
-        $response = $provider->capturePaymentOrder($request['token']);
-        if (isset($response['status']) && $response['status'] == 'COMPLETED') {
-            return redirect()
-                ->route('create.payment')
-                ->with('success', 'Giao dịch hoàn thành!');
-        } else {
-            return redirect()
-                ->route('create.payment')
-                ->with('error', $response['message'] ?? 'Có gì đó đã sai!');
-        }
-    }
-
-
-
+    // public function paymentSuccess(Request $request)
+    // {
+    //     $provider = new PayPalClient;
+    //     $provider->setApiCredentials(config('paypal'));
+    //     $provider->getAccessToken();
+    //     $response = $provider->capturePaymentOrder($request['token']);
+    //     if (isset($response['status']) && $response['status'] == 'COMPLETED') {
+    //         return redirect()
+    //             ->route('create.payment')
+    //             ->with('success', 'Giao dịch hoàn thành!');
+    //     } else {
+    //         return redirect()
+    //             ->route('create.payment')
+    //             ->with('error', $response['message'] ?? 'Có gì đó đã sai!');
+    //     }
+    // }
 
 }

@@ -41,26 +41,33 @@
                                         </thead>
 
                                         <tbody class="cart__table--body">
-                                            @foreach ($cartItems as $cart)
-                                            <tr class="cart__table">
-                                                <th><img style="height: 80px" ; src="{{ asset('upload/public/images/' . $cart->product->image) }}">
-                                                </th>
-                                                <th>{{ $cart->product->name }}</th>
-                                                <th>{{ $cart->product->price }}đ</th>
-                                                <th>{{ $cart->product->price_sale }}đ</th>
-                                                <th>{{ $cart->quantity }}</th>
-                                                <th>{{ $cart->total_price }} đ</th>
-                                                <td class="product-close">
-
-                                                    <form id="delete-form" action="{{ route('cart.delete', $cart->id) }}">
-                                                        @csrf
-                                                        <button id="delete-button" type="submit" class="btn product-remove" title="Remove this product">
-                                                            <i class="bi bi-x-circle-fill display-3 text-danger"></i>
-                                                        </button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                            @endforeach
+                                            <form action="{{ route('cart.update') }}">
+                                                @csrf
+                                                @foreach ($cartItems as $cart)
+                                                @method('PUT')
+                                                <tr class="cart__table">
+                                                    <th><img style="height: 80px" ; src="{{ asset('upload/public/images/' . $cart->product->image) }}">
+                                                    </th>
+                                                    <th class="text-truncate">{{ $cart->product->name }}</th>
+                                                    <th>{{ $cart->product->price }}đ</th>
+                                                    <th>{{ $cart->product->price_sale }}đ</th>
+                                                    <th>
+                                                        <div class="quantity__box">
+                                                            <button type="button" class="quantity__value quickview__value--quantity decrease" aria-label="quantity value" value="Decrease Value">-</button>
+                                                            <label>
+                                                                <input name="quantity_{{ $cart->id }}" type="number" class="quantity__number quickview__value--number" value="{{ $cart->quantity }}" data-counter />
+                                                            </label>
+                                                            <button type="button" class="quantity__value quickview__value--quantity increase" aria-label="quantity value" value="Increase Value">+</button>
+                                                        </div>
+                                                    </th>
+                                                    <th>{{ $cart->total_price }} đ</th>
+                                                    <td class="product-close">
+                                                    <a href="{{ route('cart.delete', ['cart' => $cart->id]) }}" class="btn product-remove" title="Remove this product" >
+                                                        <i class="bi bi-x-circle-fill text-danger display-5"></i>
+                                                    </a>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
 
                                         </tbody>
 
@@ -68,10 +75,10 @@
                                     </table>
                                     <div class="continue__shopping d-flex justify-content-between">
                                         <a class="continue__shopping--link" href="{{ route('shopGrid') }}">Tiếp tục mua sắm</a>
-
-
                                         <button type="submit" class="coupon__code--field__btn primary__btn">Xóa giỏ
                                             hàng</button>
+                                        <button class="cart__summary--footer__btn primary__btn cart" type="submit">Cập nhật giỏ hàng</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -151,15 +158,98 @@
                                 <div class="cart__summary--footer">
                                     <p class="cart__summary--footer__desc">Vận chuyển & thuế được tính toán khi thanh toán</p>
                                     <ul class="d-flex justify-content-between">
-                                        <li><button class="cart__summary--footer__btn primary__btn cart" type="submit">Cập nhật
-                                                giỏ hàng</button></li>
-
                                         <li><a class="cart__summary--footer__btn primary__btn checkout" href="{{ route('checkoutPage') }}">Thanh toán</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
 
+                        <div class="col-lg-4">
+                            <div class="cart__summary border-radius-10">
+                                <!-- <form action="{{ route('check_coupon') }}" method="POST">
+                                    @csrf()
+                                    <div class="coupon__code mb-30">
+                                        <h3 class="coupon__code--title">Coupon</h3>
+                                        <p class="coupon__code--desc">Enter your coupon code if you have one.</p>
+                                        <div class="coupon__code--field d-flex">
+                                            <label>
+                                                <input type="text" class="coupon__code--field__input border-radius-5"
+                                                    name="coupon" placeholder="Nhập mã giảm giá"><br>
+                                            </label>
+                                            <input name="check_coupon" class="coupon__code--field__btn primary__btn"
+                                                type="submit" value="Aply Coupon">
+
+                                        </div>
+                                    </div>
+                                </form> -->
+                                <!-- <td>
+                                    @if (Session::get('coupon'))
+                                        <a class="coupon__code--field__btn primary__btn"
+                                            href="{{ route('unset_coupon') }}">Unset Coupon</a>
+                                    @endif
+                                </td> -->
+
+
+                                <!-- <div class="cart__note mb-20">
+                                                                                    <h3 class="cart__note--title">Note</h3>
+                                                                                    <p class="cart__note--desc">Add special instructions for your seller...</p>
+                                                                                    <textarea class="cart__note--textarea border-radius-5"></textarea>
+                                                                                </div> -->
+                            </div>
+
+                            <div class="cart__summary--total mb-20">
+                                <table class="cart__summary--total__table">
+                                    <tbody>
+                                        <tr class="cart__summary--total__list">
+                                        </tr>
+                                        <tr class="cart__summary--total__list">     
+                                            <td class="cart__summary--total__title text-left">GRAND TOTAL</td>
+                                            <td class="cart__summary--amount text-right">{{ $totalPrice }} VNĐ</td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- @if (Session::get('coupon'))
+                                @foreach (Session::get('coupon') as $key => $cou)
+                                    @if ($cou['coupon_condition'] == 1)
+                                        Reduce : {{ $cou['coupon_number'] }} %
+                                        <p>
+                                            <?php
+                                            $total_coupon = ($totalPrice * $cou['coupon_number']) / 100;
+                                            echo '<p><li >Reduce :' . number_format($total_coupon, 0, ',', '.') . '</li></p>';
+                                            ?>
+                                        </p>
+                                        <p>
+                                            <li>Must pay : {{ number_format($totalPrice - $total_coupon, 0, ',', '.') }}
+                                            </li>
+                                        </p>
+                                    @elseif($cou['coupon_condition'] == 2)
+                                        Reduce : {{ number_format($cou['coupon_number'], 0, ',', '.') }}
+                                        <p>
+                                            <?php
+                                            $total_coupon = $totalPrice - $cou['coupon_number'];
+                                            
+                                            ?>
+                                        </p>
+                                        <p>
+                                            <li>Must pay : {{ number_format($total_coupon, 0, ',', '.') }}</li>
+                                        </p>
+                                    @endif
+                                @endforeach
+                            @endif -->
+
+                            <div class="cart__summary--footer">
+                                <p class="cart__summary--footer__desc">Shipping & taxes calculated at checkout</p>
+                                <ul class="d-flex justify-content-between">
+                                    <li><button class="cart__summary--footer__btn primary__btn cart" type="submit">Update
+                                            Cart</button></li>
+
+                                    <li><a class="cart__summary--footer__btn primary__btn checkout"
+                                            href="{{route('checkoutPage')}}">Check Out</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
