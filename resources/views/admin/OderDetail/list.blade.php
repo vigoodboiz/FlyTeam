@@ -7,13 +7,13 @@
     <thead>
         <tr>
             <th scope="col">STT</th>
-            <th scope="col">USER</th>
+            <th scope="col">TÊN</th>
             <th scope="col">EMAIL</th>
-            <th scope="col">ADDRESS</th>
-            <th scope="col">PRODUCT NAME</th>
-            <th scope="col">PRODUCT IMAGE</th>
-            <th scope="col">QUANTITY</th>
-            <th scope="col">TOTAL</th>
+            <th scope="col">ĐỊA CHỈ</th>
+            <th scope="col">TÊN SẢN PHẨM</th>
+            <th scope="col">ẢNH SẢN PHẨM</th>
+            <th scope="col">SỐ LƯỢNG</th>
+            <th scope="col">TỔNG TIỀN</th>
 
         </tr>
     </thead>

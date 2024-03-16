@@ -10,8 +10,9 @@
                     <div class="col">
                         <div class="breadcrumb__content text-center">
                             <ul class="breadcrumb__content--menu d-flex justify-content-center">
-                                <li class="breadcrumb__content--menu__items"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb__content--menu__items"><span>Contact Us</span></li>
+                                <li class="breadcrumb__content--menu__items"><a href="index.html">Trang chủ</a></li>
+                                <li class="breadcrumb__content--menu__items"><span>Liên hệ với chúng tôi</span></li>
+
                             </ul>
                         </div>
                     </div>
@@ -24,37 +25,40 @@
         <section class="contact__section section--padding">
             <div class="container">
                 <div class="contact__section--heading text-center mb-40">
-                    <h2 class="contact__section--heading__maintitle">Get In Touch</h2>
-                    <p class="contact__section--heading__desc">Beyond more stoic this along goodness this sed wow manatee
-                        mongos flusterd impressive man farcrud opened.</p>
+                    <h2 class="contact__section--heading__maintitle">Liên hệ với chúng tôi</h2>
+                    
                 </div>
                 <div class="main__contact--area position__relative">
                     <div class="contact__form">
-                        <h3 class="contact__form--title mb-30">Contact Me</h3>
+                        <h3 class="contact__form--title mb-30">Hãy điền form dưới đây và chúng tôi chủ động liên lạc với bạn</h3>
+
                         <form class="contact__form--inner" action="#">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
                                     <div class="contact__form--list mb-20">
-                                        <label class="contact__form--label" for="input1">First Name <span
+                                        <label class="contact__form--label" for="input1">Họ <span
                                                 class="contact__form--label__star">*</span></label>
                                         <input class="contact__form--input" name="firstname" id="input1"
-                                            placeholder="Your First Name" type="text">
+                                            placeholder="Họ của bạn" type="text">
+
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="contact__form--list mb-20">
-                                        <label class="contact__form--label" for="input2">Last Name <span
+                                        <label class="contact__form--label" for="input2">Tên <span
                                                 class="contact__form--label__star">*</span></label>
                                         <input class="contact__form--input" name="lastname" id="input2"
-                                            placeholder="Your Last Name" type="text">
+                                            placeholder="Tên của bạn" type="text">
+
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="contact__form--list mb-20">
-                                        <label class="contact__form--label" for="input3">Phone Number <span
+                                        <label class="contact__form--label" for="input3">Số điện thoại <span
                                                 class="contact__form--label__star">*</span></label>
                                         <input class="contact__form--input" name="number" id="input3"
-                                            placeholder="Phone number" type="text">
+                                            placeholder="Số điện thoại" type="text">
+
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
@@ -62,23 +66,26 @@
                                         <label class="contact__form--label" for="input4">Email <span
                                                 class="contact__form--label__star">*</span></label>
                                         <input class="contact__form--input" name="email" id="input4"
-                                            placeholder="Email" type="text">
+                                            placeholder="Địa chỉ email" type="text">
+
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="contact__form--list mb-15">
-                                        <label class="contact__form--label" for="input5">Write Your Message <span
+                                        <label class="contact__form--label" for="input5">Tin nhắn <span
                                                 class="contact__form--label__star">*</span></label>
-                                        <textarea class="contact__form--textarea" name="message" id="input5" placeholder="Write Your Message"></textarea>
+                                        <textarea class="contact__form--textarea" name="message" id="input5" placeholder="Để lại tin nhắn của bạn"></textarea>
                                     </div>
                                 </div>
                             </div>
-                            <button class="contact__form--btn primary__btn" type="submit"> <span>Submit Now</span></button>
+                            <button class="contact__form--btn primary__btn" type="submit"> <span>Gửi</span></button>
+
                         </form>
                     </div>
                     <div class="contact__info border-radius-5">
                         <div class="contact__info--items">
-                            <h3 class="contact__info--content__title text-white mb-15">Contact Us</h3>
+                            <h3 class="contact__info--content__title text-white mb-15">Liên hệ với chúng tôi</h3>
+
                             <div class="contact__info--items__inner d-flex">
                                 <div class="contact__info--icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="31.568" height="31.128"
@@ -89,7 +96,8 @@
                                     </svg>
                                 </div>
                                 <div class="contact__info--content">
-                                    <p class="contact__info--content__desc text-white">Change the design through a range
+                                    <p class="contact__info--content__desc text-white">Thay Đổi Thiết Kế Theo Một Loạt Lựa Chọn
+
                                         <br> <a href="tel:+01234-567890">0345166934</a> <a
                                             href="tel:++01234-5688765">0987267886</a>
                                     </p>
@@ -97,7 +105,8 @@
                             </div>
                         </div>
                         <div class="contact__info--items">
-                            <h3 class="contact__info--content__title text-white mb-15">Email Address</h3>
+                            <h3 class="contact__info--content__title text-white mb-15">Địa chỉ email</h3>
+
                             <div class="contact__info--items__inner d-flex">
                                 <div class="contact__info--icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="31.57" height="31.13"
@@ -109,13 +118,15 @@
                                 </div>
                                 <div class="contact__info--content">
                                     <p class="contact__info--content__desc text-white"> <a
-                                            href="mailto:info@example.com">nguyenngocvi37@gmail.com</a> <br> <a
-                                            href="mailto:info@example.com">info@example.com</a></p>
+                                            href="mailto:nguyenngocvi37@gmail.com">nguyenngocvi37@gmail.com</a> <br> <a
+                                            href="mailto:info@example.com">coicosmetics@gmail.com</a></p>
+
                                 </div>
                             </div>
                         </div>
                         <div class="contact__info--items">
-                            <h3 class="contact__info--content__title text-white mb-15">Office Location</h3>
+                            <h3 class="contact__info--content__title text-white mb-15">Địa chỉ văn phòng</h3>
+
                             <div class="contact__info--items__inner d-flex">
                                 <div class="contact__info--icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="31.57" height="31.13"
@@ -133,7 +144,8 @@
                             </div>
                         </div>
                         <div class="contact__info--items">
-                            <h3 class="contact__info--content__title text-white mb-15">Follow Us</h3>
+                            <h3 class="contact__info--content__title text-white mb-15">Theo dõi chúng tôi</h3>
+
                             <ul class="contact__info--social d-flex">
                                 <li class="contact__info--social__list">
                                     <a class="contact__info--social__icon" target="_blank"
@@ -272,39 +284,46 @@
                 <div class="feature__inner d-flex justify-content-between">
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
-                            <img src="{{ asset('becute/assets/img/other/feature1.webp') }}" alt="img">
+
+                            <img src="{{asset('becute/assets/img/other/feature1.webp')}}" alt="img">
                         </div>
                         <div class="feature__content">
-                            <h2 class="feature__content--title h3">Free Shipping</h2>
-                            <p class="feature__content--desc">Free shipping over $100</p>
+                            <h2 class="feature__content--title h3">Miễn phí vận chuyển</h2>
+                            <p class="feature__content--desc">Miễn phí vận chuyển cho đơn hàng trên 2.000.000đ</p>
+
                         </div>
                     </div>
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon ">
-                            <img src="{{ asset('becute/assets/img/other/feature2.webp') }}" alt="img">
+
+                            <img src="{{asset('becute/assets/img/other/feature2.webp')}}" alt="img">
                         </div>
                         <div class="feature__content">
-                            <h2 class="feature__content--title h3">Support 24/7</h2>
-                            <p class="feature__content--desc">Contact us 24 hours a day</p>
+                            <h2 class="feature__content--title h3">Hỗ trợ 24/7</h2>
+                            <p class="feature__content--desc">Liên hệ với chúng tôi 24 tiếng</p>
+
                         </div>
                     </div>
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
-                            <img src="{{ asset('becute/assets/img/other/feature3.webp') }}" alt="img">
+
+                            <img src="{{asset('becute/assets/img/other/feature3.webp')}}" alt="img">
                         </div>
                         <div class="feature__content">
-                            <h2 class="feature__content--title h3">100% Money Back</h2>
-                            <p class="feature__content--desc">You have 30 days to Return</p>
+                            <h2 class="feature__content--title h3">100% hoàn tiền</h2>
+                            <p class="feature__content--desc">Bạn có 30 ngày để trả hàng</p>
                         </div>
                     </div>
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
-                            <img src="{{ asset('becute/assets/img/other/feature4.webp') }}" alt="img">
+
+                            <img src="{{asset('becute/assets/img/other/feature4.webp')}}" alt="img">
                         </div>
                         <div class="feature__content">
-                            <h2 class="feature__content--title h3">Payment Secure</h2>
-                            <p class="feature__content--desc">We ensure secure payment</p>
+                            <h2 class="feature__content--title h3">Thanh toán an toàn</h2>
+                            <p class="feature__content--desc">Chúng tôi đảm bảo thanh toán an toàn</p>
                         </div>
+
                     </div>
                 </div>
             </div>

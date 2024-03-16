@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -11,14 +12,14 @@ use Illuminate\Support\Carbon;
 
 class CouponController extends Controller
 {
-   
-        public function unset_coupon(){
-            $coupon = Session::get('coupon');
-            if($coupon==true){
+
+    public function unset_coupon()
+    {
+        $coupon = Session::get('coupon');
+        if ($coupon == true) {
             Session::forget('coupon');
 
             return redirect()->back()->with('success', 'Khuyến mại được xóa thành công!');;
-
         }
     }
 
@@ -32,13 +33,12 @@ class CouponController extends Controller
         $coupon->delete();
 
         return Redirect::to('admin/list-coupon')->with('success', 'Khuyến mại được xóa thành công!');;
-
     }
     public function list_coupon()
     {
         $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y/m/d');
         $coupon = Coupon::all();
-        return view('admin.coupon.list_coupon')->with(compact('coupon','today'));
+        return view('admin.coupon.list_coupon')->with(compact('coupon', 'today'));
     }
     public function insert_coupon_code(Request $request)
     {
@@ -55,6 +55,5 @@ class CouponController extends Controller
         $coupon->save();
 
         return Redirect::to('admin/list-coupon')->with('success', 'Khuyến mại được cập nhật thành công!');
-
     }
 }

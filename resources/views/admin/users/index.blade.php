@@ -32,15 +32,13 @@
                                         <label for="selectAll" class="mb-0"></label>
                                     </div>
                                 </th>
-                                <th>STT</th>
-                                <th>Mã người dùng</th>
-                                <th>Tên người dùng</th>
-                                <th>Email người dùng</th>
-                                <th>Ảnh người dùng</th>
-                                <th>Giới tính</th>
-                                <th>Số điện thoại</th>
+                                <th>Mã số</th>
+                                <th>Tên</th>
+                                <th>Email</th>
+                                <th>Ảnh</th>
+                                <th>Điện thoại</th>
                                 <th>Địa chỉ</th>
-                                <th>Quyền người dùng</th>
+                                <th>Quyền</th>
                                 <th>Hành động</th>
                             </tr>
                         </thead>
@@ -54,20 +52,17 @@
                                             <label for="ids" class="mb-0"></label>
                                         </div>
                                     </td>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <th scope="row">#1234{{ $item->user_code }}</th>
+                                    <th scope="row">#1234{{ $loop->iteration }}</th>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
                                     @if (!empty($item->profile_picture))
-                                        <td><img src="{{ asset('storage/' . $item->profile_picture) }}"
-                                                class="rounded-circle" alt="Profile Picture"></td>
+                                        <td><img src="{{ asset('storage/' . $item->profile_picture) }}" class="rounded-circle" alt="Profile Picture"></td>
                                     @else{
                                         <td>
                                             <p>No images!</p>
                                         </td>
                                         }
                                     @endif
-                                    <td>{{ $item->gender }}</td>
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $item->address }}</td>
                                     <td>

@@ -15,59 +15,7 @@
                  <span data-text-preloader="A" class="letters-loading">
                      A
                  </span>
-                 <!-- Header Section Begin -->
-                 <!-- <header class="header">
-                     <div class="header__top">
-                         <div class="container">
-                             <div class="row">
-                                 <div class="col-lg-6">
-                                     <div class="header__top__left">
-                                         <ul>
-                                             <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                                             <li>Free Shipping for all Order of $99</li>
-                                         </ul>
-                                     </div>
-                                 </div>
-                                 <div class="col-lg-6">
-                                     <div class="header__top__right">
-                                         <div class="header__top__right__social">
-                                             <a href="#"><i class="fa fa-facebook"></i></a>
-                                             <a href="#"><i class="fa fa-twitter"></i></a>
-                                             <a href="#"><i class="fa fa-linkedin"></i></a>
-                                             <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                                         </div>
-                                         <div class="header__top__right__language">
-                                             <img src="img/language.png" alt="">
-                                             <div>
-                                                 @if (Auth::check())
-<a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                     <div>Xin chào, {{ Auth::user()->name }}</div>
-                                                 </a>
-@else
-<a href="{{ route('login') }}"><i class="fa fa-user"></i> Login</a>
-@endif
-                                             </div>
-                                             <span class="arrow_carrot-down"></span>
-                                             <ul>
-                                                 <li><a class="nav-link" href="{{ route('profile.show') }}"><i class="fa fa- user"></i>My
-                                                         Profile</a></li>
-                                                 <li><a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit(); return view('auth.login');"><i class="fa fa-power -off"></i>Logout</a>
-                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                         @csrf
-                                                     </form>
-                                                 </li>
-                                             </ul>
-                                         </div>
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                 </header> -->
-                 <!-- Header Section End -->
 
-                 <!-- Hero Section Begin -->
                  <span data-text-preloader="D" class="letters-loading">
                      D
                  </span>
@@ -98,10 +46,10 @@
              <div class="header__topbar--inner style6 d-flex align-items-center justify-content-between">
                  <ul class="header__topbar--info d-none d-lg-flex">
                      <li class="header__info--text text-white">
-                         Good luck with shopping
+                         Chúc bạn tìm được sản phẩm phù hợp
                      </li>
                      <li class="header__info--text text-white">
-                         <span class="text__secondary">Call us</span>
+                         <span class="text__secondary">Liên hệ với chúng tôi</span>
                          <a href="tel:+1234567898">: (+123) 456-7898</a>
                      </li>
                  </ul>
@@ -109,47 +57,20 @@
                      <ul class="language__currency d-flex align-items-center">
                          <li class="language__currency--list">
                              <a class="language__currency--link currency__link" href="javascript:void(0)">
-                                 <img class="currency__link--icon"
+
+                                 <img class="currency__link--icon" style="width: 30px"
                                      src="{{ asset('becute/assets/img/icon/language-icon.webp') }}" alt="currency">
-                                 <span>USD</span>
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="9.797" height="6.05"
-                                     viewBox="0 0 9.797 6.05">
-                                     <path d="M14.646,8.59,10.9,12.329,7.151,8.59,6,9.741l4.9,4.9,4.9-4.9Z"
-                                         transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7" />
-                                 </svg>
+                                 <span>VND</span>
+
                              </a>
-                             <div class="dropdown__switcher dropdown__currency">
-                                 <ul>
-                                     <li class="dropdown__switcher--items"><a class="dropdown__switcher--text"
-                                             href="#">CAD</a></li>
-                                     <li class="dropdown__switcher--items"><a class="dropdown__switcher--text"
-                                             href="#">CNY</a></li>
-                                     <li class="dropdown__switcher--items"><a class="dropdown__switcher--text"
-                                             href="#">EUR</a></li>
-                                     <li class="dropdown__switcher--items"><a class="dropdown__switcher--text"
-                                             href="#">GBP</a></li>
-                                 </ul>
-                             </div>
+
                          </li>
                          <li class="language__currency--list">
                              <a class="language__currency--link language__switcher" href="javascript:void(0)">
-                                 <span>English</span>
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="9.797" height="6.05"
-                                     viewBox="0 0 9.797 6.05">
-                                     <path d="M14.646,8.59,10.9,12.329,7.151,8.59,6,9.741l4.9,4.9,4.9-4.9Z"
-                                         transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7" />
-                                 </svg>
+                                 <span>Tiếng việt</span>
+
                              </a>
-                             <div class="dropdown__switcher dropdown__language">
-                                 <ul>
-                                     <li class="dropdown__switcher--items"><a class="dropdown__switcher--text"
-                                             href="#">France</a></li>
-                                     <li class="dropdown__switcher--items"><a class="dropdown__switcher--text"
-                                             href="#">Russia</a></li>
-                                     <li class="dropdown__switcher--items"><a class="dropdown__switcher--text"
-                                             href="#">Spanish</a></li>
-                                 </ul>
-                             </div>
+
                          </li>
                      </ul>
                      <ul class="header__top--link d-flex align-items-center">
@@ -161,20 +82,10 @@
                                      <path
                                          d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
                                      </path>
-                                 </svg> Wishlist</a>
+
+                                 </svg> Danh sách ưa thích</a>
                          </li>
-                         <li class="header__link--menu"><a class="header__link--menu__text" href="compare.html">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
-                                     viewBox="0 0 512 512">
-                                     <path fill="none" stroke="currentColor" stroke-linecap="round"
-                                         stroke-linejoin="round" stroke-width="32"
-                                         d="M400 304l48 48-48 48M400 112l48 48-48 48M64 352h85.19a80 80 0 0066.56-35.62L256 256" />
-                                     <path
-                                         d="M64 160h85.19a80 80 0 0166.56 35.62l80.5 120.76A80 80 0 00362.81 352H416M416 160h-53.19a80 80 0 00-66.56 35.62L288 208"
-                                         fill="none" stroke="currentColor" stroke-linecap="round"
-                                         stroke-linejoin="round" stroke-width="32" />
-                                 </svg>Compare</a>
-                         </li>
+
                      </ul>
                  </div>
              </div>
@@ -203,17 +114,18 @@
                      <nav class="header__menu--navigation">
                          <ul class="header__menu--wrapper d-flex">
                              <li class="header__menu--items">
-                                 <a class="header__menu--link" href="{{ route('home') }}">Home</a>
+
+                                 <a class="header__menu--link" href="{{ route('home') }}">Trang chủ</a>
                              </li>
                              <li class="header__menu--items mega__menu--items">
-                                 <a class="header__menu--link" href="{{ route('shopGrid') }}">Shop</a>
+                                 <a class="header__menu--link" href="{{ route('shopGrid') }}">Cửa hàng</a>
                              </li>
                              <li class="header__menu--items">
-                                 <a class="header__menu--link" href="{{ route('blogPage') }}">Blog
+                                 <a class="header__menu--link" href="{{ route('blogPage') }}">Bài viết
                                  </a>
                              </li>
                              <li class="header__menu--items">
-                                 <a class="header__menu--link active" href="#">Pages
+                                 <a class="header__menu--link active" href="#">Chúng tôi
                                      <svg class="menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg"
                                          width="12" height="7.41" viewBox="0 0 12 7.41">
                                          <path d="M16.59,8.59,12,13.17,7.41,8.59,6,10l6,6,6-6Z"
@@ -222,13 +134,14 @@
                                  </a>
                                  <ul class="header__sub--menu">
                                      <li class="header__sub--menu__items"><a href="{{ route('aboutPage') }}"
-                                             class="header__sub--menu__link">About Us</a></li>
+
+                                             class="header__sub--menu__link">Về chúng tôi</a></li>
                                      <li class="header__sub--menu__items"><a href="{{ route('privacyPage') }}"
-                                             class="header__sub--menu__link">Privacy Policy</a></li>
+                                             class="header__sub--menu__link">Chính sách bảo mật</a></li>
                                  </ul>
                              </li>
                              <li class="header__menu--items">
-                                 <a class="header__menu--link" href="{{ route('contactPage') }}">Contact </a>
+                                 <a class="header__menu--link" href="{{ route('contactPage') }}">Liên hệ </a>
                              </li>
                          </ul>
                      </nav>
@@ -246,7 +159,7 @@
                                              stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
                                      </svg>
                                  </span>
-                                 <span class="visually-hidden">Search</span>
+                                 <span class="visually-hidden">Tìm kiếm</span>
                              </a>
                          </li>
                          <li class="header__account--items">
@@ -259,7 +172,7 @@
                                              stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
                                      </svg>
                                  </span>
-                                 <span class="visually-hidden">Wishlist</span>
+                                 <span class="visually-hidden">Danh sách yêu thích</span>
                              </a>
                          </li>
                          <li class="header__account--items">
@@ -275,7 +188,7 @@
                                              stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
                                      </svg>
                                  </span>
-                                 <span class="visually-hidden">My Account</span>
+                                 <span class="visually-hidden">Tài khoản của tôi</span>
                              </a>
                          </li>
                          <li class="header__account--items header__minicart--items">
@@ -290,7 +203,6 @@
                                              stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
                                      </svg>
                                  </span>
-
                              </a>
                          </li>
                      </ul>

@@ -41,15 +41,18 @@
                     </a>
                 </div>
                 <div class="login-form">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <!-- User code -->
-                        <div>
-                            <x-input-label for="user_code" :value="__('Mã khách hàng')" />
-                            <x-text-input id="user_code" class="form-control" type="text" name="user_code"
-                                :value="old('user_code')" required autofocus autocomplete="user_code" />
-                            <x-input-error :messages="$errors->get('user_code')" class="mt-2" />
-                        </div>
 
                         <!-- Name -->
                         <div class="mt-4">
@@ -88,16 +91,6 @@
                         </div>
 
                         <!-- Gender -->
-                        <div class="mt-4">
-                            <x-input-label for="gender" :value="__('Giới tính')" />
-                            <select class="form-control" name="gender" id="">
-                                <option value="">Chọn một:</option>
-                                <option value="Nam">Nam</option>
-                                <option value="Nữ">Nữ</option>
-                                <option value="Khác">Khác</option>
-                            </select>
-                            <x-input-error :messages="$errors->get('gender')" class="mt-2" />
-                        </div>
 
                         <!-- Phone -->
                         <div class="mt-4">
@@ -119,17 +112,13 @@
                             <x-input-error :messages="$errors->get('address')" class="mt-2" />
                         </div>
                         <br>
-                        <x-primary-button class="btn btn-primary btn-flat m-b-30 m-t-30">
+                        {{-- <x-primary-button class="btn btn-primary btn-flat m-b-30 m-t-30">
                             {{ __('Đăng ký') }}
-                        </x-primary-button>
+                        </x-primary-button> --}}
                         <div class="social-login-content">
                             <div class="social-button">
-                                <a href="{{ route('auth.facebook') }}"> <button type="button"
-                                        class="btn social facebook btn-flat btn-addon mb-3"><i
-                                            class="ti-facebook"></i>Đăng ký với facebook</button></a>
-                                <a href="{{ route('auth.google') }}"><button type="button"
-                                        class="btn social twitter btn-flat btn-addon mt-2"><i
-                                            class="ti-google"></i>Đăng ký với google</button></a>
+                                <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">
+                                    Đăng ký</button>
                             </div>
                         </div>
                         <div class="register-link m-t-15 text-center">

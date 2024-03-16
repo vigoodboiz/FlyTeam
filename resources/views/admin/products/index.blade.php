@@ -35,10 +35,12 @@
                                 <th>Thương hiệu</th>
                                 <th>Mô tả sản phẩm</th>
                                 <th>Giá sản phẩm</th>
+                                <th>Số lượng</th>
                                 <th>Giá sale</th>
                                 <th>Ảnh sản phẩm</th>
                                 <th>Lượt xem</th>
                                 <th>Trưng bày</th>
+                                <th>Thuộc tính</th>
                                 <th>Sửa</th>
                                 <th>Xóa</th>
                             </tr>
@@ -48,19 +50,24 @@
                                 <tr>
                                     <th scope="row">#1234{{ $product->id }}</th>
                                     <td>{{ $product->category->name }}</td>
-                                    <td>{{ $product->name }}</td>
+                                    <td>{{ Illuminate\Support\Str::limit($product->name, 10) }}</td>
                                     <td>{{ $product->brand }}</td>
-                                    <td>{{ $product->describe }}</td>
+                                    <td>{{ Illuminate\Support\Str::limit($product->describe, 50) }}</td>
                                     <td>{{ $product->price }}</td>
+                                    <td>{{ $product->quantity_product }}</td>
                                     <td>{{ $product->price_sale }}</td>
                                     <td><img src="{{ asset('upload/public/images/' . $product->image) }}"
                                             alt="{{ $product->name }}" width="500px">
                                     <td>{{ $product->view_count }}</td>
-                                    <td> <a href="{{ route('index', $product->id) }}" class="btn btn-success"> image</a>
+                                    <td> <a href="{{ route('index', $product->id) }}" class="btn btn-success">Ảnh
+                                        </a>
+                                    </td>
+                                    <td> <a href="{{ route('variants.index', $product->id) }}"
+                                            class="btn btn-success">Thuộc tính
+                                        </a>
                                     </td>
                                     </td>
                                     <td>
-
 
                                         @can('product_edit')
                                             <a href="{{ route('products.edit', $product->id) }}" class="btn btn-danger"><i
@@ -89,5 +96,4 @@
         </div>
     @endsection
 
-@endsection
 

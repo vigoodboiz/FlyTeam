@@ -1,24 +1,26 @@
 @extends('layouts.app')
 @section('content')
-<form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data">
 
-    <a class="btn btn-success" href="{{ route('categories.index') }}">List Cate</a>
-
-    <div class="mb-3">
-        @csrf
-        <div class="mb-3">
-            <label for="name" class="form-label">Category Name:</label>
-            <input type="text" name="name" id="name" class="form-control">
-        </div>
+        <a class="btn btn-success" href="{{ route('categories.index') }}">Danh sách danh mục</a>
 
         <div class="mb-3">
-            <label for="image">Ảnh:</label>
-            <img id="anh_the_preview" src="https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg" alt="your image" style="max-width: 200px; height:100px; margin-bottom: 10px;" class="img-fluid" />
+            @csrf
+            <div class="mb-3">
+                <label for="name" class="form-label">Tên danh mục:</label>
+                <input type="text" name="name" id="name" class="form-control">
+            </div>
 
-            <input type="file" name="image" id="image" class="form-control-file">
-        </div>
+            <div class="mb-3">
+                <label for="image">Ảnh:</label>
+                <img id="anh_the_preview"
+                    src="https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg" alt="your image"
+                    style="max-width: 200px; height:100px; margin-bottom: 10px;" class="img-fluid" />
 
-        <button type="submit" class="btn btn-primary">Thêm</button>
+                <input type="file" name="image" id="image" class="form-control-file">
+            </div>
 
-</form>
+            <button type="submit" class="btn btn-primary">Thêm mới danh mục</button>
+
+    </form>
 @endsection

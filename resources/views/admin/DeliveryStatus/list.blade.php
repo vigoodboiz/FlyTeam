@@ -3,10 +3,6 @@
 @section('content')
     <h1>{{ $title }}</h1><br>
     <table class="table">
-<<<<<<< HEAD
-
-=======
->>>>>>> 7f4b2cb8dffac4783173be1a8795b9a6a3c82cd8
         <thead>
             <tr>
                 <th scope="col">Mã đơn hàng</th>
@@ -22,11 +18,7 @@
         <tbody>
             @foreach ($listDelivery_status as $oder)
                 <tr>
-<<<<<<< HEAD
                     <th scope="row">#1234{{ $oder->id }}</th>
-=======
-                    <th scope="row">#123{{ $oder->id }}</th>
->>>>>>> 7f4b2cb8dffac4783173be1a8795b9a6a3c82cd8
                     <td>{{ $oder->user->name }}</td>
                     <td>{{ $oder->product->name }}</td>
                     <td>{{ $oder->product->price }}</td>
