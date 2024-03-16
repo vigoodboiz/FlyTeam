@@ -249,6 +249,7 @@ Route::get('page/wishlist', [WishlishController::class, 'index'])->name('wishlis
 // cartf
 Route::get('page/cart', [CartController::class, 'index'])->name('cartPage');
 Route::post('add_to_cart/{product}', [CartController::class, 'store'])->name('addCart');
+Route::match(['GET', 'POST'],'/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
 Route::delete('/cart/products/{productId}', [CartController::class, 'removeProductFromCart'])->name('cart.removeProduct');
 Route::get('cart/delete/{cart}', [CartController::class, 'destroy'])->name('cart.delete');
 

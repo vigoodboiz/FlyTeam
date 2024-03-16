@@ -110,7 +110,7 @@
                                                         </div>
                                                         <div class="product__description">
                                                             <label>Tên sản phẩm</label>
-                                                            <h4 class="product__description--name"><a
+                                                            <h4 class="product__description--name text-truncate"><a
                                                                     href="product-details.html">{{ $cart->product->name }}</a>
                                                             </h4>
 
