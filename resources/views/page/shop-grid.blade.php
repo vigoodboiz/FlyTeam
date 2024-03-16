@@ -194,7 +194,7 @@
                                                             style="height: 80px;" alt="product-img"></a>
                                                 </div>
                                                 <div class="small__product--content">
-                                                    <h3 class="small__product--card__title"><a
+                                                    <h3 class="small__product--card__title text-truncate "><a
                                                             href="product-details.html">{{ $pro_new->name }}</a></h3>
                                                     <div class="small__product--card__price mb_5">
                                                         <span class="current__price">{{ $pro_new->price }}đ</span>
