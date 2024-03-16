@@ -144,7 +144,7 @@
                                                             <legend class="product__variant--title mb-8">Màu sắc
                                                             </legend>
                                                             <li class="variant__size--list">
-                                                                <input id="weight4" name="weight" type="radio"
+                                                                <input id="color4" name="color" type="radio"
                                                                     checked>
                                                                 <label class="variant__size--value red" for="color4">
                                                                     {{ $variant->value }}</label>

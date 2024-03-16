@@ -38,6 +38,12 @@
         </div>
 
         <div class="form-group">
+            <label for="quantity_product">Số lượng sản phẩm:</label>
+            <input type="number" name="quantity_product" class="form-control" value="{{ $product->quantity_product }}"
+                required>
+        </div>
+
+        <div class="form-group">
             <label for="price_sale">Giảm giá:</label>
             <input type="number" name="price_sale" class="form-control" value="{{ $product->price_sale }}" required>
         </div>

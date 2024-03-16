@@ -29,16 +29,20 @@
                             <h2 class="account__content--title mb-20">My Profile</h2>
                             <ul class="account__menu">
                                 @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
-                                    <li class="account__menu--list"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                                @elseif(Auth::user()->role_id == 3)
-                                    <li class="account__menu--list"><a href="{{ route('portfolioPage') }}">Infomation</a>
+                                    <li class="account__menu--list"><a href="{{ route('dashboard') }}">Trang quản trị</a>
                                     </li>
-                                    <li class="account__menu--list"><a href="{{ route('wishlistPage') }}">Wishlist</a></li>
-                                    <li class="account__menu--list"><a href="{{ route('history') }}">History Order</a></li>
+                                @elseif(Auth::user()->role_id == 3)
+                                    <li class="account__menu--list"><a href="{{ route('portfolioPage') }}">Thông tin</a>
+                                    </li>
+                                    <li class="account__menu--list"><a href="{{ route('wishlistPage') }}">Sản phẩm yêu
+                                            thích</a></li>
+                                    <li class="account__menu--list"><a href="{{ route('history') }}">Lịch sử đơn hàng</a>
+                                    </li>
                                 @endif
                                 <li class="account__menu--list"><a
                                         href="{{ route('logout') }}"onclick="event.preventDefault();
-                                                                                                                        document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Logout</a>
+                                                                                                                                            document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Đăng
+                                        xuất</a>
                                 </li>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
@@ -550,7 +554,7 @@
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
 
-                            <img src="{{asset('becute/assets/img/other/feature1.webp')}}" alt="img">
+                            <img src="{{ asset('becute/assets/img/other/feature1.webp') }}" alt="img">
                         </div>
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">Miễn phí vận chuyển</h2>
@@ -560,7 +564,7 @@
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon ">
 
-                            <img src="{{asset('becute/assets/img/other/feature2.webp')}}" alt="img">
+                            <img src="{{ asset('becute/assets/img/other/feature2.webp') }}" alt="img">
                         </div>
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">Hỗ trợ 24/7</h2>
@@ -570,7 +574,7 @@
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
 
-                            <img src="{{asset('becute/assets/img/other/feature3.webp')}}" alt="img">
+                            <img src="{{ asset('becute/assets/img/other/feature3.webp') }}" alt="img">
                         </div>
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">100% hoàn tiền</h2>
@@ -580,7 +584,7 @@
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
 
-                            <img src="{{asset('becute/assets/img/other/feature4.webp')}}" alt="img">
+                            <img src="{{ asset('becute/assets/img/other/feature4.webp') }}" alt="img">
                         </div>
                         <div class="feature__content">
                             <h2 class="feature__content--title h3">Thanh toán an toàn</h2>

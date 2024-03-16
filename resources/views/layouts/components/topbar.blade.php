@@ -88,7 +88,7 @@
                             tôi</a>
                         <a class="nav-link" href="{{ route('logout') }}"onclick="event.preventDefault();
                         document.getElementById('logout-form').submit(); return view('auth.login');"><i
-                                class="fa fa-power -off"></i>Logout</a>
+                                class="fa fa-power -off"></i>Đăng xuất</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
