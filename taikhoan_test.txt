@@ -1,4 +1,4 @@
-momo test 
+---momo test---
 OTP
 0923441111 (ko cần nhập cũng đc )
 9704 0000 0000 0018
@@ -6,7 +6,7 @@ OTP
 NGUYEN VAN A
 
 
-vnpay test 
+---vnpay test---
 Ngân hàng: NCB
 Số thẻ: 9704198526191432198
 Tên chủ thẻ:NGUYEN VAN A
