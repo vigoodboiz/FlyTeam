@@ -1,11 +1,9 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+    <div class="container">
 
-    <h2><b class="mb-3">New Product</b></h2>
-    <h2><a class="btn btn-success mt-3 mb-3" href="{{ route('products.index') }}">List Product</a></h2>
-
-
+        <h2><b class="mb-3">Thêm mới sản phẩm</b></h2>
+        <h2><a class="btn btn-success mt-3 mb-3" href="{{ route('products.index') }}">Danh sách sản phẩm</a></h2>
     <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
@@ -50,10 +48,9 @@
 </div>
 @endsection
 @section('js-custom')
-
-<script>
-    $(document).ready(function() {
-        $('#id_category').select2();
-    });
-</script>
+    <script>
+        $(document).ready(function() {
+            $('#id_category').select2();
+        });
+    </script>
 @endsection

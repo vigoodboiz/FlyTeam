@@ -46,9 +46,7 @@ class PermissionController extends Controller
     public function store(StorePermissionRequest $request)
     {
         Permission::create($request->all());
-
-        return redirect()->route('permissions.index')->with('success', 'Quyền được thêm thành công!');
-
+         return redirect()->route('permissions.index')->with('success', 'Quyền được thêm thành công!');
     }
 
     /**
@@ -87,9 +85,7 @@ class PermissionController extends Controller
     public function update(UpdatePermissionRequest $request, Permission $permission)
     {
         $permission->update($request->all());
-
         return redirect()->route('permissions.index')->with('success', 'Quyền được cập nhật thành công!');
-
     }
 
     /**

@@ -69,31 +69,23 @@
                                 <x-checkbox id="remember_me" name="remember" />
                                 <span class="ms-2 text-sm text-gray-600">{{ __('Nhớ tài khoản') }}</span>
                             </label>
-                        </div>
-                        <div class="flex items-center justify-end mt-4">
                             @if (Route::has('password.request'))
-                                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                    href="{{ route('password.request') }}">
-                                    {{ __('Quên mật khẩu?') }}
-                                </a>
+                                <label for="password" class="flex items-right">
+                                    <a href="{{ route('password.request') }}">
+                                        {{ __('Quên mật khẩu?') }}
+                                    </a>
+                                </label>
                             @endif
-                            <br>
-                            <x-button class="btn btn-success btn-flat m-b-40 m-t-40">
-                                {{ __('Đăng nhập') }}
-                            </x-button>
                         </div>
                         <div class="social-login-content">
                             <div class="social-button">
-                                <a href="{{ route('auth.facebook') }}"><button type="button"
-                                        class="btn social facebook btn-flat btn-addon mb-3"><i
-                                            class="ti-facebook"></i>Đăng nhập với facebook</button></a>
-                                <a href="{{ route('auth.google') }}"><button type="button"
-                                        class="btn social twitter btn-flat btn-addon mt-2"><i
-                                            class="ti-google"></i>Đăng nhập với google</button></a>
+                                <button type="submit" class="btn btn-success btn-flat m-b-40 m-t-40">
+                                    Đăng nhập</button>
                             </div>
                         </div>
                         <div class="register-link m-t-15 text-center">
-                            <p>Bạn chưa có tài khoản? <a href="{{ route('register') }}"> Đăng ký tại đây</a></p>
+                            <p>Bạn chưa có tài khoản? <a href="{{ route('register') }}"> Đăng ký tại đây</a>
+                            </p>
                         </div>
                     </form>
                 </div>

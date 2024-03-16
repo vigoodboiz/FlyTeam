@@ -19,24 +19,16 @@
     </div>
     <br>
     <!-- End breadcrumb section -->
-
     <!-- cart section start -->
     <div class="container">
-
         <h2 class="cart__title mb-30">Lịch sử đơn hàng</h2>
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Stt</th>
-
-                    <!-- <th>User Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Address</th> -->
-
                     <th>Ảnh sản phẩm</th>
                     <th>Tên sản phẩm</th>
-                    <th>Giá sản phẩm</th>
+                    <th> Đơn giá</th>
                     <th>Số lượng</th>
                     <th>Tổng tiền</th>
                     <th>Trạng thái đơn hàng</th>
@@ -50,25 +42,16 @@
                 @foreach ($orders as $item)
                 <tr>
                     <td>{{ $loop->index + 1 }}</td>
-                    <!-- <td>{{ $item->user->name }}</td>
-                    <td>{{ $item->user->email }}</td>
-                    <td>{{ $item->user->phone }}</td>
-                    <td>{{ $item->user->address }}</td> -->
                     <td>
 
                         <img class="border-radius-5" width="100" src="{{ asset('upload/public/images/' . $item->product->image) }}" alt="cart-product">
-
                     </td>
-                    <td>
-
-                        {{ $item->product->name }}
-
-                    </td>
-                    <td>
-
-                        {{ $item->product->price }}
-
-                    </td>
+                    <td class="text-truncate">{{ $item->product->name }}</td>
+                    @if (isset($item->product->price_sale) && $item->product->price_sale > 0)
+                    <td>{{ $item->product->price_sale }}đ</td>
+                    @else
+                    <td>{{ $item->product->price }}đ</td>
+                    @endif
                     <td>{{ $item->quantity }}</td>
                     <td>{{ $item->total_price }}đ</td>
                     <td>{{ $item->payment_status }}</td>
@@ -99,7 +82,6 @@
         {{ $orders->links() }}
     </div>
     <!-- End product section -->
-
     <!-- Start brand section -->
     <div class="brand__section brand__section-two section--padding">
         <div class="container">
@@ -171,38 +153,46 @@
                 <div class="feature__inner d-flex justify-content-between">
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
-                            <img src="{{ asset('becute/assets/img/other/feature1.webp') }}" alt="img">
+
+                            <img src="{{asset('becute/assets/img/other/feature1.webp')}}" alt="img">
                         </div>
                         <div class="feature__content">
-                            <h2 class="feature__content--title h3">Free Shipping</h2>
-                            <p class="feature__content--desc">Free shipping over $100</p>
+                            <h2 class="feature__content--title h3">Miễn phí vận chuyển</h2>
+                            <p class="feature__content--desc">Miễn phí vận chuyển cho đơn hàng trên 2.000.000đ</p>
+
                         </div>
                     </div>
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon ">
-                            <img src="{{ asset('becute/assets/img/other/feature2.webp') }}" alt="img">
+
+                            <img src="{{asset('becute/assets/img/other/feature2.webp')}}" alt="img">
                         </div>
                         <div class="feature__content">
-                            <h2 class="feature__content--title h3">Support 24/7</h2>
-                            <p class="feature__content--desc">Contact us 24 hours a day</p>
+                            <h2 class="feature__content--title h3">Hỗ trợ 24/7</h2>
+                            <p class="feature__content--desc">Liên hệ với chúng tôi 24 tiếng</p>
+
                         </div>
                     </div>
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
-                            <img src="{{ asset('becute/assets/img/other/feature3.webp') }}" alt="img">
+
+                            <img src="{{asset('becute/assets/img/other/feature3.webp')}}" alt="img">
                         </div>
                         <div class="feature__content">
-                            <h2 class="feature__content--title h3">100% Money Back</h2>
-                            <p class="feature__content--desc">You have 30 days to Return</p>
+                            <h2 class="feature__content--title h3">100% hoàn tiền</h2>
+                            <p class="feature__content--desc">Bạn có 30 ngày để trả hàng</p>
+
                         </div>
                     </div>
                     <div class="feature__items d-flex align-items-center">
                         <div class="feature__icon">
-                            <img src="{{ asset('becute/assets/img/other/feature4.webp') }}" alt="img">
+
+                            <img src="{{asset('becute/assets/img/other/feature4.webp')}}" alt="img">
                         </div>
                         <div class="feature__content">
-                            <h2 class="feature__content--title h3">Payment Secure</h2>
-                            <p class="feature__content--desc">We ensure secure payment</p>
+                            <h2 class="feature__content--title h3">Thanh toán an toàn</h2>
+                            <p class="feature__content--desc">Chúng tôi đảm bảo thanh toán an toàn</p>
+
                         </div>
                     </div>
                 </div>

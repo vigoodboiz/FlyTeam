@@ -22,63 +22,64 @@
         <!-- cart section start -->
         <section class="cart__section section--padding">
             <div class="container">
-                <div class="cart__section--inner">
-                    <form action="#">
-                        <h2 class="cart__title mb-30">Sản phẩm yêu thích</h2>
-                        <div class="cart__table">
-                            <table class="cart__table--inner">
-                                <thead class="cart__table--header">
-                                    <tr class="cart__table--header__items">
-                                        <th class="cart__table--header__list">Sản phẩm</th>
-                                        <th class="cart__table--header__list">Giá sản phẩm</th>
-                                        <th class="cart__table--header__list text-center">Ngày yêu thích</th>
-                                        <th class="cart__table--header__list text-right">Thêm giỏ hàng</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="cart__table--body">
-                                    @foreach ($favorites as $item)
-                                        <tr class="cart__table--body__items">
-                                            <td class="cart__table--body__list">
-                                                <div class="cart__product d-flex align-items-center">
-                                                    <div class="cart__thumbnail">
-                                                        <a href="{{ route('shopDetails', $item->product_id) }}"><img
-                                                                class="border-radius-5"
-                                                                src="{{ asset('upload/public/images/' . $item->prod->image) }}"
-                                                                alt="cart-product"></a>
-                                                    </div>
-                                                    <div class="cart__content">
-                                                        <h3 class="cart__content--title h4"><a
-                                                                href="{{ route('shopDetails', $item->product_id) }}">{{ $item->prod->name }}</a>
-                                                        </h3>
-                                                        {{-- <span class="cart__content--variant">COLOR: Blue</span>
-                                                        <span class="cart__content--variant">WEIGHT: 2 Kg</span> --}}
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="cart__table--body__list">
-                                                <span class="cart__price">{{ $item->prod->price }}đ /
-                                                    {{ $item->prod->price_sale }}đ</span>
-                                            </td>
-                                            <td class="cart__table--body__list text-center">
-                                                <span
-                                                    class="in__stock text__secondary">{{ $item->created_at->format('d/m/Y') }}</span>
-                                            </td>
-                                            <td class="cart__table--body__list text-right">
-                                                <a class="wishlist__cart--btn primary__btn" href="cart.html">Thêm giỏ
-                                                    hàng</a>
-                                            </td>
+                @if (Auth::check())
+                    <div class="cart__section--inner">
+                        <form action="#">
+                            <h2 class="cart__title mb-30">Sản phẩm yêu thích</h2>
+                            <div class="cart__table">
+                                <table class="cart__table--inner">
+                                    <thead class="cart__table--header">
+                                        <tr class="cart__table--header__items">
+                                            <th class="cart__table--header__list">Sản phẩm</th>
+                                            <th class="cart__table--header__list">Giá sản phẩm</th>
+                                            <th class="cart__table--header__list text-center">Ngày yêu thích</th>
+                                            <th class="cart__table--header__list text-right">Thêm giỏ hàng</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                            <div class="continue__shopping d-flex justify-content-between">
-                                <a class="continue__shopping--link" href="{{ route('home') }}">Tiếp tục mua sắm</a>
-                                <a class="continue__shopping--clear" href="{{ route('shopGrid') }}">Xem tất cả các sản
-                                    phẩm</a>
+                                    </thead>
+                                    <tbody class="cart__table--body">
+                                        @foreach ($favorites as $item)
+                                            <tr class="cart__table--body__items">
+                                                <td class="cart__table--body__list">
+                                                    <div class="cart__product d-flex align-items-center">
+                                                        <div class="cart__thumbnail">
+                                                            <a href="{{ route('shopDetails', $item->product_id) }}"><img
+                                                                    class="border-radius-5"
+                                                                    src="{{ asset('upload/public/images/' . $item->prod->image) }}"
+                                                                    alt="cart-product"></a>
+                                                        </div>
+                                                        <div class="cart__content">
+                                                            <h3 class="cart__content--title h4"><a
+                                                                    href="{{ route('shopDetails', $item->product_id) }}">{{ $item->prod->name }}</a>
+                                                            </h3>
+                                                            {{-- <span class="cart__content--variant">COLOR: Blue</span>
+                                                        <span class="cart__content--variant">WEIGHT: 2 Kg</span> --}}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="cart__table--body__list">
+                                                    <span class="cart__price">{{ $item->prod->price }}đ /
+                                                        {{ $item->prod->price_sale }}đ</span>
+                                                </td>
+                                                <td class="cart__table--body__list text-center">
+                                                    <span
+                                                        class="in__stock text__secondary">{{ $item->created_at->format('d/m/Y') }}</span>
+                                                </td>
+                                                <td class="cart__table--body__list text-right">
+                                                    <a class="wishlist__cart--btn primary__btn" href="cart.html">Thêm giỏ
+                                                        hàng</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                <div class="continue__shopping d-flex justify-content-between">
+                                    <a class="continue__shopping--link" href="{{ route('home') }}">Tiếp tục mua sắm</a>
+                                    <a class="continue__shopping--clear" href="{{ route('shopGrid') }}">Xem tất cả các sản
+                                        phẩm</a>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
+                        </form>
+                    </div>
             </div>
         </section>
         <!-- cart section end -->
@@ -169,43 +170,51 @@
                     <div class="feature__inner d-flex justify-content-between">
                         <div class="feature__items d-flex align-items-center">
                             <div class="feature__icon">
-                                <img src="{{ asset('becute/assets/img/other/feature1.webp') }}" alt="img">
+                                <img src="{{asset('becute/assets/img/other/feature1.webp')}}" alt="img">
                             </div>
                             <div class="feature__content">
-                                <h2 class="feature__content--title h3">Free Shipping</h2>
-                                <p class="feature__content--desc">Free shipping over $100</p>
+                                <h2 class="feature__content--title h3">Miễn phí vận chuyển</h2>
+                                <p class="feature__content--desc">Miễn phí vận chuyển cho đơn hàng trên 2.000.000đ</p>
+
                             </div>
                         </div>
                         <div class="feature__items d-flex align-items-center">
                             <div class="feature__icon ">
-                                <img src="{{ asset('becute/assets/img/other/feature2.webp') }}" alt="img">
+                                <img src="{{asset('becute/assets/img/other/feature2.webp')}}" alt="img">
                             </div>
                             <div class="feature__content">
-                                <h2 class="feature__content--title h3">Support 24/7</h2>
-                                <p class="feature__content--desc">Contact us 24 hours a day</p>
+                                <h2 class="feature__content--title h3">Hỗ trợ 24/7</h2>
+                                <p class="feature__content--desc">Liên hệ với chúng tôi 24 tiếng</p>
+
                             </div>
                         </div>
                         <div class="feature__items d-flex align-items-center">
                             <div class="feature__icon">
-                                <img src="{{ asset('becute/assets/img/other/feature3.webp') }}" alt="img">
+                                <img src="{{asset('becute/assets/img/other/feature3.webp')}}" alt="img">
                             </div>
                             <div class="feature__content">
-                                <h2 class="feature__content--title h3">100% Money Back</h2>
-                                <p class="feature__content--desc">You have 30 days to Return</p>
+                                <h2 class="feature__content--title h3">100% hoàn tiền</h2>
+                                <p class="feature__content--desc">Bạn có 30 ngày để trả hàng</p>
                             </div>
                         </div>
                         <div class="feature__items d-flex align-items-center">
                             <div class="feature__icon">
-                                <img src="{{ asset('becute/assets/img/other/feature4.webp') }}" alt="img">
+
+                                <img src="{{asset('becute/assets/img/other/feature4.webp')}}" alt="img">
                             </div>
                             <div class="feature__content">
-                                <h2 class="feature__content--title h3">Payment Secure</h2>
-                                <p class="feature__content--desc">We ensure secure payment</p>
+                                <h2 class="feature__content--title h3">Thanh toán an toàn</h2>
+                                <p class="feature__content--desc">Chúng tôi đảm bảo thanh toán an toàn</p>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </section>
+        @else
+            <p>Xin vui lòng đăng nhập để có thể tiếp tục mua hàng!</p><a class="account__menu--list"
+                href="{{ route('login') }}">Đăng nhập</a>
+            @endif
             <!-- End feature section -->
     </main>
 @endsection

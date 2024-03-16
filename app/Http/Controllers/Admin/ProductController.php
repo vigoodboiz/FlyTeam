@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Products;
 use App\Models\Category;
-
+use App\Models\Variant;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -30,7 +30,6 @@ class ProductController extends Controller
     {
       // Lấy danh sách các category để hiển thị trong form
       $categories = Category::all();
-
       return view('admin.products.create', compact('categories'));
     }
 
@@ -56,12 +55,13 @@ class ProductController extends Controller
             $image->storeAs('public/images', $imageName);
             $validatedData['image'] = $imageName;
         }
-
         Products::create($validatedData);
-
+        // if ($request->variants) {
+        //     foreach ($request->variants as $variantName) {
+        //         $validatedData->variants()->create(['name' => $variantName]);
+        //     }
+        // }
         return redirect()->back()->with('success', 'Sản phẩm được thêm thành công!');
-
-      
     }
     /**
      * Display the specified resource.
@@ -134,7 +134,7 @@ class ProductController extends Controller
 
         return redirect()->route('products.index')->with('success', 'Sản phẩm được cập nhật thành công!');
     }
-    
+
 
     /**
      * Remove the specified resource from storage.
@@ -143,7 +143,6 @@ class ProductController extends Controller
     {
         $product = Products::findOrFail($id);
         $product->delete();
-    
         return redirect()->route('products.index')->with('success', 'Sản phẩm được xóa thành công!');
     }
 
