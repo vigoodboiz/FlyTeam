@@ -63,9 +63,9 @@
                             <li class="footer__widget--menu__list"><a class="footer__widget--menu__text"
                                     href="cart.html">Shopping Cart</a></li>
                             <li class="footer__widget--menu__list"><a class="footer__widget--menu__text"
-                                    href="login.html">Login</a></li>
+                                    href="{{ route('login') }}">Login</a></li>
                             <li class="footer__widget--menu__list"><a class="footer__widget--menu__text"
-                                    href="login.html">Register</a></li>
+                                    href="{{ route('register') }}">Register</a></li>
                             <li class="footer__widget--menu__list"><a class="footer__widget--menu__text"
                                     href="checkout.html">Checkout</a></li>
                         </ul>

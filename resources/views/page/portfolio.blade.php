@@ -10,8 +10,8 @@
                     <div class="col">
                         <div class="breadcrumb__content text-center">
                             <ul class="breadcrumb__content--menu d-flex justify-content-center">
-                                <li class="breadcrumb__content--menu__items"><a href="{{ route('home') }}">Home</a></li>
-                                <li class="breadcrumb__content--menu__items"><span>Portfolio</span></li>
+                                <li class="breadcrumb__content--menu__items"><a href="{{ route('home') }}">Trang chủ</a></li>
+                                <li class="breadcrumb__content--menu__items"><span>Thông tin</span></li>
                             </ul>
                         </div>
                     </div>
@@ -24,26 +24,31 @@
         <section class="portfolio__section section--padding">
             <div class="container">
                 <div class="section__heading text-center mb-40">
-                    <h2 class="section__heading--maintitle">Watch Our Profile</h2>
+                    <h2 class="section__heading--maintitle">Xem hồ sơ của chúng tôi</h2>
                 </div>
                 @if (Auth::check())
                     <h2 class="section__heading--maintitle">Xin chào, {{ Auth::user()->name }}</h2><br>
                     <div class="my__account--section__inner border-radius-10 d-flex">
                         <div class="account__left--sidebar">
-                            <h2 class="account__content--title mb-20">My Profile</h2>
+                            <h2 class="account__content--title mb-20">Hồ sơ của tôi</h2>
                             <ul class="account__menu">
                                 @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
                                     <li class="account__menu--list"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                                 @elseif(Auth::user()->role_id == 3)
-                                    <li class="account__menu--list active"><a
-                                            href="{{ route('portfolioPage') }}">Infomation</a>
+                                    <li class="account__menu--list active"><a href="{{ route('portfolioPage') }}">Thông
+                                            tin</a>
                                     </li>
-                                    <li class="account__menu--list"><a href="{{ route('wishlistPage') }}">Wishlist</a></li>
-                                    <li class="account__menu--list"><a href="{{ route('history') }}">History Order</a></li>
+                                    <li class="account__menu--list"><a href="{{ route('point') }}">Điểm
+                                            thưởng</a>
+                                    </li>
+                                    <li class="account__menu--list"><a href="{{ route('wishlistPage') }}">Sản phẩm yêu
+                                            thích</a></li>
+                                    <li class="account__menu--list"><a href="{{ route('history') }}">Lịch sử đơn hàng</a>
+                                    </li>
                                 @endif
                                 <li class="account__menu--list"><a
                                         href="{{ route('logout') }}"onclick="event.preventDefault();
-                                                                                                                                                                                                                                                                                                                                                                                        document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Logout</a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Logout</a>
                                 </li>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
@@ -74,7 +79,7 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-sm-3">
-                                                    <p class="mb-0">User code</p>
+                                                    <p class="mb-0">Mã khách hàng</p>
                                                 </div>
                                                 <div class="col-sm-9">
                                                     <p class="text-muted mb-0">{{ Auth::user()->user_code }}</p>
@@ -83,7 +88,7 @@
                                             <hr>
                                             <div class="row">
                                                 <div class="col-sm-3">
-                                                    <p class="mb-0">Full Name</p>
+                                                    <p class="mb-0">Tên khách hàng</p>
                                                 </div>
                                                 <div class="col-sm-9">
                                                     <p class="text-muted mb-0">{{ Auth::user()->name }}</p>
@@ -101,7 +106,7 @@
                                             <hr>
                                             <div class="row">
                                                 <div class="col-sm-3">
-                                                    <p class="mb-0">Phone</p>
+                                                    <p class="mb-0">Số điện thoại</p>
                                                 </div>
                                                 <div class="col-sm-9">
                                                     <p class="text-muted mb-0">{{ Auth::user()->phone }}</p>
@@ -110,7 +115,7 @@
                                             <hr>
                                             <div class="row">
                                                 <div class="col-sm-3">
-                                                    <p class="mb-0">Gender</p>
+                                                    <p class="mb-0">Giới tính</p>
                                                 </div>
                                                 <div class="col-sm-9">
                                                     <p class="text-muted mb-0">{{ Auth::user()->gender }}</p>
@@ -119,7 +124,7 @@
                                             <hr>
                                             <div class="row">
                                                 <div class="col-sm-3">
-                                                    <p class="mb-0">Address</p>
+                                                    <p class="mb-0">Địa chỉ</p>
                                                 </div>
                                                 <div class="col-sm-9">
                                                     <p class="text-muted mb-0">{{ Auth::user()->address }}</p>

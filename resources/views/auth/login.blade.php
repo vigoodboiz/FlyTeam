@@ -31,16 +31,24 @@
 </head>
 
 <body class="bg-dark">
-
     <div class="sufee-login d-flex align-content-center flex-wrap">
         <div class="container">
             <div class="login-content">
                 <div class="login-logo">
-                    <a href="{{route('home')}}">
+                    <a href="{{ route('home') }}">
                         <img class="align-content" src="{{ asset('sb-admin/images/logo3.png') }}" alt="">
                     </a>
                 </div>
                 <div class="login-form">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -51,7 +59,7 @@
                         </div>
 
                         <div class="mt-4">
-                            <x-label for="password" value="{{ __('Password') }}" />
+                            <x-label for="password" value="{{ __('Mật khẩu') }}" />
                             <x-input id="password" class="form-control" type="password" name="password" required
                                 autocomplete="current-password" />
                         </div>
@@ -59,33 +67,33 @@
                         <div class="block mt-4">
                             <label for="remember_me" class="flex items-center">
                                 <x-checkbox id="remember_me" name="remember" />
-                                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                                <span class="ms-2 text-sm text-gray-600">{{ __('Nhớ tài khoản') }}</span>
                             </label>
                         </div>
                         <div class="flex items-center justify-end mt-4">
                             @if (Route::has('password.request'))
                                 <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                     href="{{ route('password.request') }}">
-                                    {{ __('Forgot your password?') }}
+                                    {{ __('Quên mật khẩu?') }}
                                 </a>
                             @endif
                             <br>
                             <x-button class="btn btn-success btn-flat m-b-40 m-t-40">
-                                {{ __('Log in') }}
+                                {{ __('Đăng nhập') }}
                             </x-button>
                         </div>
                         <div class="social-login-content">
                             <div class="social-button">
                                 <a href="{{ route('auth.facebook') }}"><button type="button"
                                         class="btn social facebook btn-flat btn-addon mb-3"><i
-                                            class="ti-facebook"></i>Login in with facebook</button></a>
+                                            class="ti-facebook"></i>Đăng nhập với facebook</button></a>
                                 <a href="{{ route('auth.google') }}"><button type="button"
                                         class="btn social twitter btn-flat btn-addon mt-2"><i
-                                            class="ti-google"></i>Login in with google</button></a>
+                                            class="ti-google"></i>Đăng nhập với google</button></a>
                             </div>
                         </div>
                         <div class="register-link m-t-15 text-center">
-                            <p>Don't have account ? <a href="{{ route('register') }}"> Sign Up Here</a></p>
+                            <p>Bạn chưa có tài khoản? <a href="{{ route('register') }}"> Đăng ký tại đây</a></p>
                         </div>
                     </form>
                 </div>

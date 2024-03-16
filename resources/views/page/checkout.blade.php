@@ -10,8 +10,8 @@
                     <div class="col">
                         <div class="breadcrumb__content text-center">
                             <ul class="breadcrumb__content--menu d-flex justify-content-center">
-                                <li class="breadcrumb__content--menu__items"><a href="{{ route('home') }}">Home</a></li>
-                                <li class="breadcrumb__content--menu__items"><span>Checkout</span></li>
+                                <li class="breadcrumb__content--menu__items"><a href="{{ route('home') }}">Trang chủ</a></li>
+                                <li class="breadcrumb__content--menu__items"><span>Thanh toán</span></li>
                             </ul>
                         </div>
                     </div>
@@ -24,24 +24,19 @@
         <div class="checkout__page--area section--padding">
             <div class="container">
                 @if (Auth::check())
-                    @if (\Session::has('msg'))
-                        <div class="alert alert-success">
-                            {{ \Session::get('msg') }}
-                        </div>
-                    @endif
                     <div class="row">
                         <div class="col-lg-7 col-md-6">
                             <div class="main checkout__mian">
                                 <form action="#">
                                     <div class="checkout__content--step section__shipping--address">
                                         <div class="checkout__section--header mb-25">
-                                            <h2 class="checkout__header--title h3">Billing Details</h2>
+                                            <h2 class="checkout__header--title h3">Chi tiết thanh toán</h2>
                                         </div>
                                         <div class="section__shipping--address__content">
                                             <div class="row">
                                                 <div class="col-12 mb-20">
                                                     <div class="checkout__input--list">
-                                                        <label class="checkout__input--label mb-10" for="input3">Full name
+                                                        <label class="checkout__input--label mb-10" for="input3">Họ và tên
                                                             <span class="checkout__input--label__star">*</span></label>
                                                         <input class="checkout__input--field border-radius-5"
                                                             value="{{ Auth::user()->name }}" id="input3" type="text"
@@ -59,8 +54,9 @@
                                                 </div>
                                                 <div class="col-12 mb-20">
                                                     <div class="checkout__input--list">
-                                                        <label class="checkout__input--label mb-10" for="input3">Phone
-                                                            number
+                                                        <label class="checkout__input--label mb-10" for="input3">Số điện
+                                                            thoại
+
                                                             <span class="checkout__input--label__star">*</span></label>
                                                         <input class="checkout__input--field border-radius-5"
                                                             value="{{ Auth::user()->phone }}" id="input3" type="text"
@@ -69,7 +65,7 @@
                                                 </div>
                                                 <div class="col-12 mb-20">
                                                     <div class="checkout__input--list">
-                                                        <label class="checkout__input--label mb-10" for="input4">Address
+                                                        <label class="checkout__input--label mb-10" for="input4">Địa chỉ
                                                             <span class="checkout__input--label__star">*</span></label>
                                                         <input class="checkout__input--field border-radius-5"
                                                             value="{{ Auth::user()->address }}" type="text" disabled>
@@ -78,7 +74,7 @@
                                             </div>
                                         </div>
                                         <div class="order-notes mb-20">
-                                            <label class="checkout__input--label mb-10" for="order">Order Notes <span
+                                            <label class="checkout__input--label mb-10" for="order">Ghi chú <span
                                                     class="checkout__input--label__star">*</span></label>
                                             <textarea class="checkout__notes--textarea__field border-radius-5" id="order"
                                                 placeholder="Ghi chú về sản phẩm của bạn." spellcheck="false"></textarea>
@@ -86,16 +82,16 @@
                                     </div>
                                     <div class="checkout__content--step__footer d-flex align-items-center">
                                         <a class="continue__shipping--btn primary__btn border-radius-5"
-                                            href="{{ route('home') }}">Continue To
-                                            Shipping</a>
-                                        <a class="previous__link--content" href="{{ route('cartPage') }}">Return to cart</a>
+                                            href="{{ route('home') }}">Tiếp tục mua sắm</a>
+                                        <a class="previous__link--content" href="{{ route('cartPage') }}">Quay về giỏ
+                                            hàng</a>
                                     </div>
                                 </form>
                             </div>
                         </div>
                         <div class="col-lg-5 col-md-6">
                             <aside class="checkout__sidebar sidebar border-radius-10">
-                                <h2 class="checkout__order--summary__title text-center mb-15">Your Order Summary</h2>
+                                <h2 class="checkout__order--summary__title text-center mb-15">Đơn hàng của bạn</h2>
                                 <div class="cart__table checkout__product--table">
                                     <table class="cart__table--inner">
                                         <tbody class="cart__table--body">
@@ -111,7 +107,7 @@
 
                                                             </div>
                                                             <div class="product__description">
-                                                                <label>Name</label>
+                                                                <label>Tên sản phẩm</label>
                                                                 <h4 class="product__description--name"><a
                                                                         href="product-details.html">{{ $cart->product->name }}</a>
                                                                 </h4>
@@ -126,7 +122,7 @@
                                                         </div>
                                                     </td>
                                                     <td class="cart__table--body__list">
-                                                        <label>Price</label>
+                                                        <label>Giá</label>
                                                         @if (isset($cart->product->price_sale) && $cart->product->price_sale > 0)
                                                             <span
                                                                 class="cart__price">{{ $cart->product->price_sale }}đ</span>
@@ -145,14 +141,14 @@
                                     <table class="checkout__total--table">
                                         <tbody class="checkout__total--body">
                                             <tr class="checkout__total--items">
-                                                <td class="checkout__total--title text-left">Subtotal </td>
+                                                <td class="checkout__total--title text-left">Tổng phụ </td>
 
                                                 <td class="checkout__total--amount text-right">{{ $totalPrice }}đ
                                                 </td>
                                             </tr>
                                             <tr class="checkout__total--items">
-                                                <td class="checkout__total--title text-left">Shipping</td>
-                                                <td class="checkout__total--calculated__text text-right">Free Ship
+                                                <td class="checkout__total--title text-left">Phí giao hàng</td>
+                                                <td class="checkout__total--calculated__text text-right">Miễn phí giao hàng
                                                 </td>
 
                                             </tr>
@@ -161,7 +157,7 @@
                                             <tr class="checkout__total--footer__items">
                                                 <td
                                                     class="checkout__total--footer__title checkout__total--footer__list text-left">
-                                                    Total </td>
+                                                    Tổng tiền </td>
                                                 <td
                                                     class="checkout__total--footer__amount checkout__total--footer__list text-right">
 
@@ -172,7 +168,9 @@
                                         </tfoot>
                                     </table>
                                 </div>
-                                <style>
+
+<style>
+
     .image {
         display: block;
         margin-right: 10px;
@@ -187,7 +185,7 @@
         padding: 15px 20px;
         cursor: pointer;
         transition: all 0.3s ease;
-        opacity: 0.6;
+      
         font-size: 14px;
         margin-bottom: 10px;
     }
@@ -246,10 +244,11 @@
 
 <div class="payment__history mb-30">
 
-    <form action="{{ route('vnpay_payment') }}" method="POST">
+    <form action="{{ route('checkoutPost') }}" method="POST">
         @csrf
-        <input type="hidden" name="total_vnpay" value="{{ $totalPrice }}">
-        
+        @foreach ($cartItems as $cart)
+        <input type="hidden" name="cart_id" value="{{  $cart->id  }}">
+        @endforeach
         <div class="uk-flex uk-flex-middle method-item">
             <span class="image"> <img src="/core/xetaiicon.png" alt="" srcset=""></span>
             <button class="payment__history--link primary__btn" type="submit" name="redirect" style="margin-right: 10px">
@@ -270,9 +269,9 @@
         </div>
     </form>
 
-    <form action="{{ route('vnpay_payment') }}" method="POST">
+    <form action="{{ route('momo_payment') }}" method="POST">
         @csrf
-        <input type="hidden" name="total_vnpay" value="{{ $totalPrice }}">
+        <input type="hidden" name="total_momo" value="{{ $totalPrice }}">
         
         <div class="uk-flex uk-flex-middle method-item">
             <span class="image"> <img src="/core/momo.png" alt="" srcset=""></span>
@@ -283,69 +282,21 @@
     </form>
 
 
-    <form action="{{ route('vnpay_payment') }}" method="POST">
-        @csrf
-        <input type="hidden" name="total_vnpay" value="{{ $totalPrice }}">
-        
-        <div class="uk-flex uk-flex-middle method-item">
-            <span class="image"> <img src="/core/Paypal-icon.png" alt="" srcset=""></span>
-            <button class="payment__history--link primary__btn" type="submit" name="redirect" style="margin-right: 10px">
-                Thanh Toán Qua PayPal
-            </button>
-        </div>
-    </form>
+    <form action="{{ route('momo_payment') }}" method="POST">
+    @csrf
+    <input type="hidden" name="total_paypal" value="{{ $totalPrice }}">
+    
+    <div class="uk-flex uk-flex-middle method-item">
+        <span class="image"><img src="/core/Paypal-icon.png" alt="" srcset=""></span>
+        <button class="payment__history--link primary__btn" type="submit" name="redirect" style="margin-right: 10px">
+            Thanh Toán Qua PayPal
+        </button>
+    </div>
+</form>
 
 </div>
 
 
-
-                                <script>
-                                    // Bắt sự kiện click vào phần tử method-item
-                                    document.querySelectorAll('.method-item').forEach(function(element) {
-                                        element.addEventListener('click', function() {
-                                            // Xóa lớp 'selected' khỏi tất cả các phần tử method-item
-                                            document.querySelectorAll('.method-item').forEach(function(item) {
-                                                item.classList.remove('selected');
-                                            });
-                                            // Thêm lớp 'selected' vào phần tử được click
-                                            this.classList.add('selected');
-                                        });
-                                    });
-                                </script>
-                            </div>
-                                    
-<!--                         
-                                        <h3 class="payment__history--title mb-20">Payment</h3>
-                                        <ul class="payment__history--inner d-flex">
-
-
-
-                                            <form action="{{ route('vnpay_payment') }}" method="POST">
-                                                @csrf
-                                                <input type="hidden" name="total_vnpay" value=" {{ $totalPrice }} ">
-                                                <li class="payment__history--list"><button
-                                                        class="payment__history--link primary__btn" type="submit"
-                                                        name="redirect" style="margin-right: 10px">VnPay</button>
-                                                </li>
-                                             
-                                            </form>
-
-                                            <form action="{{ route('momo_payment') }}" method="POST">
-                                                @csrf
-                                                <input type="hidden" name="total_momo" value=" {{ $totalPrice }} ">
-                                                <li class="payment__history--list"><button
-                                                        class="payment__history--link primary__btn" type="submit"
-                                                        name="redirect" style="margin-right: 10px">MoMo</button> </li>
-                                               
-                                            </form> -->
-
-                                           
-                                        
-                                        </ul>
-                                    </div>
-                                   
-                               
-                               </aside>
                         </div>
                     </div>
             </div>

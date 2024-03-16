@@ -1,28 +1,119 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Member</h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Updated Date</th>
-            <th>Points</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($members as $member)
-        <tr>
-            <td scope="row">{{ $member->id }}</td>
-            <td>{{ $member->name }}</td>
-            <td>{{ $member->updated_date }}</td>
-            <td>{{ $member->reward_points }}</td>
-            <td> <a href="{{ route('members.show', $member->id) }}" class="btn btn-info"><i class="fa fa-eye mr-0"></i></a></td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
-<a href="{{ route('members.ranking') }}" class="btn btn-primary"> Ranking </a>
+<<<<<<< HEAD
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
+                    <div>
+                        <h4 class="mb-3">Danh sách thành viên</h4>
+                    </div>
+                </div>
+            </div>
+            <table class="table mt-3" border="1">
+                <thead>
+                    <tr>
+                        <th>Id khách hàng</th>
+                        <th>Tên khách hàng</th>
+                        <th>Ngày cập nhật</th>
+                        <th>Điểm</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($Role as $role)
+                        <tr>
+                            <td>{{ $role->id }}</td>
+                            <td>
+                                @foreach ($members as $member)
+                                    @if ($member->user_id == $role->id)
+                                        {{ $member->name }}
+                                    @endif
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach ($members as $member)
+                                    @if ($member->user_id == $role->id)
+                                        {{ $member->updated_date }}
+                                    @endif
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach ($members as $member)
+                                    @if ($member->user_id == $role->id)
+                                        {{ $member->reward_points }}
+                                    @endif
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach ($members as $member)
+                                    @if ($member->user_id == $role->id)
+                                        <a href="{{ route('members.show', $member->id) }}" class="btn btn-info">View</a>
+                                    @endif
+                                @endforeach
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+
+            </table>
+            @can('member_ranking')
+                <a href="{{ route('members.ranking') }}" class="btn btn-primary"> Thứ hạng </a>
+            @endcan
+        </div>
+    @endsection
+=======
+    <h1>Member</h1>
+    <table class="table mt-3" border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Updated Date</th>
+                <th>Points</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($Role as $role)
+                <tr>
+                    <td>{{ $role->id }}</td>
+                    <td>
+                        @foreach ($members as $member)
+                            @if ($member->user_id == $role->id)
+                                {{ $member->name }}
+                            @endif
+                        @endforeach
+                    </td>
+                    <td>
+                        @foreach ($members as $member)
+                            @if ($member->user_id == $role->id)
+                                {{ $member->updated_date }}
+                            @endif
+                        @endforeach
+                    </td>
+                    <td>
+                        @foreach ($members as $member)
+                            @if ($member->user_id == $role->id)
+                                {{ $member->reward_points }}
+                            @endif
+                        @endforeach
+                    </td>
+                    <td>
+                        @foreach ($members as $member)
+                            @if ($member->user_id == $role->id)
+                                <a href="{{ route('members.show', $member->id) }}" class="btn btn-info">View</a>
+                            @endif
+                        @endforeach
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+
+    </table>
+    @can('member_ranking')
+        <a href="{{ route('members.ranking') }}" class="btn btn-primary"> Ranking </a>
+    @endcan
 @endsection
+>>>>>>> 7f4b2cb8dffac4783173be1a8795b9a6a3c82cd8

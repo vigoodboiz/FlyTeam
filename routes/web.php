@@ -40,7 +40,11 @@ use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AcountController;
 use App\Http\Controllers\ErrosController;
+
+use App\Http\Controllers\PointController;
+
 use App\Http\Controllers\HistoryController;
+
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
@@ -70,7 +74,17 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+});
+Route::get('page/point', [PointController::class, 'index'])->name('point');
+
 Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
 
 
 require __DIR__ . '/auth.php';
@@ -155,7 +169,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     //Coupon//
     Route::get('/insert-coupon', [CouponController::class, 'insert_coupon'])->name('insert_coupon');
-    Route::get('/delete-coupon/{coupon_id}', [CouponController::class, 'delete_coupon'])->name("delete_coupon");
+    Route::delete('/delete-coupon/{coupon_id}', [CouponController::class, 'delete_coupon'])->name("delete_coupon");
     Route::get('/list-coupon', [CouponController::class, 'list_coupon'])->name('list_coupon');
     Route::post('/insert-coupon-code', [CouponController::class, 'insert_coupon_code'])->name('insert_coupon_code');
     Route::post('/check-coupon', [CartController::class, 'check_coupon'])->name('check_coupon');
@@ -163,17 +177,13 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     ////////////////////////// thanh toán Vnpay /////////////////
     Route::match(['GET', 'POST'], '/vnpay_payment', [PaymentController::class, 'vnpay_payment'])->name('vnpay_payment');
-
     Route::match(['GET', 'POST'], '/vnpay-checkout', [CheckoutController::class, 'vnpayCheckout'])->name('vnpayCheckout');
-
-    
-    // Route::post('/vnpay-checkout', [CheckoutController::class, 'vnpayCheckout'])->name('vnpayCheckout');
-
+    ////////////////////////// thanh toán momo /////////////////
     Route::match(['GET', 'POST'], '/momo_payment', [PaymentController::class, 'momo_payment'])->name('momo_payment');
-
-    Route::post('/payment/vnpay', [PaymentController::class, 'vnpay_payment'])->name('vnpay');
-
-    Route::get('/checkout/return', 'YourController@handlePaymentReturn');
+    Route::match(['GET', 'POST'], '/momoCheckout', [CheckoutController::class, 'momoCheckout'])->name('momoCheckout');
+    ////////////////////////// thanh toán paypal /////////////////
+    Route::get('/paypal/execute-payment', 'CheckoutController@executePayment')->name('paypalExecutePayment');
+    Route::get('/paypal/cancel-payment', 'CheckoutController@cancelPayment')->name('paypalCancelPayment');
 });
 
 //Comments
@@ -226,12 +236,22 @@ Route::get('page/contact', [ContactController::class, 'index'])->name('contactPa
 // Checkout
 Route::middleware('auth')->group(function () {
 Route::get('page/Checkout', [CheckoutController::class, 'index'])->name('checkoutPage');
-Route::match(['GET', 'POST'],'page/Checkout/{cart}', [CheckoutController::class, 'post_checkout'])->name('checkoutPost');
+Route::match(['GET', 'POST'],'page/Checkouto', [CheckoutController::class, 'post_checkout'])->name('checkoutPost');
 Route::get('verify/{token}', [CheckoutController::class, 'verify'])->name('oder.verify');
 });
 // acount
+
+
+Route::get('page/portfolioPage', [AcountController::class, 'index'])->name('portfolioPage');
+///////////////////////
+
+// Route::get('/page/point/{id}', 'PointController@index');
+//
+Route::get('page/acount', [AcountController::class, 'index'])->name('acountPage');
+
 Route::get('page/account', [AccountController::class, 'index'])->name('accountPage');
 Route::get('page/portfolio', [PortfolioController::class, 'index'])->name('portfolioPage');
+
 // wishlist
 Route::get('page/wishlist', [WishlishController::class, 'index'])->name('wishlistPage');
 
@@ -243,20 +263,24 @@ Route::get('cart/delete/{cart}', [CartController::class, 'destroy'])->name('cart
 
 //whishlist
 Route::get('/favorite/{product}', [FavoriteController::class, 'index'])->name('favorite');
-Route::delete('/favorite/{product}', [FavoriteController::class, 'destroy'])->name('favorite.delete');
+// Route::delete('/favorite/{id}', [FavoriteController::class, 'destroy'])->name('favorite.delete');
 
 //History order
 Route::get('page/history', [HistoryController::class, 'index'])->name('history');
+Route::post('orders/{order}/cancel', [CheckoutController::class, 'cancel'])->name('orders.cancel');
+Route::get('orders/{id}/reorder', [CheckoutController::class, 'showReorderForm'])->name('orders.reorder');
+Route::post('orders/{id}/reorder', [CheckoutController::class, 'reorder'])->name('orders.process_reorder');
 //Push Notification
-Route::get('/showNotification', function () {
-    return view('showNotification');
+Route::get('/pusher', function() {
+    $message = $request->message;
+    event(new FlyTeamPusher($message));
 });
-
-Route::get('getPusher', function (){
-   return view('form_pusher');
-});
-
-Route::get('/pusher', function(Illuminate\Http\Request $request) {
-    event(new App\Events\HelloPusherEvent($request));
-    return redirect('getPusher');
-});
+//Paypal
+Route::controller(PaymentController::class)
+    ->prefix('paypal')
+    ->group(function () {
+        Route::view('payment', 'paypal.index')->name('create.payment');
+        Route::get('handle-payment', 'handlePayment')->name('make.payment');
+        Route::get('cancel-payment', 'paymentCancel')->name('cancel.payment');
+        Route::get('payment-success', 'paymentSuccess')->name('success.payment');
+    });

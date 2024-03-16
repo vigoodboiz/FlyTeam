@@ -12,13 +12,14 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <div class="slider__content">
-                                            <h2 class="slider__maintitle text__primary h1">Beauty is Whatever <br>
-                                                Brings Perfect</h2>
-                                            <p class="slider__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                                ad minim veniam, aliquip ex ea commodo consequat. </p>
+                                            <h2 class="slider__maintitle text__primary h1">Vẻ đẹp là bất cứ điều gì <br>
+                                                Mang lại sự hoàn hảo</h2>
+                                            <p class="slider__desc">Không phải những người đẹp là những người hạnh phúc, mà
+                                                những người hạnh phúc là những người đẹp. Người phụ nữ đẹp sẽ biết dùng ngôn
+                                                ngữ nói lên sự thật, dùng giọng nói miêu tả sự chân thành, dùng đôi tai lắng
+                                                nghe lòng trắc ẩn, dùng trái tim của mình để dành cho tình yêu thật sự. </p>
                                             <a class="primary__btn slider__btn" href="{{ route('shopGrid') }}">
-                                                SHOP NOW
+                                                MUA NGAY
                                                 <svg width="17" height="12" viewBox="0 0 17 12" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -106,7 +107,7 @@
         <section class="shop__collection--section section--padding">
             <div class="container">
                 <div class="section__heading text-center mb-40">
-                    <h2 class="section__heading--maintitle">Shop By Category</h2>
+                    <h2 class="section__heading--maintitle">Mua sắm theo danh mục</h2>
                 </div>
                 <div class="shop__collection--column5 swiper">
                     <div class="swiper-wrapper">
@@ -118,7 +119,7 @@
                                         <img class="shop__collection--img" src="{{ asset('images/' . $cate->image) }}"
                                             alt="icon-img">
                                         <h3 class="shop__collection--title">{{ $cate->name }}</h3>
-                                        <span class="shop__collection--subtitle">25 Items</span>
+                                        {{-- <span class="shop__collection--subtitle">25 Items</span> --}}
                                     </a>
                                 </div>
                             </div>
@@ -150,19 +151,19 @@
                     <div class="image__width--text__thumbnail position-relative">
                         <img src="{{ asset('becute/assets/img/banner/banner1.webp') }}" alt="image">
                         <div class="image__width--text">
-                            <h2 class="image__width--text__title">Face Your Skin With Us</h2>
-                            <p class="image__width--text__desc">Kidlues ispum maruwes cnsectetur adipisicing elit, sed do
-                                eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            <h2 class="image__width--text__title">Đối mặt với làn da của bạn với chúng tôi</h2>
+                            <p class="image__width--text__desc">Mọi phụ nữ đều đẹp dù cho vẻ ngoài của họ có thế nào. Bạn
+                                chỉ cần cảm nhận linh hồn của cố ấy với sự tôn trọng và đánh giá đúng mực.</p>
                             <div class="image__width--text__footer">
 
-                                <a class="image__width--text__link" href="{{ route('shopGrid') }}">Shop Now
+                                <a class="image__width--text__link" href="{{ route('shopGrid') }}">Mua ngay
                                     <svg width="9" height="12" viewBox="0 0 10 16" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path d="M1 1L7.96317 7.96317L1 14.9263" stroke="currentColor" stroke-width="2" />
                                     </svg>
                                 </a>
                                 <a class="image__width--text__link glightbox" href="https://youtu.be/AJK5hVO3TLc"
-                                    data-gallery="video">Play Video
+                                    data-gallery="video">Xem video
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="10" cy="10" r="9.75" fill="#F7EEDD" stroke="black"
@@ -194,7 +195,7 @@
                     </div>
                 @endif
                 <div class="section__heading text-center mb-40">
-                    <h2 class="section__heading--maintitle">TRENDING PRODUCT</h2>
+                    <h2 class="section__heading--maintitle">SẢN PHẨM THỊNH HÀNH</h2>
                 </div>
                 <div class="product__section--inner">
                     <div class="row mb--n30">
@@ -241,28 +242,39 @@
                                                     <span class="visually-hidden">Compare</span>
                                                 </a>
                                             </li>
-                                            <li class="product__card--action__list">
-                                                <a class="product__card--action__btn" title="Wishlist"
-                                                    href="{{ route('favorite', $pro_trending->id) }}">
-                                                    {{-- @if ($pro_trending->favorited) --}}
-                                                    <svg class="product__card--action__btn--svg" width="18"
-                                                        height="18" viewBox="0 0 16 13" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M13.5379 1.52734C11.9519 0.1875 9.51832 0.378906 8.01442 1.9375C6.48317 0.378906 4.04957 0.1875 2.46364 1.52734C0.412855 3.25 0.713636 6.06641 2.1902 7.57031L6.97536 12.4648C7.24879 12.7383 7.60426 12.9023 8.01442 12.9023C8.39723 12.9023 8.7527 12.7383 9.02614 12.4648L13.8386 7.57031C15.2879 6.06641 15.5886 3.25 13.5379 1.52734ZM12.8816 6.64062L8.09645 11.5352C8.04176 11.5898 7.98707 11.5898 7.90504 11.5352L3.11989 6.64062C2.10817 5.62891 1.91676 3.71484 3.31129 2.53906C4.3777 1.63672 6.01832 1.77344 7.05739 2.8125L8.01442 3.79688L8.97145 2.8125C9.98317 1.77344 11.6238 1.63672 12.6902 2.51172C14.0847 3.71484 13.8933 5.62891 12.8816 6.64062Z"
-                                                            fill="currentColor" />
-                                                    </svg>
-                                                    {{-- @else --}}
-                                                    <span class="visually-hidden">Wishlist</span>
-                                                    {{-- <a href="{{ route('favorite', $pro_trending->id) }}"><i
-                                                            class="fa-regular fa-heart"></i></a> --}}
-                                                    {{-- @endif --}}
-                                                </a>
-                                            </li>
+                                            @if (Auth::check())
+                                                <li class="product__card--action__list">
+                                                    @if ($pro_trending->favorited)
+                                                        <a class="product__card--action__btn" title="Unlove"
+                                                            href="{{ route('favorite', $pro_trending->id) }}">
+                                                            <svg class="product__card--action__btn--svg" width="18"
+                                                                height="18" viewBox="0 0 16 13" fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                <path
+                                                                    d="M13.5379 1.52734C11.9519 0.1875 9.51832 0.378906 8.01442 1.9375C6.48317 0.378906 4.04957 0.1875 2.46364 1.52734C0.412855 3.25 0.713636 6.06641 2.1902 7.57031L6.97536 12.4648C7.24879 12.7383 7.60426 12.9023 8.01442 12.9023C8.39723 12.9023 8.7527 12.7383 9.02614 12.4648L13.8386 7.57031C15.2879 6.06641 15.5886 3.25 13.5379 1.52734ZM12.8816 6.64062L8.09645 11.5352C8.04176 11.5898 7.98707 11.5898 7.90504 11.5352L3.11989 6.64062C2.10817 5.62891 1.91676 3.71484 3.31129 2.53906C4.3777 1.63672 6.01832 1.77344 7.05739 2.8125L8.01442 3.79688L8.97145 2.8125C9.98317 1.77344 11.6238 1.63672 12.6902 2.51172C14.0847 3.71484 13.8933 5.62891 12.8816 6.64062Z"
+                                                                    fill="currentColor" />
+                                                            </svg>
+                                                            <span class="visually-hidden">Wishlist</span>
+                                                        @else
+                                                            <a class="product__card--action__btn" title="Love"
+                                                                href="{{ route('favorite', $pro_trending->id) }}">
+                                                                <svg class="product__card--action__btn--svg"
+                                                                    width="18" height="18" color="#DC143C"
+                                                                    viewBox="0 0 16 13" fill="none"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                    <path
+                                                                        d="M13.5379 1.52734C11.9519 0.1875 9.51832 0.378906 8.01442 1.9375C6.48317 0.378906 4.04957 0.1875 2.46364 1.52734C0.412855 3.25 0.713636 6.06641 2.1902 7.57031L6.97536 12.4648C7.24879 12.7383 7.60426 12.9023 8.01442 12.9023C8.39723 12.9023 8.7527 12.7383 9.02614 12.4648L13.8386 7.57031C15.2879 6.06641 15.5886 3.25 13.5379 1.52734ZM12.8816 6.64062L8.09645 11.5352C8.04176 11.5898 7.98707 11.5898 7.90504 11.5352L3.11989 6.64062C2.10817 5.62891 1.91676 3.71484 3.31129 2.53906C4.3777 1.63672 6.01832 1.77344 7.05739 2.8125L8.01442 3.79688L8.97145 2.8125C9.98317 1.77344 11.6238 1.63672 12.6902 2.51172C14.0847 3.71484 13.8933 5.62891 12.8816 6.64062Z"
+                                                                        fill="red" />
+                                                                </svg>
+                                                                <span class="visually-hidden">Wishlist</span>
+                                                    @endif
+                                                    </a>
+                                                </li>
+                                            @endif
                                         </ul>
                                         <div class="product__add--to__card">
-                                            <a class="product__card--btn" title="Add To Card" href="cart.html"> Add to
-                                                Cart
+                                            <a class="product__card--btn" title="Add To Card" href="cart.html">Thêm giỏ
+                                                hàng
                                                 <svg width="17" height="15" viewBox="0 0 14 11" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -273,7 +285,7 @@
                                         </div>
                                     </div>
                                     <div class="product__card--content text-center">
-                                        <ul class="rating product__card--rating d-flex justify-content-center">
+                                        {{-- <ul class="rating product__card--rating d-flex justify-content-center">
                                             <li class="rating__list">
                                                 <span class="rating__icon">
                                                     <svg width="14" height="13" viewBox="0 0 14 13"
@@ -327,8 +339,9 @@
                                             <li>
                                                 <span class="rating__review--text">(126) Review</span>
                                             </li>
-                                        </ul>
-                                        <h3 class="product__card--title text-truncate"><a href="#">{{ $pro_trending->name }}</a>
+                                        </ul> --}}
+                                        <h3 class="product__card--title text-truncate"><a
+                                                href="#">{{ $pro_trending->name }}</a>
                                         </h3>
                                         <div class="product__card--price">
                                             @if (isset($pro_trending->price_sale) && $pro_trending->price_sale > 0)
@@ -345,7 +358,7 @@
                         @endforeach
                     </div>
                     <div class="product__load--more text-center">
-                        <a class="load__more--btn primary__btn" href="{{ route('shopGrid') }}">Load More</a>
+                        <a class="load__more--btn primary__btn" href="{{ route('shopGrid') }}">Xem thêm</a>
                     </div>
                 </div>
             </div>
@@ -372,16 +385,16 @@
                                             d="M16.5 9.13398C17.1667 9.51888 17.1667 10.4811 16.5 10.866L1.5 19.5263C0.833335 19.9112 9.70611e-07 19.4301 1.00426e-06 18.6603L1.76136e-06 1.33975C1.79501e-06 0.569945 0.833335 0.0888201 1.5 0.47372L16.5 9.13398Z"
                                             fill="currentColor" />
                                     </svg>
-                                    <span class="visually-hidden">Video Play</span>
+                                    <span class="visually-hidden">Xem video</span>
                                 </a>
                             </div>
                         </div>
                         <div class="video__banner--content">
-                            <h2 class="video__banner--content__title">Beauty products that
-                                really work</h2>
-                            <p class="video__banner--content__desc">Our formulations have proven efficacy, contain organic
-                                ingredients only and are 100% cruelty free</p>
-                            <a class="video__banner--content__btn primary__btn" href="shop.html">SKINCARE</a>
+                            <h2 class="video__banner--content__title">Sản phẩm làm đẹp thực sự hiệu quả</h2>
+                            <p class="video__banner--content__desc">Công thức của chúng tôi đã được chứng minh hiệu quả,
+                                chỉ chứa các thành phần hữu cơ và 100% không có chất độc hại</p>
+                            <a class="video__banner--content__btn primary__btn" href="{{ route('shopGrid') }}">CHĂM SÓC
+                                DA</a>
                         </div>
                     </div>
                 </div>
@@ -393,7 +406,7 @@
         <section class="product__section section--padding ">
             <div class="container">
                 <div class="section__heading text-center mb-40">
-                    <h2 class="section__heading--maintitle">FEATURED PRODUCT</h2>
+                    <h2 class="section__heading--maintitle">SẢN PHẨM NỔI BẬT</h2>
                 </div>
                 <div class="product__section--inner product__swiper--column4 padding swiper">
                     <div class="swiper-wrapper">
@@ -448,7 +461,7 @@
                                         </li>
                                     </ul>
                                     <div class="product__add--to__card">
-                                        <a class="product__card--btn" title="Add To Card" href="cart.html"> Add to Cart
+                                        <a class="product__card--btn" title="Add To Card" href="cart.html"> Thêm giỏ hàng
                                             <svg width="17" height="15" viewBox="0 0 14 11" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -459,7 +472,7 @@
                                     </div>
                                 </div>
                                 <div class="product__card--content text-center">
-                                    <ul class="rating product__card--rating d-flex justify-content-center">
+                                    {{-- <ul class="rating product__card--rating d-flex justify-content-center">
                                         <li class="rating__list">
                                             <span class="rating__icon">
                                                 <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
@@ -513,7 +526,7 @@
                                         <li>
                                             <span class="rating__review--text">(126) Review</span>
                                         </li>
-                                    </ul>
+                                    </ul> --}}
                                     <h3 class="product__card--title"><a href="product-details.html">Z 7-8mm Freshwater
                                             Button is </a></h3>
                                     <div class="product__card--price">
@@ -584,7 +597,7 @@
                                     </div>
                                 </div>
                                 <div class="product__card--content text-center">
-                                    <ul class="rating product__card--rating d-flex justify-content-center">
+                                    {{-- <ul class="rating product__card--rating d-flex justify-content-center">
                                         <li class="rating__list">
                                             <span class="rating__icon">
                                                 <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
@@ -638,7 +651,7 @@
                                         <li>
                                             <span class="rating__review--text">(126) Review</span>
                                         </li>
-                                    </ul>
+                                    </ul> --}}
                                     <h3 class="product__card--title"><a href="product-details.html">Lorem, ipsum dolor sit
                                             ame elit. </a></h3>
                                     <div class="product__card--price">
@@ -710,7 +723,7 @@
                                     </div>
                                 </div>
                                 <div class="product__card--content text-center">
-                                    <ul class="rating product__card--rating d-flex justify-content-center">
+                                    {{-- <ul class="rating product__card--rating d-flex justify-content-center">
                                         <li class="rating__list">
                                             <span class="rating__icon">
                                                 <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
@@ -764,7 +777,7 @@
                                         <li>
                                             <span class="rating__review--text">(126) Review</span>
                                         </li>
-                                    </ul>
+                                    </ul> --}}
                                     <h3 class="product__card--title"><a href="product-details.html">Cotur, cing elit.
                                             Doloque, beatae. </a></h3>
                                     <div class="product__card--price">
@@ -835,7 +848,7 @@
                                     </div>
                                 </div>
                                 <div class="product__card--content text-center">
-                                    <ul class="rating product__card--rating d-flex justify-content-center">
+                                    {{-- <ul class="rating product__card--rating d-flex justify-content-center">
                                         <li class="rating__list">
                                             <span class="rating__icon">
                                                 <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
@@ -889,7 +902,7 @@
                                         <li>
                                             <span class="rating__review--text">(126) Review</span>
                                         </li>
-                                    </ul>
+                                    </ul> --}}
                                     <h3 class="product__card--title"><a href="product-details.html">Quis nihil modi dn
                                             venia vel ac? </a></h3>
                                     <div class="product__card--price">
@@ -961,7 +974,7 @@
                                     </div>
                                 </div>
                                 <div class="product__card--content text-center">
-                                    <ul class="rating product__card--rating d-flex justify-content-center">
+                                    {{-- <ul class="rating product__card--rating d-flex justify-content-center">
                                         <li class="rating__list">
                                             <span class="rating__icon">
                                                 <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
@@ -1015,7 +1028,7 @@
                                         <li>
                                             <span class="rating__review--text">(126) Review</span>
                                         </li>
-                                    </ul>
+                                    </ul> --}}
                                     <h3 class="product__card--title"><a href="product-details.html">Unde quaerat minus
                                             ipsa excei! </a></h3>
                                     <div class="product__card--price">
@@ -1049,7 +1062,7 @@
         <div class="before__after--section">
             <div class="container">
                 <div class="section__heading text-center mb-40">
-                    <h2 class="section__heading--maintitle">Before & After</h2>
+                    <h2 class="section__heading--maintitle">TRƯỚC & SAU</h2>
                 </div>
                 <div id="comparison">
                     <figure>
@@ -1067,7 +1080,7 @@
         <section class="product__section section--padding ">
             <div class="container">
                 <div class="section__heading text-center mb-40">
-                    <h2 class="section__heading--maintitle">Deals of the week!</h2>
+                    <h2 class="section__heading--maintitle">Ưu đãi trong tuần!</h2>
                 </div>
                 <div class="product__section--border position-relative">
                     <div class="product__section--countdown d-flex justify-content-center"
@@ -1140,7 +1153,7 @@
                                         </div>
                                     </div>
                                     <div class="product__card--content text-center">
-                                        <ul class="rating product__card--rating d-flex justify-content-center">
+                                        {{-- <ul class="rating product__card--rating d-flex justify-content-center">
                                             <li class="rating__list">
                                                 <span class="rating__icon">
                                                     <svg width="14" height="13" viewBox="0 0 14 13"
@@ -1194,8 +1207,9 @@
                                             <li>
                                                 <span class="rating__review--text">(126) Review</span>
                                             </li>
-                                        </ul>
-                                        <h3 class="product__card--title"><a href="product-details.html">Z 7-8mm Freshwater
+                                        </ul> --}}
+                                        <h3 class="product__card--title"><a href="product-details.html">Z 7-8mm
+                                                Freshwater
                                                 Button is </a></h3>
                                         <div class="product__card--price">
                                             <span class="current__price">$239.52</span>
@@ -1259,8 +1273,8 @@
                                         <div class="product__add--to__card">
                                             <a class="product__card--btn" title="Add To Card" href="cart.html"> Add to
                                                 Cart
-                                                <svg width="17" height="15" viewBox="0 0 14 11"
-                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <svg width="17" height="15" viewBox="0 0 14 11" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
                                                     <path
                                                         d="M13.2371 4H11.5261L8.5027 0.460938C8.29176 0.226562 7.9402 0.203125 7.70582 0.390625C7.47145 0.601562 7.44801 0.953125 7.63551 1.1875L10.0496 4H3.46364L5.8777 1.1875C6.0652 0.953125 6.04176 0.601562 5.80739 0.390625C5.57301 0.203125 5.22145 0.226562 5.01051 0.460938L1.98707 4H0.299574C0.135511 4 0.0183239 4.14062 0.0183239 4.28125V4.84375C0.0183239 5.00781 0.135511 5.125 0.299574 5.125H0.721449L1.3777 9.78906C1.44801 10.3516 1.91676 10.75 2.47926 10.75H11.0339C11.5964 10.75 12.0652 10.3516 12.1355 9.78906L12.7918 5.125H13.2371C13.3777 5.125 13.5183 5.00781 13.5183 4.84375V4.28125C13.5183 4.14062 13.3777 4 13.2371 4ZM11.0339 9.625H2.47926L1.86989 5.125H11.6433L11.0339 9.625ZM7.33082 6.4375C7.33082 6.13281 7.07301 5.875 6.76832 5.875C6.4402 5.875 6.20582 6.13281 6.20582 6.4375V8.3125C6.20582 8.64062 6.4402 8.875 6.76832 8.875C7.07301 8.875 7.33082 8.64062 7.33082 8.3125V6.4375ZM9.95582 6.4375C9.95582 6.13281 9.69801 5.875 9.39332 5.875C9.0652 5.875 8.83082 6.13281 8.83082 6.4375V8.3125C8.83082 8.64062 9.0652 8.875 9.39332 8.875C9.69801 8.875 9.95582 8.64062 9.95582 8.3125V6.4375ZM4.70582 6.4375C4.70582 6.13281 4.44801 5.875 4.14332 5.875C3.8152 5.875 3.58082 6.13281 3.58082 6.4375V8.3125C3.58082 8.64062 3.8152 8.875 4.14332 8.875C4.44801 8.875 4.70582 8.64062 4.70582 8.3125V6.4375Z"
                                                         fill="currentColor" />
@@ -1269,7 +1283,7 @@
                                         </div>
                                     </div>
                                     <div class="product__card--content text-center">
-                                        <ul class="rating product__card--rating d-flex justify-content-center">
+                                        {{-- <ul class="rating product__card--rating d-flex justify-content-center">
                                             <li class="rating__list">
                                                 <span class="rating__icon">
                                                     <svg width="14" height="13" viewBox="0 0 14 13"
@@ -1323,7 +1337,7 @@
                                             <li>
                                                 <span class="rating__review--text">(126) Review</span>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                         <h3 class="product__card--title"><a href="product-details.html">Lorem, ipsum
                                                 dolor sit ame elit. </a></h3>
                                         <div class="product__card--price">
@@ -1389,8 +1403,8 @@
                                         <div class="product__add--to__card">
                                             <a class="product__card--btn" title="Add To Card" href="cart.html"> Add to
                                                 Cart
-                                                <svg width="17" height="15" viewBox="0 0 14 11"
-                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <svg width="17" height="15" viewBox="0 0 14 11" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
                                                     <path
                                                         d="M13.2371 4H11.5261L8.5027 0.460938C8.29176 0.226562 7.9402 0.203125 7.70582 0.390625C7.47145 0.601562 7.44801 0.953125 7.63551 1.1875L10.0496 4H3.46364L5.8777 1.1875C6.0652 0.953125 6.04176 0.601562 5.80739 0.390625C5.57301 0.203125 5.22145 0.226562 5.01051 0.460938L1.98707 4H0.299574C0.135511 4 0.0183239 4.14062 0.0183239 4.28125V4.84375C0.0183239 5.00781 0.135511 5.125 0.299574 5.125H0.721449L1.3777 9.78906C1.44801 10.3516 1.91676 10.75 2.47926 10.75H11.0339C11.5964 10.75 12.0652 10.3516 12.1355 9.78906L12.7918 5.125H13.2371C13.3777 5.125 13.5183 5.00781 13.5183 4.84375V4.28125C13.5183 4.14062 13.3777 4 13.2371 4ZM11.0339 9.625H2.47926L1.86989 5.125H11.6433L11.0339 9.625ZM7.33082 6.4375C7.33082 6.13281 7.07301 5.875 6.76832 5.875C6.4402 5.875 6.20582 6.13281 6.20582 6.4375V8.3125C6.20582 8.64062 6.4402 8.875 6.76832 8.875C7.07301 8.875 7.33082 8.64062 7.33082 8.3125V6.4375ZM9.95582 6.4375C9.95582 6.13281 9.69801 5.875 9.39332 5.875C9.0652 5.875 8.83082 6.13281 8.83082 6.4375V8.3125C8.83082 8.64062 9.0652 8.875 9.39332 8.875C9.69801 8.875 9.95582 8.64062 9.95582 8.3125V6.4375ZM4.70582 6.4375C4.70582 6.13281 4.44801 5.875 4.14332 5.875C3.8152 5.875 3.58082 6.13281 3.58082 6.4375V8.3125C3.58082 8.64062 3.8152 8.875 4.14332 8.875C4.44801 8.875 4.70582 8.64062 4.70582 8.3125V6.4375Z"
                                                         fill="currentColor" />
@@ -1399,7 +1413,7 @@
                                         </div>
                                     </div>
                                     <div class="product__card--content text-center">
-                                        <ul class="rating product__card--rating d-flex justify-content-center">
+                                        {{-- <ul class="rating product__card--rating d-flex justify-content-center">
                                             <li class="rating__list">
                                                 <span class="rating__icon">
                                                     <svg width="14" height="13" viewBox="0 0 14 13"
@@ -1453,7 +1467,7 @@
                                             <li>
                                                 <span class="rating__review--text">(126) Review</span>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                         <h3 class="product__card--title"><a href="product-details.html">Cotur, cing
                                                 elit. Doloq, bea. </a></h3>
                                         <div class="product__card--price">
@@ -1518,8 +1532,8 @@
                                         <div class="product__add--to__card">
                                             <a class="product__card--btn" title="Add To Card" href="cart.html"> Add to
                                                 Cart
-                                                <svg width="17" height="15" viewBox="0 0 14 11"
-                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <svg width="17" height="15" viewBox="0 0 14 11" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
                                                     <path
                                                         d="M13.2371 4H11.5261L8.5027 0.460938C8.29176 0.226562 7.9402 0.203125 7.70582 0.390625C7.47145 0.601562 7.44801 0.953125 7.63551 1.1875L10.0496 4H3.46364L5.8777 1.1875C6.0652 0.953125 6.04176 0.601562 5.80739 0.390625C5.57301 0.203125 5.22145 0.226562 5.01051 0.460938L1.98707 4H0.299574C0.135511 4 0.0183239 4.14062 0.0183239 4.28125V4.84375C0.0183239 5.00781 0.135511 5.125 0.299574 5.125H0.721449L1.3777 9.78906C1.44801 10.3516 1.91676 10.75 2.47926 10.75H11.0339C11.5964 10.75 12.0652 10.3516 12.1355 9.78906L12.7918 5.125H13.2371C13.3777 5.125 13.5183 5.00781 13.5183 4.84375V4.28125C13.5183 4.14062 13.3777 4 13.2371 4ZM11.0339 9.625H2.47926L1.86989 5.125H11.6433L11.0339 9.625ZM7.33082 6.4375C7.33082 6.13281 7.07301 5.875 6.76832 5.875C6.4402 5.875 6.20582 6.13281 6.20582 6.4375V8.3125C6.20582 8.64062 6.4402 8.875 6.76832 8.875C7.07301 8.875 7.33082 8.64062 7.33082 8.3125V6.4375ZM9.95582 6.4375C9.95582 6.13281 9.69801 5.875 9.39332 5.875C9.0652 5.875 8.83082 6.13281 8.83082 6.4375V8.3125C8.83082 8.64062 9.0652 8.875 9.39332 8.875C9.69801 8.875 9.95582 8.64062 9.95582 8.3125V6.4375ZM4.70582 6.4375C4.70582 6.13281 4.44801 5.875 4.14332 5.875C3.8152 5.875 3.58082 6.13281 3.58082 6.4375V8.3125C3.58082 8.64062 3.8152 8.875 4.14332 8.875C4.44801 8.875 4.70582 8.64062 4.70582 8.3125V6.4375Z"
                                                         fill="currentColor" />
@@ -1528,7 +1542,7 @@
                                         </div>
                                     </div>
                                     <div class="product__card--content text-center">
-                                        <ul class="rating product__card--rating d-flex justify-content-center">
+                                        {{-- <ul class="rating product__card--rating d-flex justify-content-center">
                                             <li class="rating__list">
                                                 <span class="rating__icon">
                                                     <svg width="14" height="13" viewBox="0 0 14 13"
@@ -1582,7 +1596,7 @@
                                             <li>
                                                 <span class="rating__review--text">(126) Review</span>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                         <h3 class="product__card--title"><a href="product-details.html">Quis nihil modi
                                                 dn venia vel ac? </a></h3>
                                         <div class="product__card--price">
@@ -1648,8 +1662,8 @@
                                         <div class="product__add--to__card">
                                             <a class="product__card--btn" title="Add To Card" href="cart.html"> Add to
                                                 Cart
-                                                <svg width="17" height="15" viewBox="0 0 14 11"
-                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <svg width="17" height="15" viewBox="0 0 14 11" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
                                                     <path
                                                         d="M13.2371 4H11.5261L8.5027 0.460938C8.29176 0.226562 7.9402 0.203125 7.70582 0.390625C7.47145 0.601562 7.44801 0.953125 7.63551 1.1875L10.0496 4H3.46364L5.8777 1.1875C6.0652 0.953125 6.04176 0.601562 5.80739 0.390625C5.57301 0.203125 5.22145 0.226562 5.01051 0.460938L1.98707 4H0.299574C0.135511 4 0.0183239 4.14062 0.0183239 4.28125V4.84375C0.0183239 5.00781 0.135511 5.125 0.299574 5.125H0.721449L1.3777 9.78906C1.44801 10.3516 1.91676 10.75 2.47926 10.75H11.0339C11.5964 10.75 12.0652 10.3516 12.1355 9.78906L12.7918 5.125H13.2371C13.3777 5.125 13.5183 5.00781 13.5183 4.84375V4.28125C13.5183 4.14062 13.3777 4 13.2371 4ZM11.0339 9.625H2.47926L1.86989 5.125H11.6433L11.0339 9.625ZM7.33082 6.4375C7.33082 6.13281 7.07301 5.875 6.76832 5.875C6.4402 5.875 6.20582 6.13281 6.20582 6.4375V8.3125C6.20582 8.64062 6.4402 8.875 6.76832 8.875C7.07301 8.875 7.33082 8.64062 7.33082 8.3125V6.4375ZM9.95582 6.4375C9.95582 6.13281 9.69801 5.875 9.39332 5.875C9.0652 5.875 8.83082 6.13281 8.83082 6.4375V8.3125C8.83082 8.64062 9.0652 8.875 9.39332 8.875C9.69801 8.875 9.95582 8.64062 9.95582 8.3125V6.4375ZM4.70582 6.4375C4.70582 6.13281 4.44801 5.875 4.14332 5.875C3.8152 5.875 3.58082 6.13281 3.58082 6.4375V8.3125C3.58082 8.64062 3.8152 8.875 4.14332 8.875C4.44801 8.875 4.70582 8.64062 4.70582 8.3125V6.4375Z"
                                                         fill="currentColor" />
@@ -1658,7 +1672,7 @@
                                         </div>
                                     </div>
                                     <div class="product__card--content text-center">
-                                        <ul class="rating product__card--rating d-flex justify-content-center">
+                                        {{-- <ul class="rating product__card--rating d-flex justify-content-center">
                                             <li class="rating__list">
                                                 <span class="rating__icon">
                                                     <svg width="14" height="13" viewBox="0 0 14 13"
@@ -1712,7 +1726,7 @@
                                             <li>
                                                 <span class="rating__review--text">(126) Review</span>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                         <h3 class="product__card--title"><a href="product-details.html">Unde quaerat
                                                 minus ipsa excei! </a></h3>
                                         <div class="product__card--price">
@@ -1724,16 +1738,16 @@
                             </div>
                         </div>
                         <div class="swiper__nav--btn swiper-button-next">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class=" -chevron-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class=" -chevron-right">
                                 <polyline points="9 18 15 12 9 6"></polyline>
                             </svg>
                         </div>
                         <div class="swiper__nav--btn swiper-button-prev">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class=" -chevron-left">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class=" -chevron-left">
                                 <polyline points="15 18 9 12 15 6"></polyline>
                             </svg>
                         </div>
@@ -1757,12 +1771,13 @@
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div class="banner__fullwidth--content">
-                                <h3 class="banner__fullwidth--content__subtitle">SPECIAL OFFER</h3>
-                                <h2 class="banner__fullwidth--content__title">Set For A Good Time</h2>
-                                <p class="banner__fullwidth--content__desc">We are committed to offering the finest
-                                    selection of clean and natural skin care products created by the world’s leading brands
-                                    that are pioneers in innovation, science, technology, and sustainability.</p>
-                                <a class="banner__fullwidth--content__btn primary__btn" href="#">SHOP NOW</a>
+                                <h3 class="banner__fullwidth--content__subtitle">ƯU ĐÃI ĐẶC BIỆT</h3>
+                                <h2 class="banner__fullwidth--content__title">Đặt cho một thời gian tốt</h2>
+                                <p class="banner__fullwidth--content__desc">Chúng tôi cam kết cung cấp sự lựa chọn tốt
+                                    nhất các sản phẩm chăm sóc da sạch và tự nhiên được tạo ra bởi các thương hiệu hàng đầu
+                                    thế giới tiên phong trong đổi mới, khoa học, công nghệ và bền vững.</p>
+                                <a class="banner__fullwidth--content__btn primary__btn"
+                                    href="{{ route('shopGrid') }}">MUA NGAY</a>
                             </div>
                         </div>
                     </div>
@@ -1775,11 +1790,11 @@
         <section class="skin__advice--section section--padding">
             <div class="container">
                 <div class="skin__advice--content text-center">
-                    <h2 class="skin__advice--content__title">Truly love the skin you're in</h2>
-                    <p class="skin__advice--content__desc">Our vision is to give melanin rich skin the attention it
-                        deserves. We don't want to just nurture your skin—we want you to discover the beauty that lies
-                        within.</p>
-                    <h3 class="skin__advice--content__subtitle">Everyone needs a Iil' Buttah – baby!</h3>
+                    <h2 class="skin__advice--content__title">Thực sự yêu làn da bạn đang ở</h2>
+                    <p class="skin__advice--content__desc">Tầm nhìn của chúng tôi là cung cấp cho làn da giàu melanin sự
+                        chú ý xứng đáng. Chúng tôi không muốn chỉ nuôi dưỡng làn da của bạn - chúng tôi muốn bạn khám phá vẻ
+                        đẹp bên trong.</p>
+                    <h3 class="skin__advice--content__subtitle">Mọi người đều cần một Iil 'Buttah - em yêu!</h3>
                 </div>
             </div>
         </section>
@@ -1791,26 +1806,26 @@
                 <div class="row mb--n30">
                     <div class="col-lg-6 col-md-6 mb-30">
                         <div class="banner__box border-radius-5 position-relative">
-                            <a class="display-block" href="shop.html"><img
+                            <a class="display-block" href="{{ route('shopGrid') }}"><img
                                     class="banner__box--thumbnail border-radius-5"
                                     src="{{ asset('becute/assets/img/banner/banner7.webp') }}" alt="banner-img">
                                 <div class="banner__box--content">
-                                    <h2 class="banner__box--content__title ">Beauty Box</h2>
-                                    <p class="banner__box--content__desc">Freshwater pearl necklace and earrings</p>
-                                    <span class="banner__box--content__btn primary__btn">EXPLORE </span>
+                                    <h2 class="banner__box--content__title ">Hộp làm đẹp</h2>
+                                    <p class="banner__box--content__desc">Nước hoa và chăm sóc cơ thể</p>
+                                    <span class="banner__box--content__btn primary__btn">KHÁM PHÁ </span>
                                 </div>
                             </a>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 mb-30">
                         <div class="banner__box border-radius-5 position-relative">
-                            <a class="display-block" href="shop.html"><img
+                            <a class="display-block" href="{{ route('shopGrid') }}"><img
                                     class="banner__box--thumbnail border-radius-5"
                                     src="{{ asset('becute/assets/img/banner/banner8.webp') }}" alt="banner-img">
                                 <div class="banner__box--content">
                                     <h2 class="banner__box--content__title ">Organic Serium</h2>
-                                    <p class="banner__box--content__desc">Freshwater pearl necklace and</p>
-                                    <span class="banner__box--content__btn primary__btn style2">EXPLORE </span>
+                                    <p class="banner__box--content__desc">Serium dưỡng ẩm cấp tốc</p>
+                                    <span class="banner__box--content__btn primary__btn style2">KHÁM PHÁ </span>
                                 </div>
                             </a>
                         </div>
@@ -1824,7 +1839,7 @@
         <section class="testimonial__section testimonial__bg section--padding">
             <div class="container">
                 <div class="section__heading text-center mb-40">
-                    <h2 class="section__heading--maintitle">What Clients Are Saying</h2>
+                    <h2 class="section__heading--maintitle">Khách hàng đang nói gì</h2>
                 </div>
                 <div class="testimonial__section--inner testimonial__swiper--activation swiper">
                     <div class="swiper-wrapper">

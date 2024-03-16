@@ -6,6 +6,8 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
+import { Alpine, Livewire } from '../../vendor/livewire/livewire/dist/livewire.esm';
+import ToastComponent from '../../vendor/usernotnull/tall-toasts/resources/js/tall-toasts';
 
 
 /**
@@ -36,7 +38,9 @@ app.component('example-component', ExampleComponent);
  * an "id" attribute of "app". This element is included with the "auth"
  * scaffolding. Otherwise, you will need to add an element yourself.
  */
+Alpine.plugin(ToastComponent);
 
+Livewire.start();
 app.mount('#app');
 
 Alpine.start();

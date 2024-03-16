@@ -58,7 +58,7 @@ class ProductController extends Controller
 
         Products::create($validatedData);
 
-        return redirect()->route('products.create')->with('success', 'Sản phẩm đã được thêm thành công');
+        return redirect()->back()->with('success', 'Sản phẩm được thêm thành công!');
 
       
     }
@@ -129,7 +129,7 @@ class ProductController extends Controller
         $product->price_sale = $request->input('price_sale');
         $product->save();
 
-        return redirect()->route('products.index')->with('success', 'Sản phẩm đã được cập nhật thành công.');
+        return redirect()->route('products.index')->with('success', 'Sản phẩm được cập nhật thành công!');
     }
     
 
@@ -141,8 +141,8 @@ class ProductController extends Controller
         $product = Products::findOrFail($id);
         $product->delete();
     
-        return redirect()->route('products.index')->with('success', 'Đã xóa sản phẩm thành công.');
+        return redirect()->route('products.index')->with('success', 'Sản phẩm được xóa thành công!');
     }
 
 }
-
+        

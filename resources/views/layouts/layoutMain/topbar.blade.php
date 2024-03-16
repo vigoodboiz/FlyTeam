@@ -290,6 +290,7 @@
                                              stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
                                      </svg>
                                  </span>
+
                              </a>
                          </li>
                      </ul>
@@ -301,12 +302,12 @@
      <!-- Start serch box area -->
      <div class="predictive__search--box ">
          <div class="predictive__search--box__inner">
-             <h2 class="predictive__search--title">Search Products</h2>
+             <h2 class="predictive__search--title">Tìm kiếm</h2>
 
              <form class="predictive__search--form" action="{{ route('search') }}" method="POST">
                  @csrf
                  <label>
-                     <input class="predictive__search--input" placeholder="Search Here" name="searchPro"
+                     <input class="predictive__search--input" placeholder="Tìm kiếm tại đây" name="searchPro"
                          type="text">
                  </label>
                  <button class="predictive__search--button text-white" aria-label="search button"><svg
@@ -325,6 +326,7 @@
                  <path fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                      stroke-width="32" d="M368 368L144 144M368 144L144 368" />
              </svg>
+
          </button>
      </div>
      <!-- End serch box area -->

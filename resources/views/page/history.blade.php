@@ -9,8 +9,8 @@
                     <div class="col">
                         <div class="breadcrumb__content text-center">
                             <ul class="breadcrumb__content--menu d-flex justify-content-center">
-                                <li class="breadcrumb__content--menu__items"><a href="{{ route('home') }}">Home</a></li>
-                                <li class="breadcrumb__content--menu__items"><span>History Order</span></li>
+                                <li class="breadcrumb__content--menu__items"><a href="{{ route('home') }}">Trang chủ</a></li>
+                                <li class="breadcrumb__content--menu__items"><span>Lịch sử đơn hàng</span></li>
                             </ul>
                         </div>
                     </div>
@@ -22,57 +22,95 @@
 
         <!-- cart section start -->
         <div class="container">
-            <h2 class="cart__title mb-30">Order History</h2>
+
+            <h2 class="cart__title mb-30">Lịch sử đơn hàng</h2>
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>User Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Address</th>
-                        <th>Product Image</th>
-                        <th>Product Name</th>
-                        <th>Product Price</th>
-                        <th>Quantity</th>
-                        <th>Total Price</th>
-                        <th>Order Status</th>
-                        <th>Order Date</th>
+                        <th>Stt</th>
+
+                        {{-- <th>User Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Address</th> --}}
+
+                        <th>Ảnh sản phẩm</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Tổng tiền</th>
+                        <th>Trạng thái đơn hàng</th>
+                        <th>Trạng thái giao hàng</th>
+                        <th>Ngày đặt hàng</th>
+                        <th>Hành động</th>
+
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($orders as $item)
                         <tr>
                             <td>{{ $loop->index + 1 }}</td>
-                            <td>{{ $item->user->name }}</td>
-                            <td>{{ $item->user->email }}</td>
-                            <td>{{ $item->user->phone }}</td>
-                            <td>{{ $item->user->address }}</td>
+                            {{-- <td>{{ $item->user->name }}</td>
+                                <td>{{ $item->user->email }}</td>
+                                <td>{{ $item->user->phone }}</td>
+                                <td>{{ $item->user->address }}</td> --}}
                             <td>
-                               
-                                    <img class="border-radius-5"
-                                    width="100"
-                                        src="{{ asset('upload/public/images/' . $item->product->image) }}" alt="cart-product">
-                                
+
+                                <img class="border-radius-5" width="100"
+                                    src="{{ asset('upload/public/images/' . $item->product->image) }}" alt="cart-product">
+
                             </td>
                             <td>
-                                
-                                    {{ $item->product->name }}
-                                
+
+                                {{ $item->product->name }}
+
                             </td>
                             <td>
-                                
-                                    {{ $item->product->price }}
-                                
+
+                                {{ $item->product->price }}
+
                             </td>
                             <td>{{ $item->quantity }}</td>
                             <td>{{ $item->total_price }}đ</td>
                             <td>{{ $item->payment_status }}</td>
+                            <td>{{ $item->delivery_status }}</td>
                             <td>{{ $item->created_at->format('d/m/Y') }}</td>
+                            <td>
+                                <div class="d-flex align-items-center list-action">
+                                    @if ($item->payment_status === 'Đã hủy đơn hàng' && $item->delivery_status === 'Không thể xử lý giao hàng')
+
+                                        <form id="delete-Form" action="{{ route('orders.process_reorder', $item->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            <button class="btn btn-success" type="submit" id="delete-button">Mua
+                                                lại</button>
+                                        </form>
+                                    @elseif($item->payment_status === 'Đang xác nhận' && $item->delivery_status === 'Đang xử lý')
+                                        <form id="delete-form" action="{{ route('orders.cancel', $item->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('POST')
+                                            <button class="btn btn-danger" type="submit" title="Cancel order"
+                                                id="delete-button">Hủy đơn
+                                            </button>
+                                        </form>
+                                        @elseif($item->payment_status === 'Đã Thanh Toán' && $item->delivery_status === 'Đang xử lý')
+                                        <form id="delete-form" action="{{ route('orders.cancel', $item->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('POST')
+                                            <button class="btn btn-danger" type="submit" title="Cancel order"
+                                                id="delete-button">Hủy đơn
+                                            </button>
+                                        </form>
+                                    @endif
+                                </div>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+            {{ $orders->links() }}
         </div>
         <!-- End product section -->
 

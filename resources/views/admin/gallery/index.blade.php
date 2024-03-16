@@ -34,10 +34,10 @@
                     <td class="col-9"><img src="{{ asset('upload/public/images/' . $gallery->image) }}"
                             alt="{{ $gallery->name }}" width="400" class="img-fluid">
                     <td>
-                        <form action="{{ route('gallery.destroy', $gallery->id) }}" method="POST">
+                        <form id="delete-form" action="{{ route('gallery.destroy', $gallery->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Xoá</button>
+                            <button type="submit" class="btn btn-danger" id="delete-button"><i class="fa fa-trash mr-0"></i></button>
                         </form>
                     </td>
                 </tr>
