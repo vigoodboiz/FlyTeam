@@ -43,7 +43,6 @@ class ProductController extends Controller
             'name' => 'required',
             'brand' => 'required',
             'describe' => 'required',
-            'price' => 'required',
             'quantity_product' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -99,8 +98,6 @@ class ProductController extends Controller
             'name' => 'required',
             'brand' => 'required',
             'describe' => 'required',
-            'price' => 'required|numeric',
-            'price_sale' => 'required|numeric',
             'quantity_product' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -127,8 +124,6 @@ class ProductController extends Controller
         $product->name = $request->input('name');
         $product->brand = $request->input('brand');
         $product->describe = $request->input('describe');
-        $product->price = $request->input('price');
-        $product->price_sale = $request->input('price_sale');
         $product->quantity_product = $request->input('quantity_product');
         $product->save();
 
@@ -147,4 +142,3 @@ class ProductController extends Controller
     }
 
 }
-        

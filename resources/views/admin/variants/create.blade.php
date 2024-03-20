@@ -22,6 +22,14 @@
                 <label for="value">Nhập giá trị</label>
                 <input type="text" class="form-control" id="value" name="value">
             </div>
+            <div class="mb-3">
+                <label for="value">Nhập giá</label>
+                <input type="text" class="form-control" id="price" name="price">
+            </div>
+            <div class="mb-3">
+                <label for="value">Nhập giá sale</label>
+                <input type="text" class="form-control" id="price_sale" name="price_sale">
+            </div>
 
             <button type="submit" class="btn btn-primary">Thêm thuộc tính</button>
 

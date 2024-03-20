@@ -13,8 +13,8 @@
                 <thead>
                     <tr>
                         <th>Stt</th>
-                        <th>Id sản phẩm</th>
-                        <th>Id khách hàng</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Tên khách hàng</th>
                         <th>Nội dung</th>
                         <th>Ngày bình luận</th>
                     </tr>
@@ -23,30 +23,12 @@
                     @foreach ($comments as $cmt)
                         <tr>
                             <td scope="row">{{ $cmt->id }}</td>
-                            <td>{{ $cmt->product_id }}</td>
-                            <td>{{ $cmt->user_id }}</td>
+                            <td>{{ $cmt->product_name }}</td>
+                            <td>{{ $cmt->user_name }}</td>
                             <td>{{ $cmt->content }}</td>
                             <td>{{ $cmt->date }}</td>
 
-                            <td>
-                                @can('comment_edit')
-                                    <div class="d-flex justify-content-center"><button type="button" class="btn btn-primary ">
-                                            <a class="text-white"
-                                                href="{{ route('route_comment_update', ['id' => $cmt->id]) }}"><i
-                                                    class="fa-solid fa-pen"></i></a>
-                                        </button></div>
-                                @endcan
-                            </td>
-                            <td>
-                                @can('comment_delete')
-                                    <div class="d-flex justify-content-center"><button id="delete-button" type="button"
-                                            class="btn btn-danger">
-                                            <a class="text-white"
-                                                href="{{ route('route_comment_delete', ['id' => $cmt->id]) }}"><i
-                                                    class="fa fa-trash mr-0"></i></a>
-                                        </button></div>
-                                @endcan
-                            </td>
+                            
                         </tr>
                     @endforeach
 
