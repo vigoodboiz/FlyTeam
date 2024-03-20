@@ -175,7 +175,7 @@
                              </a>
                          </li>
                          <li class="header__menu--items">
-                             <a class="header__menu--link" href="{{ route('accountPage') }}">
+                             <a class="header__menu--link" href="#">
                                  <span class="header__account--btn__icon">
                                      <svg width="17" height="17" viewBox="0 0 17 17" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -209,6 +209,11 @@
                                                                                                                     document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Đăng
                                              xuất</a>
                                      </li>
+                                 @else
+                                     <li class="header__sub--menu__items"><a href="{{ route('login') }}"
+                                             class="header__sub--menu__link">Đăng nhập</a></li>
+                                     <li class="header__sub--menu__items"><a href="{{ route('register') }}"
+                                             class="header__sub--menu__link">Đăng ký</a></li>
                                  @endif
                                  <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                      class="d-none">
@@ -267,6 +272,5 @@
          </button>
      </div>
      <!-- End serch box area -->
-
  </header>
  <!-- End header area -->

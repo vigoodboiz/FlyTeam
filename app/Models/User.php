@@ -101,7 +101,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function orders(){
         return $this->hasMany(Order::class, 'user_id', 'id');
     }
-    public function coupons(){
-        return $this->hasMany(Coupon::class, 'coupon_used', 'id');
+    public function coupons()
+    {
+        return $this->belongsToMany(Coupon::class, 'user_coupon', 'user_id', 'coupon_id')->withTimestamps();
     }
 }
