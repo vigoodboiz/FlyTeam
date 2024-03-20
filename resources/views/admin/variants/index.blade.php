@@ -24,6 +24,8 @@
                         <th>Mã sản phẩm</th>
                         <th>Tên thuộc tính</th>
                         <th>Giá trị</th>
+                        <th>Giá</th>
+                        <th>Giá sale</th>
                         <th>Hành động</th>
                     </tr>
                 </thead>
@@ -34,6 +36,8 @@
                             <th scope="row">#1234{{ $variant->product->id }}</th>
                             <td>{{ $variant->name }}</td>
                             <td>{{ $variant->value }}</td>
+                            <td>{{ $variant->price }}</td>
+                            <td>{{ $variant->price_sale }}</td>
                             <td>
                                 @can('variant_edit')
                                     <a href="{{ route('variants.edit', $variant->id) }}" class="btn btn-primary"><i

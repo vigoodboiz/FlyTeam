@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Variant;
 use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Category;
@@ -18,7 +19,7 @@ class HomeController extends Controller
         $categories = Category::all();
         $products_trending = Products::orderBy('view_count', 'desc')->limit(8)->get();
         $new_product = Products::orderBy('created_at', 'DESC')->limit(10)->get();
-        $sale_product = Products::where('price_sale', '!=', 0)->limit(10)->get();
+        $sale_product = Variant::where('price_sale', '!=', 0)->limit(10)->get();
         return view('page.index',compact('categories','products_trending','new_product','sale_product'));
     }
 }

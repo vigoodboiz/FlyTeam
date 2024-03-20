@@ -48,6 +48,8 @@ class VariantController extends Controller
         $variant->name = $request->name;
         $variant->value = $request->value;
         $variant->product_id = $request->product_id;
+        $variant->price = $request->price;
+        $variant->price_sale = $request->price_sale;
         $variant->save();
         return redirect()->route('variants.index', $product_id)->with('success', 'Thuộc tính được thêm thành công!');
     }
@@ -88,7 +90,7 @@ class VariantController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-   
+
 
     public function destroy(string $id)
     {
