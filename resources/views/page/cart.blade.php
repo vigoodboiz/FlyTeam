@@ -164,6 +164,92 @@
                             </div>
                         </div>
 
+                        <div class="col-lg-4">
+                            <div class="cart__summary border-radius-10">
+                                <!-- <form action="{{ route('check_coupon') }}" method="POST">
+                                    @csrf()
+                                    <div class="coupon__code mb-30">
+                                        <h3 class="coupon__code--title">Coupon</h3>
+                                        <p class="coupon__code--desc">Enter your coupon code if you have one.</p>
+                                        <div class="coupon__code--field d-flex">
+                                            <label>
+                                                <input type="text" class="coupon__code--field__input border-radius-5"
+                                                    name="coupon" placeholder="Nhập mã giảm giá"><br>
+                                            </label>
+                                            <input name="check_coupon" class="coupon__code--field__btn primary__btn"
+                                                type="submit" value="Aply Coupon">
+
+                                        </div>
+                                    </div>
+                                </form> -->
+                                <!-- <td>
+                                    @if (Session::get('coupon'))
+                                        <a class="coupon__code--field__btn primary__btn"
+                                            href="{{ route('unset_coupon') }}">Unset Coupon</a>
+                                    @endif
+                                </td> -->
+
+
+                                <!-- <div class="cart__note mb-20">
+                                                                                    <h3 class="cart__note--title">Note</h3>
+                                                                                    <p class="cart__note--desc">Add special instructions for your seller...</p>
+                                                                                    <textarea class="cart__note--textarea border-radius-5"></textarea>
+                                                                                </div> -->
+                            </div>
+
+                            <div class="cart__summary--total mb-20">
+                                <table class="cart__summary--total__table">
+                                    <tbody>
+                                        <tr class="cart__summary--total__list">
+                                        </tr>
+                                        <tr class="cart__summary--total__list">     
+                                            <td class="cart__summary--total__title text-left">GRAND TOTAL</td>
+                                            <td class="cart__summary--amount text-right">{{ $totalPrice }} VNĐ</td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- @if (Session::get('coupon'))
+                                @foreach (Session::get('coupon') as $key => $cou)
+                                    @if ($cou['coupon_condition'] == 1)
+                                        Reduce : {{ $cou['coupon_number'] }} %
+                                        <p>
+                                            <?php
+                                            $total_coupon = ($totalPrice * $cou['coupon_number']) / 100;
+                                            echo '<p><li >Reduce :' . number_format($total_coupon, 0, ',', '.') . '</li></p>';
+                                            ?>
+                                        </p>
+                                        <p>
+                                            <li>Must pay : {{ number_format($totalPrice - $total_coupon, 0, ',', '.') }}
+                                            </li>
+                                        </p>
+                                    @elseif($cou['coupon_condition'] == 2)
+                                        Reduce : {{ number_format($cou['coupon_number'], 0, ',', '.') }}
+                                        <p>
+                                            <?php
+                                            $total_coupon = $totalPrice - $cou['coupon_number'];
+                                            
+                                            ?>
+                                        </p>
+                                        <p>
+                                            <li>Must pay : {{ number_format($total_coupon, 0, ',', '.') }}</li>
+                                        </p>
+                                    @endif
+                                @endforeach
+                            @endif -->
+
+                            <div class="cart__summary--footer">
+                                <p class="cart__summary--footer__desc">Shipping & taxes calculated at checkout</p>
+                                <ul class="d-flex justify-content-between">
+                                    <li><button class="cart__summary--footer__btn primary__btn cart" type="submit">Update
+                                            Cart</button></li>
+
+                                    <li><a class="cart__summary--footer__btn primary__btn checkout"
+                                            href="{{route('checkoutPage')}}">Check Out</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
 
                 </div>

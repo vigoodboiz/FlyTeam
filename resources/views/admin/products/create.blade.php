@@ -38,6 +38,7 @@
         <button type="submit" class="btn btn-primary" id="addProductBtn">Thêm sản phẩm</button>
     </form>
 </div>
+
 @endsection
 @section('js-custom')
     <script>
