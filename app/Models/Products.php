@@ -20,8 +20,8 @@ class Products extends Model implements HasMedia
     protected $table = 'products';
 
 
-    
-    protected $fillable = ['id_category', 'name', 'brand',  'describe' ,'price', 'price_sale','quantity_product', 'image'];
+
+    protected $fillable = ['id_category', 'name', 'brand',  'describe', 'quantity_product', 'image'];
 
 
     public function category()
@@ -38,7 +38,7 @@ class Products extends Model implements HasMedia
     public function comments() {
         return $this->hasMany(Comment::class);
     }
-   
+
     // public function getFavoritedAttribute(){
     //     $favorited = Favorite::where(['product_id' => $this->id, 'user_id' => Auth::user()->id])->first();
     //     return $favorited ? true : false;
@@ -58,4 +58,3 @@ class Products extends Model implements HasMedia
 }
 
 
-   

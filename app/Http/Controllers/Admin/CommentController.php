@@ -13,18 +13,14 @@ use Illuminate\Support\Facades\Session;
 class CommentController extends Controller
 {
     public function index(Request $request){
-        $productId = 1;
-        $userId = 1;
-
-        $comments = DB::table('comments')
-            ->select('comments.*', 'products.name as product_name', 'users.name as user_name')
-            ->join('products', 'comments.product_id', '=', 'products.id')
-            ->join('users', 'comments.user_id', '=', 'users.id')
-            ->where('comments.product_id', $productId)
-            ->where('comments.user_id', $userId)
-            ->get();
-        return view('admin.comment.index',compact('comments'));
+        
         // $comments = Comment::all();
+        $comments = DB::table('comments')
+                ->select('comments.*', 'products.name as product_name', 'users.name as user_name')
+                ->join('products', 'comments.product_id', '=', 'products.id')
+                ->join('users', 'comments.user_id', '=', 'users.id')
+                ->get();
+        return view('admin.comment.index',compact('comments'));
 
         // $comments = Comment::where('column_name', 'value')->get();
 

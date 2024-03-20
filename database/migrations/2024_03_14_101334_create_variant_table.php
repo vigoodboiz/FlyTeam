@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('product_id');
             $table->string('name');
             $table->string('value');
+            $table->double('price');
+            $table->double('price_sale')->default(0);
             $table->timestamps();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
