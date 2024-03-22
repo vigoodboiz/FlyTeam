@@ -22,6 +22,7 @@
                     <tr>
                         <th>STT</th>
                         <th>Mã sản phẩm</th>
+                        <th>Tên sản phẩm</th>
                         <th>Tên thuộc tính</th>
                         <th>Giá trị</th>
                         <th>Giá</th>
@@ -34,6 +35,7 @@
                         <tr>
                             <td>{{ $variant->id }}</td>
                             <th scope="row">#1234{{ $variant->product->id }}</th>
+                            <td>{{ $variant->product_name }}</td>
                             <td>{{ $variant->name }}</td>
                             <td>{{ $variant->value }}</td>
                             <td>{{ $variant->price }}</td>

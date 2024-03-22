@@ -168,6 +168,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
    Route::put('/variants/update/{product_id}', [VariantController::class, 'update'])->name('variants.update');
    Route::delete('/variants/{id}', [VariantController::class, 'destroy'])->name('variants.destroy');
 
+
+
+
     ///////////////////////// gallery //////////////////
     Route::get('/index/{product_id}', [GalleryController::class, 'index'])->name('index');
     Route::get('/gallery/create/{product_id}', [GalleryController::class, 'create'])->name('gallery.create');

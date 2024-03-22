@@ -42,6 +42,8 @@ class ProductController extends Controller
             'id_category' => 'required',
             'name' => 'required',
             'brand' => 'required',
+            'price' => 'required',
+            'price_sale' => 'required',
             'describe' => 'required',
             'quantity_product' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -123,6 +125,8 @@ class ProductController extends Controller
         $product->id_category = $request->input('id_category');
         $product->name = $request->input('name');
         $product->brand = $request->input('brand');
+        $product->price = $request->input('price');
+        $product->price_sale = $request->input('price_sale');
         $product->describe = $request->input('describe');
         $product->quantity_product = $request->input('quantity_product');
         $product->save();
