@@ -267,6 +267,7 @@ Route::match(['GET', 'POST'],'/cart/update', [CartController::class, 'updateCart
 Route::delete('/cart/products/{productId}', [CartController::class, 'removeProductFromCart'])->name('cart.removeProduct');
 Route::get('cart/delete/{cart}', [CartController::class, 'destroy'])->name('cart.delete');
 
+
 //whishlist
 Route::get('/favorite/{product}', [FavoriteController::class, 'index'])->name('favorite');
 // Route::delete('/favorite/{id}', [FavoriteController::class, 'destroy'])->name('favorite.delete');

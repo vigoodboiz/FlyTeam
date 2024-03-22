@@ -45,6 +45,7 @@
             <label for="quantity_product">Số lượng sản phẩm:</label>
             <input type="number" name="quantity_product" class="form-control" value="{{ $product->quantity_product }}"
                    required>
+
         </div>
 
         <div class="form-group">

@@ -11,18 +11,10 @@ use App\Models\Order;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Session;
-use App\Models\Item;
-use App\Models\CartItem;
-use App\Http\Controllers\PaymentController;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TestMail;
+use App\Models\Coupon;
 
-
-
-// use PayPal\Api\Payment;
-// use PayPal\Api\PaymentExecution;
-// use PayPal\Auth\OAuthTokenCredential;
-// use PayPal\Rest\ApiContext;
-// use Mail;
 
 class CheckoutController extends Controller
 {
@@ -53,6 +45,7 @@ class CheckoutController extends Controller
         return $totalPrice;
     }
 
+
     public function post_checkout(Request $request)
     {
         $userId = Auth::user()->id;
@@ -77,8 +70,14 @@ class CheckoutController extends Controller
                 $product->decrement('quantity_product', $cartItem->quantity);
             }
             
-                $userId = auth::user()->id;
-                $carts= Cart::where('user_id', $userId)->get();
+               
+            $userId = auth::user()->id;
+            $userMail = auth::user()->email;
+            $userName = auth::user()->name;
+            $carts= Cart::where('user_id', $userId)->get();
+            $Mail = Mail::to($userMail)->send(new TestMail($userName));
+            $carts = Cart::where('user_id', $userId)->get();
+          
                 foreach ($carts as $cart) {
                     $cart->delete();
                 }
@@ -112,6 +111,7 @@ class CheckoutController extends Controller
                     $order->payment_status = 'Đã Thanh Toán';
                     $order->delivery_status = 'Đang xử lý';
                     $order->save();
+
 
                     $product = Products::find($cartItem->product_id);
                     $product->decrement('quantity_product', $cartItem->quantity);
