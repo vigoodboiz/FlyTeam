@@ -11,7 +11,7 @@ class Variant extends Model
 
     protected $table = 'variant';
 
-    protected $fillable = ['name', 'value', 'product_id' ,'price', 'price_sale'];
+    protected $fillable = ['product_name', 'name', 'value', 'product_id' ,'price', 'price_sale'];
 
     public function product()
     {

@@ -10,6 +10,10 @@
         </div>
 
         <div class="form-group">
+            <input type="hidden" name="product_name" class="form-control" value="{{ $variants->product_name }}" required>
+        </div>
+
+        <div class="form-group">
             <label for="value">Giá trị</label>
             <input type="text" name="value" class="form-control" value="{{ $variants->value }}" required>
         </div>

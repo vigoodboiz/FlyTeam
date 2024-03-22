@@ -44,12 +44,14 @@ class VariantController extends Controller
         // Variant::create($validatedData);
 
         // return redirect()->route('variants.index')->with('success', 'Danh mục được thêm thành công!');
+        $product_name = Products::where('id', $product_id)->value('name');
         $variant = new Variant();
+        $variant->product_name = $product_name;
         $variant->name = $request->name;
         $variant->value = $request->value;
         $variant->product_id = $request->product_id;
         $variant->price = $request->price;
-        $variant->price_sale = $request->price_sale;
+        $variant->price_sale = 0;
         $variant->save();
         return redirect()->route('variants.index', $product_id)->with('success', 'Thuộc tính được thêm thành công!');
     }
@@ -83,6 +85,9 @@ class VariantController extends Controller
             $variant->name = $request->name;
             $variant->value = $request->value;
             $variant->product_id = $request->product_id;
+            $variant->price = $request->price;
+            $variant->price_sale = $request->price_sale;
+            $variant->product_name = $request->product_name;
             $variant->save();
         return redirect()->route('variants.index', $product_id)->with('success', 'Thuộc tính được cập nhật thành công!');
     }
@@ -98,7 +103,5 @@ class VariantController extends Controller
         $variant->delete();
         return redirect()->back()->with('success', 'Thuộc tính được xóa thành công!');
     }
-
-
 
 }

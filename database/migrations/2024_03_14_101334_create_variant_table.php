@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('variant', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id');
+            $table->string('product_name');
             $table->string('name');
             $table->string('value');
             $table->double('price');

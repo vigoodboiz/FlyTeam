@@ -21,7 +21,7 @@ class Products extends Model implements HasMedia
 
 
 
-    protected $fillable = ['id_category', 'name', 'brand',  'describe', 'quantity_product', 'image'];
+    protected $fillable = ['id_category', 'name', 'brand', 'price', 'price_sale',  'describe', 'quantity_product', 'image'];
 
 
     public function category()
