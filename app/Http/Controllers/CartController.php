@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Products;
+use App\Models\UserCoupon;
 use Exception;
 use Hamcrest\Core\Set;
 use Illuminate\Support\Facades\Log;
@@ -27,31 +28,50 @@ class CartController extends Controller
                      ->where('coupon_status', 1)
                      ->where('coupon_date_end', '>=', $today)
                      ->first();
-
+                     if ($coupon){
+                        $couponCode = $request->input('coupon_code');
+                        $couponId = Coupon::where('coupon_code', $couponCode)->first();
+                     $CouponUser = UserCoupon::where('coupon_id', $couponId)
+                                ->where('user_id', auth()->user()->id)
+                                ->first();
+                                dd($couponId);
+                                if ($coupon && !$CouponUser) {
+                                    
+                                    UserCoupon::create([
+                                        'coupon_id' => $couponId->id,
+                                        'user_id' => auth()->user()->id,
+                                    ]);
+                                    
+                                    $cou[] = array(
+                                        'coupon_code' => $coupon->coupon_code,
+                                        'coupon_condition' => $coupon->coupon_condition,
+                                        'coupon_number' => $coupon->coupon_number,
+                                      );
+                                
+                                      Session::put('coupon', $cou);
+                                      Session::save();
+                                    return back()->with('success', "Khuyến mại đã được sử dụng thành công!");
+                                } else {
+                                
+                                    return back()->with('error', "Khuyến mại đã được sử dụng!");
+                              }
+                            } else{
+                                return redirect()->back()->with('error', 'Mã giảm giá không đúng, đã hết hạn hoặc bạn đã sử dụng rồi');
+                            }
+    //   if ($coupon) { 
+    //       $cou[] = array(
+    //         'coupon_code' => $coupon->coupon_code,
+    //         'coupon_condition' => $coupon->coupon_condition,
+    //         'coupon_number' => $coupon->coupon_number,
+    //       );
     
-      if ($coupon) {
-
-        $user_id = auth()->user()->id; 
-        $used_coupons = Coupon::where('coupon_used', $user_id)
-                              ->where('coupon_code', $data['coupon'])
-                              ->exists();
+    //       Session::put('coupon', $cou);
+    //       Session::save();
     
-        if ($coupon && !$used_coupons) {
-          $cou[] = array(
-            'coupon_code' => $coupon->coupon_code,
-            'coupon_condition' => $coupon->coupon_condition,
-            'coupon_number' => $coupon->coupon_number,
-          );
-    
-          Session::put('coupon', $cou);
-          Session::save();
-    
-          return redirect()->back()->with('message', 'Thêm mã giảm giá thành công');
-
-        } else {
-          return redirect()->back()->with('error', 'Mã giảm giá không đúng, đã hết hạn hoặc bạn đã sử dụng rồi');
-        }
-
+    //       return redirect()->back()->with('success', 'Thêm mã giảm giá thành công');
+    //     } else {
+    //       return redirect()->back()->with('error', 'Mã giảm giá không đúng, đã hết hạn hoặc bạn đã sử dụng rồi');
+    //     }
     }
     
     public function index()
@@ -121,7 +141,9 @@ class CartController extends Controller
     {
         $userId = Auth::id();
         $cartItems = Cart::where('user_id', $userId)->get();
-    
+    if($cartItems->isEmpty()){
+        return redirect()->route('shopGrid')->with('error', 'Bạn không có sản phẩm nào cả - Vui lòng thêm sản phẩm vào giỏ hàng!');
+    } else{
         foreach ($cartItems as $cartItem) {
             $quantityFieldName = 'quantity_' . $cartItem->id;
             $quantity = $request->input($quantityFieldName);
@@ -130,10 +152,13 @@ class CartController extends Controller
                 $cartItem->quantity = $quantity;
                 $cartItem->total_price = $cartItem->product->price_sale > 0 ? $cartItem->product->price_sale * $quantity : $cartItem->product->price * $quantity;
                 $cartItem->save();
+            } else{
+                return redirect()->route('cartPage')->with('error', 'Giỏ hàng phải có ít nhất một sản phẩm!');
             }
         }
     
-        return redirect()->route('cartPage')->with('success', 'Giỏ hàng đã được cập nhật');
+        return redirect()->route('cartPage')->with('success', 'Giỏ hàng đã được cập nhật!');
+    }
     }
     public function destroy(Cart $cart)
     {

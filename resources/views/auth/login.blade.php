@@ -64,7 +64,7 @@
                                 autocomplete="current-password" />
                         </div>
 
-                        <div class="block mt-4">
+                        {{-- <div class="block mt-4">
                             <label for="remember_me" class="flex items-center">
                                 <x-checkbox id="remember_me" name="remember" />
                                 <span class="ms-2 text-sm text-gray-600">{{ __('Nhớ tài khoản') }}</span>
@@ -76,6 +76,24 @@
                                     </a>
                                 </label>
                             @endif
+                        </div> --}}
+                        <br>
+                        <div class="cart__summary--footer">
+                            <ul class="d-flex justify-content-between">
+
+                                <label for="remember_me" class="flex items-center">
+                                    <x-checkbox id="remember_me" name="remember" />
+                                    <span class="ms-2 text-sm text-gray-600">{{ __('Nhớ tài khoản') }}</span>
+                                </label>
+
+                                @if (Route::has('password.request'))
+                                    <label for="password" class="flex items-right">
+                                        <a href="{{ route('password.request') }}">
+                                            {{ __('Quên mật khẩu?') }}
+                                        </a>
+                                    </label>
+                                @endif
+                            </ul>
                         </div>
                         <div class="social-login-content">
                             <div class="social-button">

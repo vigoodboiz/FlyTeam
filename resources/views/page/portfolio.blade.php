@@ -49,7 +49,7 @@
                                 @endif
                                 <li class="account__menu--list"><a
                                         href="{{ route('logout') }}"onclick="event.preventDefault();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Đăng
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Đăng
                                         xuất</a>
                                 </li>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -148,9 +148,11 @@
                                                                         class="checkout__input--label__star">*</span></label>
                                                                 <input class="checkout__input--field border-radius-5"
                                                                     value="{{ Auth::user()->name }}" id="nameDisplay"
-                                                                    name="name" id="nameEdit" type="text">
+                                                                    name="name" id="nameEdit" type="text" disabled>
                                                                 <div id="nameEdit" style="display: none;">
-                                                                    <input type="text" id="nameInput" readonly>
+                                                                    <input class="checkout__input--field border-radius-5"
+                                                                        value="{{ Auth::user()->name }}" type="text"
+                                                                        id="nameInput" readonly>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -162,9 +164,11 @@
                                                                         class="checkout__input--label__star">*</span></label>
                                                                 <input class="checkout__input--field border-radius-5"
                                                                     value="{{ Auth::user()->email }}" name="email"
-                                                                    id="emailDisplay" type="text">
+                                                                    id="emailDisplay" type="text" disabled>
                                                                 <div id="emailEdit" style="display: none;">
-                                                                    <input type="email" id="emailInput" readonly>
+                                                                    <input class="checkout__input--field border-radius-5"
+                                                                        value="{{ Auth::user()->email }}" name="email"
+                                                                        type="email" id="emailInput" readonly>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -176,9 +180,11 @@
                                                                         class="checkout__input--label__star">*</span></label>
                                                                 <input class="checkout__input--field border-radius-5"
                                                                     value="{{ Auth::user()->phone }}" name="phone"
-                                                                    id="phoneDisplay" type="text">
+                                                                    id="phoneDisplay" type="text" disabled>
                                                                 <div id="phoneEdit" style="display: none;">
-                                                                    <input type="email" id="phoneInput" readonly>
+                                                                    <input class="checkout__input--field border-radius-5"
+                                                                        value="{{ Auth::user()->phone }}" name="phone"
+                                                                        type="email" id="phoneInput" readonly>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -192,9 +198,12 @@
                                                                 <input id="addressDisplay"
                                                                     class="checkout__input--field border-radius-5"
                                                                     value="{{ Auth::user()->address }}" name="address"
-                                                                    type="text">
+                                                                    type="text" disabled>
                                                                 <div id="addressEdit" style="display: none;">
-                                                                    <input type="email" id="addressInput" readonly>
+                                                                    <input class="checkout__input--field border-radius-5"
+                                                                        value="{{ Auth::user()->address }}"
+                                                                        name="address" type="text" id="addressInput"
+                                                                        readonly>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -215,22 +224,22 @@
                                                     hồ sơ</button></li>
                                         </ul>
                                     </div>
-
                                 </div>
-                            @else
-                                <div class="breadcrumb__section breadcrumb__bg">
-                                    <div class="container">
-                                        <div class="row row-cols-1">
-                                            <div class="col">
-                                                <div class="breadcrumb__content text-center">
-                                                    <p>Xin vui lòng đăng nhập để có thể tiếp tục mua hàng!</p><a
-                                                        class="account__menu--list" href="{{ route('login') }}">Đăng
-                                                        nhập</a>
-                                                </div>
+                            </div>
+                        @else
+                            <div class="breadcrumb__section breadcrumb__bg">
+                                <div class="container">
+                                    <div class="row row-cols-1">
+                                        <div class="col">
+                                            <div class="breadcrumb__content text-center">
+                                                <p>Xin vui lòng đăng nhập để có thể tiếp tục mua hàng!</p><a
+                                                    class="account__menu--list" href="{{ route('login') }}">Đăng
+                                                    nhập</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                 @endif
             </div>
         </section>
