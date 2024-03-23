@@ -19,10 +19,10 @@ class shopGridController extends Controller
         // sản phẩm mới
         $new_product = Products::orderBy('created_at', 'DESC')->limit(3)->get();
         // sản phẩm sale
-        $sale_product = Variant::where('price_sale', '!=', 0)->get();
+        $sale_product = Products::where('price_sale', '!=', 0)->get();
         // lấy giá trị min , max của price
-        $minPri = Variant::min('price');
-        $maxPri = Variant::max('price');
+        $minPri = Products::min('price');
+        $maxPri = Products::max('price');
         // search
         $keyword = $request->input('searchPro');
         if ($request->post() && $request->searchPro) {
@@ -78,4 +78,30 @@ class shopGridController extends Controller
 
         return view('page.shop-grid', compact('categories', 'products', 'new_product', 'sale_product', 'minPri', 'maxPri'));
     }
+
+    public function fillBrand(Request $request, $brand)
+    {
+
+        $categories = Category::all();
+        // sản phẩm mới
+        $new_product = Products::orderBy('created_at', 'DESC')->limit(3)->get();
+        // sản phẩm sale
+        $sale_product = Products::where('price_sale', '!=', 0)->get();
+
+        $priceRange = $request->input('price_range');
+        $prices = explode(" - ", $priceRange);
+
+        // lấy giá trị min , max của price
+        $minPri = Products::min('price');
+        $maxPri = Products::max('price');
+        // lọc sp theo price
+        $products = Products::where('brand', $brand)
+            ->paginate(6);
+
+
+
+        return view('page.shop-grid', compact('categories', 'products', 'new_product', 'sale_product', 'minPri', 'maxPri'));
+    }
+
+
 }
