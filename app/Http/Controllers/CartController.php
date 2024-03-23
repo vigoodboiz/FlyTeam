@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Products;
+use App\Models\UserCoupon;
 use Exception;
 use Hamcrest\Core\Set;
 use Illuminate\Support\Facades\Log;
@@ -11,7 +12,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Coupon;
-use App\Models\UserCoupon;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 
@@ -43,7 +43,7 @@ class CartController extends Controller
                     UserCoupon::create([
                         'coupon_id' => $couponId,
                         'user_id' => auth()->user()->id,
-                        'coupon_code'=> $request->coupon,
+                        'coupon_code' => $request->coupon,
                     ]);
 
                     $cou[] = array(
@@ -167,23 +167,27 @@ class CartController extends Controller
     {
         $userId = Auth::id();
         $cartItems = Cart::where('user_id', $userId)->get();
+        if ($cartItems->isEmpty()) {
+            return redirect()->route('shopGrid')->with('error', 'Bạn không có sản phẩm nào cả - Vui lòng thêm sản phẩm vào giỏ hàng!');
+        } else {
 
-        foreach ($cartItems as $cartItem) {
-            $quantityFieldName = 'quantity_' . $cartItem->id;
-            $quantity = $request->input($quantityFieldName);
+            foreach ($cartItems as $cartItem) {
+                $quantityFieldName = 'quantity_' . $cartItem->id;
+                $quantity = $request->input($quantityFieldName);
 
-            if ($quantity > $cartItem->product->quantity_product) {
-                return redirect()->route('cartPage')->with('error', 'Số lượng sản phẩm vượt quá số lượng sản phẩm cho phép');
-            } elseif ($quantity == 0) {
-                return redirect()->route('cartPage')->with('error', 'Số lượng sản phẩm không được bằng 0');
-            } else {
-                $cartItem->quantity = $quantity;
-                $cartItem->total_price = $cartItem->product->price_sale > 0 ? $cartItem->product->price_sale * $quantity : $cartItem->product->price * $quantity;
-                $cartItem->save();
+                if ($quantity > $cartItem->product->quantity_product) {
+                    return redirect()->route('cartPage')->with('error', 'Số lượng sản phẩm vượt quá số lượng sản phẩm cho phép');
+                } elseif ($quantity == 0) {
+                    return redirect()->route('cartPage')->with('error', 'Số lượng sản phẩm không được bằng 0');
+                } else {
+                    $cartItem->quantity = $quantity;
+                    $cartItem->total_price = $cartItem->product->price_sale > 0 ? $cartItem->product->price_sale * $quantity : $cartItem->product->price * $quantity;
+                    $cartItem->save();
+                }
             }
-        }
 
-        return redirect()->route('cartPage')->with('success', 'Giỏ hàng đã được cập nhật');
+            return redirect()->route('cartPage')->with('success', 'Giỏ hàng đã được cập nhật!');
+        }
     }
     public function destroy(Cart $cart)
     {

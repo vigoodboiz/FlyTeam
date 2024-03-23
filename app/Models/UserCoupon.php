@@ -7,7 +7,9 @@ class UserCoupon extends Model
 {
     protected $table = 'user_coupon'; // Tên bảng trong cơ sở dữ liệu
 
+
     protected $fillable = ['user_id', 'coupon_id','coupon_code']; // Các trường có thể được gán giá trị
+
 
     // Định nghĩa quan hệ với model User
     public function user()

@@ -50,8 +50,8 @@
                                                     <th><img style="height: 80px" ; src="{{ asset('upload/public/images/' . $cart->product->image) }}">
                                                     </th>
                                                     <th class="text-truncate">{{ $cart->product->name }}</th>
-                                                    <th>{{ $cart->product->price }}đ</th>
-                                                    <th>{{ $cart->product->price_sale }}đ</th>
+                                                    <th>{{ number_format($cart->product->price, 0, ',', '.')}}đ</th>
+                                                    <th>{{ number_format($cart->product->price_sale, 0, ',', '.')}}đ</th>
                                                     <th style="color:{{$cart->variants}};"><i class="fa-solid fa-droplet"></i></th>
                                                     <th>
                                                         <div class="quantity__box">
@@ -62,7 +62,7 @@
                                                             <button type="button" class="quantity__value quickview__value--quantity increase" aria-label="quantity value" value="Increase Value">+</button>
                                                         </div>
                                                     </th>
-                                                    <th>{{ $cart->total_price }} đ</th>
+                                                    <th>{{ number_format($cart->total_price, 0, ',', '.')}} đ</th>
                                                     <td class="product-close">
                                                         <a href="{{ route('cart.delete', ['cart' => $cart->id]) }}" class="btn product-remove" title="Remove this product">
                                                             <i class="bi bi-x-circle-fill text-danger display-5"></i>
@@ -84,7 +84,7 @@
                                         <a class="cart__summary--footer__btn primary__btn checkout" href="{{ route('checkoutPage') }}">Thanh toán ngay</a>
                                         <p class="cart__summary--total__list mt-3">
                                             <span class="continue__shopping--link" style="margin-right: 30px;">TỔNG GIỎ HÀNG</span>
-                                            <span class="fw-bolder display-6"> {{ $totalPrice }} VNĐ</span>
+                                            <span class="fw-bolder display-6"> {{number_format($totalPrice, 0, ',', '.')}} VNĐ</span>
                                         </p>
                                     </div>
                                 </div>

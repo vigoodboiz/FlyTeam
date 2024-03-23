@@ -67,15 +67,7 @@
                                         </div>
                                         <div class="col-12 mb-20">
                                             <div class="checkout__input--list">
-                                                <label class="checkout__input--label mb-10" for="input3">Phone
-                                                    number
-                                                    <span class="checkout__input--label__star">*</span></label>
-                                                <input class="checkout__input--field border-radius-5" value="{{ Auth::user()->phone }}" id="input3" type="text" disabled>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 mb-20">
-                                            <div class="checkout__input--list">
-                                                <label class="checkout__input--label mb-10" for="input4">Address
+                                                <label class="checkout__input--label mb-10" for="input4">Địa chỉ
                                                     <span class="checkout__input--label__star">*</span></label>
                                                 <input class="checkout__input--field border-radius-5" value="{{ Auth::user()->address }}" type="text" disabled>
                                             </div>
@@ -83,8 +75,8 @@
                                     </div>
                                 </div>
                                 <div class="order-notes mb-20">
-                                    <label class="checkout__input--label mb-10" for="order">Order Notes <span class="checkout__input--label__star">*</span></label>
-                                    <textarea class="checkout__notes--textarea__field border-radius-5" id="order" placeholder="Ghi chú về sản phẩm của bạn." spellcheck="false"></textarea>
+                                    <label class="checkout__input--label mb-10" for="order">Ghi chú <span class="checkout__input--label__star">*</span></label>
+                                    <textarea class="checkout__notes--textarea__field border-radius-5" id="note" placeholder="Ghi chú về sản phẩm của bạn." spellcheck="false"></textarea>
                                 </div>
                             </div>
                             <div class="checkout__content--step__footer d-flex align-items-center">
@@ -122,7 +114,7 @@
 
                                                 </div>
                                                 <div class="product__description">
-                                                    <label>Name</label>
+                                                    <label>Tên</label>
                                                     <h4 class="product__description--name text-truncate">{{$cart->product->name}}</h4>
 
                                                 </div>
@@ -130,16 +122,16 @@
                                         </td>
                                         <td class="cart__table--body__list">
                                             <div class="product__description">
-                                                <label>Quantity</label>
+                                                <label>SL</label>
                                                 <span class="cart__price">{{$cart->quantity}}</span>
                                             </div>
                                         </td>
                                         <td class="cart__table--body__list">
-                                            <label>Price</label>
+                                            <label>Giá</label>
                                             @if(isset($cart->product->price_sale) && $cart->product->price_sale > 0)
-                                            <span class="cart__price">${{$cart->product->price_sale}}</span>
+                                            <span class="cart__price">{{ number_format($cart->product->price_sale, 0, ',', '.')}}đ</span>
                                             @else
-                                            <span class="cart__price">${{$cart->product->price}}</span>
+                                            <span class="cart__price">{{ number_format($cart->product->price, 0, ',', '.')}}đ</span>
                                             @endif
 
                                         </td>
@@ -180,7 +172,7 @@
                                     </tr>
                                     <tr class="checkout__total--items">
                                         <td class="checkout__total--amount text-left">Tổng Tiền </td>
-                                        <td class="checkout__total--amount text-right">{{$totalPrice}}</td>
+                                        <td class="checkout__total--amount text-right">{{ number_format($totalPrice, 0, ',', '.')}}</td>
                                     </tr>
                                     <tr class="checkout__total--items">
                                         <td class="checkout__total--amount text-left">Giao Hàng</td>
@@ -321,7 +313,7 @@
 
                         <div class="payment__history mb-30">
 
-                            <form action="{{ route('checkoutPost') }}" method="POST">
+                            <form id="payment-form" action="{{ route('checkoutPost') }}" method="POST">
                                 @csrf
                                 @foreach ($cartItems as $cart)
                                 <input type="hidden" name="cart_id" value="{{  $cart->id  }}">
@@ -386,46 +378,74 @@
             <div class="feature__inner d-flex justify-content-between">
                 <div class="feature__items d-flex align-items-center">
                     <div class="feature__icon">
+
                         <img src="{{ asset('becute/assets/img/other/feature1.webp') }}" alt="img">
                     </div>
                     <div class="feature__content">
-                        <h2 class="feature__content--title h3">Free Shipping</h2>
-                        <p class="feature__content--desc">Free shipping over $100</p>
+                        <h2 class="feature__content--title h3">Miễn phí vận chuyển</h2>
+                        <p class="feature__content--desc">Miễn phí vận chuyển cho đơn hàng trên 2.000.000đ</p>
+
                     </div>
                 </div>
                 <div class="feature__items d-flex align-items-center">
                     <div class="feature__icon ">
+
                         <img src="{{ asset('becute/assets/img/other/feature2.webp') }}" alt="img">
                     </div>
                     <div class="feature__content">
-                        <h2 class="feature__content--title h3">Support 24/7</h2>
-                        <p class="feature__content--desc">Contact us 24 hours a day</p>
+                        <h2 class="feature__content--title h3">Hỗ trợ 24/7</h2>
+                        <p class="feature__content--desc">Liên hệ với chúng tôi 24 tiếng</p>
+
                     </div>
                 </div>
                 <div class="feature__items d-flex align-items-center">
                     <div class="feature__icon">
+
                         <img src="{{ asset('becute/assets/img/other/feature3.webp') }}" alt="img">
                     </div>
                     <div class="feature__content">
-                        <h2 class="feature__content--title h3">100% Money Back</h2>
-                        <p class="feature__content--desc">You have 30 days to Return</p>
+                        <h2 class="feature__content--title h3">100% hoàn tiền</h2>
+                        <p class="feature__content--desc">Bạn có 30 ngày để trả hàng</p>
+
                     </div>
                 </div>
                 <div class="feature__items d-flex align-items-center">
                     <div class="feature__icon">
+
                         <img src="{{ asset('becute/assets/img/other/feature4.webp') }}" alt="img">
                     </div>
                     <div class="feature__content">
-                        <h2 class="feature__content--title h3">Payment Secure</h2>
-                        <p class="feature__content--desc">We ensure secure payment</p>
+                        <h2 class="feature__content--title h3">Thanh toán an toàn</h2>
+                        <p class="feature__content--desc">Chúng tôi đảm bảo thanh toán an toàn</p>
+
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- End feature section -->
+    @else
+    <div class="breadcrumb__section breadcrumb__bg">
+        <div class="container">
+            <div class="row row-cols-1">
+                <div class="col">
+                    <div class="breadcrumb__content text-center">
+                        <p>Xin vui lòng đăng nhập để có thể tiếp tục mua hàng!</p><a class="account__menu--list" href="{{ route('login') }}">Đăng nhập</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
 </main>
-@else
-<p>Xin vui lòng đăng nhập để có thể tiếp tục mua hàng!</p><a class="account__menu--list" href="{{ route('login') }}">Đăng nhập</a>
-@endif
+<script>
+    document.getElementById('payment-form').addEventListener('submit', function(event) {
+        var noteValue = document.getElementById('note').value;
+        var hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.name = 'note';
+        hiddenInput.value = noteValue;
+        this.appendChild(hiddenInput);
+    });
+</script>
 @endsection

@@ -22,8 +22,11 @@
                     <tr>
                         <th>STT</th>
                         <th>Mã sản phẩm</th>
+                        <th>Tên sản phẩm</th>
                         <th>Tên thuộc tính</th>
                         <th>Giá trị</th>
+                        <th>Giá</th>
+                        <th>Giá sale</th>
                         <th>Hành động</th>
                     </tr>
                 </thead>
@@ -32,8 +35,11 @@
                         <tr>
                             <td>{{ $variant->id }}</td>
                             <th scope="row">#1234{{ $variant->product->id }}</th>
+                            <td>{{ $variant->product_name }}</td>
                             <td>{{ $variant->name }}</td>
                             <td>{{ $variant->value }}</td>
+                            <td>{{ $variant->price }}</td>
+                            <td>{{ $variant->price_sale }}</td>
                             <td>
                                 @can('variant_edit')
                                     <a href="{{ route('variants.edit', $variant->id) }}" class="btn btn-primary"><i
