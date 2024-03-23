@@ -22,7 +22,7 @@ class Cart extends Model
         'product_id',
         'quantity',
         'total_price',
-        
+        'variants',
     ];
 
     public function user(): BelongsTo {

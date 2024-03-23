@@ -177,7 +177,7 @@
                             <h2 class="widget__title h3">Thương hiệu</h2>
                             <ul class="widget__tagcloud">
                                 @foreach ($products as $pro)
-                                <li class="widget__tagcloud--list"><a class="widget__tagcloud--link" href="#">{{ $pro->brand }}</a></li>
+                                <li class="widget__tagcloud--list"><a class="widget__tagcloud--link" href="{{ route('fillBrand', $pro->brand) }}">{{ $pro->brand }}</a></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -248,6 +248,7 @@
                             <p class="product__showing--count">Hiện thị 1–6 of {{ $products->count() }} kết quả
                             </p>
                         </div>
+                        
                         <div class="tab_content">
                             <div id="product_grid" class="tab_pane">
                                 <div class="product__section--inner">

@@ -15,7 +15,7 @@ class DeliveryStatusController extends Controller
     public function list(Request $request){
         $title = "Danh Sách Trạng Thái Vận Chuyển";
         $delivery_status = new order();
-        $listDelivery_status = $delivery_status::paginate(5);
+        $listDelivery_status = $delivery_status::orderBy('created_at', 'desc')->paginate(5);
         return view('admin.DeliveryStatus.list', compact('listDelivery_status','title'))->with('i',(request()->input('page',1)-1)*5);
     }
 

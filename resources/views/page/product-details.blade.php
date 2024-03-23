@@ -47,103 +47,30 @@
 
                                         </div>
                                     </div>
-                                    <div class="single__product--nav swiper">
-                                        <div class="swiper-wrapper">
-                                            @foreach ($galleries as $gallery)
-                                                <div class="swiper-slide">
-                                                    <div class="product__media--nav__items" style="width: 118px; height: 118px">
-                                                        <img class="product__media--nav__items--img"
-                                                            src="{{ asset('upload/public/images/' . $gallery->image) }}"
-                                                            alt="product-nav-img">
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                            <!-- <div class="swiper-slide">                                                                                                                                                                                                     </div> -->
-                                        </div>
-                                        <div class="swiper__nav--btn swiper-button-next">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round" class=" -chevron-right">
-                                                <polyline points="9 18 15 12 9 6"></polyline>
-                                            </svg>
-                                        </div>
-                                        <div class="swiper__nav--btn swiper-button-prev">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round" class=" -chevron-left">
-                                                <polyline points="15 18 9 12 15 6"></polyline>
-                                            </svg>
 
+                                    <div class="swiper-slide">
+                                        <div class="product__media--preview__items">
+                                            <a class="product__media--preview__items--link glightbox" data-gallery="product-media-preview" href="{{ asset('upload/public/images/' . $pro_dt->image) }}"><img class="product__media--preview__items--img" src="{{ asset('upload/public/images/' . $pro_dt->image) }}" alt="product-media-img"></a>
+                                            <div class="product__media--view__icon">
+                                                <a class="product__media--view__icon--link glightbox" href="{{ asset('upload/public/images/' . $pro_dt->image) }}" data-gallery="product-media-preview">
+                                                    <svg class="product__items--action__btn--svg" xmlns="http://www.w3.org/2000/svg" width="22.51" height="22.443" viewBox="0 0 512 512">
+                                                        <path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"></path>
+                                                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"></path>
+                                                    </svg>
+                                                    <span class="visually-hidden">product view</span>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- <div class="swiper-slide">                                                                                                                                                                                                             </div> -->
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="product__details--info">
-                                    <h2 class="product__details--info__title mb-15">{{ $pro_dt->name }} </h2>
-                                    <div class="product__details--info__price mb-12">
-                                        @if (isset($pro_dt->price_sale) && $pro_dt->price_sale > 0)
-                                            <span class="current__price">{{ $pro_dt->price_sale }}đ</span>
-                                            <span class="old__price">{{ $pro_dt->price }}đ</span>
-                                        @else
-                                            <span class="current__price">{{ $pro_dt->price }}đ</span>
-                                        @endif
-                                    </div>
-                                    <p class="product__details--info__desc mb-15">{{ $pro_dt->describe }}</p>
-                                    <div class="product__variant">
-                                        @php
-                                            $displayedNames = [];
-                                        @endphp
-
-                                        @foreach ($variants as $variant)
-                                            @php
-                                                $variantName = $variant->name;
-                                                $variantValue = $variant->value;
-                                            @endphp
-                                            @unless(in_array($variantName, $displayedNames))
-                                                @php $displayedNames[] = $variantName; @endphp
-                                                <ul class="variant__size d-flex">
-                                                    <div class="product__variant--list mb-20">
-                                                        <fieldset class="variant__input--fieldset">
-                                                            <legend class="product__variant--title mb-8">{{ $variantName }}</legend>
-                                                            @php
-                                                                $values = [];
-                                                            @endphp
-                                                            @foreach ($variants as $innerVariant)
-                                                                @if ($innerVariant->name == $variantName)
-                                                                    @php $values[] = $innerVariant->value; @endphp
-                                                                @endif
-                                                            @endforeach
-                                                            <li class="variant__size--list">
-                                                                @foreach ($values as $value)
-                                                                    <input id="{{ $value }}" name="{{ $variantName }}" type="radio" checked>
-                                                                    <label class="variant__size--value red" for="{{ $value }}" style="width: 80px">
-                                                                        {{ $value }}
-                                                                    </label>
-                                                                @endforeach
-                                                            </li>
-                                                        </fieldset>
-                                                    </div>
-                                                </ul>
-                                            @endunless
-                                        @endforeach
-
-                                    </div>
-                                    <div class="product__variant--list quantity d-flex align-items-center mb-20">
-                                        <div class="quantity__box">
-                                            <button type="button"
-                                                class="quantity__value quickview__value--quantity decrease"
-                                                aria-label="quantity value" value="Decrease Value">-</button>
-                                            <label>
-                                                <input name="quantity" type="number"
-                                                    class="quantity__number quickview__value--number" value="1"
-                                                    data-counter />
-                                            </label>
-                                            <button type="button"
-                                                class="quantity__value quickview__value--quantity increase"
-                                                aria-label="quantity value" value="Increase Value">+</button>
-
+                            <div class="single__product--nav swiper">
+                                <div class="swiper-wrapper">
+                                    @foreach ($galleries as $gallery)
+                                    <div class="swiper-slide">
+                                        <div class="product__media--nav__items" style="width: 118px; height: 118px">
+                                            <img class="product__media--nav__items--img" src="{{ asset('upload/public/images/' . $gallery->image) }}" alt="product-nav-img">
                                         </div>
                                     </div>
                                     @endforeach
@@ -175,39 +102,45 @@
                             </div>
                             <p class="product__details--info__desc mb-15">{{ $pro_dt->describe }}</p>
                             <div class="product__variant">
+                                @php
+                                $displayedNames = [];
+                                @endphp
+
                                 @foreach ($variants as $variant)
-                                @if ($variant->name == 'Màu sắc')
+                                @php
+                                $variantName = $variant->name;
+                                $variantValue = $variant->value;
+                                @endphp
+                                @unless(in_array($variantName, $displayedNames))
+                                @php $displayedNames[] = $variantName; @endphp
                                 <ul class="variant__size d-flex">
                                     <div class="product__variant--list mb-20">
                                         <fieldset class="variant__input--fieldset">
-                                            <legend class="product__variant--title mb-8">Màu sắc
-                                            </legend>
+                                            <legend class="product__variant--title mb-8">{{ $variantName }}</legend>
+                                            @php
+                                            $values = [];
+                                            @endphp
+                                            @foreach ($variants as $innerVariant)
+                                            @if ($innerVariant->name == $variantName)
+                                            @php $values[] = $innerVariant->value; @endphp
+                                            @endif
+                                            @endforeach
                                             <li class="variant__size--list">
-                                                <input id="weight4" name="weight" type="radio" checked>
-                                                <label style="background-color:{{ $variant->value }}" class="variant__size--value red" for="color4">
-                                                    {{ $variant->value }}</label>
+                                                @foreach ($values as $value)
+                                                <input id="{{ $value }}" name="variantName" type="radio" value="{{ $value }}" checked>
+                                                <label class="variant__size--value red" for="{{ $value }}" style="width: 80px; color:{{$value}}">
+                                                <i class="fa-solid fa-droplet"></i>
+                                                </label>
+                                                @endforeach
                                             </li>
                                         </fieldset>
                                     </div>
                                 </ul>
-                                @elseif($variant->name == 'Trọng lượng')
-                                <ul class="variant__size d-flex">
-                                    <div class="product__variant--list mb-20">
-                                        <fieldset class="variant__input--fieldset">
-                                            <legend class="product__variant--title mb-8">Trọng
-                                                lượng :</legend>
-                                            <li class="variant__size--list">
-                                                <input id="weight4" name="weight" type="radio" checked>
-                                                <label class="variant__size--value red" for="weight4">
-                                                    {{ $variant->value }}</label>
-                                            </li>
-                                        </fieldset>
-                                    </div>
-                                </ul>
-                                @endif
+                                @endunless
                                 @endforeach
+
                             </div>
-                            @if ($pro_dt->quantity_product > 0)
+                            @if($pro_dt->quantity_product > 0 )
                             <div class="product__variant--list quantity d-flex align-items-center mb-20">
                                 <div class="quantity__box">
                                     <button type="button" class="quantity__value quickview__value--quantity decrease" aria-label="quantity value" value="Decrease Value">-</button>
@@ -323,56 +256,44 @@
                                     <div class="reviews__comment--thumb">
                                         <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" class="img-fluid rounded-circle rounded-circle-custom" alt="comment-thumb" width="60px" style=" border-radius: 50%">
                                     </div>
-                                    <a class="actions__newreviews--btn primary__btn" href="#writereview">Viết một đánh
-                                        giá</a>
-                                </div>
-                                @if (Auth::check())
-                                    @foreach ($comments as $cmt)
-                                        <div class="reviews__comment--area">
-                                            <div class="reviews__comment--list d-flex">
-                                                <div class="reviews__comment--thumb">
-                                                    <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}"
-                                                        class="img-fluid rounded-circle rounded-circle-custom"
-                                                        alt="comment-thumb" width="60px" style=" border-radius: 50%">
-                                                </div>
-                                                <div class="reviews__comment--content">
-                                                    <input type="hidden" value="{{$cmt->id}}">
-                                                    <div class="reviews__comment--top d-flex justify-content-between">
-                                                        <div class="reviews__comment--top__left">
-                                                            <h3 class="reviews__comment--content__title h4">
-                                                                {{ $cmt->user_name }}</h3>
-                                                        </div>
-                                                        <span
-                                                            class="reviews__comment--content__date">{{ $cmt->date }}</span>
-                                                    </div>
-                                                    <div class="row">
-                                                        <p class="reviews__comment--content__desc col-md-10">{{ $cmt->content }}</p>
-                                                        <button class="btn btn-light col-md-1">Sửa</button>
-                                                        <button class="btn btn-danger col-md-1"><a href="{{ route('route_comment_delete_fe', ['id' => $cmt->id]) }}">Xóa</a></button>
-                                                    </div>
-                                                </div>
+                                    <div class="reviews__comment--content">
+                                        <input type="hidden" value="{{$cmt->id}}">
+                                        <div class="reviews__comment--top d-flex justify-content-between">
+                                            <div class="reviews__comment--top__left">
+                                                <h3 class="reviews__comment--content__title h4">
+                                                    {{ $cmt->user_name }}
+                                                </h3>
                                             </div>
                                             <span class="reviews__comment--content__date">{{ $cmt->date }}</span>
                                         </div>
-                                    @endforeach
-                                    <div id="writereview" class="reviews__comment--reply__area">
-                                        <h3 class="reviews__comment--reply__title mb-15">Thêm đánh giá </h3>
-                                        <div id="writereview" class="reviews__comment--reply__area">
-                                            <form action="{{ route('route_new_comment') }}" method="POST">
-                                                @csrf
-                                                @foreach ($product_detail as $pro_dt)
-                                                    <input type="hidden" name="product_id" value="{{ $pro_dt->id }}">
-                                                @endforeach
-                                                <textarea class="reviews__comment--reply__textarea" name="content" placeholder="Your comment"></textarea>
-                                                <input type="hidden" class="form-control" name="date"
-                                                    value="{{ $currentDateTime->format('d-m-Y H:i') }}">
-                                                <button class="primary__btn text-white" type="submit">Submit</button>
-                                            </form>
-                                        @else
-                                            <p>Bạn cần <a class="fw-bold" href="{{ route('login') }}">Đăng Nhập</a> để
-                                                bình
-                                                luận.</p>
-                                @endif
+                                        <div class="row">
+                                            <p class="reviews__comment--content__desc col-md-10">{{ $cmt->content }}</p>
+                                            <button class="btn btn-light col-md-1">Sửa</button>
+                                            <button class="btn btn-danger col-md-1"><a href="{{ route('route_comment_delete_fe', ['id' => $cmt->id]) }}">Xóa</a></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+
+                            <div id="writereview" class="reviews__comment--reply__area">
+                                <h3 class="reviews__comment--reply__title mb-15">Thêm đánh giá </h3>
+                                <div id="writereview" class="reviews__comment--reply__area">
+                                    <form action="{{ route('route_new_comment') }}" method="POST">
+                                        @csrf
+                                        @foreach ($product_detail as $pro_dt)
+                                        <input type="hidden" name="product_id" value="{{ $pro_dt->id }}">
+                                        @endforeach
+                                        <textarea class="reviews__comment--reply__textarea" name="content" placeholder="Your comment"></textarea>
+                                        <input type="hidden" class="form-control" name="date" value="{{ $currentDateTime->format('d-m-Y H:i') }}">
+                                        <button class="primary__btn text-white" type="submit">Submit</button>
+                                    </form>
+                                    @else
+                                    <p>Bạn cần <a class="fw-bold" href="{{ route('login') }}">Đăng Nhập</a> để
+                                        bình
+                                        luận.</p>
+                                    @endif
+
                                     @if (session('success'))
                                     <p style="color: green">{{ session('success') }}</p>
                                     @endif
@@ -479,6 +400,7 @@
                                         </a>
                                     </li>
                                 </ul>
+                                @if($pro_same->quantity_product > 0 )
                                 <div class="product__add--to__card">
                                     <a class="product__card--btn" title="Add To Card" href="cart.html">Thêm giỏ
                                         hàng
@@ -487,6 +409,7 @@
                                         </svg>
                                     </a>
                                 </div>
+                                @endif
                             </div>
                             <div class="product__card--content text-center">
                                 {{-- <ul class="rating product__card--rating d-flex justify-content-center">
@@ -545,7 +468,7 @@
                                             </li>
                                         </ul> --}}
 
-                                <h3 class="product__card--title"><a href="product-details.html">{{ $pro_same->name }}</a></h3>
+                                <h3 class="product__card--title text-truncate"><a href="product-details.html">{{ $pro_same->name }}</a></h3>
                                 <div class="product__card--price">
                                     @if (isset($pro_same->price_sale) && $pro_same->price_sale > 0)
                                     <span class="current__price">{{ $pro_same->price_sale }}đ</span>

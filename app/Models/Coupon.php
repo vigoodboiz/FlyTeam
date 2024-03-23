@@ -14,9 +14,10 @@ class Coupon extends Model
     protected $primaryKey = 'id';
  	protected $table = 'coupon';
 
-public function user(){
-        return $this->hasOne(User::class, 'id', 'coupon_used');
-    }
+    public function users()
+     {
+         return $this->belongsToMany(User::class, 'user_coupon', 'coupon_id', 'user_id')->withTimestamps();
+     }
     
 }
 

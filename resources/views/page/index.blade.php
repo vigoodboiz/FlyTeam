@@ -352,6 +352,7 @@
     <!-- End video banner section -->
 
     <!-- Start product section -->
+    @if (Auth::check())
     <section class="product__section section--padding ">
         <div class="container">
             <div class="section__heading text-center mb-40">
@@ -441,6 +442,7 @@
             </div>
         </div>
     </section>
+    @endif
     <!-- End product section -->
 
     <!-- Start Before After section -->

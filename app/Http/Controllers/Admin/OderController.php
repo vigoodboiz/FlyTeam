@@ -23,10 +23,10 @@ class OderController extends Controller
         $keyword = $request->input('searchOder');
         $oder = new Order();
         if ($request->post() && $request->searchOder) {
-            $listOder = Order::where('address', 'like', '%' . $keyword . '%')->paginate(10);
+            $listOder = Order::where('address', 'like', '%' . $keyword . '%')->orderBy('created_at', 'desc')->paginate(10);
         }
         else{
-            $listOder = $oder::paginate(3);
+            $listOder = $oder::orderBy('created_at', 'desc')->paginate(3);
         }
         return view('admin.oder.list', compact('listOder', 'title'));
     }

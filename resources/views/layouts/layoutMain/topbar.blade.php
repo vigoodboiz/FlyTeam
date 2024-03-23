@@ -209,6 +209,11 @@
                                                                                                                     document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Đăng
                                              xuất</a>
                                      </li>
+                                     @else
+                                     <li class="header__sub--menu__items"><a href="{{ route('register') }}"
+                                    class="header__sub--menu__link">Đăng ký</a></li>
+                                    <li class="header__sub--menu__items"><a href="{{ route('login') }}"
+                                    class="header__sub--menu__link">Đăng nhập</a></li>
                                  @endif
                                  <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                      class="d-none">
