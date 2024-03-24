@@ -130,11 +130,11 @@
                                             <li class="variant__size--list">
                                                 @foreach ($variants as $variant)
                                                 @if($variant->name == "Màu sắc")
-                                                <input id="{{ $variant->id }}" name="variantName" value="{{ $variant->value }}" type="radio" data-price="{{ $variant->price }}" data-name="{{ $variant->product_name }}" data-sale-price="{{ $variant->price_sale }}">
-                                                <label class="variant__size--value red" for="{{ $variant->id }}"><i style="color:{{$variant->value}}" class="fa-solid fa-droplet display-6"></i></label>
+                                                <input id="{{ $variant->id }}" name="variantName" value="{{ $variant->value }}" type="radio" data-price="{{ $variant->price }}" data-name="{{ $variant->product_name }}" data-sale-price="{{ $variant->price_sale }}" selected>
+                                                <label class="variant__size--value red" style="width: 100px;" for="{{ $variant->id }}">{{ $variant->value }}</label>
                                                 @else
-                                                <input id="{{ $variant->id }}" name="variantName" value="{{ $variant->value }}" type="radio" data-price="{{ $variant->price }}" data-name="{{ $variant->product_name }}" data-price-sale="{{ $variant->price_sale }}">
-                                                <label class="variant__size--value red" for="{{ $variant->id }}">{{ $variant->value }}</label>
+                                                <input id="{{ $variant->id }}" name="variantName" value="{{ $variant->value }}" type="radio" data-price="{{ $variant->price }}" data-name="{{ $variant->product_name }}" data-price-sale="{{ $variant->price_sale }}" selected>
+                                                <label class="variant__size--value red" style="width: 100px;" for="{{ $variant->id }}">{{ $variant->value }}</label>
                                                 @endif
                                                 @endforeach
                                             </li>
@@ -337,7 +337,7 @@
                                             @endif
                                     </div>
                                 </a>
-                                <span class="product__badge">-14%</span>
+                                
                                 <ul class="product__card--action">
                                     <li class="product__card--action__list">
                                         <a class="product__card--action__btn" title="Quick View" data-bs-toggle="modal" data-bs-target="#examplemodal" href="javascript:void(0)">

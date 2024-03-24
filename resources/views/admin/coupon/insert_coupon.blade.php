@@ -47,6 +47,11 @@
                                     required>
                             </div>
                             <div class="form-group">
+                                <label for="exampleInputPassword1">Số tiền được áp dụng</label>
+                                <input type="number" name="max" class="form-control" id="exampleInputEmail1"
+                                    required>
+                            </div>
+                            <div class="form-group">
                                 <label for="exampleInputPassword1">Tính năng mã</label>
                                 <select name="coupon_condition" class="form-control input-sm m-bot15" required>
                                     <option value="0">----Chọn-----</option>

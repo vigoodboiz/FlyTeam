@@ -66,6 +66,7 @@ class CouponController extends Controller
         $coupon->coupon_code = $data['coupon_code'];
         $coupon->coupon_time = $data['coupon_time'];
         $coupon->coupon_condition = $data['coupon_condition'];
+        $coupon->max = $data['max'];
         $coupon->save();
 
         return Redirect::to('admin/list-coupon')->with('success', 'Khuyến mại được cập nhật thành công!');
