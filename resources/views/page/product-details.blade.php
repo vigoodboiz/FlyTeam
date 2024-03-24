@@ -20,7 +20,6 @@
 
         </div>
         <!-- End breadcrumb section -->
-
         <!-- Start product details section -->
         <section class="product__details--section section--padding">
             <div class="container">
@@ -61,50 +60,44 @@
 
                                                 </div>
                                             </div>
+                                            <div class="single__product--nav swiper">
+                                                <div class="swiper-wrapper">
+                                                    @foreach ($galleries as $gallery)
+                                                        <div class="swiper-slide">
+                                                            <div class="product__media--nav__items"
+                                                                style="width: 118px; height: 118px">
+                                                                <img class="product__media--nav__items--img"
+                                                                    src="{{ asset('upload/public/images/' . $gallery->image) }}"
+                                                                    alt="product-nav-img">
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                    <!-- <div class="swiper-slide">                                                                                                                                                                                                     </div> -->
+                                                </div>
+                                                <div class="swiper__nav--btn swiper-button-next">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                        class=" -chevron-right">
+                                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                                    </svg>
+                                                </div>
+                                                <div class="swiper__nav--btn swiper-button-prev">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                        class=" -chevron-left">
+                                                        <polyline points="15 18 9 12 15 6"></polyline>
+                                                    </svg>
 
-                                            <div class="swiper-slide">
-                                                <div class="product__media--preview__items">
-                                                    <a class="product__media--preview__items--link glightbox"
-                                                        data-gallery="product-media-preview"
-                                                        href="{{ asset('upload/public/images/' . $pro_dt->image) }}"><img
-                                                            class="product__media--preview__items--img"
-                                                            src="{{ asset('upload/public/images/' . $pro_dt->image) }}"
-                                                            alt="product-media-img"></a>
-                                                    <div class="product__media--view__icon">
-                                                        <a class="product__media--view__icon--link glightbox"
-                                                            href="{{ asset('upload/public/images/' . $pro_dt->image) }}"
-                                                            data-gallery="product-media-preview">
-                                                            <svg class="product__items--action__btn--svg"
-                                                                xmlns="http://www.w3.org/2000/svg" width="22.51"
-                                                                height="22.443" viewBox="0 0 512 512">
-                                                                <path
-                                                                    d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z"
-                                                                    fill="none" stroke="currentColor"
-                                                                    stroke-miterlimit="10" stroke-width="32"></path>
-                                                                <path fill="none" stroke="currentColor"
-                                                                    stroke-linecap="round" stroke-miterlimit="10"
-                                                                    stroke-width="32" d="M338.29 338.29L448 448"></path>
-                                                            </svg>
-                                                            <span class="visually-hidden">product view</span>
-                                                        </a>
-                                                    </div>
                                                 </div>
                                             </div>
                                             <!-- <div class="swiper-slide">                                                                                                                                                                                                             </div> -->
                                         </div>
                                     </div>
-                                    <div class="single__product--nav swiper">
-                                        <div class="swiper-wrapper">
-                                            @foreach ($galleries as $gallery)
-                                                <div class="swiper-slide">
-                                                    <div class="product__media--nav__items">
-                                                        <img class="product__media--nav__items--img"
-                                                            style="width: 300px; height: 100px;"
-                                                            src="{{ asset('upload/public/images/' . $gallery->image) }}"
-                                                            alt="product-nav-img">
-                                                    </div>
-                                                </div>
-                                            @endforeach
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="product__details--info">
+
                                             <!-- <div class="swiper-slide">                                                                                                                                                                                                     </div> -->
                                         </div>
                                         <div class="swiper__nav--btn swiper-button-next">
@@ -127,14 +120,18 @@
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="product__details--info">
-                                    <h2 id="product-name" class="product__details--info__title mb-15">{{ $pro_dt->name }}
+                                    <h2 id="variant-name" class="product__details--info__title mb-15">
+                                        {{ $pro_dt->name }}
                                     </h2>
                                     <div class="product__details--info__price mb-12">
                                         @if (isset($pro_dt->price_sale) && $pro_dt->price_sale > 0)
-                                            <span class="current__price">{{ $pro_dt->price_sale }}đ</span>
-                                            <span class="old__price">{{ $pro_dt->price }}đ</span>
+                                            <span id="current-price"
+                                                class="current__price">{{ number_format($pro_dt->price_sale, 0, ',', '.') }}đ</span>
+                                            <span id="old-price"
+                                                class="old__price">{{ number_format($pro_dt->price, 0, ',', '.') }}đ</span>
                                         @else
-                                            <span id="product-price" class="current__price">{{ $pro_dt->price }}đ</span>
+                                            <span id="current-price"
+                                                class="current__price">{{ number_format($pro_dt->price, 0, ',', '.') }}đ</span>
                                         @endif
                                     </div>
                                     <p class="product__details--info__desc mb-15">{{ $pro_dt->describe }}</p>
@@ -153,7 +150,8 @@
                                                 <ul class="variant__size d-flex">
                                                     <div class="product__variant--list mb-20">
                                                         <fieldset class="variant__input--fieldset">
-                                                            <legend class="product__variant--title mb-8">{{ $variantName }}
+                                                            <legend class="product__variant--title mb-8">
+                                                                {{ $variantName }}
                                                             </legend>
                                                             @php
                                                                 $values = [];
@@ -163,14 +161,29 @@
                                                                     @php $values[] = $innerVariant->value; @endphp
                                                                 @endif
                                                             @endforeach
-                                                            <li id="variant-select" class="variant__size--list">
-                                                                @foreach ($values as $value)
-                                                                    <input id="{{ $value }}"
-                                                                        name="{{ $variantName }}" type="radio">
-                                                                    <label class="variant__size--value red"
-                                                                        for="{{ $value }}" style="width: 80px">
-                                                                        {{ $value }}
-                                                                    </label>
+                                                            <li class="variant__size--list">
+                                                                @foreach ($variants as $variant)
+                                                                    @if ($variant->name == 'Màu sắc')
+                                                                        <input id="{{ $variant->id }}" name="variantName"
+                                                                            value="{{ $variant->value }}" type="radio"
+                                                                            data-price="{{ $variant->price }}"
+                                                                            data-name="{{ $variant->product_name }}"
+                                                                            data-sale-price="{{ $variant->price_sale }}"
+                                                                            selected>
+                                                                        <label class="variant__size--value red"
+                                                                            style="width: 100px;"
+                                                                            for="{{ $variant->id }}">{{ $variant->value }}</label>
+                                                                    @else
+                                                                        <input id="{{ $variant->id }}" name="variantName"
+                                                                            value="{{ $variant->value }}" type="radio"
+                                                                            data-price="{{ $variant->price }}"
+                                                                            data-name="{{ $variant->product_name }}"
+                                                                            data-price-sale="{{ $variant->price_sale }}"
+                                                                            selected>
+                                                                        <label class="variant__size--value red"
+                                                                            style="width: 100px;"
+                                                                            for="{{ $variant->id }}">{{ $variant->value }}</label>
+                                                                    @endif
                                                                 @endforeach
                                                             </li>
                                                         </fieldset>
@@ -178,6 +191,8 @@
                                                 </ul>
                                             @endunless
                                         @endforeach
+
+
                                     </div>
                                     @if ($pro_dt->quantity_product > 0)
                                         <div class="product__variant--list quantity d-flex align-items-center mb-20">
@@ -197,36 +212,30 @@
                                             <button class="primary__btn quickview__cart--btn" type="submit">Thêm giỏ
                                                 hàng</button>
                                         </div>
-
                                         <div class="product__variant--list mb-20">
-                                            @if (Auth::check())
-                                                @if ($pro_dt->favorited)
-                                                    <a class="variant__wishlist--icon mb-15"
-                                                        href="{{ route('favorite', $pro_dt->id) }}" title="Bỏ thích">
-                                                        <svg class="quickview__variant--wishlist__svg"
-                                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                            <path
-                                                                d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
-                                                                fill="red" stroke="currentColor"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="32" />
-                                                        </svg>
-                                                        Thêm vào sản phẩm yêu thích
-                                                    </a>
-                                                @else
-                                                    <a class="variant__wishlist--icon mb-15"
-                                                        href="{{ route('favorite', $pro_dt->id) }}" title="Yêu thích">
-                                                        <svg class="quickview__variant--wishlist__svg"
-                                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                            <path
-                                                                d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
-                                                                fill="none" stroke="currentColor"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="32" />
-                                                        </svg>
-                                                        Thêm vào sản phẩm yêu thích
-                                                    </a>
-                                                @endif
+                                            @if ($pro_dt->favorited)
+                                                <a class="variant__wishlist--icon mb-15"
+                                                    href="{{ route('favorite', $pro_dt->id) }}" title="Bỏ thích">
+                                                    <svg class="quickview__variant--wishlist__svg"
+                                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                        <path
+                                                            d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                                                            fill="red" stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-width="32" />
+                                                    </svg>
+                                                    Thêm vào sản phẩm yêu thích
+                                                </a>
+                                            @else
+                                                <a class="variant__wishlist--icon mb-15"
+                                                    href="{{ route('favorite', $pro_dt->id) }}" title="Yêu thích">
+                                                    <svg class="quickview__variant--wishlist__svg"
+                                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                        <path
+                                                            d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                                                            fill="none" stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-width="32" />
+                                                    </svg>
+                                                    Thêm vào sản phẩm yêu thích
                                             @endif
                                             <button class="variant__buy--now__btn primary__btn" type="submit"><a
                                                     href="{{ route('checkoutPage') }}">Mua
@@ -348,24 +357,29 @@
                                                         alt="comment-thumb" width="60px" style=" border-radius: 50%">
                                                 </div>
                                                 <div class="reviews__comment--content">
+                                                    <input type="hidden" value="{{ $cmt->id }}">
                                                     <div class="reviews__comment--top d-flex justify-content-between">
                                                         <div class="reviews__comment--top__left">
                                                             <h3 class="reviews__comment--content__title h4">
                                                                 {{ $cmt->user_name }}
                                                             </h3>
-
                                                         </div>
                                                         <span
                                                             class="reviews__comment--content__date">{{ $cmt->date }}</span>
                                                     </div>
-                                                    <p class="reviews__comment--content__desc">{{ $cmt->content }}</p>
+                                                    <div class="row">
+                                                        <p class="reviews__comment--content__desc col-md-10">
+                                                            {{ $cmt->content }}</p>
+                                                        <button class="btn btn-danger col-md-1"><a
+                                                                href="{{ route('route_comment_delete_fe', ['id' => $cmt->id]) }}">Xóa</a></button>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <span class="reviews__comment--content__date">{{ $cmt->date }}</span>
                                         </div>
                                     @endforeach
                                     <div id="writereview" class="reviews__comment--reply__area">
                                         <h3 class="reviews__comment--reply__title mb-15">Thêm đánh giá </h3>
-
                                         <div id="writereview" class="reviews__comment--reply__area">
                                             <form action="{{ route('route_new_comment') }}" method="POST">
                                                 @csrf
@@ -375,14 +389,13 @@
                                                 <textarea class="reviews__comment--reply__textarea" name="content" placeholder="Your comment"></textarea>
                                                 <input type="hidden" class="form-control" name="date"
                                                     value="{{ $currentDateTime->format('d-m-Y H:i') }}">
-                                                <button class="primary__btn text-white" type="submit">Bình luận</button>
+                                                <button class="primary__btn text-white" type="submit">Submit</button>
                                             </form>
                                         @else
-                                            <p>Bạn cần <a class="fw-bold" href="{{ route('login') }}">Đăng Nhập</a> để
-                                                bình
-                                                luận.</p>
+                                            <p>Bạn cần <a class="fw-bold" href="{{ route('login') }}">Đăng Nhập</a>
+                                                để
+                                                bình luận.</p>
                                 @endif
-
                                 @if (session('success'))
                                     <p style="color: green">{{ session('success') }}</p>
                                 @endif
@@ -392,6 +405,7 @@
                                 @endif
                             </div>
                         </div>
+
                 </div>
             </div>
             </details>
@@ -430,7 +444,7 @@
                                                 @endif
                                             </div>
                                         </a>
-                                        <span class="product__badge">-14%</span>
+
                                         <ul class="product__card--action">
                                             <li class="product__card--action__list">
                                                 <a class="product__card--action__btn" title="Quick View"
@@ -471,40 +485,41 @@
                                                                     d="M13.5379 1.52734C11.9519 0.1875 9.51832 0.378906 8.01442 1.9375C6.48317 0.378906 4.04957 0.1875 2.46364 1.52734C0.412855 3.25 0.713636 6.06641 2.1902 7.57031L6.97536 12.4648C7.24879 12.7383 7.60426 12.9023 8.01442 12.9023C8.39723 12.9023 8.7527 12.7383 9.02614 12.4648L13.8386 7.57031C15.2879 6.06641 15.5886 3.25 13.5379 1.52734ZM12.8816 6.64062L8.09645 11.5352C8.04176 11.5898 7.98707 11.5898 7.90504 11.5352L3.11989 6.64062C2.10817 5.62891 1.91676 3.71484 3.31129 2.53906C4.3777 1.63672 6.01832 1.77344 7.05739 2.8125L8.01442 3.79688L8.97145 2.8125C9.98317 1.77344 11.6238 1.63672 12.6902 2.51172C14.0847 3.71484 13.8933 5.62891 12.8816 6.64062Z"
                                                                     fill="red" />
                                                             </svg>
-                                                            <span class="visually-hidden">Sản phẩm yêu thích</span>
-                                                        </a>
-                                                    @else
-                                                        <a class="product__card--action__btn" title="Yêu thích"
-                                                            href="{{ route('favorite', $pro_same->id) }}">
-                                                            <svg class="product__card--action__btn--svg" width="18"
-                                                                height="18" viewBox="0 0 16 13" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M13.5379 1.52734C11.9519 0.1875 9.51832 0.378906 8.01442 1.9375C6.48317 0.378906 4.04957 0.1875 2.46364 1.52734C0.412855 3.25 0.713636 6.06641 2.1902 7.57031L6.97536 12.4648C7.24879 12.7383 7.60426 12.9023 8.01442 12.9023C8.39723 12.9023 8.7527 12.7383 9.02614 12.4648L13.8386 7.57031C15.2879 6.06641 15.5886 3.25 13.5379 1.52734ZM12.8816 6.64062L8.09645 11.5352C8.04176 11.5898 7.98707 11.5898 7.90504 11.5352L3.11989 6.64062C2.10817 5.62891 1.91676 3.71484 3.31129 2.53906C4.3777 1.63672 6.01832 1.77344 7.05739 2.8125L8.01442 3.79688L8.97145 2.8125C9.98317 1.77344 11.6238 1.63672 12.6902 2.51172C14.0847 3.71484 13.8933 5.62891 12.8816 6.64062Z"
-                                                                    fill="pink" />
-                                                            </svg>
+                                                            <span class="visually-hidden">Wishlist</span>
+                                                        @else
+                                                            <a class="product__card--action__btn" title="Yêu thích"
+                                                                href="{{ route('favorite', $pro_same->id) }}">
+                                                                <svg class="product__card--action__btn--svg"
+                                                                    width="18" height="18" viewBox="0 0 16 13"
+                                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path
+                                                                        d="M13.5379 1.52734C11.9519 0.1875 9.51832 0.378906 8.01442 1.9375C6.48317 0.378906 4.04957 0.1875 2.46364 1.52734C0.412855 3.25 0.713636 6.06641 2.1902 7.57031L6.97536 12.4648C7.24879 12.7383 7.60426 12.9023 8.01442 12.9023C8.39723 12.9023 8.7527 12.7383 9.02614 12.4648L13.8386 7.57031C15.2879 6.06641 15.5886 3.25 13.5379 1.52734ZM12.8816 6.64062L8.09645 11.5352C8.04176 11.5898 7.98707 11.5898 7.90504 11.5352L3.11989 6.64062C2.10817 5.62891 1.91676 3.71484 3.31129 2.53906C4.3777 1.63672 6.01832 1.77344 7.05739 2.8125L8.01442 3.79688L8.97145 2.8125C9.98317 1.77344 11.6238 1.63672 12.6902 2.51172C14.0847 3.71484 13.8933 5.62891 12.8816 6.64062Z"
+                                                                        fill="pink" />
+                                                                </svg>
 
-                                                            <span class="visually-hidden">Sản phẩm yêu thích</span>
-
-                                                        </a>
+                                                                <span class="visually-hidden">Wishlist</span>
                                                     @endif
+                                                    </a>
                                                 </li>
                                             @endif
                                         </ul>
                                         <div class="product__add--to__card">
-                                            <a class="product__card--btn" title="Add To Card" href="cart.html">Thêm giỏ
-                                                hàng
-                                                <svg width="17" height="15" viewBox="0 0 14 11" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M13.2371 4H11.5261L8.5027 0.460938C8.29176 0.226562 7.9402 0.203125 7.70582 0.390625C7.47145 0.601562 7.44801 0.953125 7.63551 1.1875L10.0496 4H3.46364L5.8777 1.1875C6.0652 0.953125 6.04176 0.601562 5.80739 0.390625C5.57301 0.203125 5.22145 0.226562 5.01051 0.460938L1.98707 4H0.299574C0.135511 4 0.0183239 4.14062 0.0183239 4.28125V4.84375C0.0183239 5.00781 0.135511 5.125 0.299574 5.125H0.721449L1.3777 9.78906C1.44801 10.3516 1.91676 10.75 2.47926 10.75H11.0339C11.5964 10.75 12.0652 10.3516 12.1355 9.78906L12.7918 5.125H13.2371C13.3777 5.125 13.5183 5.00781 13.5183 4.84375V4.28125C13.5183 4.14062 13.3777 4 13.2371 4ZM11.0339 9.625H2.47926L1.86989 5.125H11.6433L11.0339 9.625ZM7.33082 6.4375C7.33082 6.13281 7.07301 5.875 6.76832 5.875C6.4402 5.875 6.20582 6.13281 6.20582 6.4375V8.3125C6.20582 8.64062 6.4402 8.875 6.76832 8.875C7.07301 8.875 7.33082 8.64062 7.33082 8.3125V6.4375ZM9.95582 6.4375C9.95582 6.13281 9.69801 5.875 9.39332 5.875C9.0652 5.875 8.83082 6.13281 8.83082 6.4375V8.3125C8.83082 8.64062 9.0652 8.875 9.39332 8.875C9.69801 8.875 9.95582 8.64062 9.95582 8.3125V6.4375ZM4.70582 6.4375C4.70582 6.13281 4.44801 5.875 4.14332 5.875C3.8152 5.875 3.58082 6.13281 3.58082 6.4375V8.3125C3.58082 8.64062 3.8152 8.875 4.14332 8.875C4.44801 8.875 4.70582 8.64062 4.70582 8.3125V6.4375Z"
-                                                        fill="currentColor" />
-                                                </svg>
-                                            </a>
+                                            @if ($pro_same->quantity_product > 0)
+                                                <a class="product__card--btn" title="Add To Card" href="cart.html">Thêm
+                                                    giỏ
+                                                    hàng
+                                                    <svg width="17" height="15" viewBox="0 0 14 11"
+                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M13.2371 4H11.5261L8.5027 0.460938C8.29176 0.226562 7.9402 0.203125 7.70582 0.390625C7.47145 0.601562 7.44801 0.953125 7.63551 1.1875L10.0496 4H3.46364L5.8777 1.1875C6.0652 0.953125 6.04176 0.601562 5.80739 0.390625C5.57301 0.203125 5.22145 0.226562 5.01051 0.460938L1.98707 4H0.299574C0.135511 4 0.0183239 4.14062 0.0183239 4.28125V4.84375C0.0183239 5.00781 0.135511 5.125 0.299574 5.125H0.721449L1.3777 9.78906C1.44801 10.3516 1.91676 10.75 2.47926 10.75H11.0339C11.5964 10.75 12.0652 10.3516 12.1355 9.78906L12.7918 5.125H13.2371C13.3777 5.125 13.5183 5.00781 13.5183 4.84375V4.28125C13.5183 4.14062 13.3777 4 13.2371 4ZM11.0339 9.625H2.47926L1.86989 5.125H11.6433L11.0339 9.625ZM7.33082 6.4375C7.33082 6.13281 7.07301 5.875 6.76832 5.875C6.4402 5.875 6.20582 6.13281 6.20582 6.4375V8.3125C6.20582 8.64062 6.4402 8.875 6.76832 8.875C7.07301 8.875 7.33082 8.64062 7.33082 8.3125V6.4375ZM9.95582 6.4375C9.95582 6.13281 9.69801 5.875 9.39332 5.875C9.0652 5.875 8.83082 6.13281 8.83082 6.4375V8.3125C8.83082 8.64062 9.0652 8.875 9.39332 8.875C9.69801 8.875 9.95582 8.64062 9.95582 8.3125V6.4375ZM4.70582 6.4375C4.70582 6.13281 4.44801 5.875 4.14332 5.875C3.8152 5.875 3.58082 6.13281 3.58082 6.4375V8.3125C3.58082 8.64062 3.8152 8.875 4.14332 8.875C4.44801 8.875 4.70582 8.64062 4.70582 8.3125V6.4375Z"
+                                                            fill="currentColor" />
+                                                    </svg>
+                                                </a>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="product__card--content text-center">
-                                        <h3 class="product__card--title"><a
+                                        <h3 class="product__card--title text-truncate"><a
                                                 href="product-details.html">{{ $pro_same->name }}</a></h3>
                                         <div class="product__card--price">
                                             @if (isset($pro_same->price_sale) && $pro_same->price_sale > 0)
@@ -518,6 +533,7 @@
                                 </article>
                             </div>
                         @endforeach
+
                     </div>
                     <div class="swiper__nav--btn swiper-button-next">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -587,4 +603,46 @@
         </section>
         <!-- End feature section -->
     </main>
+@endsection
+
+@section('variant_price')
+    <script>
+        document.querySelectorAll('input[name="variantName"]').forEach(function(input) {
+            input.addEventListener('change', function() {
+                var variantPrice = this.getAttribute('data-price');
+                var variantSalePrice = this.getAttribute('data-sale-price');
+                var variantName = this.getAttribute('data-name');
+
+                // Cập nhật giá và tên theo biến thể đã chọn
+                document.getElementById('current-price').innerText = formatPrice(variantSalePrice ||
+                    variantPrice);
+                document.getElementById('variant-name').innerText = variantName;
+
+                // Xử lý logic nếu có giá cũ biến thể
+                var oldPriceElement = document.getElementById('old-price');
+                if (oldPriceElement) {
+                    var oldPrice = calculateOldPrice(variantSalePrice || variantPrice);
+                    oldPriceElement.innerText = formatPrice(oldPrice);
+                }
+            });
+        });
+
+        function formatPrice(price) {
+            return Intl.NumberFormat('vi-VN').format(price) + 'đ';
+        }
+
+        function calculateOldPrice(currentPrice) {
+            // Xử lý logic để tính toán giá cũ biến thể
+            // Nếu không có giá cũ, trả về 0 hoặc xử lý theo yêu cầu của bạn
+            return currentPrice * 1.2; // Ví dụ: giá cũ = giá hiện tại * 1.2
+        }
+        // document.querySelectorAll('input[name="variant"]').forEach(function(input) {
+        //     input.addEventListener('change', function() {
+        //         var variantName = this.getAttribute('data-name');
+
+        //         // Cập nhật tên biến thể đã chọn
+        //         document.getElementById('variant-name').innerText = variantName;
+        //     });
+        // });
+    </script>
 @endsection

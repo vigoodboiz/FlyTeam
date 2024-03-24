@@ -168,6 +168,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
    Route::put('/variants/update/{product_id}', [VariantController::class, 'update'])->name('variants.update');
    Route::delete('/variants/{id}', [VariantController::class, 'destroy'])->name('variants.destroy');
 
+
+
+
     ///////////////////////// gallery //////////////////
     Route::get('/index/{product_id}', [GalleryController::class, 'index'])->name('index');
     Route::get('/gallery/create/{product_id}', [GalleryController::class, 'create'])->name('gallery.create');
@@ -188,7 +191,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/list-coupon', [CouponController::class, 'list_coupon'])->name('list_coupon');
     Route::post('/insert-coupon-code', [CouponController::class, 'insert_coupon_code'])->name('insert_coupon_code');
     Route::post('/check-coupon', [CartController::class, 'check_coupon'])->name('check_coupon');
-    Route::get('/unset-coupon', [CouponController::class, 'unset_coupon'])->name('unset_coupon');
+    Route::match(['GET', 'POST'],'/unset-coupon', [CouponController::class, 'unset_coupon'])->name('unset_coupon');
 
 
 
@@ -218,6 +221,7 @@ Route::get('page/shop', [shopGridController::class, 'index'])->name('shopGrid');
 Route::get('page/shop/fillCate/{id_cate}', [shopGridController::class, 'fillCate'])->name('fillCate');
 Route::get('page/shop/fillPrice', [shopGridController::class, 'fillPrice'])->name('fillPrice');
 Route::get('page/shop/fillBrand', [shopGridController::class, 'fillBrand'])->name('fillBrand');
+Route::get('/products/shop/{brand}', [shopGridController::class, 'fillBrand'])->name('fillBrand');
 Route::match(['GET', 'POST'], '/shopGrid/searchPro', [shopGridController::class, 'index'])->name('search');
 
 

@@ -34,23 +34,67 @@
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <th scope="row">#1234{{ $item->id }}</th>
-                                    <td>{{ $item->user->name }}</td>
+                                    <td>{{ Illuminate\Support\Str::limit($item->user->name, 5) }}</td>
+                                    {{-- <td>{{ $item->user->email }}</td>
+                            <td>{{ $item->user->phone }}</td>
+                            <td>{{ $item->user->address }}</td> --}}
                                     <td>
+
                                         <img class="border-radius-5"
                                             src="{{ asset('upload/public/images/' . $item->product->image) }}"
                                             alt="cart-product">
+
                                     </td>
                                     <td>
+
                                         {{ Illuminate\Support\Str::limit($item->product->name, 10) }}
+
                                     </td>
                                     <td>
+
                                         {{ $item->product->price }}
+
                                     </td>
                                     <td>{{ $item->quantity }}</td>
                                     <td>{{ $item->total_price }}đ</td>
                                     <td>{{ $item->note }}</td>
-                                    <td>{{ $item->payment_status }}</td>
-                                    <td>{{ $item->delivery_status }}</td>
+                                    <td class="form-group">
+                                        <select class="form-control status-select" data-oder-id="{{ $item->id }}">
+                                            <option value="Đang xác nhận"
+                                                {{ $item->payment_status == 'Đang xác nhận' ? 'selected' : '' }}>
+                                                Đang xác nhận</option>
+                                            <option value="Đã xác nhận"
+                                                {{ $item->payment_status == 'Đã xác nhận' ? 'selected' : '' }}>
+                                                Đã
+                                                xác nhận</option>
+                                            <option value="Đã thanh toán"
+                                                {{ $item->payment_status == 'Đã thanh toán' ? 'selected' : '' }}>
+                                                Đã thanh toán</option>
+                                            <option value="Đã hủy đơn hàng"
+                                                {{ $item->payment_status == 'Đã hủy đơn hàng' ? 'selected' : '' }}>Đã hủy
+                                                đơn hàng
+                                            </option>
+                                        </select>
+                                    </td>
+                                    <td class="form-group">
+                                        <select class="form-control delivery-select"
+                                            data-delivery-id="{{ $item->id }}">
+                                            <option value="Đang xử lý"
+                                                {{ $item->delivery_status == 'Đang xử lý' ? 'selected' : '' }}>
+                                                Đang Xử Lý</option>
+                                            <option value="Đang Giao Hàng"
+                                                {{ $item->delivery_status == 'Đang Giao Hàng' ? 'selected' : '' }}>Đang
+                                                Giao Hàng
+                                            </option>
+                                            <option value="Đã Giao Hàng"
+                                                {{ $item->delivery_status == 'Đã giao hàng' ? 'selected' : '' }}>
+                                                Đã giao hàng</option>
+                                            <option value="Không thể xử lí giao hàng"
+                                                {{ $item->delivery_status == 'Không thể xử lí giao hàng' ? 'selected' : '' }}>
+                                                Không thể
+                                                xử lí giao hàng</option>
+                                        </select>
+                                    </td>
                                     <td>{{ $item->created_at->format('d/m/Y') }}</td>
                                 </tr>
                             @endforeach
@@ -60,4 +104,61 @@
                 </div>
             </div>
         </div>
+    @endsection
+    @section('update-status')
+        <script>
+            $(document).ready(function() {
+                $('.status-select').on('change', function() {
+                    var oderId = $(this).data('oder-id');
+                    var newStatus = $(this).val();
+
+                    $.ajax({
+                        url: '{{ route('updateOder_status') }}',
+                        method: 'POST',
+                        data: {
+                            _token: '{{ csrf_token() }}',
+                            id: oderId,
+                            status: newStatus
+                        },
+                        success: function(response) {
+                            // Xử lý thành công
+                            console.log(response);
+                        },
+                        error: function(xhr) {
+                            // Xử lý lỗi
+                            console.log(xhr.responseText);
+                        }
+                    });
+                });
+            });
+        </script>
+    @endsection
+
+    @section('update-delivery')
+        <script>
+            $(document).ready(function() {
+                $('.delivery-select').on('change', function() {
+                    var oderId = $(this).data('delivery-id');
+                    var newStatus = $(this).val();
+
+                    $.ajax({
+                        url: '{{ route('updateDelivery_status') }}',
+                        method: 'POST',
+                        data: {
+                            _token: '{{ csrf_token() }}',
+                            id: oderId,
+                            status: newStatus
+                        },
+                        success: function(response) {
+                            // Xử lý thành công
+                            console.log(response);
+                        },
+                        error: function(xhr) {
+                            // Xử lý lỗi
+                            console.log(xhr.responseText);
+                        }
+                    });
+                });
+            });
+        </script>
     @endsection

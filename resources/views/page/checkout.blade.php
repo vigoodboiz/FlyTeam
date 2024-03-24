@@ -3,6 +3,7 @@
 @section('content')
     <main class="main__content_wrapper">
 
+
         <!-- Start breadcrumb section -->
         <div class="breadcrumb__section breadcrumb__bg">
             <div class="container">
@@ -65,6 +66,15 @@
                                                 </div>
                                                 <div class="col-12 mb-20">
                                                     <div class="checkout__input--list">
+                                                        <label class="checkout__input--label mb-10" for="input3">Email
+                                                            <span class="checkout__input--label__star">*</span></label>
+                                                        <input class="checkout__input--field border-radius-5"
+                                                            value="{{ Auth::user()->email }}" id="input3" type="text"
+                                                            disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mb-20">
+                                                    <div class="checkout__input--list">
                                                         <label class="checkout__input--label mb-10" for="input4">Địa chỉ
                                                             <span class="checkout__input--label__star">*</span></label>
                                                         <input class="checkout__input--field border-radius-5"
@@ -82,8 +92,8 @@
                                     </div>
                                     <div class="checkout__content--step__footer d-flex align-items-center">
                                         <a class="continue__shipping--btn primary__btn border-radius-5"
-                                            href="{{ route('home') }}">Tiếp tục mua sắm</a>
-                                        <a class="previous__link--content" href="{{ route('cartPage') }}">Quay về giỏ
+                                            href="{{ route('home') }}">Tiếp tục mua hàng</a>
+                                        <a class="previous__link--content" href="{{ route('cartPage') }}">Trở lại giỏ
                                             hàng</a>
                                     </div>
                                 </form>
@@ -91,7 +101,19 @@
                         </div>
                         <div class="col-lg-5 col-md-6">
                             <aside class="checkout__sidebar sidebar border-radius-10">
-                                <h2 class="checkout__order--summary__title text-center mb-15">Đơn hàng của bạn</h2>
+                                <!-- thông báo -->
+                                @if (\Session::has('message'))
+                                    <div class="alert alert-success">
+                                        {{ \Session::get('message') }}
+                                    </div>
+                                @endif
+                                <!-- thông báo -->
+                                @if (\Session::has('error'))
+                                    <div class="alert alert-danger">
+                                        {{ \Session::get('error') }}
+                                    </div>
+                                @endif
+                                <h2 class="checkout__order--summary__title text-center mb-15">ĐƠN HÀNG CỦA BẠN</h2>
                                 <div class="cart__table checkout__product--table">
                                     <table class="cart__table--inner">
                                         <tbody class="cart__table--body">
@@ -100,17 +122,16 @@
                                                     <td class="cart__table--body__list">
                                                         <div class="product__image two  d-flex align-items-center">
                                                             <div class="product__thumbnail border-radius-5">
-                                                                <a class="display-block" href="product-details.html"><img
+                                                                <a class="display-block"><img
                                                                         class="display-block border-radius-5"
                                                                         src="{{ asset('upload/public/images/' . $cart->product->image) }}"
                                                                         alt="cart-product"></a>
 
                                                             </div>
                                                             <div class="product__description">
-                                                                <label>Tên sản phẩm</label>
-                                                                <h4 class="product__description--name"><a
-                                                                        href="product-details.html">{{ $cart->product->name }}</a>
-                                                                </h4>
+                                                                <label>Tên</label>
+                                                                <h4 class="product__description--name text-truncate">
+                                                                    {{ $cart->product->name }}</h4>
 
                                                             </div>
                                                         </div>
@@ -125,11 +146,11 @@
                                                         <label>Giá</label>
                                                         @if (isset($cart->product->price_sale) && $cart->product->price_sale > 0)
                                                             <span
-                                                                class="cart__price">{{ $cart->product->price_sale }}đ</span>
+                                                                class="cart__price">{{ number_format($cart->product->price_sale, 0, ',', '.') }}đ</span>
                                                         @else
-                                                            <span class="cart__price">{{ $cart->product->price }}đ</span>
+                                                            <span
+                                                                class="cart__price">{{ number_format($cart->product->price, 0, ',', '.') }}đ</span>
                                                         @endif
-
 
                                                     </td>
                                                 </tr>
@@ -137,35 +158,109 @@
                                         </tbody>
                                     </table>
                                 </div>
+
+
                                 <div class="checkout__total">
                                     <table class="checkout__total--table">
                                         <tbody class="checkout__total--body">
-                                            <tr class="checkout__total--items">
-                                                <td class="checkout__total--title text-left">Tổng phụ </td>
 
-                                                <td class="checkout__total--amount text-right">{{ $totalPrice }}đ
-                                                </td>
+                                            <tr>
+                                                <form action="{{ route('check_coupon') }}" method="POST">
+                                                    @csrf
+                                                    <div class="coupon__code mb-30">
+                                                        <h3 class="coupon__code--title">MÃ GIẢM GIÁ</h3>
+                                                        <p class="coupon__code--desc">Nhập mã giảm giá nếu bạn có!</p>
+                                                        <div class="coupon__code--field d-flex">
+                                                            <label>
+                                                                <input type="text"
+                                                                    class="coupon__code--field__input border-radius-5"
+                                                                    name="coupon" placeholder="Nhập mã giảm giá">
+                                                            </label>
+                                                            <input name="check_coupon"
+                                                                class="coupon__code--field__btn primary__btn"
+                                                                type="submit" value="Xác nhận">
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </tr>
+                                            <tr>
+                                                @if (Session::get('coupon'))
+                                                    <form action="{{ route('unset_coupon') }}" method="POST">
+                                                        @csrf
+                                                        <button class="coupon__code--field__btn primary__btn"
+                                                            type="submit">Xóa mã giảm giá</button>
+                                                    </form>
+                                                @endif
                                             </tr>
                                             <tr class="checkout__total--items">
-                                                <td class="checkout__total--title text-left">Phí giao hàng</td>
-                                                <td class="checkout__total--calculated__text text-right">Miễn phí giao hàng
-                                                </td>
+                                                <td class="checkout__total--amount text-left">Tổng Tiền </td>
+                                                <td class="checkout__total--amount text-right">
+                                                    {{ number_format($totalPrice, 0, ',', '.') }}</td>
+                                            </tr>
+                                            <tr class="checkout__total--items">
+                                                <td class="checkout__total--amount text-left">Giao Hàng</td>
+                                                <td class="checkout__total--amount text-right">Miễn phí giao hàng</td>
 
                                             </tr>
+                                            <td>
+                                                @if (Session::get('coupon'))
+                                                    @foreach (Session::get('coupon') as $key => $cou)
+                                                        @if ($cou['coupon_condition'] == 1)
+                                                            <tr>
+                                                                <td class="checkout__total--amount text-left">Giảm :</td>
+                                                                <td class="checkout__total--amount text-right">
+                                                                    {{ $cou['coupon_number'] }} %</td>
+                                                            </tr>
+                                                            <p>
+                                                                <?php
+                                                                $total_coupon = ($totalPrice * $cou['coupon_number']) / 100;
+                                                                echo '<tr><td class="checkout__total--amount text-left" >Giảm :' . number_format($total_coupon, 0, ',', '.') . '</td></tr>';
+                                                                ?>
+                                                            </p>
+                                                            <p>
+                                                                <tr>
+                                                                    <td class="checkout__total--amount text-left">Số tiền
+                                                                        trả :</td>
+
+                                                                    <td class="checkout__total--amount text-right">
+                                                                        {{ number_format($totalPrice - $total_coupon, 0, ',', '.') }}
+                                                                    </td>
+
+
+                                                                </tr>
+                                                                </li>
+                                                            </p>
+                                                        @elseif($cou['coupon_condition'] == 2)
+                                                            <tr>
+                                                                <td class="checkout__total--amount text-left">Số tiền giảm
+                                                                    :</td>
+                                                                <td class="checkout__total--amount text-right">
+                                                                    {{ number_format($cou['coupon_number'], 0, ',', '.') }}
+                                                                </td>
+                                                            </tr>
+                                                            <p>
+                                                                <?php
+                                                                $total_coupon = $totalPrice - $cou['coupon_number'];
+                                                                
+                                                                ?>
+                                                            </p>
+                                                            <p>
+                                                                <tr>
+                                                                    <td class="checkout__total--amount text-left">Số tiền
+                                                                        trả :</td>
+
+                                                                    <td class="checkout__total--amount text-right">
+                                                                        {{ number_format($total_coupon, 0, ',', '.') }}
+                                                                    </td>
+
+                                                                </tr>
+                                                            </p>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                            </td>
+
                                         </tbody>
-                                        <tfoot class="checkout__total--footer">
-                                            <tr class="checkout__total--footer__items">
-                                                <td
-                                                    class="checkout__total--footer__title checkout__total--footer__list text-left">
-                                                    Tổng tiền </td>
-
-                                                <td
-                                                    class="checkout__total--footer__amount checkout__total--footer__list text-right">
-
-                                                    {{ $totalPrice }}đ
-                                                </td>
-                                            </tr>
-                                        </tfoot>
                                     </table>
                                 </div>
 
@@ -174,6 +269,8 @@
                                         display: block;
                                         margin-right: 10px;
                                         width: 50px;
+                                        margin-left: 20px;
+                                        /* Thêm cách lề trái 20px */
                                     }
 
                                     .method-item {
@@ -196,6 +293,8 @@
 
                                     .method-item .image {
                                         margin-right: 20px;
+                                        margin-left: 20px;
+                                        /* Thêm cách lề trái 20px */
                                     }
 
                                     .method-item .image img {
@@ -225,6 +324,11 @@
                                     .hihi {
                                         margin-left: 100px;
                                     }
+
+                                    .gui {
+                                        width: 100%;
+                                        height: 40px;
+                                    }
                                 </style>
 
 
@@ -242,67 +346,98 @@
                                     </div>
                                 @endif
 
-                                <div class="payment__history mb-30">
 
-                                    <form id="payment-form" action="{{ route('checkoutPost') }}" method="POST">
+
+                                <div class="payment__history mb-30">
+                                    <form id="payment-form" method="POST">
                                         @csrf
                                         @foreach ($cartItems as $cart)
                                             <input type="hidden" name="cart_id" value="{{ $cart->id }}">
                                         @endforeach
+
                                         <div class="uk-flex uk-flex-middle method-item">
-                                            <span class="image"> <img src="/core/xetaiicon.png" alt=""
-                                                    srcset=""></span>
-                                            <button class="payment__history--link primary__btn" type="submit"
-                                                name="redirect" style="margin-right: 10px">
-                                                Thanh Toán Khi Nhận Hàng
-                                            </button>
+                                            <input type="radio" id="cash-on-delivery" name="payment_method"
+                                                value="cash_on_delivery" checked>
+                                            <label for="cash-on-delivery">
+                                                <span class="image"> <img src="/core/xetaiicon.png" alt=""
+                                                        srcset=""></span>
+                                            </label>
+                                            <span class="payment-label">Thanh Toán Nhận Hàng</span>
                                         </div>
+
+                                        <div class="uk-flex uk-flex-middle method-item">
+                                            <input type="radio" id="vnpay" name="payment_method" value="vnpay">
+                                            <label for="vnpay">
+                                                <span class="image"> <img src="/core/vnpayicon.png" alt=""
+                                                        srcset=""></span>
+                                            </label>
+                                            <span class="payment-label">Thanh Toán Qua VnPay</span>
+                                        </div>
+
+                                        <div class="uk-flex uk-flex-middle method-item">
+                                            <input type="radio" id="momo" name="payment_method" value="momo">
+                                            <label for="momo">
+                                                <span class="image"> <img src="/core/momo.png" alt=""
+                                                        srcset=""></span>
+                                            </label>
+                                            <span class="payment-label">Thanh Toán Qua MoMo</span>
+                                        </div>
+
+                                        <button class="continue__shipping--btn primary__btn border-radius-10 gui"
+                                            type="button" onclick="submitPaymentForm()">Thanh Toán</button>
                                     </form>
 
-                                    <form action="{{ route('vnpay_payment') }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="total_vnpay" value="{{ $totalPrice }}">
-
-                                        <div class="uk-flex uk-flex-middle method-item">
-                                            <span class="image"> <img src="/core/vnpayicon.png" alt=""
-                                                    srcset=""></span>
-                                            <button class="payment__history--link primary__btn" type="submit"
-                                                name="redirect" style="margin-right: 10px">
-                                                Thanh Toán Qua Ví VnPay
-                                            </button>
-                                        </div>
-                                    </form>
-
-                                    <form action="{{ route('momo_payment') }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="total_momo" value="{{ $totalPrice }}">
-
-                                        <div class="uk-flex uk-flex-middle method-item">
-                                            <span class="image"> <img src="/core/momo.png" alt=""
-                                                    srcset=""></span>
-                                            <button class="payment__history--link primary__btn" type="submit"
-                                                name="redirect" style="margin-right: 10px">
-                                                Thanh Toán Qua Ví MoMo
-                                            </button>
-                                        </div>
-                                    </form>
+                                    @php
+                                        $total_coupon = 0;
+                                    @endphp
 
 
-                                    {{-- <form action="{{ route('momo_payment') }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="total_paypal" value="{{ $totalPrice }}">
+                                    @if (Session::has('coupon') && is_array(Session::get('coupon')))
+                                        @foreach (Session::get('coupon') as $key => $cou)
+                                            @if ($cou['coupon_condition'] == 1)
+                                                @php
+                                                    $total_coupon = ($totalPrice * $cou['coupon_number']) / 100;
+                                                @endphp
+                                            @elseif ($cou['coupon_condition'] == 2)
+                                                @php
+                                                    $total_coupon = $totalPrice - $cou['coupon_number'];
+                                                @endphp
+                                            @endif
+                                        @endforeach
+                                    @endif
 
-                                        <div class="uk-flex uk-flex-middle method-item">
-                                            <span class="image"><img src="/core/Paypal-icon.png" alt=""
-                                                    srcset=""></span>
-                                            <button class="payment__history--link primary__btn" type="submit"
-                                                name="redirect" style="margin-right: 10px">
-                                                Thanh Toán Qua PayPal
-                                            </button>
-                                        </div>
-                                    </form> --}}
 
                                 </div>
+
+
+
+                                <script>
+                                    function submitPaymentForm() {
+                                        var paymentMethod = document.querySelector('input[name="payment_method"]:checked').value;
+                                        var form = document.getElementById("payment-form");
+
+                                        if (paymentMethod === "cash_on_delivery") {
+                                            form.action = "{{ route('checkoutPost') }}";
+                                        } else if (paymentMethod === "vnpay") {
+                                            form.action = "{{ route('vnpay_payment') }}";
+                                            var totalVnpay = document.createElement("input");
+                                            totalVnpay.setAttribute("type", "hidden");
+                                            totalVnpay.setAttribute("name", "total_vnpay");
+                                            totalVnpay.setAttribute("value", "{{ $totalPrice - $total_coupon }}");
+
+                                            form.appendChild(totalVnpay);
+                                        } else if (paymentMethod === "momo") {
+                                            form.action = "{{ route('momo_payment') }}";
+                                            var totalMomo = document.createElement("input");
+                                            totalMomo.setAttribute("type", "hidden");
+                                            totalMomo.setAttribute("name", "total_momo");
+                                            totalMomo.setAttribute("value", "{{ $totalPrice - $total_coupon }}");
+                                            form.appendChild(totalMomo);
+                                        }
+
+                                        form.submit();
+                                    }
+                                </script>
 
 
                         </div>

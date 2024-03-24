@@ -72,4 +72,3 @@ class ShopDetailsController extends Controller
         return back();
     }
 }
-
