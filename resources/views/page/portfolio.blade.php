@@ -39,9 +39,6 @@
                                     <li class="account__menu--list active"><a href="{{ route('portfolioPage') }}">Thông
                                             tin</a>
                                     </li>
-                                    <li class="account__menu--list"><a href="{{ route('point') }}">Điểm
-                                            thưởng</a>
-                                    </li>
                                     <li class="account__menu--list"><a href="{{ route('wishlistPage') }}">Sản phẩm yêu
                                             thích</a></li>
                                     <li class="account__menu--list"><a href="{{ route('history') }}">Lịch sử đơn hàng</a>

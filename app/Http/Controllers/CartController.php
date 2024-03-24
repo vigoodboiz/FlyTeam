@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Coupon;
+use App\Models\Variant;
 use Illuminate\Support\Carbon;
 use Symfony\Component\DomCrawler\Crawler;
 use Illuminate\Http\Request;
@@ -91,15 +92,18 @@ class CartController extends Controller
 
     public function store(Request $request, string $id)
     {
-        try {
+        // try {
+            if(Auth::check()){
             $product = Products::query()->find($id);
+            $variantId = $product->id;
+            $variant = Variant::query()->find($variantId);
             $userId = auth()->user()->id;
-
+            
             // Kiểm tra xem sản phẩm đã tồn tại chưa
             $cartItem = Cart::where('user_id', $userId)
                 ->where('product_id', $id)
+                ->where('variant_id', $variantId)
                 ->first();
-
             if ($cartItem) {
                 if ($request->quantity > $product->quantity_product) {
                     return back()->with('error', 'Không thể thêm sản phẩm vào giỏ hàng - sản phẩm vượt quá số lượng cho phép');
@@ -108,6 +112,7 @@ class CartController extends Controller
                 } else {
                     $existingCartItem = Cart::where('product_id', $id)
                         ->where('user_id', $userId)
+                        ->where('variant_id', $variantId)
                         ->where('variants', $request->variantName)
                         ->first();
 
@@ -123,6 +128,7 @@ class CartController extends Controller
                                 'quantity' => $request->quantity,
                                 'product_id' => $id,
                                 'user_id' => $userId,
+                                'variant_id' => $variantId,
                                 'total_price' => $product->price_sale > 0 ? $request->quantity * $product->price_sale : $request->quantity * $product->price,
                                 'variants' => $request->variantName
                             ]);
@@ -142,6 +148,7 @@ class CartController extends Controller
                         'quantity' => $request->quantity,
                         'product_id' => $id,
                         'user_id' => $userId,
+                        'variant_id' => $variantId,
                         'total_price' => $product->price_sale > 0 ? $request->quantity * $product->price_sale : $request->quantity * $product->price,
                         'variants' => $request->variantName
                     ]);
@@ -152,12 +159,15 @@ class CartController extends Controller
                 } else {
                     return back()->with('error', 'Không thể thêm sản phẩm vào giỏ hàng - sản phẩm vượt quá số lượng cho phép');
                 }
+            } 
+            }else{
+                return back()->with('error', 'Không thể thêm sản phẩm vào giỏ hàng - Vui lòng đăng nhập để tiếp tục!');
             }
-        } catch (\Exception $exception) {
-            Log::error('CartController@store: ' . $exception->getMessage());
+        // } catch (\Exception $exception) {
+        //     Log::error('CartController@store: ' . $exception->getMessage());
 
-            return back()->with('error', 'Không thể thêm sản phẩm vào giỏ hàng - Vui lòng đăng nhập để tiếp tục!');
-        }
+        //     return back()->with('error', 'Không thể thêm sản phẩm vào giỏ hàng - Vui lòng đăng nhập để tiếp tục!');
+        // }
     }
     public function calculateTotalPrice()
     {

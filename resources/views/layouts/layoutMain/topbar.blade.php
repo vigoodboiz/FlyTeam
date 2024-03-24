@@ -197,8 +197,6 @@
                                      @elseif(Auth::user()->role_id == 3)
                                          <li class="header__sub--menu__items"><a href="{{ route('portfolioPage') }}"
                                                  class="header__sub--menu__link">Thông tin</a></li>
-                                         <li class="header__sub--menu__items"><a href="{{ route('point') }}"
-                                                 class="header__sub--menu__link">Điểm thưởng</a></li>
                                          <li class="header__sub--menu__items"><a href="{{ route('wishlistPage') }}"
                                                  class="header__sub--menu__link">Sản phẩm yêu thích</a></li>
                                          <li class="header__sub--menu__items"><a href="{{ route('history') }}"
@@ -209,11 +207,11 @@
                                                                                                                     document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Đăng
                                              xuất</a>
                                      </li>
-                                     @else
+                                 @else
                                      <li class="header__sub--menu__items"><a href="{{ route('register') }}"
-                                    class="header__sub--menu__link">Đăng ký</a></li>
-                                    <li class="header__sub--menu__items"><a href="{{ route('login') }}"
-                                    class="header__sub--menu__link">Đăng nhập</a></li>
+                                             class="header__sub--menu__link">Đăng ký</a></li>
+                                     <li class="header__sub--menu__items"><a href="{{ route('login') }}"
+                                             class="header__sub--menu__link">Đăng nhập</a></li>
 
                                  @endif
                                  <form id="logout-form" action="{{ route('logout') }}" method="POST"

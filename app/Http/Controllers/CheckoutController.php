@@ -216,14 +216,15 @@ class CheckoutController extends Controller
     ////////////////////////////////////// paypal ////////////////////////////////
     public function cancel(Order $order)
     {
-        if ($order->payment_status !== 'Đã xác nhận') {
-            $order->payment_status = 'Đã hủy đơn hàng';
-            $order->delivery_status = 'Không thể xử lý giao hàng';
-            $order->reorder_count -= 1;
-            $order->save();
-            return redirect()->back()->with('success', 'Đơn đặt hàng đã được hủy thành công!');
+        if ($order->payment_status !== 'Đã xác nhận' || $order->delivery_status !== 'Đang xử lý') {
+        $order->payment_status = 'Đã hủy đơn hàng';
+        $order->delivery_status = 'Không thể xử lý giao hàng';
+        $order->reorder_count -= 1;
+        $order->save();
+        return redirect()->back()->with('success', 'Đơn đặt hàng đã được hủy thành công!');
         } else {
             $order->payment_status = 'Đã xác nhận';
+            $order->delivery_status = 'Đang xử lý';
             $order->save();
             return redirect()->back()->with('error', 'Đơn hàng của bạn đã được xác nhận - Bạn không thể hủy đơn hàng!');
         }
