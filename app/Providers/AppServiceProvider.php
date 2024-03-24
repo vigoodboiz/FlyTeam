@@ -6,15 +6,16 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 
+
+use PayPal\Auth\OAuthTokenCredential;
+use PayPal\Rest\ApiContext;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
      */
-    public function register(): void
-    {
-        //
-    }
+
 
     /**
      * Bootstrap any application services.
@@ -23,5 +24,10 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         Paginator::useBootstrap();
+    }
+
+
+    public function register()
+    {
     }
 }

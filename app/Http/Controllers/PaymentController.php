@@ -5,14 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session; 
-// use Srmklive\PayPal\Services\PayPal as PayPalClient;
-// use PayPal\Api\Amount;
-// use PayPal\Api\Payer;
-// use PayPal\Api\Payment;
-// use PayPal\Api\RedirectUrls;
-// use PayPal\Api\Transaction;
-// use PayPal\Auth\OAuthTokenCredential;
-// use PayPal\Rest\ApiContext;
+use App\Services\PayPalClient;
 
 use Vnpay;
 
@@ -104,7 +97,7 @@ class PaymentController extends Controller
         $vnp_OrderType = "Cửa hàng Flyteam";
         $vnp_Amount = intval($data['total_vnpay']) * 100;
         $vnp_Locale = "VN";
-        $vnp_BankCode = "NCB";
+        // $vnp_BankCode = "NCB";
         $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
     
         $inputData = array(
@@ -159,6 +152,7 @@ class PaymentController extends Controller
 
     //     // Expiry date: Any
     //     // CVC code: Any
+
     //     $provider = new PayPalClient;
     //     $provider->setApiCredentials(config('paypal'));
     //     $paypalToken = $provider->getAccessToken();
@@ -216,5 +210,6 @@ class PaymentController extends Controller
     //             ->with('error', $response['message'] ?? 'Có gì đó đã sai!');
     //     }
     // }
+
 
 }

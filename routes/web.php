@@ -195,8 +195,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::match(['GET', 'POST'], '/momo_payment', [PaymentController::class, 'momo_payment'])->name('momo_payment');
     Route::match(['GET', 'POST'], '/momoCheckout', [CheckoutController::class, 'momoCheckout'])->name('momoCheckout');
     ////////////////////////// thanh toán paypal /////////////////
-    Route::get('/paypal/execute-payment', 'CheckoutController@executePayment')->name('paypalExecutePayment');
-    Route::get('/paypal/cancel-payment', 'CheckoutController@cancelPayment')->name('paypalCancelPayment');
+
 });
 
 

@@ -84,7 +84,7 @@ class CheckoutController extends Controller
         }
     }
     
-
+////////////////////////////////////// tích hợp thanh toán  ////////////////////////////////
     public function vnpayCheckout(Request $request)
     {
         // Xử lý kết quả thanh toán từ VNPAY
@@ -180,8 +180,7 @@ class CheckoutController extends Controller
         }
     }
 
-
-////////////////////////////////////// paypal ////////////////////////////////
+//////////////////////////////////////  ////////////////////////////////
     public function cancel(Order $order)
     {
         $order->payment_status = 'Đã hủy đơn hàng';

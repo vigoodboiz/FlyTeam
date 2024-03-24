@@ -1,6 +1,8 @@
 @extends('welcome')
 
 @section('content')
+
+
     <main class="main__content_wrapper">
 
         <!-- Start breadcrumb section -->
@@ -281,13 +283,14 @@
         </div>
     </form>
 
-
-    <form action="{{ route('momo_payment') }}" method="POST">
+    <form action="{{ route('paypal_payment') }}" method="POST">
     @csrf
     <input type="hidden" name="total_paypal" value="{{ $totalPrice }}">
     
     <div class="uk-flex uk-flex-middle method-item">
-        <span class="image"><img src="/core/Paypal-icon.png" alt="" srcset=""></span>
+        <span class="image">
+            <img src="/core/paypalicon.png" alt="" srcset="">
+        </span>
         <button class="payment__history--link primary__btn" type="submit" name="redirect" style="margin-right: 10px">
             Thanh Toán Qua PayPal
         </button>

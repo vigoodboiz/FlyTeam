@@ -45,9 +45,27 @@ return [
         'redirect' => env('GOOGLE_REDIRECT'),
     ],
     'paypal' => [
-        'sanbox' => [
-            'client_id' => env('PAYPAL_SANDBOX_CLIENT_ID'),
-            'client_secret' => env('PAYPAL_SANDBOX_CLIENT_SECRET'),
-        ]
-    ]
+        'mode' => env('PAYPAL_MODE', 'sandbox'),
+        'sandbox' => [
+            'username' => env('PAYPAL_SANDBOX_USERNAME'),
+            'password' => env('PAYPAL_SANDBOX_PASSWORD'),
+            'secret' => env('PAYPAL_SANDBOX_SECRET'),
+            'certificate' => env('PAYPAL_SANDBOX_CERTIFICATE'),
+            'app_id' => env('PAYPAL_SANDBOX_APP_ID'),
+        ],
+        'live' => [
+            'username' => env('PAYPAL_LIVE_USERNAME'),
+            'password' => env('PAYPAL_LIVE_PASSWORD'),
+            'secret' => env('PAYPAL_LIVE_SECRET'),
+            'certificate' => env('PAYPAL_LIVE_CERTIFICATE'),
+            'app_id' => env('PAYPAL_LIVE_APP_ID'),
+        ],
+    ],
+
+
+
+
+
+
+
         ];
