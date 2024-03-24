@@ -44,7 +44,7 @@
                                                     <span class="visually-hidden">product view</span>
                                                 </a>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                     <div class="single__product--nav swiper">
@@ -93,13 +93,13 @@
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="product__details--info">
-                            <h2 class="product__details--info__title mb-15">{{ $pro_dt->name }} </h2>
+                            <h2 id="variant-name" class="product__details--info__title mb-15">{{ $pro_dt->name }}</h2>
                             <div class="product__details--info__price mb-12">
                                 @if (isset($pro_dt->price_sale) && $pro_dt->price_sale > 0)
-                                <span id="price" class="current__price">{{ number_format($pro_dt->price_sale, 0, ',', '.')}}đ</span>
-                                <span id="price" class="old__price">{{ number_format($pro_dt->price, 0, ',', '.')}}đ</span>
+                                <span id="current-price" class="current__price">{{ number_format($pro_dt->price_sale, 0, ',', '.')}}đ</span>
+                                <span id="old-price" class="old__price">{{ number_format($pro_dt->price, 0, ',', '.')}}đ</span>
                                 @else
-                                <span id="price" class="current__price">{{ number_format($pro_dt->price, 0, ',', '.')}}đ</span>
+                                <span id="current-price" class="current__price">{{ number_format($pro_dt->price, 0, ',', '.')}}đ</span>
                                 @endif
                             </div>
                             <p class="product__details--info__desc mb-15">{{ $pro_dt->describe }}</p>
@@ -128,11 +128,14 @@
                                             @endif
                                             @endforeach
                                             <li class="variant__size--list">
-                                                @foreach ($values as $value)
-                                                <input id="{{ $value }}" name="variantName" value="{{ $value }}"  type="radio" checked>
-                                                <label class="variant__size--value red" style="color:{{ $value }}" for="{{ $value }}" style="width: 80px">
-                                                <i class="fa-solid fa-droplet"></i>
-                                                </label>
+                                                @foreach ($variants as $variant)
+                                                @if($variant->name == "Màu sắc")
+                                                <input id="{{ $variant->id }}" name="variantName" value="{{ $variant->value }}" type="radio" data-price="{{ $variant->price }}" data-name="{{ $variant->product_name }}" data-sale-price="{{ $variant->price_sale }}">
+                                                <label class="variant__size--value red" for="{{ $variant->id }}"><i style="color:{{$variant->value}}" class="fa-solid fa-droplet display-6"></i></label>
+                                                @else
+                                                <input id="{{ $variant->id }}" name="variantName" value="{{ $variant->value }}" type="radio" data-price="{{ $variant->price }}" data-name="{{ $variant->product_name }}" data-price-sale="{{ $variant->price_sale }}">
+                                                <label class="variant__size--value red" for="{{ $variant->id }}">{{ $variant->value }}</label>
+                                                @endif
                                                 @endforeach
                                             </li>
                                         </fieldset>
@@ -162,9 +165,6 @@
                                     </svg>
                                     Thêm vào sản phẩm yêu thích
                                 </a>
-                                <button class="variant__buy--now__btn primary__btn" type="submit"><a href="{{ route('checkoutPage') }}">Mua
-                                        ngay</a>
-                                </button>
                             </div>
                             @elseif($pro_dt->quantity_product <= 0) <span class="fw-bolder text-danger mt-5 mb-5">Xin lỗi , Sản phẩm đã hết . Khách hàng vui lòng lựa chọn sản phẩm khác!</span>
                                 @endif
@@ -456,4 +456,45 @@
     <!-- End feature section -->
 </main>
 
+@endsection
+
+@section('variant_price')
+<script>
+    document.querySelectorAll('input[name="variantName"]').forEach(function(input) {
+        input.addEventListener('change', function() {
+            var variantPrice = this.getAttribute('data-price');
+            var variantSalePrice = this.getAttribute('data-sale-price');
+            var variantName = this.getAttribute('data-name');
+
+            // Cập nhật giá và tên theo biến thể đã chọn
+            document.getElementById('current-price').innerText = formatPrice(variantSalePrice || variantPrice);
+            document.getElementById('variant-name').innerText = variantName;
+
+            // Xử lý logic nếu có giá cũ biến thể
+            var oldPriceElement = document.getElementById('old-price');
+            if (oldPriceElement) {
+                var oldPrice = calculateOldPrice(variantSalePrice || variantPrice);
+                oldPriceElement.innerText = formatPrice(oldPrice);
+            }
+        });
+    });
+
+    function formatPrice(price) {
+        return Intl.NumberFormat('vi-VN').format(price) + 'đ';
+    }
+
+    function calculateOldPrice(currentPrice) {
+        // Xử lý logic để tính toán giá cũ biến thể
+        // Nếu không có giá cũ, trả về 0 hoặc xử lý theo yêu cầu của bạn
+        return currentPrice * 1.2; // Ví dụ: giá cũ = giá hiện tại * 1.2
+    }
+    // document.querySelectorAll('input[name="variant"]').forEach(function(input) {
+    //     input.addEventListener('change', function() {
+    //         var variantName = this.getAttribute('data-name');
+
+    //         // Cập nhật tên biến thể đã chọn
+    //         document.getElementById('variant-name').innerText = variantName;
+    //     });
+    // });
+</script>
 @endsection

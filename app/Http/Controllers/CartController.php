@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Coupon;
 use Illuminate\Support\Carbon;
+use Symfony\Component\DomCrawler\Crawler;
 use Illuminate\Http\Request;
 
 class CartController extends Controller

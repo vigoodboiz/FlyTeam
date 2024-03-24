@@ -52,7 +52,7 @@
                                                     <th class="text-truncate">{{ $cart->product->name }}</th>
                                                     <th>{{ number_format($cart->product->price, 0, ',', '.')}}đ</th>
                                                     <th>{{ number_format($cart->product->price_sale, 0, ',', '.')}}đ</th>
-                                                    <th style="color:{{$cart->variants}};"><i class="fa-solid fa-droplet"></i></th>
+                                                    <th style="color:{{$cart->variants}};"><i class="fa-solid fa-droplet display-5"></i></th>
                                                     <th>
                                                         <div class="quantity__box">
                                                             <button type="button" class="quantity__value quickview__value--quantity decrease" aria-label="quantity value" value="Decrease Value">-</button>

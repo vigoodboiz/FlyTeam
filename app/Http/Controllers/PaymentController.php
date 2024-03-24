@@ -104,7 +104,7 @@ class PaymentController extends Controller
         $vnp_OrderType = "Cửa hàng Flyteam";
         $vnp_Amount = intval($data['total_vnpay']) * 100;
         $vnp_Locale = "VN";
-        $vnp_BankCode = "NCB";
+        // $vnp_BankCode = "NCB";
         $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
     
         $inputData = array(
