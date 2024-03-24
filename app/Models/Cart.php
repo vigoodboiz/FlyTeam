@@ -46,5 +46,8 @@ public function cartItems()
 {
     return $this->hasMany(CartItem::class);
 }
+public function variant(): BelongsTo {
+    return $this->belongsTo(Variant::class);
+}
   
 }

@@ -197,7 +197,9 @@
                                         <p>
                                             <tr>
                                                 <td class="checkout__total--amount text-left">Số tiền trả :</td>
+
                                                 <td class="checkout__total--amount text-right"> {{ number_format($totalPrice - $total_coupon, 0, ',', '.') }}</td>
+
                                             </tr>
                                             </li>
                                         </p>
@@ -215,7 +217,9 @@
                                         <p>
                                             <tr>
                                                 <td class="checkout__total--amount text-left">Số tiền trả :</td>
+
                                                 <td class="checkout__total--amount text-right"> {{ number_format($total_coupon, 0, ',', '.') }}</td>
+
                                             </tr>
                                         </p>
                                         @endif
@@ -328,9 +332,12 @@
 
                             <form action="{{ route('vnpay_payment') }}" method="POST">
                                 @csrf
+                                @if(isset($total_coupon))
+                                <input type="hidden" name="total_vnpay" value="{{ $totalPrice - $total_coupon }}">
+                                @else
                                 <input type="hidden" name="total_vnpay" value="{{ $totalPrice }}">
-
-                                <div class="uk-flex uk-flex-middle method-item">
+                                @endif
+                                <div class="ukflex uk-flex-middle method-item">
                                     <span class="image"> <img src="/core/vnpayicon.png" alt="" srcset=""></span>
                                     <button class="payment__history--link primary__btn" type="submit" name="redirect" style="margin-right: 10px">
                                         Thanh Toán Qua VnPay
@@ -340,7 +347,11 @@
 
                             <form action="{{ route('momo_payment') }}" method="POST">
                                 @csrf
+                                @if(isset($total_coupon))
+                                <input type="hidden" name="total_momo" value="{{ $totalPrice - $total_coupon }}">
+                                @else
                                 <input type="hidden" name="total_momo" value="{{ $totalPrice }}">
+                                @endif
 
                                 <div class="uk-flex uk-flex-middle method-item">
                                     <span class="image"> <img src="/core/momo.png" alt="" srcset=""></span>
@@ -353,7 +364,7 @@
 
                             <form action="{{ route('momo_payment') }}" method="POST">
                                 @csrf
-                                <input type="hidden" name="total_paypal" value="{{ $totalPrice }}">
+                                <input type="hidden" name="total_paypal" value="{{ $totalPrice}}">
 
                                 <div class="uk-flex uk-flex-middle method-item">
                                     <span class="image"><img src="/core/Paypal-icon.png" alt="" srcset=""></span>
