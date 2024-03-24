@@ -45,7 +45,7 @@
                                             @endif
                                         </div>
                                     </a>
-                                    <span class="product__badge">-14%</span>
+                                  
                                     <ul class="product__card--action">
                                         <li class="product__card--action__list">
                                             <a class="product__card--action__btn" title="Quick View" data-bs-toggle="modal" data-bs-target="#examplemodal" href="javascript:void(0)">
@@ -351,7 +351,7 @@
                                                                 @endif
                                                             </div>
                                                         </a>
-                                                        <span class="product__badge">-14%</span>
+                                                        
                                                         <ul class="product__card--action">
                                                             <li class="product__card--action__list">
                                                                 <a class="product__card--action__btn" title="Quick View" data-bs-toggle="modal" data-bs-target="#examplemodal" href="javascript:void(0)">

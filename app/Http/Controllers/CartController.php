@@ -26,6 +26,8 @@ class CartController extends Controller
         $data = $request->all();
         $userId = Auth::id();
         $cartItems = Cart::where('user_id', $userId)->get();
+        $totalPrice = $this->calculateTotalPrice();
+
         if ($cartItems->isEmpty()) {
             return redirect()->route('shopGrid')->with('error', 'Bạn không có sản phẩm nào cả - Vui lòng thêm sản phẩm vào giỏ hàng!');
         } else {
@@ -33,29 +35,34 @@ class CartController extends Controller
                 ->where('coupon_status', 1)
                 ->where('coupon_date_end', '>=', $today)
                 ->first();
+
             if ($coupon) {
                 $couponId = $coupon->id;
                 $couponCode = $request->input('coupon_code');
                 $couponUser = UserCoupon::where('coupon_id', $couponId)
                     ->where('user_id', auth()->user()->id)
                     ->first();
+
                 if ($coupon && !$couponUser) {
+                    if ($totalPrice >= $coupon->max) {
+                        UserCoupon::create([
+                            'coupon_id' => $couponId,
+                            'user_id' => auth()->user()->id,
+                            'coupon_code' => $request->coupon,
+                        ]);
 
-                    UserCoupon::create([
-                        'coupon_id' => $couponId,
-                        'user_id' => auth()->user()->id,
-                        'coupon_code' => $request->coupon,
-                    ]);
+                        $cou[] = array(
+                            'coupon_code' => $coupon->coupon_code,
+                            'coupon_condition' => $coupon->coupon_condition,
+                            'coupon_number' => $coupon->coupon_number,
+                        );
 
-                    $cou[] = array(
-                        'coupon_code' => $coupon->coupon_code,
-                        'coupon_condition' => $coupon->coupon_condition,
-                        'coupon_number' => $coupon->coupon_number,
-                    );
-
-                    Session::put('coupon', $cou);
-                    Session::save();
-                    return back()->with('success', "Khuyến mại đã được sử dụng thành công!");
+                        Session::put('coupon', $cou);
+                        Session::save();
+                        return back()->with('success', "Khuyến mại đã được sử dụng thành công!");
+                    } else {
+                        return back()->with('error', "Giá trị đơn hàng không hợp lệ");
+                    }
                 } else {
                     return back()->with('error', "Khuyến mại đã được sử dụng!");
                 }

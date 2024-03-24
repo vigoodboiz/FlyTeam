@@ -80,9 +80,8 @@
                                 </div>
                             </div>
                             <div class="checkout__content--step__footer d-flex align-items-center">
-                                <a class="continue__shipping--btn primary__btn border-radius-5" href="{{ route('home') }}">Continue To
-                                    Shipping</a>
-                                <a class="previous__link--content" href="{{ route('cartPage') }}">Return to cart</a>
+                                <a class="continue__shipping--btn primary__btn border-radius-5" href="{{ route('home') }}">Tiếp tục mua hàng</a>
+                                <a class="previous__link--content" href="{{ route('cartPage') }}">Trở lại giỏ hàng</a>
                             </div>
                         </form>
                     </div>
@@ -163,7 +162,6 @@
                                     </tr>
                                     <tr>
                                         @if (Session::get('coupon'))
-
                                         <form action="{{ route('unset_coupon') }}" method="POST">
                                             @csrf
                                             <button class="coupon__code--field__btn primary__btn" type="submit">Xóa mã giảm giá</button>
@@ -189,7 +187,8 @@
                                         </tr>
                                         <p>
                                             <?php
-                                            $total_coupon = ($totalPrice * $cou['coupon_number']) / 100;
+                                            $total_coupon = min((($totalPrice * $cou['coupon_number']) / 100), 30000);
+                                            // min($totalAmount * ($discountPercent / 100), 30000);
 
                                             echo '<tr><td class="checkout__total--amount text-left" >Giảm :' . number_format($total_coupon, 0, ',', '.') . '</td></tr>';
                                             ?>
@@ -199,6 +198,7 @@
                                                 <td class="checkout__total--amount text-left">Số tiền trả :</td>
 
                                                 <td class="checkout__total--amount text-right"> {{ number_format($totalPrice - $total_coupon, 0, ',', '.') }}</td>
+
 
                                             </tr>
                                             </li>
@@ -228,17 +228,6 @@
                                     </td>
 
                                 </tbody>
-                                <!-- <tfoot class="checkout__total--footer">
-                                    <tr class="checkout__total--footer__items">
-                                        <td class="checkout__total--footer__title checkout__total--footer__list text-left">
-                                            Tổng tiền </td>
-                                        <td class="checkout__total--footer__amount checkout__total--footer__list text-right">
-
-                                            {{ $totalPrice }}đ
-                                        </td>
-
-                                    </tr>
-                                </tfoot> -->
                             </table>
                         </div>
 
@@ -247,6 +236,7 @@
                                 display: block;
                                 margin-right: 10px;
                                 width: 50px;
+                                margin-left: 20px; /* Thêm cách lề trái 20px */
                             }
 
                             .method-item {
@@ -269,6 +259,7 @@
 
                             .method-item .image {
                                 margin-right: 20px;
+                                 margin-left: 20px; /* Thêm cách lề trái 20px */
                             }
 
                             .method-item .image img {
@@ -298,6 +289,11 @@
                             .hihi {
                                 margin-left: 100px;
                             }
+                            .gui{
+                                width: 100%;
+                                height: 40px;
+                            }
+                            
                         </style>
 
 
@@ -315,66 +311,93 @@
                         </div>
                         @endif
 
-                        <div class="payment__history mb-30">
 
-                            <form id="payment-form" action="{{ route('checkoutPost') }}" method="POST">
+
+                        <div class="payment__history mb-30">
+                            <form id="payment-form" method="POST">
                                 @csrf
                                 @foreach ($cartItems as $cart)
-                                <input type="hidden" name="cart_id" value="{{  $cart->id  }}">
+                                <input type="hidden" name="cart_id" value="{{ $cart->id }}">
                                 @endforeach
-                                <div class="uk-flex uk-flex-middle method-item">
-                                    <span class="image"> <img src="/core/xetaiicon.png" alt="" srcset=""></span>
-                                    <button class="payment__history--link primary__btn" type="submit" name="redirect" style="margin-right: 10px">
-                                        Thanh Toán Nhận Hàng
-                                    </button>
-                                </div>
-                            </form>
-
-                            <form action="{{ route('vnpay_payment') }}" method="POST">
-                                @csrf
-                                @if(isset($total_coupon))
-                                <input type="hidden" name="total_vnpay" value="{{ $totalPrice - $total_coupon }}">
-                                @else
-                                <input type="hidden" name="total_vnpay" value="{{ $totalPrice }}">
-                                @endif
-                                <div class="ukflex uk-flex-middle method-item">
-                                    <span class="image"> <img src="/core/vnpayicon.png" alt="" srcset=""></span>
-                                    <button class="payment__history--link primary__btn" type="submit" name="redirect" style="margin-right: 10px">
-                                        Thanh Toán Qua VnPay
-                                    </button>
-                                </div>
-                            </form>
-
-                            <form action="{{ route('momo_payment') }}" method="POST">
-                                @csrf
-                                @if(isset($total_coupon))
-                                <input type="hidden" name="total_momo" value="{{ $totalPrice - $total_coupon }}">
-                                @else
-                                <input type="hidden" name="total_momo" value="{{ $totalPrice }}">
-                                @endif
 
                                 <div class="uk-flex uk-flex-middle method-item">
-                                    <span class="image"> <img src="/core/momo.png" alt="" srcset=""></span>
-                                    <button class="payment__history--link primary__btn" type="submit" name="redirect" style="margin-right: 10px">
-                                        Thanh Toán Qua MoMo
-                                    </button>
+                                    <input type="radio" id="cash-on-delivery" name="payment_method" value="cash_on_delivery" checked>
+                                    <label for="cash-on-delivery">
+                                        <span class="image"> <img src="/core/xetaiicon.png" alt="" srcset=""></span>
+                                    </label>
+                                    <span class="payment-label">Thanh Toán Nhận Hàng</span>
                                 </div>
-                            </form>
-
-
-                            <form action="{{ route('momo_payment') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="total_paypal" value="{{ $totalPrice}}">
 
                                 <div class="uk-flex uk-flex-middle method-item">
-                                    <span class="image"><img src="/core/Paypal-icon.png" alt="" srcset=""></span>
-                                    <button class="payment__history--link primary__btn" type="submit" name="redirect" style="margin-right: 10px">
-                                        Thanh Toán Qua PayPal
-                                    </button>
+                                    <input type="radio" id="vnpay" name="payment_method" value="vnpay">
+                                    <label for="vnpay">
+                                        <span class="image"> <img src="/core/vnpayicon.png" alt="" srcset=""></span>
+                                    </label>
+                                    <span class="payment-label">Thanh Toán Qua VnPay</span>
                                 </div>
+
+                                <div class="uk-flex uk-flex-middle method-item">
+                                    <input type="radio" id="momo" name="payment_method" value="momo">
+                                    <label for="momo">
+                                        <span class="image"> <img src="/core/momo.png" alt="" srcset=""></span>
+                                    </label>
+                                    <span class="payment-label">Thanh Toán Qua MoMo</span>
+                                </div>
+
+                                <button class="continue__shipping--btn primary__btn border-radius-10 gui" type="button" onclick="submitPaymentForm()">Thanh Toán</button>
                             </form>
+
+                            @php
+                            $total_coupon = 0;
+                            @endphp
+
+
+                            @if (Session::has('coupon') && is_array(Session::get('coupon')))
+                            @foreach (Session::get('coupon') as $key => $cou)
+                            @if ($cou['coupon_condition'] == 1)
+                            @php
+                            $total_coupon = ($totalPrice * $cou['coupon_number']) / 100;
+                            @endphp
+                            @elseif ($cou['coupon_condition'] == 2)
+                            @php
+                            $total_coupon = $totalPrice - $cou['coupon_number'];
+                            @endphp
+                            @endif
+                            @endforeach
+                            @endif
+
 
                         </div>
+
+
+
+                        <script>
+                            function submitPaymentForm() {
+                                var paymentMethod = document.querySelector('input[name="payment_method"]:checked').value;
+                                var form = document.getElementById("payment-form");
+
+                                if (paymentMethod === "cash_on_delivery") {
+                                    form.action = "{{ route('checkoutPost') }}";
+                                } else if (paymentMethod === "vnpay") {
+                                    form.action = "{{ route('vnpay_payment') }}";
+                                    var totalVnpay = document.createElement("input");
+                                    totalVnpay.setAttribute("type", "hidden");
+                                    totalVnpay.setAttribute("name", "total_vnpay");
+                                    totalVnpay.setAttribute("value", "{{ $totalPrice - $total_coupon }}");
+
+                                    form.appendChild(totalVnpay);
+                                } else if (paymentMethod === "momo") {
+                                    form.action = "{{ route('momo_payment') }}";
+                                    var totalMomo = document.createElement("input");
+                                    totalMomo.setAttribute("type", "hidden");
+                                    totalMomo.setAttribute("name", "total_momo");
+                                    totalMomo.setAttribute("value", "{{ $totalPrice  - $total_coupon }}");
+                                    form.appendChild(totalMomo);
+                                }
+
+                                form.submit();
+                            }
+                        </script>
 
 
                 </div>
