@@ -17,7 +17,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        return view('auth.login')->with('success', 'Đăng nhập thành công!');
+        return view('auth.login');
     }
 
     /**
@@ -28,9 +28,13 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+        Auth::check();
+        if(Auth::user()->role_id == 3){
 
-        return redirect()->intended(RouteServiceProvider::WELCOME);
-         
+        return redirect()->intended(RouteServiceProvider::WELCOME)->with('success', 'Đăng nhập thành công!');
+    } else {
+        return redirect()->intended(RouteServiceProvider::DASHBOARD)->with('success', 'Đăng nhập admin thành công!');
+    }
     }
 
     /**

@@ -23,22 +23,25 @@ class CartController extends Controller
     {
       $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y/m/d');
       $data = $request->all();
-    
+      $userId = Auth::id();
+      $cartItems = Cart::where('user_id', $userId)->get();
+      if($cartItems->isEmpty()){
+        return redirect()->route('shopGrid')->with('error', 'Bạn không có sản phẩm nào cả - Vui lòng thêm sản phẩm vào giỏ hàng!');
+    } else{
       $coupon = Coupon::where('coupon_code', $data['coupon'])
                      ->where('coupon_status', 1)
                      ->where('coupon_date_end', '>=', $today)
                      ->first();
                      if ($coupon){
+                        $couponId = $coupon->id;
                         $couponCode = $request->input('coupon_code');
-                        $couponId = Coupon::where('coupon_code', $couponCode)->first();
-                     $CouponUser = UserCoupon::where('coupon_id', $couponId)
+                     $couponUser = UserCoupon::where('coupon_id', $couponId)
                                 ->where('user_id', auth()->user()->id)
                                 ->first();
-                                dd($couponId);
-                                if ($coupon && !$CouponUser) {
+                                if ($coupon && !$couponUser) {
                                     
                                     UserCoupon::create([
-                                        'coupon_id' => $couponId->id,
+                                        'coupon_id' => $couponId,
                                         'user_id' => auth()->user()->id,
                                     ]);
                                     
@@ -52,27 +55,13 @@ class CartController extends Controller
                                       Session::save();
                                     return back()->with('success', "Khuyến mại đã được sử dụng thành công!");
                                 } else {
-                                
                                     return back()->with('error', "Khuyến mại đã được sử dụng!");
                               }
                             } else{
                                 return redirect()->back()->with('error', 'Mã giảm giá không đúng, đã hết hạn hoặc bạn đã sử dụng rồi');
                             }
-    //   if ($coupon) { 
-    //       $cou[] = array(
-    //         'coupon_code' => $coupon->coupon_code,
-    //         'coupon_condition' => $coupon->coupon_condition,
-    //         'coupon_number' => $coupon->coupon_number,
-    //       );
-    
-    //       Session::put('coupon', $cou);
-    //       Session::save();
-    
-    //       return redirect()->back()->with('success', 'Thêm mã giảm giá thành công');
-    //     } else {
-    //       return redirect()->back()->with('error', 'Mã giảm giá không đúng, đã hết hạn hoặc bạn đã sử dụng rồi');
-    //     }
-    }
+                        }
+                    }
     
     public function index()
     {

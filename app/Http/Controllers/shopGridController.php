@@ -19,10 +19,10 @@ class shopGridController extends Controller
         // sản phẩm mới
         $new_product = Products::orderBy('created_at', 'DESC')->limit(3)->get();
         // sản phẩm sale
-        $sale_product = Variant::where('price_sale', '!=', 0)->get();
+        $sale_product = Products::where('price_sale', '!=', 0)->get();
         // lấy giá trị min , max của price
-        $minPri = Variant::min('price');
-        $maxPri = Variant::max('price');
+        $minPri = Products::min('price');
+        $maxPri = Products::max('price');
         // search
         $keyword = $request->input('searchPro');
         if ($request->post() && $request->searchPro) {

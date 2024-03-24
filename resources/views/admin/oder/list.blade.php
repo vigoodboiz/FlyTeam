@@ -35,25 +35,16 @@
                                     <td>{{ $loop->index + 1 }}</td>
                                     <th scope="row">#1234{{ $item->id }}</th>
                                     <td>{{ $item->user->name }}</td>
-                                    {{-- <td>{{ $item->user->email }}</td>
-                            <td>{{ $item->user->phone }}</td>
-                            <td>{{ $item->user->address }}</td> --}}
                                     <td>
-
                                         <img class="border-radius-5"
                                             src="{{ asset('upload/public/images/' . $item->product->image) }}"
                                             alt="cart-product">
-
                                     </td>
                                     <td>
-
-                                        {{ $item->product->name }}
-
+                                        {{ Illuminate\Support\Str::limit($item->product->name, 10) }}
                                     </td>
                                     <td>
-
                                         {{ $item->product->price }}
-
                                     </td>
                                     <td>{{ $item->quantity }}</td>
                                     <td>{{ $item->total_price }}đ</td>

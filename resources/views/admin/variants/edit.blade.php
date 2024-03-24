@@ -10,13 +10,19 @@
         </div>
 
         <div class="form-group">
+            <label for="name">Tên thuộc tính:</label>
+            <input type="text" name="name" class="form-control" value="{{ $variants->_product_name }}" required>
+        </div>
+
+        <div class="form-group">
             <label for="value">Giá trị</label>
             <input type="text" name="value" class="form-control" value="{{ $variants->value }}" required>
         </div>
         <div class="form-group">
             <label for="value">Giá</label>
             <input type="text" name="price" class="form-control" value="{{ $variants->price }}" required>
-        </div><div class="form-group">
+        </div>
+        <div class="form-group">
             <label for="value">Giá sale</label>
             <input type="text" name="price_sale" class="form-control" value="{{ $variants->price_sale }}" required>
         </div>

@@ -42,6 +42,8 @@ class ProductController extends Controller
             'id_category' => 'required',
             'name' => 'required',
             'brand' => 'required',
+            'price' => 'required',
+            'price_sale' => 'required',
             'describe' => 'required',
             'quantity_product' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -56,8 +58,13 @@ class ProductController extends Controller
         }
         Products::create($validatedData);
         // if ($request->variants) {
-        //     foreach ($request->variants as $variantName) {
-        //         $validatedData->variants()->create(['name' => $variantName]);
+        //     foreach ($request->variants as $variant) {
+        //         $validatedData->variants()->create([
+        //             'name' => $variant['name'],
+        //             'value' => $variant['value'],
+        //             'price' => $variant['price'] // Thêm giá cho biến thể
+        //             'price_sale' => $variant['price_sale']
+        //         ]);
         //     }
         // }
         return redirect()->back()->with('success', 'Sản phẩm được thêm thành công!');
@@ -97,6 +104,8 @@ class ProductController extends Controller
             'id_category' => 'required',
             'name' => 'required',
             'brand' => 'required',
+            'price' => 'required',
+            'price_sale' => 'required',
             'describe' => 'required',
             'quantity_product' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -123,6 +132,8 @@ class ProductController extends Controller
         $product->id_category = $request->input('id_category');
         $product->name = $request->input('name');
         $product->brand = $request->input('brand');
+        $product->brand = $request->input('price');
+        $product->brand = $request->input('price_sale');
         $product->describe = $request->input('describe');
         $product->quantity_product = $request->input('quantity_product');
         $product->save();

@@ -49,9 +49,16 @@
                                                             <th><img style="height: 80px" ;
                                                                     src="{{ asset('upload/public/images/' . $cart->product->image) }}">
                                                             </th>
-                                                            <th class="text-truncate">{{ $cart->product->name }}</th>
-                                                            <th>{{ $cart->product->price }}đ</th>
-                                                            <th>{{ $cart->product->price_sale }}đ</th>
+                                                            @if (!isset($variant))
+                                                                <th class="text-truncate">{{ $cart->product->name }}</th>
+                                                                <th>{{ $cart->product->price }}đ</th>
+                                                                <th>{{ $cart->product->price_sale }}đ</th>
+                                                            @else
+                                                                <th class="text-truncate">
+                                                                    {{ $cart->product->variant->product_name }}</th>
+                                                                <th>{{ $cart->product->variant->price }}đ</th>
+                                                                <th>{{ $cart->product->variant->price_sale }}đ</th>
+                                                            @endif
                                                             <th>
                                                                 <div class="quantity__box">
                                                                     <button type="button"
@@ -126,10 +133,10 @@
 
 
                                         <!-- <div class="cart__note mb-20">
-                                                                                                                                                                                            <h3 class="cart__note--title">Note</h3>
-                                                                                                                                                                                            <p class="cart__note--desc">Add special instructions for your seller...</p>
-                                                                                                                                                                                            <textarea class="cart__note--textarea border-radius-5"></textarea>
-                                                                                                                                                                                        </div> -->
+                                                                                                                                                                                                    <h3 class="cart__note--title">Note</h3>
+                                                                                                                                                                                                    <p class="cart__note--desc">Add special instructions for your seller...</p>
+                                                                                                                                                                                                    <textarea class="cart__note--textarea border-radius-5"></textarea>
+                                                                                                                                                                                                </div> -->
                                     </div>
 
                                     <div class="cart__summary--total mb-20">
