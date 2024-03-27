@@ -25,7 +25,7 @@ class OderStatusController extends Controller
         $oder->payment_status = $request->status;
         $oder->save();
 
-        return response()->json(['success' => true]);
+        return redirect()->back()->with('success', 'Cập nhập trạng thái thành công!');
     }
 
     public function updateDelivery_status(Request $request)
@@ -34,7 +34,7 @@ class OderStatusController extends Controller
         $oder->delivery_status = $request->status;
         $oder->save();
 
-        return response()->json(['success' => true]);
+        return redirect()->back()->with('success', 'Cập nhập trạng thái thành công!');
     }
     
 }

@@ -92,8 +92,6 @@ class CheckoutController extends Controller
             foreach ($carts as $cart) {
                 $cart->delete();
             }
-
-
             return redirect()->route('history')->with('success', 'Đặt hàng thành công!');
         }
     }
@@ -213,20 +211,19 @@ class CheckoutController extends Controller
     }
 
 
-    ////////////////////////////////////// paypal ////////////////////////////////
     public function cancel(Order $order)
     {
-        if ($order->payment_status !== 'Đã xác nhận' || $order->delivery_status !== 'Đang xử lý') {
+        if ($order->payment_status !== 'Đã xác nhận') {
         $order->payment_status = 'Đã hủy đơn hàng';
-        $order->delivery_status = 'Không thể xử lý giao hàng';
-        $order->reorder_count -= 1;
+        $order->delivery_status = 'Không thể xử lí giao hàng';
+        $order->reason = request()->input('reason');
         $order->save();
-        return redirect()->back()->with('success', 'Đơn đặt hàng đã được hủy thành công!');
+        return redirect()->route('canceled')->with('success', 'Đơn đặt hàng đã được hủy thành công!');
         } else {
             $order->payment_status = 'Đã xác nhận';
             $order->delivery_status = 'Đang xử lý';
-            $order->save();
-            return redirect()->back()->with('error', 'Đơn hàng của bạn đã được xác nhận - Bạn không thể hủy đơn hàng!');
+            $order->save(); 
+            return redirect()->route('confirmed')->with('error', 'Đơn hàng của bạn đã được xác nhận - Bạn không thể hủy đơn hàng!');
         }
     }
 
@@ -238,19 +235,17 @@ class CheckoutController extends Controller
     public function reorder($id)
     {
         $order = Order::findOrFail($id);
-
-        if ($order->reorder_count < 0) {
-            return redirect()->back()->with('error', 'Bạn chỉ được mua lại đơn hàng này một lần!');
-        } else {
             // Tái tạo lại đơn hàng
+            if($order->payment_status = 'Đã hủy đơn hàng' && $order->delivery_status = 'Không thể xử lí giao hàng'){
             $newOrder = $order->replicate();
-            $order->reorder_count = 0;
             $newOrder->payment_status = 'Đang xác nhận';
             $newOrder->delivery_status = 'Đang xử lý';
             $newOrder->save();
             // Xóa đơn hàng đã bị hủy đi
             $order->delete();
             return redirect()->route('history', $newOrder->id)->with('success', 'Đơn đặt hàng đã được mua lại thành công!');
-        }
+            } else {
+                return redirect()->back()->with('error', 'Không thể mua lại đơn hàng đã được xác nhận hoặc đang giao.');
+            }
     }
 }

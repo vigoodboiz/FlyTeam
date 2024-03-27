@@ -95,10 +95,7 @@
                                                             </td>
                                                         </tr>
                                                     @endforeach
-
                                             </tbody>
-
-
                                         </table>
                                         <div class="continue__shopping d-flex justify-content-between">
                                             <a class="continue__shopping--link" href="{{ route('shopGrid') }}">Tiếp tục mua

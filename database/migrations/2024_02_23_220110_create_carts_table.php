@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('product_id');
             $table->integer('quantity');
             $table->integer('total_price');
-            $table->integer('total_price_sale');
+            $table->string('variants');
             $table->timestamps();
         });
     }

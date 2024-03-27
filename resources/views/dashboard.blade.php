@@ -15,7 +15,7 @@
                                 </div>
                                 <div class="stat-content">
                                     <div class="text-left dib">
-                                        <div class="stat-text"><span class="count">{{ $totalPaidAmount}}</span></div>
+                                        <div class="stat-text"><span class="count">{{ $totalPaidAmount }}</span></div>
                                         <div class="stat-heading">Tổng doanh thu</div>
                                     </div>
                                 </div>
@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="stat-content">
                                     <div class="text-left dib">
-                                        <div class="stat-text"><span class="count">{{$totalproduct}}</span></div>
+                                        <div class="stat-text"><span class="count">{{ $totalproduct }}</span></div>
                                         <div class="stat-heading">Tất cả sản phẩm</div>
                                     </div>
                                 </div>
@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="stat-content">
                                     <div class="text-left dib">
-                                        <div class="stat-text"><span class="count">{{$totalusers}}</span></div>
+                                        <div class="stat-text"><span class="count">{{ $totalusers }}</span></div>
                                         <div class="stat-heading">Tổng Người dùng</div>
                                     </div>
                                 </div>
@@ -91,7 +91,8 @@
                             <div class="col-xl-3">
                                 <div class='input-group date' id='startDate'>
                                     <div class='input-group date' id='searchDate'>
-                                        <span class="input-group-addon input-group-text"><span class="fa fa-calendar"></span></span>
+                                        <span class="input-group-addon input-group-text"><span
+                                                class="fa fa-calendar"></span></span>
                                         <input type='text' class="form-control" id="searchInput" />
                                         <button id="searchButton" class="btn btn-primary">Search</button>
                                     </div>
@@ -140,14 +141,12 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"
-                                aria-hidden="true">&times;</button>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title"><strong>Add New Event</strong></h4>
                         </div>
                         <div class="modal-body"></div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default waves-effect"
-                                data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-success save-event waves-effect waves-light">Create
                                 event</button>
                             <button type="button" class="btn btn-danger delete-event waves-effect waves-light"
@@ -208,82 +207,85 @@
     integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script>
-        var earningsBarChart;
+<script>
+    var earningsBarChart;
 
-        document.addEventListener('DOMContentLoaded', function () {
-            var ctx = document.getElementById('earningsBarChart').getContext('2d');
-            earningsBarChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Hôm Nay', 'Trong Tháng', 'Trong Năm'],
-                    datasets: [{
-                        label: 'Doanh Thu',
-                        data: [{{ $todaysEarnings }}, {{ $monthEarnings }}, {{ $yearEarnings }}],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.5)',
-                            'rgba(54, 162, 235, 0.5)',
-                            'rgba(255, 206, 86, 0.5)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)'
-                        ],
-                        borderWidth: 1
+    document.addEventListener('DOMContentLoaded', function() {
+        var ctx = document.getElementById('earningsBarChart').getContext('2d');
+        earningsBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Hôm Nay', 'Trong Tháng', 'Trong Năm'],
+                datasets: [{
+                    label: 'Doanh Thu',
+                    data: [{{ $todaysEarnings }}, {{ $monthEarnings }}, {{ $yearEarnings }}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.5)',
+                        'rgba(54, 162, 235, 0.5)',
+                        'rgba(255, 206, 86, 0.5)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
                     }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                    }
                 }
-            });
+            }
         });
-
-        $(document).ready(function () {
-            $('#searchDate').find('input').datepicker({
-                format: 'dd/mm/yyyy'
-            });
-
-            $('#searchButton').on('click', function () {
-                var selectedDate = $('#searchInput').val().trim();
-
-                if (selectedDate !== '') {
-                    updateChart(selectedDate);
-                } else {
-                    alert('Vui lòng chọn một ngày.');
-                }
-            });
-        });
-        function updateChart(selectedDate) {
-    $.ajax({
-        url: '{{ route('get_earnings_data') }}',
-        method: 'GET',
-        data: { date: selectedDate },
-        success: function (data) {
-            earningsBarChart.data.datasets[0].data = data;
-            earningsBarChart.update();
-        },
-        error: function () {
-            alert('Đã xảy ra lỗi khi lấy dữ liệu. Vui lòng thử lại sau.');
-        }
     });
-}
-    </script>
+
+    $(document).ready(function() {
+        $('#searchDate').find('input').datepicker({
+            format: 'dd/mm/yyyy'
+        });
+
+        $('#searchButton').on('click', function() {
+            var selectedDate = $('#searchInput').val().trim();
+
+            if (selectedDate !== '') {
+                updateChart(selectedDate);
+            } else {
+                alert('Vui lòng chọn một ngày.');
+            }
+        });
+    });
+
+    function updateChart(selectedDate) {
+        $.ajax({
+            url: '{{ route('get_earnings_data') }}',
+            method: 'GET',
+            data: {
+                date: selectedDate
+            },
+            success: function(data) {
+                earningsBarChart.data.datasets[0].data = data;
+                earningsBarChart.update();
+            },
+            error: function() {
+                alert('Đã xảy ra lỗi khi lấy dữ liệu. Vui lòng thử lại sau.');
+            }
+        });
+    }
+</script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         var categories = @json($categories);
-        var categoryNames = categories.map(function (category) {
+        var categoryNames = categories.map(function(category) {
             return category.name;
         });
-        var productCounts = categories.map(function (category) {
+        var productCounts = categories.map(function(category) {
             return category.product_count;
         });
 
@@ -315,12 +317,12 @@
 </script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         var mostSoldProducts = @json($mostSoldProducts);
-        var productNames = mostSoldProducts.map(function (product) {
+        var productNames = mostSoldProducts.map(function(product) {
             return product.name;
         });
-        var totalOrders = mostSoldProducts.map(function (product) {
+        var totalOrders = mostSoldProducts.map(function(product) {
             return product.total_orders;
         });
 

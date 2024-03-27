@@ -52,7 +52,14 @@ class DashboardController extends Controller
         ->orderByDesc('total_sold')
         ->take(5)
         ->get();
-
+        //top 5 khách hnagf mua hàng nhiều nhất
+        $topBuyers = Order::select('user_id', DB::raw('count(*) as total_orders'))
+                    ->groupBy('user_id')
+                    ->orderByDesc('total_orders')
+                    ->limit(5)
+                    ->get();
+                    // top 10 lượt xem sản phẩm nhiều nhất
+        $topViewedProducts = Products::orderByDesc('view_count')->limit(10)->get();
         $categories = DB::table('category')
         ->leftJoin('products', 'category.id', '=', 'products.id_category')
         ->select('category.name', DB::raw('COUNT(products.id) as product_count'))
@@ -60,7 +67,7 @@ class DashboardController extends Controller
         ->get();
 
         abort_if(Gate::denies('dashboard_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        return view('dashboard', compact('totalPendingOrders','totalproduct','totalusers','categories','totalPaidAmount', 'todaysEarnings', 'monthEarnings', 'yearEarnings', 'mostSoldProducts'));
+        return view('dashboard', compact('totalPendingOrders','totalproduct','totalusers','categories','totalPaidAmount', 'todaysEarnings', 'monthEarnings', 'yearEarnings', 'mostSoldProducts', 'topBuyers', 'topViewedProducts'));
     }
 
     public function getEarningsData(Request $request)
@@ -78,7 +85,6 @@ class DashboardController extends Controller
             ->whereYear('created_at', $year)
             ->whereMonth('created_at', $month)
             ->sum('total_price');
-
         $yearEarnings = Order::where('payment_status', '!=' , 'Đã Thanh Toán')
             ->whereYear('created_at', $year)
             ->sum('total_price');

@@ -119,6 +119,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/oder', [OderController::class, 'listOder'])->name('listOder');
     Route::match(['GET', 'POST'], '/oder/search', [OderController::class, 'listOder'])->name('searchOder');
     Route::get('/delete/{id}', [OderController::class, 'deleteoder'])->name('deleteoder');
+    Route::get('/detail/{order}', [OderController::class, 'showOrder'])->name('showOrder');
 
     //Forgot password
     Route::post('forgot-password', [ForgotPasswordController::class, 'forgotPass'])->name('password.forgot');
@@ -132,7 +133,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
 
     ///////// oder_detail ///////////
-    Route::get('/oder/list_oder_detail', [OderDetailController::class, 'list'])->name('listOder_detail');
+    Route::get('/oder/list_oder_detail/{id}', [OderDetailController::class, 'list'])->name('listOder_detail');
     Route::get('/oder/delete_oder_detail/{id}', [OderDetailController::class, 'delete'])->name('deleteOder_detail');
 
     ///////// delivery_status ///////////
@@ -279,6 +280,10 @@ Route::get('page/history', [HistoryController::class, 'index'])->name('history')
 Route::post('orders/{order}/cancel', [CheckoutController::class, 'cancel'])->name('orders.cancel');
 Route::get('orders/{id}/reorder', [CheckoutController::class, 'showReorderForm'])->name('orders.reorder');
 Route::post('orders/{id}/reorder', [CheckoutController::class, 'reorder'])->name('orders.process_reorder');
+Route::get('page/confirmed', [HistoryController::class, 'confirmed'])->name('confirmed');
+Route::get('page/delivery', [HistoryController::class, 'delivery'])->name('delivery');
+Route::get('page/canceled', [HistoryController::class, 'canceled'])->name('canceled');
+Route::get('page/success', [HistoryController::class, 'success'])->name('success');
 //Push Notification
 Route::get('/pusher', function() {
     $message = $request->message;
