@@ -31,6 +31,10 @@ class OderController extends Controller
         return view('admin.oder.list', compact('listOder', 'title'));
     }
 
+    public function showOrder(Order $order){
+        return view('admin.oder.show', compact('order'));
+    }
+
     
 
     

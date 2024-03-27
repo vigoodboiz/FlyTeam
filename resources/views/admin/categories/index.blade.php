@@ -53,4 +53,5 @@
             </table>
             {{ $categories->links() }}
         </div>
-    @endsection
+    </div>
+@endsection

@@ -40,11 +40,11 @@
         <!-- End breadcrumb section -->
         <!-- cart section start -->
         <div class="container">
-            <h2 class="cart__title mb-30">Đơn hàng của bạn</h2>
+            <h2 class="cart__title mb-30">Trạng thái giao hàng</h2>
             <br>
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('history') }}">Chờ xác nhận
+                    <a class="nav-link" href="{{ route('history') }}">Chờ xác nhận
                         @if ($historyCount > 0)
                             <span class="badge badge-pill badge-dark">{{ $historyCount }}</span>
                         @endif
@@ -58,7 +58,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('delivery') }}">Đang giao hàng
+                    <a class="nav-link active" href="{{ route('delivery') }}">Đang giao hàng
                         @if ($deliveryCount > 0)
                             <span class="badge badge-pill badge-dark">{{ $deliveryCount }}</span>
                         @endif
@@ -81,7 +81,7 @@
             </ul>
             <br>
             @if ($orders->isEmpty())
-                <h4 style="text-align: center; color: red;">Bạn chưa có đơn hàng nào cả!</h4>
+                <h4 style="text-align: center; color: red;">Bạn chưa có đơn hàng nào được giao hàng cả!</h4>
             @else
                 <table class="table table-hover">
                     <thead>
@@ -95,13 +95,12 @@
                             <th>Ghi chú</th>
                             {{-- <th>Trạng thái đơn hàng</th>
                             <th>Trạng thái giao hàng</th> --}}
-                            <th>Ngày đặt hàng</th>
-                            <th>Hành động</th>
+                            <th>Đang giao hàng</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($orders as $item)
-                            @if ($item->payment_status === 'Đang xác nhận' && $item->delivery_status === 'Đang xử lý')
+                            @if ($item->delivery_status === 'Đang giao hàng')
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>
@@ -121,92 +120,7 @@
                                     <td>{{ $item->note }}</td>
                                     {{-- <td>{{ $item->payment_status }}</td>
                                     <td>{{ $item->delivery_status }}</td> --}}
-                                    <td>{{ $item->created_at->format('d/m/Y H:i:s') }}</td>
-                                    <td>
-                                        <div class="d-flex align-items-center list-action">
-                                            @if ($item->payment_status === 'Đang xác nhận' && $item->delivery_status === 'Đang xử lý')
-                                                <form action="{{ route('orders.cancel', $item->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('POST')
-                                                    <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                        data-target="#cancelOrderModal">
-                                                        Hủy Đơn Hàng
-                                                    </button>
-                                                    <div class="modal fade" id="cancelOrderModal" tabindex="-1"
-                                                        role="dialog" aria-labelledby="cancelOrderModalLabel"
-                                                        aria-hidden="true">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="cancelOrderModalLabel">Hủy
-                                                                        Đơn Hàng #1234{{ $item->id }}</h5>
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <form action="{{ route('orders.cancel', $item->id) }}"
-                                                                        method="POST">
-                                                                        @csrf
-                                                                        @method('POST')
-                                                                        <div class="form-group">
-                                                                            <label for="reason">Lí do hủy đơn
-                                                                                hàng:</label>
-                                                                            <textarea class="form-control" id="reason" name="reason" rows="3" required></textarea>
-                                                                        </div>
-                                                                        <br>
-                                                                        <button type="submit" class="btn btn-danger">Hủy
-                                                                            Đơn Hàng</button>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            @elseif($item->payment_status === 'Đã thanh toán' && $item->delivery_status === 'Đang xử lý')
-                                                <form action="{{ route('orders.cancel', $item->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('POST')
-                                                    <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                        data-target="#cancelOrderModal">
-                                                        Hủy Đơn Hàng
-                                                    </button>
-                                                    <div class="modal fade" id="cancelOrderModal" tabindex="-1"
-                                                        role="dialog" aria-labelledby="cancelOrderModalLabel"
-                                                        aria-hidden="true">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="cancelOrderModalLabel">Hủy
-                                                                        Đơn Hàng #1234{{ $item->id }}</h5>
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <form action="{{ route('orders.cancel', $item->id) }}"
-                                                                        method="POST">
-                                                                        @csrf
-                                                                        @method('POST')
-                                                                        <div class="form-group">
-                                                                            <label for="reason">Lí do hủy đơn
-                                                                                hàng:</label>
-                                                                            <textarea class="form-control" id="reason" name="reason" rows="3" required></textarea>
-                                                                        </div>
-                                                                        <br>
-                                                                        <button type="submit" class="btn btn-danger">Hủy
-                                                                            Đơn Hàng</button>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            @endif
-                                        </div>
-                                    </td>
+                                    <td>{{ $item->updated_at->format('d/m/Y H:i:s') }}</td>
                                 </tr>
                             @endif
                         @endforeach
@@ -222,32 +136,32 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="brang__logo--items">
-                                <img class="brang__logo--img"
-                                    src="{{ asset('becute/assets/img/logo/brand-logo1.webp') }}" alt="brand-logo">
+                                <img class="brang__logo--img" src="{{ asset('becute/assets/img/logo/brand-logo1.webp') }}"
+                                    alt="brand-logo">
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="brang__logo--items">
-                                <img class="brang__logo--img"
-                                    src="{{ asset('becute/assets/img/logo/brand-logo2.webp') }}" alt="brand-logo">
+                                <img class="brang__logo--img" src="{{ asset('becute/assets/img/logo/brand-logo2.webp') }}"
+                                    alt="brand-logo">
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="brang__logo--items">
-                                <img class="brang__logo--img"
-                                    src="{{ asset('becute/assets/img/logo/brand-logo3.webp') }}" alt="brand-logo">
+                                <img class="brang__logo--img" src="{{ asset('becute/assets/img/logo/brand-logo3.webp') }}"
+                                    alt="brand-logo">
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="brang__logo--items">
-                                <img class="brang__logo--img"
-                                    src="{{ asset('becute/assets/img/logo/brand-logo4.webp') }}" alt="brand-logo">
+                                <img class="brang__logo--img" src="{{ asset('becute/assets/img/logo/brand-logo4.webp') }}"
+                                    alt="brand-logo">
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="brang__logo--items">
-                                <img class="brang__logo--img"
-                                    src="{{ asset('becute/assets/img/logo/brand-logo5.webp') }}" alt="brand-logo">
+                                <img class="brang__logo--img" src="{{ asset('becute/assets/img/logo/brand-logo5.webp') }}"
+                                    alt="brand-logo">
                             </div>
                         </div>
                         <div class="swiper__nav--btn swiper-button-next">
@@ -342,6 +256,4 @@
         </div>
 
     </main>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 @endsection

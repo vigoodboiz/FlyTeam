@@ -19,11 +19,11 @@
                     @can('role_access')
                         <li><a href="{{ route('roles.index') }}"> <i class="fa fa-id-card-o"></i> Quản lý vai trò</a></li>
                     @endcan
-                    @can('member_access')
+                    {{-- @can('member_access')
                         <li><a href="{{ route('members.index') }}"> <i class="bi bi-people text-Danger"></i> Quản lý khách
                                 hàng</a>
                         </li>
-                    @endcan
+                    @endcan --}}
                     @can('product_access')
                         <li></i><a href="{{ route('products.index') }}"><i class="bi bi-inboxes-fill text-Danger"></i> Quản
                                 lý sản phẩm</a></li>
@@ -36,12 +36,12 @@
                     @can('order_access')
                         <li><a href="{{ route('listOder') }}"><i class="bi bi-bag-fill text-Danger"></i> Quản lý đơn hàng
                             @endcan
-                            @can('comment_access')
+                            {{-- @can('comment_access')
                         <li><a href="{{ route('route_comment_index') }}"><i class="bi bi-chat-quote text-Danger"></i> Quản
                                 lý
                                 bình luận</a></li>
-                    @endcan
-                    @can('coupon_access')
+                    @endcan --}}
+                            @can('coupon_access')
                         <li><a href="{{ route('list_coupon') }}"><i class="bi bi-gift-fill text-Danger"></i> Quản lý
                                 khuyến
                                 mại</a></li>

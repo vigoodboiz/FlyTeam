@@ -78,7 +78,6 @@ class CartController extends Controller
         try {
             $userId = Auth::id();
             $cartItems = Cart::where('user_id', $userId)->get();
-
             $totalPrice = $this->calculateTotalPrice();
             $new_product = Products::orderBy('created_at', 'DESC')->limit(3)->get();
             return view('page.cart', compact('cartItems', 'totalPrice', 'new_product'));
@@ -95,14 +94,14 @@ class CartController extends Controller
         // try {
             if(Auth::check()){
             $product = Products::query()->find($id);
-            $variantId = $product->id;
-            $variant = Variant::query()->find($variantId);
+            // $variantId = $product->id;
+            // $variant = Variant::query()->find($variantId);
             $userId = auth()->user()->id;
             
             // Kiểm tra xem sản phẩm đã tồn tại chưa
             $cartItem = Cart::where('user_id', $userId)
                 ->where('product_id', $id)
-                ->where('variant_id', $variantId)
+                // ->where('variant_id', $variantId)
                 ->first();
             if ($cartItem) {
                 if ($request->quantity > $product->quantity_product) {
@@ -112,7 +111,7 @@ class CartController extends Controller
                 } else {
                     $existingCartItem = Cart::where('product_id', $id)
                         ->where('user_id', $userId)
-                        ->where('variant_id', $variantId)
+                        // ->where('variant_id', $variantId)
                         ->where('variants', $request->variantName)
                         ->first();
 
@@ -122,13 +121,14 @@ class CartController extends Controller
                         $existingCartItem->save();
 
                         return back()->with('success', 'Số lượng sản phẩm tăng thành công!');
+                    } elseif($request->variantName == ""){
+                        return back()->with('error', 'Không thể thêm sản phẩm vào giỏ hàng - vui lòng chọn biến thể');
                     } else {
                         if ($request->quantity > 0 && $request->quantity <= $product->quantity_product) {
                             Cart::create([
                                 'quantity' => $request->quantity,
                                 'product_id' => $id,
                                 'user_id' => $userId,
-                                'variant_id' => $variantId,
                                 'total_price' => $product->price_sale > 0 ? $request->quantity * $product->price_sale : $request->quantity * $product->price,
                                 'variants' => $request->variantName
                             ]);
@@ -141,14 +141,16 @@ class CartController extends Controller
                         }
                     }
                 }
-            } else {
+            } elseif($request->variantName == ""){
+                return back()->with('error', 'Không thể thêm sản phẩm vào giỏ hàng - vui lòng chọn biến thể');
+            }
+            else {
                 // Sản phẩm chưa tồn tại thì thêm mới
                 if ($request->quantity > 0 && $request->quantity <= $product->quantity_product) {
                     Cart::create([
                         'quantity' => $request->quantity,
                         'product_id' => $id,
                         'user_id' => $userId,
-                        'variant_id' => $variantId,
                         'total_price' => $product->price_sale > 0 ? $request->quantity * $product->price_sale : $request->quantity * $product->price,
                         'variants' => $request->variantName
                     ]);

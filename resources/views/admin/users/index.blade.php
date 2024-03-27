@@ -2,6 +2,11 @@
 
 @section('title', 'Người dùng')
 @section('content')
+    <style>
+        .table th {
+            white-space: nowrap;
+        }
+    </style>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
@@ -10,10 +15,6 @@
                         <h4 class="mb-3">Danh sách người dùng</h4>
                     </div>
                     <div>
-                        @can('user_delete')
-                            <a href="#" id="deleteAllUserSelected" class="btn btn-danger add-list"><i
-                                    class="las la-trash"></i>Xóa lựa chọn</a>
-                        @endcan
                         @can('user_create')
                             <a href="{{ route('users.create') }}" class="btn btn-primary add-list"><i
                                     class="las la-plus mr-3"></i>Thêm người dùng</a>
@@ -56,7 +57,8 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
                                     @if (!empty($item->profile_picture))
-                                        <td><img src="{{ asset('storage/' . $item->profile_picture) }}" class="rounded-circle" alt="Profile Picture"></td>
+                                        <td><img src="{{ asset('storage/' . $item->profile_picture) }}"
+                                                class="rounded-circle" alt="Profile Picture"></td>
                                     @else{
                                         <td>
                                             <p>No images!</p>

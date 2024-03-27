@@ -57,16 +57,6 @@ class ProductController extends Controller
             $validatedData['image'] = $imageName;
         }
         Products::create($validatedData);
-        // if ($request->variants) {
-        //     foreach ($request->variants as $variant) {
-        //         $validatedData->variants()->create([
-        //             'name' => $variant['name'],
-        //             'value' => $variant['value'],
-        //             'price' => $variant['price'] // Thêm giá cho biến thể
-        //             'price_sale' => $variant['price_sale']
-        //         ]);
-        //     }
-        // }
         return redirect()->back()->with('success', 'Sản phẩm được thêm thành công!');
     }
     /**

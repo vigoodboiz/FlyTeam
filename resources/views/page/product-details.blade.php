@@ -144,6 +144,7 @@
                                             @php
                                                 $variantName = $variant->name;
                                                 $variantValue = $variant->value;
+
                                             @endphp
                                             @unless (in_array($variantName, $displayedNames))
                                                 @php $displayedNames[] = $variantName; @endphp
@@ -212,36 +213,40 @@
                                             <button class="primary__btn quickview__cart--btn" type="submit">Thêm giỏ
                                                 hàng</button>
                                         </div>
-                                        <div class="product__variant--list mb-20">
-                                            @if ($pro_dt->favorited)
-                                                <a class="variant__wishlist--icon mb-15"
-                                                    href="{{ route('favorite', $pro_dt->id) }}" title="Bỏ thích">
-                                                    <svg class="quickview__variant--wishlist__svg"
-                                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                        <path
-                                                            d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
-                                                            fill="red" stroke="currentColor" stroke-linecap="round"
-                                                            stroke-linejoin="round" stroke-width="32" />
-                                                    </svg>
-                                                    Thêm vào sản phẩm yêu thích
-                                                </a>
-                                            @else
-                                                <a class="variant__wishlist--icon mb-15"
-                                                    href="{{ route('favorite', $pro_dt->id) }}" title="Yêu thích">
-                                                    <svg class="quickview__variant--wishlist__svg"
-                                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                        <path
-                                                            d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
-                                                            fill="none" stroke="currentColor" stroke-linecap="round"
-                                                            stroke-linejoin="round" stroke-width="32" />
-                                                    </svg>
-                                                    Thêm vào sản phẩm yêu thích
-                                            @endif
-                                            <button class="variant__buy--now__btn primary__btn" type="submit"><a
-                                                    href="{{ route('checkoutPage') }}">Mua
-                                                    ngay</a>
-                                            </button>
-                                        </div>
+                                        @if (Auth::check())
+                                            <div class="product__variant--list mb-20">
+                                                @if ($pro_dt->favorited)
+                                                    <a class="variant__wishlist--icon mb-15"
+                                                        href="{{ route('favorite', $pro_dt->id) }}" title="Bỏ thích">
+                                                        <svg class="quickview__variant--wishlist__svg"
+                                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                            <path
+                                                                d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                                                                fill="red" stroke="currentColor"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="32" />
+                                                        </svg>
+                                                        Thêm vào sản phẩm yêu thích
+                                                    </a>
+                                                @else
+                                                    <a class="variant__wishlist--icon mb-15"
+                                                        href="{{ route('favorite', $pro_dt->id) }}" title="Yêu thích">
+                                                        <svg class="quickview__variant--wishlist__svg"
+                                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                            <path
+                                                                d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                                                                fill="none" stroke="currentColor"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="32" />
+                                                        </svg>
+                                                        Thêm vào sản phẩm yêu thích
+                                                @endif
+                                                <button class="variant__buy--now__btn primary__btn" type="submit"><a
+                                                        href="{{ route('checkoutPage') }}">Mua
+                                                        ngay</a>
+                                                </button>
+                                            </div>
+                                        @endif
                                     @elseif($pro_dt->quantity_product <= 0)
                                         <span class="fw-bolder text-danger mt-5 mb-5">Xin lỗi , Sản phẩm đã hết . Khách
                                             hàng vui lòng lựa chọn sản phẩm khác!</span>
