@@ -22,29 +22,36 @@ class Cart extends Model
         'product_id',
         'quantity',
         'total_price',
-        
+        'variants',
+        'variant_id'
     ];
 
-    public function user(): BelongsTo {
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function product(): BelongsTo {
+    public function product(): BelongsTo
+    {
         return $this->belongsTo(Products::class);
     }
-    public function getOrderdAttribute(){
+    public function getOrderdAttribute()
+    {
         $orderd = Order::where(['cart_id' => $this->id, 'user_id' => Auth::user()->id])->first();
         return $orderd ? true : false;
     }
 
     public function items()
-{
-    return $this->hasMany(Item::class);
-}
+    {
+        return $this->hasMany(Item::class);
+    }
 
-public function cartItems()
-{
-    return $this->hasMany(CartItem::class);
-}
-  
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
+    public function variant(): BelongsTo
+    {
+        return $this->belongsTo(Variant::class);
+    }
 }

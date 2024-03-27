@@ -46,8 +46,8 @@
                                             class="fa-solid fa-pen"></i></a>
                                 @endcan
                                 @can('variant_delete')
-                                    <form id="delete-form" action="{{ route('variants.destroy', $variant->id) }}" method="POST"
-                                        class="d-inline">
+                                    <form id="delete-form" action="{{ route('variants.destroy', $variant->id) }}"
+                                        method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger" id="delete-button"><i

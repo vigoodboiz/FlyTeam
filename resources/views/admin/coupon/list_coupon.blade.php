@@ -28,6 +28,7 @@
                         {{-- <th>Số lượng mã</th> --}}
                         <th>Điều kiện giảm giá</th>
                         <th>Số giảm</th>
+                        <th>Số tiền được áp dụng</th>
                         <th>Trạng thái</th>
                         <th> Chức năng</th>
                         <th>Hành động</th>
@@ -42,6 +43,7 @@
                             <td>{{ $cou->coupon_date_end }}</td>
                             <td>{{ $cou->coupon_code }}</td>
                             {{-- <td>{{ $cou->coupon_time }}</td> --}}
+                            <td>{{$cou->max}}</td>
                             <td><span class="text-ellipsis">
                                     <?php
                             if ($cou->coupon_condition == 1) {

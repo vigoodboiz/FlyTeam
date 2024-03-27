@@ -10,7 +10,8 @@
         </div>
 
         <div class="form-group">
-            <input type="hidden" name="product_name" class="form-control" value="{{ $variants->product_name }}" required>
+            <label for="name">Tên thuộc tính:</label>
+            <input type="text" name="name" class="form-control" value="{{ $variants->_product_name }}" required>
         </div>
 
         <div class="form-group">
@@ -20,7 +21,8 @@
         <div class="form-group">
             <label for="value">Giá</label>
             <input type="text" name="price" class="form-control" value="{{ $variants->price }}" required>
-        </div><div class="form-group">
+        </div>
+        <div class="form-group">
             <label for="value">Giá sale</label>
             <input type="text" name="price_sale" class="form-control" value="{{ $variants->price_sale }}" required>
         </div>

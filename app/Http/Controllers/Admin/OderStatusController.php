@@ -16,7 +16,7 @@ class OderStatusController extends Controller
     {
         $title = "Danh Sách Trạng Thái Đơn Hàng";
         $oder_status = new order();
-        $listOder_status = $oder_status::paginate(5);
+        $listOder_status = $oder_status::orderBy('created_at', 'desc')->paginate(5);
         return view('admin.OderStatus.list', compact('listOder_status', 'title'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
     public function updateStatus(Request $request)

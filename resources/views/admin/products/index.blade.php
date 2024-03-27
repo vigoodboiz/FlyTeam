@@ -19,7 +19,6 @@
                         @can('product_create')
                             <a href="{{ route('products.create') }}" class="btn btn-primary add-list"><i
                                     class="las la-plus mr-3"></i>Thêm sản phẩm</a>
-
                         @endcan
                     </div>
                 </div>
@@ -52,8 +51,8 @@
                                     <td>{{ $product->category->name }}</td>
                                     <td>{{ Illuminate\Support\Str::limit($product->name, 10) }}</td>
                                     <td>{{ $product->brand }}</td>
-                                    <td>{{$product->price}}</td>
-                                    <td>{{$product->price_sale}}</td>
+                                    <td>{{ $product->price }}</td>
+                                    <td>{{ $product->price_sale }}</td>
                                     <td>{{ Illuminate\Support\Str::limit($product->describe, 50) }}</td>
                                     <td>{{ $product->quantity_product }}</td>
                                     <td><img src="{{ asset('upload/public/images/' . $product->image) }}"
@@ -94,5 +93,3 @@
             </div>
         </div>
     @endsection
-
-

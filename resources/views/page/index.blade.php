@@ -142,7 +142,11 @@
                 </div>
             </div>
         </section>
-        <!-- End collection section -->
+        <!-- End video banner section -->
+
+
+
+
 
         <!-- Start image width text section -->
         <section class="image__width--text__section position-relative">
@@ -251,7 +255,7 @@
                                                 @if (Auth::check())
                                                     <li class="product__card--action__list">
                                                         @if ($pro_trending->favorited)
-                                                            <a class="product__card--action__btn" title="Unlove"
+                                                            <a class="product__card--action__btn" title="Bỏ thích"
                                                                 href="{{ route('favorite', $pro_trending->id) }}">
                                                                 <svg class="product__card--action__btn--svg"
                                                                     width="18" height="18" color="#FF0000"
@@ -263,14 +267,14 @@
                                                                 </svg>
                                                                 <span class="visually-hidden">Wishlist</span>
                                                             @else
-                                                                <a class="product__card--action__btn" title="Love"
+                                                                <a class="product__card--action__btn" title="Yêu thích"
                                                                     href="{{ route('favorite', $pro_trending->id) }}">
                                                                     <svg class="product__card--action__btn--svg"
                                                                         width="18" height="18" viewBox="0 0 16 13"
-                                                                        fill="red" xmlns="http://www.w3.org/2000/svg">
+                                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                         <path
                                                                             d="M13.5379 1.52734C11.9519 0.1875 9.51832 0.378906 8.01442 1.9375C6.48317 0.378906 4.04957 0.1875 2.46364 1.52734C0.412855 3.25 0.713636 6.06641 2.1902 7.57031L6.97536 12.4648C7.24879 12.7383 7.60426 12.9023 8.01442 12.9023C8.39723 12.9023 8.7527 12.7383 9.02614 12.4648L13.8386 7.57031C15.2879 6.06641 15.5886 3.25 13.5379 1.52734ZM12.8816 6.64062L8.09645 11.5352C8.04176 11.5898 7.98707 11.5898 7.90504 11.5352L3.11989 6.64062C2.10817 5.62891 1.91676 3.71484 3.31129 2.53906C4.3777 1.63672 6.01832 1.77344 7.05739 2.8125L8.01442 3.79688L8.97145 2.8125C9.98317 1.77344 11.6238 1.63672 12.6902 2.51172C14.0847 3.71484 13.8933 5.62891 12.8816 6.64062Z"
-                                                                            fill="red" />
+                                                                            fill="pink" />
                                                                     </svg>
 
                                                                     <span class="visually-hidden">Wishlist</span>
@@ -300,10 +304,13 @@
                                             </h3>
                                             <div class="product__card--price">
                                                 @if (isset($pro_trending->price_sale) && $pro_trending->price_sale > 0)
-                                                    <span class="current__price">{{ $pro_trending->price_sale }}đ</span>
-                                                    <span class="old__price">{{ $pro_trending->price }}đ</span>
+                                                    <span id="price"
+                                                        class="current__price">{{ number_format($pro_trending->price_sale, 0, ',', '.') }}đ</span>
+                                                    <span id="price"
+                                                        class="old__price">{{ number_format($pro_trending->price, 0, ',', '.') }}đ</span>
                                                 @else
-                                                    <span class="current__price">{{ $pro_trending->price }}đ</span>
+                                                    <span id="price"
+                                                        class="current__price">{{ number_format($pro_trending->price, 0, ',', '.') }}đ</span>
                                                 @endif
                                             </div>
                                         </div>
@@ -413,19 +420,36 @@
                                                         <span class="visually-hidden">Compare</span>
                                                     </a>
                                                 </li>
-                                                <li class="product__card--action__list">
-                                                    <a class="product__card--action__btn" title="Wishlist"
-                                                        href="wishlist.html">
-                                                        <svg class="product__card--action__btn--svg" width="18"
-                                                            height="18" viewBox="0 0 16 13" fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M13.5379 1.52734C11.9519 0.1875 9.51832 0.378906 8.01442 1.9375C6.48317 0.378906 4.04957 0.1875 2.46364 1.52734C0.412855 3.25 0.713636 6.06641 2.1902 7.57031L6.97536 12.4648C7.24879 12.7383 7.60426 12.9023 8.01442 12.9023C8.39723 12.9023 8.7527 12.7383 9.02614 12.4648L13.8386 7.57031C15.2879 6.06641 15.5886 3.25 13.5379 1.52734ZM12.8816 6.64062L8.09645 11.5352C8.04176 11.5898 7.98707 11.5898 7.90504 11.5352L3.11989 6.64062C2.10817 5.62891 1.91676 3.71484 3.31129 2.53906C4.3777 1.63672 6.01832 1.77344 7.05739 2.8125L8.01442 3.79688L8.97145 2.8125C9.98317 1.77344 11.6238 1.63672 12.6902 2.51172C14.0847 3.71484 13.8933 5.62891 12.8816 6.64062Z"
-                                                                fill="currentColor" />
-                                                        </svg>
-                                                        <span class="visually-hidden">Wishlist</span>
-                                                    </a>
-                                                </li>
+                                                @if (Auth::check())
+                                                    <li class="product__card--action__list">
+                                                        @if ($new_pro->favorited)
+                                                            <a class="product__card--action__btn" title="Bỏ thích"
+                                                                href="{{ route('favorite', $new_pro->id) }}">
+                                                                <svg class="product__card--action__btn--svg"
+                                                                    width="18" height="18" color="#FF0000"
+                                                                    viewBox="0 0 16 13" fill="red"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                    <path
+                                                                        d="M13.5379 1.52734C11.9519 0.1875 9.51832 0.378906 8.01442 1.9375C6.48317 0.378906 4.04957 0.1875 2.46364 1.52734C0.412855 3.25 0.713636 6.06641 2.1902 7.57031L6.97536 12.4648C7.24879 12.7383 7.60426 12.9023 8.01442 12.9023C8.39723 12.9023 8.7527 12.7383 9.02614 12.4648L13.8386 7.57031C15.2879 6.06641 15.5886 3.25 13.5379 1.52734ZM12.8816 6.64062L8.09645 11.5352C8.04176 11.5898 7.98707 11.5898 7.90504 11.5352L3.11989 6.64062C2.10817 5.62891 1.91676 3.71484 3.31129 2.53906C4.3777 1.63672 6.01832 1.77344 7.05739 2.8125L8.01442 3.79688L8.97145 2.8125C9.98317 1.77344 11.6238 1.63672 12.6902 2.51172C14.0847 3.71484 13.8933 5.62891 12.8816 6.64062Z"
+                                                                        fill="red" />
+                                                                </svg>
+                                                                <span class="visually-hidden">Wishlist</span>
+                                                            @else
+                                                                <a class="product__card--action__btn" title="Yêu thích"
+                                                                    href="{{ route('favorite', $new_pro->id) }}">
+                                                                    <svg class="product__card--action__btn--svg"
+                                                                        width="18" height="18" viewBox="0 0 16 13"
+                                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path
+                                                                            d="M13.5379 1.52734C11.9519 0.1875 9.51832 0.378906 8.01442 1.9375C6.48317 0.378906 4.04957 0.1875 2.46364 1.52734C0.412855 3.25 0.713636 6.06641 2.1902 7.57031L6.97536 12.4648C7.24879 12.7383 7.60426 12.9023 8.01442 12.9023C8.39723 12.9023 8.7527 12.7383 9.02614 12.4648L13.8386 7.57031C15.2879 6.06641 15.5886 3.25 13.5379 1.52734ZM12.8816 6.64062L8.09645 11.5352C8.04176 11.5898 7.98707 11.5898 7.90504 11.5352L3.11989 6.64062C2.10817 5.62891 1.91676 3.71484 3.31129 2.53906C4.3777 1.63672 6.01832 1.77344 7.05739 2.8125L8.01442 3.79688L8.97145 2.8125C9.98317 1.77344 11.6238 1.63672 12.6902 2.51172C14.0847 3.71484 13.8933 5.62891 12.8816 6.64062Z"
+                                                                            fill="pink" />
+                                                                    </svg>
+
+                                                                    <span class="visually-hidden">Wishlist</span>
+                                                        @endif
+                                                        </a>
+                                                    </li>
+                                                @endif
                                             </ul>
                                             <div class="product__add--to__card">
                                                 @if ($new_pro->quantity_product > 0)
@@ -448,10 +472,13 @@
                                             </h3>
                                             <div class="product__card--price">
                                                 @if (isset($new_pro->price_sale) && $new_pro->price_sale > 0)
-                                                    <span class="current__price">{{ $new_pro->price_sale }}đ</span>
-                                                    <span class="old__price">{{ $new_pro->price }}đ</span>
+                                                    <span id="price"
+                                                        class="current__price">{{ number_format($new_pro->price_sale, 0, ',', '.') }}đ</span>
+                                                    <span id="price"
+                                                        class="old__price">{{ number_format($new_pro->price, 0, ',', '.') }}đ</span>
                                                 @else
-                                                    <span class="current__price">{{ $new_pro->price }}đ</span>
+                                                    <span id="price"
+                                                        class="current__price">{{ number_format($new_pro->price, 0, ',', '.') }}đ</span>
                                                 @endif
                                             </div>
                                         </div>
@@ -594,10 +621,13 @@
                                                 </h3>
                                                 <div class="product__card--price">
                                                     @if (isset($sale_pro->price_sale) && $sale_pro->price_sale > 0)
-                                                        <span class="current__price">{{ $sale_pro->price_sale }}đ</span>
-                                                        <span class="old__price">{{ $sale_pro->price }}đ</span>
+                                                        <span id="price"
+                                                            class="current__price">{{ number_format($sale_pro->price_sale, 0, ',', '.') }}đ</span>
+                                                        <span id="price"
+                                                            class="old__price">{{ number_format($sale_pro->price, 0, ',', '.') }}đ</span>
                                                     @else
-                                                        <span class="current__price">{{ $sale_pro->price }}đ</span>
+                                                        <span id="price"
+                                                            class="current__price">{{ number_format($sale_pro->price, 0, ',', '.') }}đ</span>
                                                     @endif
                                                 </div>
                                             </div>

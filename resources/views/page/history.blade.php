@@ -63,12 +63,16 @@
                             <td>
                                 <div class="d-flex align-items-center list-action">
                                     @if ($item->payment_status === 'Đã hủy đơn hàng' && $item->delivery_status === 'Không thể xử lý giao hàng')
-                                        <form id="delete-Form" action="{{ route('orders.process_reorder', $item->id) }}"
-                                            method="POST">
-                                            @csrf
-                                            <button class="btn btn-success" type="submit" id="delete-button">Mua
-                                                lại đơn hàng</button>
-                                        </form>
+                                        @if ($item->reorder_count > -1)
+                                            <form id="delete-Form"
+                                                action="{{ route('orders.process_reorder', $item->id) }}" method="POST">
+                                                @csrf
+                                                <button class="btn btn-success" type="submit" id="delete-button">Mua
+                                                    lại đơn hàng</button>
+                                            </form>
+                                        @else
+                                            <button class="btn btn-secondary" disabled>Mua Lại Đơn Hàng</button>
+                                        @endif
                                     @elseif($item->payment_status === 'Đang xác nhận' && $item->delivery_status === 'Đang xử lý')
                                         <form id="delete-form" action="{{ route('orders.cancel', $item->id) }}"
                                             method="POST">

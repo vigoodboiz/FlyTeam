@@ -8,7 +8,7 @@ use App\Models\Products;
 use App\Models\User;
 use App\Models\Member;
 use App\Models\Order;
-
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
@@ -23,15 +23,15 @@ class CheckoutController extends Controller
     {
         $userId = Auth::id();
         $cartItems = Cart::where('user_id', $userId)->get();
-        if($cartItems->isEmpty()) {
+        if ($cartItems->isEmpty()) {
             return redirect()->route('shopGrid')->with('error', 'Bạn không có sản phẩm nào cả - Vui lòng thêm sản phẩm vào giỏ hàng!');
         } else {
-           $totalPrice = $this->calculateTotalPrice();
+            $totalPrice = $this->calculateTotalPrice();
 
-            return view('page.checkout' , compact('cartItems','totalPrice'));
-       }
+            return view('page.checkout', compact('cartItems', 'totalPrice'));
+        }
     }
-    
+
     public function calculateTotalPrice()
     {
 
@@ -46,45 +46,7 @@ class CheckoutController extends Controller
     }
 
 
-    // public function post_checkout(Request $request)
-    // {
-    //     $userId = Auth::user()->id;
-    //     $cart = Cart::where('user_id', $userId)->get();
-    //     $note = $request->input('note') ?? '';
-    //     if($cart->isEmpty()) {
-    //             return redirect()->route('shopGrid')->with('error', 'Bạn không có đơn hàng cần thanh toán nào cả!');
-    //     } else{
-    //         foreach($cart as $cartItem){
-    //             $order = new Order();
-    //             $order->cart_id = $cartItem->id;
-    //             $order->user_id = Auth::user()->id;
-    //             $order->product_id = $cartItem->product_id;
-    //             $order->quantity = $cartItem->quantity;
-    //             $order->total_price = $cartItem->total_price;
-    //             $order->note = $note;
-    //             $order->payment_status = 'Đang xác nhận';
-    //             $order->delivery_status = 'Đang xử lý';
-    //             $order->save();
 
-    //             $product = Products::find($cartItem->product_id);
-    //             $product->decrement('quantity_product', $cartItem->quantity);
-    //         }
-            
-               
-    //         $userId = auth::user()->id;
-    //         $userMail = auth::user()->email;
-    //         $userName = auth::user()->name;
-    //         $carts= Cart::where('user_id', $userId)->get();
-    //         $Mail = Mail::to($userMail)->send(new TestMail($userName));
-    //         $carts = Cart::where('user_id', $userId)->get();
-          
-    //             foreach ($carts as $cart) {
-    //                 $cart->delete();
-    //             }
-    
-    //            return redirect()->route('history')->with('success', 'Đặt hàng thành công!');
-    //     }
-    // }
     public function post_checkout(Request $request)
     {
         $userId = Auth::user()->id;
@@ -108,12 +70,23 @@ class CheckoutController extends Controller
 
                 $product = Products::find($cartItem->product_id);
                 $product->decrement('quantity_product', $cartItem->quantity);
+
+                $usedCouponId = $request->input('coupon');
+
+                $coupon = Coupon::find($usedCouponId);
+                if ($coupon) {
+                    $coupon->coupon_time--;
+                    $coupon->save();
+                }
+
+                Session::start();
+                Session::forget('coupon');
             }
 
             $userId = auth::user()->id;
             $userMail = auth::user()->email;
             $userName = auth::user()->name;
-            $carts= Cart::where('user_id', $userId)->get();
+            $carts = Cart::where('user_id', $userId)->get();
             $Mail = Mail::to($userMail)->send(new TestMail($userName));
             $carts = Cart::where('user_id', $userId)->get();
             foreach ($carts as $cart) {
@@ -124,20 +97,20 @@ class CheckoutController extends Controller
             return redirect()->route('history')->with('success', 'Đặt hàng thành công!');
         }
     }
-    
+
 
     public function vnpayCheckout(Request $request)
     {
         // Xử lý kết quả thanh toán từ VNPAY
         $vnp_ResponseCode = $request->input('vnp_ResponseCode');
         $vnp_Message = $request->input('vnp_Message');
-    
+
         if ($vnp_ResponseCode == '00') {
             // Thanh toán thành công, lưu đơn hàng và xoá giỏ hàng
             $userId = Auth::user()->id;
             $cart = Cart::where('user_id', $userId)->get();
             $note = $request->input('note') ?? '';
-    
+
             if ($cart->isNotEmpty()) {
                 foreach ($cart as $cartItem) {
                     $order = new Order();
@@ -154,14 +127,19 @@ class CheckoutController extends Controller
 
                     $product = Products::find($cartItem->product_id);
                     $product->decrement('quantity_product', $cartItem->quantity);
+
+                    Coupon::decrement('coupon_time', 1);
+
+                    Session::start();
+                    Session::forget('coupon');
                 }
-    
+
                 // Xóa giỏ hàng
                 $carts = Cart::where('user_id', $userId)->get();
                 foreach ($carts as $cart) {
                     $cart->delete();
                 }
-    
+
                 return redirect()->route('history')->with('success', 'Thanh toán thành công');
             } else {
                 return redirect()->route('shopGrid')->with('error', 'Không tìm thấy giỏ hàng');
@@ -183,7 +161,7 @@ class CheckoutController extends Controller
         if ($status == '0') {
             return redirect()->route('shopGrid')->with('error', 'Thanh toán thất bại');
         } else {
-        
+
 
             // Thanh toán thành công, lưu đơn hàng và xoá giỏ hàng
             $userId = Auth::user()->id;
@@ -210,6 +188,12 @@ class CheckoutController extends Controller
 
                     $product = Products::find($cartItem->product_id);
                     $product->decrement('quantity_product', $cartItem->quantity);
+
+                    Coupon::decrement('coupon_time', 1);
+
+
+                    Session::start();
+                    Session::forget('coupon');
                 }
 
                 // Xóa giỏ hàng
@@ -229,10 +213,10 @@ class CheckoutController extends Controller
     }
 
 
-////////////////////////////////////// paypal ////////////////////////////////
+    ////////////////////////////////////// paypal ////////////////////////////////
     public function cancel(Order $order)
     {
-        if ($order->payment_status !== 'Đã xác nhận') {
+        if ($order->payment_status !== 'Đã xác nhận' || $order->delivery_status !== 'Đang xử lý') {
         $order->payment_status = 'Đã hủy đơn hàng';
         $order->delivery_status = 'Không thể xử lý giao hàng';
         $order->reorder_count -= 1;
@@ -240,23 +224,24 @@ class CheckoutController extends Controller
         return redirect()->back()->with('success', 'Đơn đặt hàng đã được hủy thành công!');
         } else {
             $order->payment_status = 'Đã xác nhận';
+            $order->delivery_status = 'Đang xử lý';
             $order->save();
             return redirect()->back()->with('error', 'Đơn hàng của bạn đã được xác nhận - Bạn không thể hủy đơn hàng!');
         }
     }
-    
+
     public function showReorderForm($id)
-        {
-            $order = Order::findOrFail($id);
-            return view('orders.reorder', ['order' => $order]);
-        }
+    {
+        $order = Order::findOrFail($id);
+        return view('orders.reorder', ['order' => $order]);
+    }
     public function reorder($id)
     {
-            $order = Order::findOrFail($id);
-            
-            if($order->reorder_count < 0) {
-                return redirect()->back()->with('error', 'Bạn chỉ được mua lại đơn hàng này một lần!');
-            } else{
+        $order = Order::findOrFail($id);
+
+        if ($order->reorder_count < 0) {
+            return redirect()->back()->with('error', 'Bạn chỉ được mua lại đơn hàng này một lần!');
+        } else {
             // Tái tạo lại đơn hàng
             $newOrder = $order->replicate();
             $order->reorder_count = 0;
@@ -266,8 +251,6 @@ class CheckoutController extends Controller
             // Xóa đơn hàng đã bị hủy đi
             $order->delete();
             return redirect()->route('history', $newOrder->id)->with('success', 'Đơn đặt hàng đã được mua lại thành công!');
-            }
+        }
     }
-
-
 }
