@@ -29,85 +29,10 @@
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
+<!-- ////////////// -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-       
-    <style>
-        .chi {
-           
-            font-family: Arial, sans-serif;
-        }
-        .chi1 {
-            max-width: 1000px;
-            margin: 50px auto;
-        }
-        .profile-card {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-        }
-        .profile-card .avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin: 0 auto 20px;
-        }
-        .profile-card .avatar img {
-            width: 100%;
-            height: auto;
-        }
-        .profile-card h2 {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        .profile-card p {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .profile-card .btn {
-            width: 100%;
-        }
-    
-        .text-truncate {
-            max-width: 200px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .out-of-stock {
-            filter: blur(5px);
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-        
-        .product__card--thumbnail__container {
-            position: relative;
-        }
 
-        .product__card--thumbnail__text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: black; 
-            font-weight: bold;
-            z-index: 2;
-        }
-        .product__card--thumbnail__text::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: -100px;
-            width: 500px;
-            height: 50px;
-            background-color: rgba(0, 0, 0, 0.2); 
-
-        }
-    </style>
 </head>
 
 <body>

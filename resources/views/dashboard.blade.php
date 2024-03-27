@@ -15,8 +15,8 @@
                                 </div>
                                 <div class="stat-content">
                                     <div class="text-left dib">
-                                        <div class="stat-text">$<span class="count">23569</span></div>
-                                        <div class="stat-heading">Revenue</div>
+                                        <div class="stat-text"><span class="count">{{ $totalPaidAmount}}</span></div>
+                                        <div class="stat-heading">Tổng doanh thu</div>
                                     </div>
                                 </div>
                             </div>
@@ -33,8 +33,8 @@
                                 </div>
                                 <div class="stat-content">
                                     <div class="text-left dib">
-                                        <div class="stat-text"><span class="count">3435</span></div>
-                                        <div class="stat-heading">Sales</div>
+                                        <div class="stat-text"><span class="count">{{ $totalPendingOrders }}</span></div>
+                                        <div class="stat-heading">Đơn hàng đã xử lý</div>
                                     </div>
                                 </div>
                             </div>
@@ -51,8 +51,8 @@
                                 </div>
                                 <div class="stat-content">
                                     <div class="text-left dib">
-                                        <div class="stat-text"><span class="count">349</span></div>
-                                        <div class="stat-heading">Templates</div>
+                                        <div class="stat-text"><span class="count">{{$totalproduct}}</span></div>
+                                        <div class="stat-heading">Tất cả sản phẩm</div>
                                     </div>
                                 </div>
                             </div>
@@ -69,8 +69,8 @@
                                 </div>
                                 <div class="stat-content">
                                     <div class="text-left dib">
-                                        <div class="stat-text"><span class="count">2986</span></div>
-                                        <div class="stat-heading">Clients</div>
+                                        <div class="stat-text"><span class="count">{{$totalusers}}</span></div>
+                                        <div class="stat-heading">Tổng Người dùng</div>
                                     </div>
                                 </div>
                             </div>
@@ -82,357 +82,58 @@
             <!--  Traffic  -->
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card">
+                    <div class="card p-2">
                         <div class="card-body">
-                            <h4 class="box-title">Traffic </h4>
+                            <h4 class="box-title">Thông kế doanh số</h4>
                         </div>
+                        <span>Thông kế doanh số</span>
                         <div class="row">
-                            <div class="col-lg-8">
-                                <div class="card-body">
-                                    <!-- <canvas id="TrafficChart"></canvas>   -->
-                                    <div id="traffic-chart" class="traffic-chart"></div>
+                            <div class="col-xl-3">
+                                <div class='input-group date' id='startDate'>
+                                    <div class='input-group date' id='searchDate'>
+                                        <span class="input-group-addon input-group-text"><span class="fa fa-calendar"></span></span>
+                                        <input type='text' class="form-control" id="searchInput" />
+                                        <button id="searchButton" class="btn btn-primary">Search</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
-                                <div class="card-body">
-                                    <div class="progress-box progress-1">
-                                        <h4 class="por-title">Visits</h4>
-                                        <div class="por-txt">96,930 Users (40%)</div>
-                                        <div class="progress mb-2" style="height: 5px;">
-                                            <div class="progress-bar bg-flat-color-1" role="progressbar" style="width: 40%;"
-                                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="progress-box progress-2">
-                                        <h4 class="por-title">Bounce Rate</h4>
-                                        <div class="por-txt">3,220 Users (24%)</div>
-                                        <div class="progress mb-2" style="height: 5px;">
-                                            <div class="progress-bar bg-flat-color-2" role="progressbar" style="width: 24%;"
-                                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="progress-box progress-2">
-                                        <h4 class="por-title">Unique Visitors</h4>
-                                        <div class="por-txt">29,658 Users (60%)</div>
-                                        <div class="progress mb-2" style="height: 5px;">
-                                            <div class="progress-bar bg-flat-color-3" role="progressbar" style="width: 60%;"
-                                                aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="progress-box progress-2">
-                                        <h4 class="por-title">Targeted Visitors</h4>
-                                        <div class="por-txt">99,658 Users (90%)</div>
-                                        <div class="progress mb-2" style="height: 5px;">
-                                            <div class="progress-bar bg-flat-color-4" role="progressbar"
-                                                style="width: 90%;" aria-valuenow="90" aria-valuemin="0"
-                                                aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div> <!-- /.card-body -->
-                            </div>
-                        </div> <!-- /.row -->
-                        <div class="card-body"></div>
+                        </div>
+                        <canvas id="earningsBarChart"></canvas>
                     </div>
                 </div><!-- /# column -->
             </div>
             <!--  /Traffic -->
-            <div class="clearfix"></div>
-            <!-- Orders -->
-            <div class="orders">
-                <div class="row">
-                    <div class="col-xl-8">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="box-title">Orders </h4>
-                            </div>
-                            <div class="card-body--">
-                                <div class="table-stats order-table ov-h">
-                                    <table class="table ">
-                                        <thead>
-                                            <tr>
-                                                <th class="serial">#</th>
-                                                <th class="avatar">Avatar</th>
-                                                <th>ID</th>
-                                                <th>Name</th>
-                                                <th>Product</th>
-                                                <th>Quantity</th>
-                                                <th>Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="serial">1.</td>
-                                                <td class="avatar">
-                                                    <div class="round-img">
-                                                        <a href="#"><img class="rounded-circle"
-                                                                src="images/avatar/1.jpg" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td> #5469 </td>
-                                                <td> <span class="name">Louis Stanley</span> </td>
-                                                <td> <span class="product">iMax</span> </td>
-                                                <td><span class="count">231</span></td>
-                                                <td>
-                                                    <span class="badge badge-complete">Complete</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="serial">2.</td>
-                                                <td class="avatar">
-                                                    <div class="round-img">
-                                                        <a href="#"><img class="rounded-circle"
-                                                                src="images/avatar/2.jpg" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td> #5468 </td>
-                                                <td> <span class="name">Gregory Dixon</span> </td>
-                                                <td> <span class="product">iPad</span> </td>
-                                                <td><span class="count">250</span></td>
-                                                <td>
-                                                    <span class="badge badge-complete">Complete</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="serial">3.</td>
-                                                <td class="avatar">
-                                                    <div class="round-img">
-                                                        <a href="#"><img class="rounded-circle"
-                                                                src="images/avatar/3.jpg" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td> #5467 </td>
-                                                <td> <span class="name">Catherine Dixon</span> </td>
-                                                <td> <span class="product">SSD</span> </td>
-                                                <td><span class="count">250</span></td>
-                                                <td>
-                                                    <span class="badge badge-complete">Complete</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="serial">4.</td>
-                                                <td class="avatar">
-                                                    <div class="round-img">
-                                                        <a href="#"><img class="rounded-circle"
-                                                                src="images/avatar/4.jpg" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td> #5466 </td>
-                                                <td> <span class="name">Mary Silva</span> </td>
-                                                <td> <span class="product">Magic Mouse</span> </td>
-                                                <td><span class="count">250</span></td>
-                                                <td>
-                                                    <span class="badge badge-pending">Pending</span>
-                                                </td>
-                                            </tr>
-                                            <tr class=" pb-0">
-                                                <td class="serial">5.</td>
-                                                <td class="avatar pb-0">
-                                                    <div class="round-img">
-                                                        <a href="#"><img class="rounded-circle"
-                                                                src="images/avatar/6.jpg" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td> #5465 </td>
-                                                <td> <span class="name">Johnny Stephens</span> </td>
-                                                <td> <span class="product">Monitor</span> </td>
-                                                <td><span class="count">250</span></td>
-                                                <td>
-                                                    <span class="badge badge-complete">Complete</span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div> <!-- /.table-stats -->
-                            </div>
-                        </div> <!-- /.card -->
-                    </div> <!-- /.col-lg-8 -->
 
-                    <div class="col-xl-4">
-                        <div class="row">
-                            <div class="col-lg-6 col-xl-12">
-                                <div class="card br-0">
-                                    <div class="card-body">
-                                        <div class="chart-container ov-h">
-                                            <div id="flotPie1" class="float-chart"></div>
-                                        </div>
-                                    </div>
-                                </div><!-- /.card -->
-                            </div>
-
-                            <div class="col-lg-6 col-xl-12">
-                                <div class="card bg-flat-color-3  ">
-                                    <div class="card-body">
-                                        <h4 class="card-title m-0  white-color ">August 2018</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div id="flotLine5" class="flot-line"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- /.col-md-4 -->
-                </div>
-            </div>
-            <!-- /.orders -->
-            <!-- To Do and Live Chat -->
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-xl-6">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title box-title">To Do List</h4>
+                            <h4 class="card-title box-title">Top 5 sản phẩm được mua nhiều</h4>
                             <div class="card-content">
                                 <div class="todo-list">
                                     <div class="tdl-holder">
                                         <div class="tdl-content">
-                                            <ul>
-                                                <li>
-                                                    <label>
-                                                        <input type="checkbox"><i class="check-box"></i><span>Conveniently
-                                                            fabricate interactive technology for ....</span>
-                                                        <a href='#' class="fa fa-times"></a>
-                                                        <a href='#' class="fa fa-pencil"></a>
-                                                        <a href='#' class="fa fa-check"></a>
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label>
-                                                        <input type="checkbox"><i class="check-box"></i><span>Creating
-                                                            component page</span>
-                                                        <a href='#' class="fa fa-times"></a>
-                                                        <a href='#' class="fa fa-pencil"></a>
-                                                        <a href='#' class="fa fa-check"></a>
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label>
-                                                        <input type="checkbox" checked><i
-                                                            class="check-box"></i><span>Follow back those who follow
-                                                            you</span>
-                                                        <a href='#' class="fa fa-times"></a>
-                                                        <a href='#' class="fa fa-pencil"></a>
-                                                        <a href='#' class="fa fa-check"></a>
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label>
-                                                        <input type="checkbox" checked><i
-                                                            class="check-box"></i><span>Design One page theme</span>
-                                                        <a href='#' class="fa fa-times"></a>
-                                                        <a href='#' class="fa fa-pencil"></a>
-                                                        <a href='#' class="fa fa-check"></a>
-                                                    </label>
-                                                </li>
-
-                                                <li>
-                                                    <label>
-                                                        <input type="checkbox" checked><i
-                                                            class="check-box"></i><span>Creating component page</span>
-                                                        <a href='#' class="fa fa-times"></a>
-                                                        <a href='#' class="fa fa-pencil"></a>
-                                                        <a href='#' class="fa fa-check"></a>
-                                                    </label>
-                                                </li>
-                                            </ul>
+                                            <canvas id="mostSoldProductsChart" width="400" height="400"></canvas>
                                         </div>
                                     </div>
-                                </div> <!-- /.todo-list -->
+                                </div>
                             </div>
-                        </div> <!-- /.card-body -->
-                    </div><!-- /.card -->
+                        </div>
+                    </div>
                 </div>
-
-                <div class="col-lg-6">
+                <div class="col-xl-6">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title box-title">Live Chat</h4>
-                            <div class="card-content">
-                                <div class="messenger-box">
-                                    <ul>
-                                        <li>
-                                            <div class="msg-received msg-container">
-                                                <div class="avatar">
-                                                    <img src="images/avatar/64-1.jpg" alt="">
-                                                    <div class="send-time">11.11 am</div>
-                                                </div>
-                                                <div class="msg-box">
-                                                    <div class="inner-box">
-                                                        <div class="name">
-                                                            John Doe
-                                                        </div>
-                                                        <div class="meg">
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                            Perspiciatis sunt placeat velit ad reiciendis ipsam
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div><!-- /.msg-received -->
-                                        </li>
-                                        <li>
-                                            <div class="msg-sent msg-container">
-                                                <div class="avatar">
-                                                    <img src="images/avatar/64-2.jpg" alt="">
-                                                    <div class="send-time">11.11 am</div>
-                                                </div>
-                                                <div class="msg-box">
-                                                    <div class="inner-box">
-                                                        <div class="name">
-                                                            John Doe
-                                                        </div>
-                                                        <div class="meg">
-                                                            Hay how are you doing?
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div><!-- /.msg-sent -->
-                                        </li>
-                                    </ul>
-                                    <div class="send-mgs">
-                                        <div class="yourmsg">
-                                            <input class="form-control" type="text">
-                                        </div>
-                                        <button class="btn msg-send-btn">
-                                            <i class="pe-7s-paper-plane"></i>
-                                        </button>
-                                    </div>
-                                </div><!-- /.messenger-box -->
-                            </div>
-                        </div> <!-- /.card-body -->
-                    </div><!-- /.card -->
+                            <h4 class="card-title box-title">Sản phẩm thuộc danh mục</h4>
+                            <section>
+                                <canvas id="categoryChart" width="400" height="400"></canvas>
+                            </section>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- /To Do and Live Chat -->
-            <!-- Calender Chart Weather  -->
-            <div class="row">
-                <div class="col-md-12 col-lg-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <!-- <h4 class="box-title">Chandler</h4> -->
-                            <div class="calender-cont widget-calender">
-                                <div id="calendar"></div>
-                            </div>
-                        </div>
-                    </div><!-- /.card -->
-                </div>
 
-                <div class="col-lg-4 col-md-6">
-                    <div class="card ov-h">
-                        <div class="card-body bg-flat-color-2">
-                            <div id="flotBarChart" class="float-chart ml-4 mr-4"></div>
-                        </div>
-                        <div id="cellPaiChart" class="float-chart"></div>
-                    </div><!-- /.card -->
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="card weather-box">
-                        <h4 class="weather-title box-title">Weather</h4>
-                        <div class="card-body">
-                            <div class="weather-widget">
-                                <div id="weather-one" class="weather-one"></div>
-                            </div>
-                        </div>
-                    </div><!-- /.card -->
-                </div>
-            </div>
+
             <!-- /Calender Chart Weather -->
             <!-- Modal - Calendar - Add New Event -->
             <div class="modal fade none-border" id="event-modal">
@@ -502,3 +203,155 @@
         <!-- .animated -->
     </div>
 @endsection
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        var earningsBarChart;
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var ctx = document.getElementById('earningsBarChart').getContext('2d');
+            earningsBarChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Hôm Nay', 'Trong Tháng', 'Trong Năm'],
+                    datasets: [{
+                        label: 'Doanh Thu',
+                        data: [{{ $todaysEarnings }}, {{ $monthEarnings }}, {{ $yearEarnings }}],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $('#searchDate').find('input').datepicker({
+                format: 'dd/mm/yyyy'
+            });
+
+            $('#searchButton').on('click', function () {
+                var selectedDate = $('#searchInput').val().trim();
+
+                if (selectedDate !== '') {
+                    updateChart(selectedDate);
+                } else {
+                    alert('Vui lòng chọn một ngày.');
+                }
+            });
+        });
+        function updateChart(selectedDate) {
+    $.ajax({
+        url: '{{ route('get_earnings_data') }}',
+        method: 'GET',
+        data: { date: selectedDate },
+        success: function (data) {
+            earningsBarChart.data.datasets[0].data = data;
+            earningsBarChart.update();
+        },
+        error: function () {
+            alert('Đã xảy ra lỗi khi lấy dữ liệu. Vui lòng thử lại sau.');
+        }
+    });
+}
+    </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var categories = @json($categories);
+        var categoryNames = categories.map(function (category) {
+            return category.name;
+        });
+        var productCounts = categories.map(function (category) {
+            return category.product_count;
+        });
+
+        var ctx = document.getElementById('categoryChart').getContext('2d');
+        var categoryChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: categoryNames,
+                datasets: [{
+                    label: 'Số lượng sản phẩm thuộc danh mục',
+                    data: productCounts,
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var mostSoldProducts = @json($mostSoldProducts);
+        var productNames = mostSoldProducts.map(function (product) {
+            return product.name;
+        });
+        var totalOrders = mostSoldProducts.map(function (product) {
+            return product.total_orders;
+        });
+
+        var ctx = document.getElementById('mostSoldProductsChart').getContext('2d');
+        var mostSoldProductsChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: productNames,
+                datasets: [{
+                    label: 'Số lượng đơn hàng',
+                    data: totalOrders,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.5)',
+                        'rgba(54, 162, 235, 0.5)',
+                        'rgba(255, 206, 86, 0.5)',
+                        'rgba(75, 192, 192, 0.5)',
+                        'rgba(153, 102, 255, 0.5)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+            }
+        });
+    });
+</script>

@@ -31,7 +31,5 @@ class OderController extends Controller
         return view('admin.oder.list', compact('listOder', 'title'));
     }
 
-    
 
-    
 }
