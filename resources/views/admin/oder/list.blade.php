@@ -39,21 +39,15 @@
                             <td>{{ $item->user->phone }}</td>
                             <td>{{ $item->user->address }}</td> --}}
                                     <td>
-
                                         <img class="border-radius-5"
                                             src="{{ asset('upload/public/images/' . $item->product->image) }}"
                                             alt="cart-product">
-
                                     </td>
                                     <td>
-
                                         {{ $item->product->name }}
-
                                     </td>
                                     <td>
-
                                         {{ $item->product->price }}
-
                                     </td>
                                     <td>{{ $item->quantity }}</td>
                                     <td>{{ $item->total_price }}đ</td>

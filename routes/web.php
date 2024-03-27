@@ -93,6 +93,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/get_earnings_data',[DashboardController::class,'getEarningsData'])->name('get_earnings_data');
+
     //Permissions
     Route::delete('permissions/massDestroy', [PermissionController::class, 'massDestroy']);
     Route::resource('permissions', PermissionController::class);
@@ -111,9 +113,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::resource('members', MemberController::class);
 
-    Route::get('/ranking', [MemberController::class, 'ranking'])->name('members.ranking');
-    Route::get('/statistics', [StatisticController::class, 'index'])->name('statistics.index');
 
+//    Route::get('/statistics/view_count', [StatisticController::class, 'index'])->name('statistics.view_countproduct');
     ///////// oder ///////////
     Route::get('/oder', [OderController::class, 'listOder'])->name('listOder');
     Route::match(['GET', 'POST'], '/oder/search', [OderController::class, 'listOder'])->name('searchOder');

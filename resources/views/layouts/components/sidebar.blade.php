@@ -58,12 +58,12 @@
                         <li><a href="{{ route('listDelivery_status') }}"><i class="bi bi-truck text-Danger"></i> Trạng
                                 thái giao hàng</a></li>
                     @endcan
-                    @can('statistics_access')
+                    {{-- @can('statistics_access')
                         <li><a href="{{ route('statistics.index') }}"><i class="bi bi-graph-up-arrow text-Danger"></i>
                                 Thống
                                 kê</a>
                         </li>
-                    @endcan
+                    @endcan --}}
                     <li><a href="{{ route('home') }}"><i class="fa-solid fa-person"></i> Trang khách
                             hàng</a></li>
                 </ul>
