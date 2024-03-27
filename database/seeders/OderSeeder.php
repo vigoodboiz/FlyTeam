@@ -14,7 +14,7 @@ class OderSeeder extends Seeder
     public function run(): void
     {
         //
-        DB::table('oder')->insert([
+        DB::table('order')->insert([
             ['user_id'=>1 , 'date' => now() , 'total'=>123 , 'address'=>'hà nội'],
             ['user_id'=>2 , 'date' => now() , 'total'=>123 , 'address'=>'hà nội'],
             ['user_id'=>3 , 'date' => now() , 'total'=>123 , 'address'=>'hà nội'],

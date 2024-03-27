@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Coupon;
+use App\Models\UserCoupon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 use Illuminate\Support\Carbon;
@@ -13,16 +16,27 @@ use Illuminate\Support\Carbon;
 class CouponController extends Controller
 {
 
-    public function unset_coupon()
+
+    public function unset_coupon(Request $request)
     {
+        Session::start();
         $coupon = Session::get('coupon');
+        $userId = Auth::user()->id;
+        $couponCode = $coupon[0]['coupon_code'];
         if ($coupon == true) {
             Session::forget('coupon');
 
-            return redirect()->back()->with('success', 'Khuyến mại được xóa thành công!');;
+            // Lấy giá trị coupon_code từ câu truy vấn
+            $nameCou = UserCoupon::where('coupon_code', $couponCode)->value('coupon_code');
+
+            // Xóa thông tin từ bảng usercoupon
+            UserCoupon::where('user_id', $userId)
+                ->where('coupon_code', $nameCou)
+                ->delete();
+
+            return redirect()->back()->with('success', 'Khuyến mại được xóa thành công!');
         }
     }
-
     public function insert_coupon()
     {
         return view('admin.coupon.insert_coupon');

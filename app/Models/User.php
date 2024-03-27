@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Hash;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
@@ -101,5 +100,9 @@ class User extends Authenticatable implements MustVerifyEmail
     }
     public function orders(){
         return $this->hasMany(Order::class, 'user_id', 'id');
+    }
+    public function coupons()
+    {
+        return $this->belongsToMany(Coupon::class, 'user_coupon', 'user_id', 'coupon_id')->withTimestamps();
     }
 }

@@ -28,18 +28,24 @@
         </div>
 
         <div class="form-group">
+            <label for="brand">Giá:</label>
+            <input type="text" name="price" class="form-control" value="{{ $product->price }}" required>
+        </div>
+        <div class="form-group">
+            <label for="brand">Giá sale:</label>
+            <input type="text" name="price_sale" class="form-control" value="{{ $product->price_sale }}" required>
+        </div>
+
+        <div class="form-group">
             <label for="describe">Mô tả:</label>
             <input type="text" name="describe" class="form-control" value="{{ $product->describe }}" required>
         </div>
 
         <div class="form-group">
-            <label for="price">Giá sản phẩm:</label>
-            <input type="number" name="price" class="form-control" value="{{ $product->price }}" required>
-        </div>
+            <label for="quantity_product">Số lượng sản phẩm:</label>
+            <input type="number" name="quantity_product" class="form-control" value="{{ $product->quantity_product }}"
+                   required>
 
-        <div class="form-group">
-            <label for="price_sale">Giảm giá:</label>
-            <input type="number" name="price_sale" class="form-control" value="{{ $product->price_sale }}" required>
         </div>
 
         <div class="form-group">

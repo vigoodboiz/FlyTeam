@@ -27,18 +27,15 @@
                     <td class="form-group">
                         <select class="form-control delivery-select" data-delivery-id="{{ $oder->id }}">
                             <option value="Đang xử lý" {{ $oder->delivery_status == 'Đang xử lý' ? 'selected' : '' }}>
-                                Đang
-                                Xử Lý</option>
+                                Đang Xử Lý</option>
                             <option value="Đang Giao Hàng"
                                 {{ $oder->delivery_status == 'Đang Giao Hàng' ? 'selected' : '' }}>Đang Giao Hàng
                             </option>
                             <option value="Đã Giao Hàng" {{ $oder->delivery_status == 'Đã giao hàng' ? 'selected' : '' }}>
-                                Đã
-                                giao hàng</option>
+                                Đã giao hàng</option>
                             <option value="Không thể xử lí giao hàng"
                                 {{ $oder->delivery_status == 'Không thể xử lí giao hàng' ? 'selected' : '' }}>Không thể
-                                xử
-                                lí giao hàng</option>
+                                xử lí giao hàng</option>
                         </select>
                     </td>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Variant;
 use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Category;

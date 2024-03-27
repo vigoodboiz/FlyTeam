@@ -44,36 +44,38 @@
                                                     <span class="visually-hidden">product view</span>
                                                 </a>
                                             </div>
-
+                                            
                                         </div>
                                     </div>
-
-                                    <div class="swiper-slide">
-                                        <div class="product__media--preview__items">
-                                            <a class="product__media--preview__items--link glightbox" data-gallery="product-media-preview" href="{{ asset('upload/public/images/' . $pro_dt->image) }}"><img class="product__media--preview__items--img" src="{{ asset('upload/public/images/' . $pro_dt->image) }}" alt="product-media-img"></a>
-                                            <div class="product__media--view__icon">
-                                                <a class="product__media--view__icon--link glightbox" href="{{ asset('upload/public/images/' . $pro_dt->image) }}" data-gallery="product-media-preview">
-                                                    <svg class="product__items--action__btn--svg" xmlns="http://www.w3.org/2000/svg" width="22.51" height="22.443" viewBox="0 0 512 512">
-                                                        <path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"></path>
-                                                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"></path>
-                                                    </svg>
-                                                    <span class="visually-hidden">product view</span>
-                                                </a>
+                                    <div class="single__product--nav swiper">
+                                        <div class="swiper-wrapper">
+                                            @foreach ($galleries as $gallery)
+                                            <div class="swiper-slide">
+                                                <div class="product__media--nav__items" style="width: 118px; height: 118px">
+                                                    <img class="product__media--nav__items--img" src="{{ asset('upload/public/images/' . $gallery->image) }}" alt="product-nav-img">
+                                                </div>
                                             </div>
+                                            @endforeach
+                                            <!-- <div class="swiper-slide">                                                                                                                                                                                                     </div> -->
+                                        </div>
+                                        <div class="swiper__nav--btn swiper-button-next">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class=" -chevron-right">
+                                                <polyline points="9 18 15 12 9 6"></polyline>
+                                            </svg>
+                                        </div>
+                                        <div class="swiper__nav--btn swiper-button-prev">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class=" -chevron-left">
+                                                <polyline points="15 18 9 12 15 6"></polyline>
+                                            </svg>
+
                                         </div>
                                     </div>
                                     <!-- <div class="swiper-slide">                                                                                                                                                                                                             </div> -->
                                 </div>
                             </div>
-                            <div class="single__product--nav swiper">
-                                <div class="swiper-wrapper">
-                                    @foreach ($galleries as $gallery)
-                                    <div class="swiper-slide">
-                                        <div class="product__media--nav__items">
-                                            <img class="product__media--nav__items--img" style="width: 300px; height: 100px;" src="{{ asset('upload/public/images/' . $gallery->image) }}" alt="product-nav-img">
-                                        </div>
-                                    </div>
-                                    @endforeach
+                            <div class="col-lg-6 col-md-6">
+                                <div class="product__details--info">
+
                                     <!-- <div class="swiper-slide">                                                                                                                                                                                                     </div> -->
                                 </div>
                                 <div class="swiper__nav--btn swiper-button-next">
@@ -94,47 +96,54 @@
                             <h2 class="product__details--info__title mb-15">{{ $pro_dt->name }} </h2>
                             <div class="product__details--info__price mb-12">
                                 @if (isset($pro_dt->price_sale) && $pro_dt->price_sale > 0)
-                                <span class="current__price">{{ $pro_dt->price_sale }}đ</span>
-                                <span class="old__price">{{ $pro_dt->price }}đ</span>
+                                <span id="price" class="current__price">{{ number_format($pro_dt->price_sale, 0, ',', '.')}}đ</span>
+                                <span id="price" class="old__price">{{ number_format($pro_dt->price, 0, ',', '.')}}đ</span>
                                 @else
-                                <span class="current__price">{{ $pro_dt->price }}đ</span>
+                                <span id="price" class="current__price">{{ number_format($pro_dt->price, 0, ',', '.')}}đ</span>
                                 @endif
                             </div>
                             <p class="product__details--info__desc mb-15">{{ $pro_dt->describe }}</p>
                             <div class="product__variant">
+                                @php
+                                $displayedNames = [];
+                                @endphp
+
                                 @foreach ($variants as $variant)
-                                @if ($variant->name == 'Màu sắc')
+                                @php
+                                $variantName = $variant->name;
+                                $variantValue = $variant->value;
+                                @endphp
+                                @unless(in_array($variantName, $displayedNames))
+                                @php $displayedNames[] = $variantName; @endphp
                                 <ul class="variant__size d-flex">
                                     <div class="product__variant--list mb-20">
                                         <fieldset class="variant__input--fieldset">
-                                            <legend class="product__variant--title mb-8">Màu sắc
-                                            </legend>
+                                            <legend class="product__variant--title mb-8">{{ $variantName }}</legend>
+                                            @php
+                                            $values = [];
+                                            @endphp
+                                            @foreach ($variants as $innerVariant)
+                                            @if ($innerVariant->name == $variantName)
+                                            @php $values[] = $innerVariant->value; @endphp
+                                            @endif
+                                            @endforeach
                                             <li class="variant__size--list">
-                                                <input id="weight4" name="weight" type="radio" checked>
-                                                <label style="background-color:{{ $variant->value }}" class="variant__size--value red" for="color4">
-                                                    {{ $variant->value }}</label>
+                                                @foreach ($values as $value)
+                                                <input id="{{ $value }}" name="variantName" value="{{ $value }}"  type="radio" checked>
+                                                <label class="variant__size--value red" style="color:{{ $value }}" for="{{ $value }}" style="width: 80px">
+                                                <i class="fa-solid fa-droplet"></i>
+                                                </label>
+                                                @endforeach
                                             </li>
                                         </fieldset>
                                     </div>
                                 </ul>
-                                @elseif($variant->name == 'Trọng lượng')
-                                <ul class="variant__size d-flex">
-                                    <div class="product__variant--list mb-20">
-                                        <fieldset class="variant__input--fieldset">
-                                            <legend class="product__variant--title mb-8">Trọng
-                                                lượng :</legend>
-                                            <li class="variant__size--list">
-                                                <input id="weight4" name="weight" type="radio" checked>
-                                                <label class="variant__size--value red" for="weight4">
-                                                    {{ $variant->value }}</label>
-                                            </li>
-                                        </fieldset>
-                                    </div>
-                                </ul>
-                                @endif
+                                @endunless
                                 @endforeach
+
+
                             </div>
-                            @if ($pro_dt->quantity_product > 0)
+                            @if($pro_dt->quantity_product > 0)
                             <div class="product__variant--list quantity d-flex align-items-center mb-20">
                                 <div class="quantity__box">
                                     <button type="button" class="quantity__value quickview__value--quantity decrease" aria-label="quantity value" value="Decrease Value">-</button>
@@ -251,132 +260,26 @@
                                         <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" class="img-fluid rounded-circle rounded-circle-custom" alt="comment-thumb" width="60px" style=" border-radius: 50%">
                                     </div>
                                     <div class="reviews__comment--content">
+                                        <input type="hidden" value="{{$cmt->id}}">
                                         <div class="reviews__comment--top d-flex justify-content-between">
                                             <div class="reviews__comment--top__left">
                                                 <h3 class="reviews__comment--content__title h4">
                                                     {{ $cmt->user_name }}
                                                 </h3>
-                                                {{-- <ul class="rating d-flex">
-                                                                <li class="rating__list">
-                                                                    <span class="rating__icon">
-                                                                        <svg width="14" height="13"
-                                                                            viewBox="0 0 14 13" fill="none"
-                                                                            xmlns="http://www.w3.org/2000/svg">
-                                                                            <path
-                                                                                d="M6.08398 0.921875L4.56055 4.03906L1.11523 4.53125C0.505859 4.625 0.271484 5.375 0.716797 5.82031L3.17773 8.23438L2.5918 11.6328C2.49805 12.2422 3.1543 12.7109 3.69336 12.4297L6.76367 10.8125L9.81055 12.4297C10.3496 12.7109 11.0059 12.2422 10.9121 11.6328L10.3262 8.23438L12.7871 5.82031C13.2324 5.375 12.998 4.625 12.3887 4.53125L8.9668 4.03906L7.41992 0.921875C7.16211 0.382812 6.36523 0.359375 6.08398 0.921875Z"
-                                                                                fill="currentColor" />
-                                                                        </svg>
-                                                                    </span>
-                                                                </li>
-                                                                <li class="rating__list">
-                                                                    <span class="rating__icon">
-                                                                        <svg width="14" height="13"
-                                                                            viewBox="0 0 14 13" fill="none"
-                                                                            xmlns="http://www.w3.org/2000/svg">
-                                                                            <path
-                                                                                d="M6.08398 0.921875L4.56055 4.03906L1.11523 4.53125C0.505859 4.625 0.271484 5.375 0.716797 5.82031L3.17773 8.23438L2.5918 11.6328C2.49805 12.2422 3.1543 12.7109 3.69336 12.4297L6.76367 10.8125L9.81055 12.4297C10.3496 12.7109 11.0059 12.2422 10.9121 11.6328L10.3262 8.23438L12.7871 5.82031C13.2324 5.375 12.998 4.625 12.3887 4.53125L8.9668 4.03906L7.41992 0.921875C7.16211 0.382812 6.36523 0.359375 6.08398 0.921875Z"
-                                                                                fill="currentColor" />
-                                                                        </svg>
-                                                                    </span>
-                                                                </li>
-                                                                <li class="rating__list">
-                                                                    <span class="rating__icon">
-                                                                        <svg width="14" height="13"
-                                                                            viewBox="0 0 14 13" fill="none"
-                                                                            xmlns="http://www.w3.org/2000/svg">
-                                                                            <path
-                                                                                d="M6.08398 0.921875L4.56055 4.03906L1.11523 4.53125C0.505859 4.625 0.271484 5.375 0.716797 5.82031L3.17773 8.23438L2.5918 11.6328C2.49805 12.2422 3.1543 12.7109 3.69336 12.4297L6.76367 10.8125L9.81055 12.4297C10.3496 12.7109 11.0059 12.2422 10.9121 11.6328L10.3262 8.23438L12.7871 5.82031C13.2324 5.375 12.998 4.625 12.3887 4.53125L8.9668 4.03906L7.41992 0.921875C7.16211 0.382812 6.36523 0.359375 6.08398 0.921875Z"
-                                                                                fill="currentColor" />
-                                                                        </svg>
-                                                                    </span>
-                                                                </li>
-                                                                <li class="rating__list">
-                                                                    <span class="rating__icon">
-                                                                        <svg width="14" height="13"
-                                                                            viewBox="0 0 14 13" fill="none"
-                                                                            xmlns="http://www.w3.org/2000/svg">
-                                                                            <path
-                                                                                d="M6.08398 0.921875L4.56055 4.03906L1.11523 4.53125C0.505859 4.625 0.271484 5.375 0.716797 5.82031L3.17773 8.23438L2.5918 11.6328C2.49805 12.2422 3.1543 12.7109 3.69336 12.4297L6.76367 10.8125L9.81055 12.4297C10.3496 12.7109 11.0059 12.2422 10.9121 11.6328L10.3262 8.23438L12.7871 5.82031C13.2324 5.375 12.998 4.625 12.3887 4.53125L8.9668 4.03906L7.41992 0.921875C7.16211 0.382812 6.36523 0.359375 6.08398 0.921875Z"
-                                                                                fill="currentColor" />
-                                                                        </svg>
-                                                                    </span>
-                                                                </li>
-                                                                <li class="rating__list">
-                                                                    <span class="rating__icon">
-                                                                        <svg width="14" height="13"
-                                                                            viewBox="0 0 14 13" fill="none"
-                                                                            xmlns="http://www.w3.org/2000/svg">
-                                                                            <path
-                                                                                d="M12.4141 4.53125L8.99219 4.03906L7.44531 0.921875C7.1875 0.382812 6.39062 0.359375 6.10938 0.921875L4.58594 4.03906L1.14062 4.53125C0.53125 4.625 0.296875 5.375 0.742188 5.82031L3.20312 8.23438L2.61719 11.6328C2.52344 12.2422 3.17969 12.7109 3.71875 12.4297L6.78906 10.8125L9.83594 12.4297C10.375 12.7109 11.0312 12.2422 10.9375 11.6328L10.3516 8.23438L12.8125 5.82031C13.2578 5.375 13.0234 4.625 12.4141 4.53125ZM9.53125 7.95312L10.1875 11.75L6.78906 9.96875L3.36719 11.75L4.02344 7.95312L1.25781 5.28125L5.07812 4.71875L6.78906 1.25L8.47656 4.71875L12.2969 5.28125L9.53125 7.95312Z"
-                                                                                fill="currentColor" />
-                                                                        </svg>
-                                                                    </span>
-                                                                </li>
-                                                            </ul> --}}
                                             </div>
                                             <span class="reviews__comment--content__date">{{ $cmt->date }}</span>
                                         </div>
-                                        <p class="reviews__comment--content__desc">{{ $cmt->content }}</p>
+                                        <div class="row">
+                                            <p class="reviews__comment--content__desc col-md-10">{{ $cmt->content }}</p>
+                                            <button class="btn btn-danger col-md-1"><a href="{{ route('route_comment_delete_fe', ['id' => $cmt->id]) }}">Xóa</a></button>
+                                        </div>
                                     </div>
                                 </div>
+                                <span class="reviews__comment--content__date">{{ $cmt->date }}</span>
                             </div>
                             @endforeach
                             <div id="writereview" class="reviews__comment--reply__area">
                                 <h3 class="reviews__comment--reply__title mb-15">Thêm đánh giá </h3>
-                                {{-- <div class="reviews__ratting mb-20">
-                                            <ul class="rating d-flex">
-                                                <li class="rating__list">
-                                                    <span class="rating__icon">
-                                                        <svg width="14" height="13" viewBox="0 0 14 13"
-                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M6.08398 0.921875L4.56055 4.03906L1.11523 4.53125C0.505859 4.625 0.271484 5.375 0.716797 5.82031L3.17773 8.23438L2.5918 11.6328C2.49805 12.2422 3.1543 12.7109 3.69336 12.4297L6.76367 10.8125L9.81055 12.4297C10.3496 12.7109 11.0059 12.2422 10.9121 11.6328L10.3262 8.23438L12.7871 5.82031C13.2324 5.375 12.998 4.625 12.3887 4.53125L8.9668 4.03906L7.41992 0.921875C7.16211 0.382812 6.36523 0.359375 6.08398 0.921875Z"
-                                                                fill="currentColor" />
-                                                        </svg>
-                                                    </span>
-                                                </li>
-                                                <li class="rating__list">
-                                                    <span class="rating__icon">
-                                                        <svg width="14" height="13" viewBox="0 0 14 13"
-                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M6.08398 0.921875L4.56055 4.03906L1.11523 4.53125C0.505859 4.625 0.271484 5.375 0.716797 5.82031L3.17773 8.23438L2.5918 11.6328C2.49805 12.2422 3.1543 12.7109 3.69336 12.4297L6.76367 10.8125L9.81055 12.4297C10.3496 12.7109 11.0059 12.2422 10.9121 11.6328L10.3262 8.23438L12.7871 5.82031C13.2324 5.375 12.998 4.625 12.3887 4.53125L8.9668 4.03906L7.41992 0.921875C7.16211 0.382812 6.36523 0.359375 6.08398 0.921875Z"
-                                                                fill="currentColor" />
-                                                        </svg>
-                                                    </span>
-                                                </li>
-                                                <li class="rating__list">
-                                                    <span class="rating__icon">
-                                                        <svg width="14" height="13" viewBox="0 0 14 13"
-                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M6.08398 0.921875L4.56055 4.03906L1.11523 4.53125C0.505859 4.625 0.271484 5.375 0.716797 5.82031L3.17773 8.23438L2.5918 11.6328C2.49805 12.2422 3.1543 12.7109 3.69336 12.4297L6.76367 10.8125L9.81055 12.4297C10.3496 12.7109 11.0059 12.2422 10.9121 11.6328L10.3262 8.23438L12.7871 5.82031C13.2324 5.375 12.998 4.625 12.3887 4.53125L8.9668 4.03906L7.41992 0.921875C7.16211 0.382812 6.36523 0.359375 6.08398 0.921875Z"
-                                                                fill="currentColor" />
-                                                        </svg>
-                                                    </span>
-                                                </li>
-                                                <li class="rating__list">
-                                                    <span class="rating__icon">
-                                                        <svg width="14" height="13" viewBox="0 0 14 13"
-                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M6.08398 0.921875L4.56055 4.03906L1.11523 4.53125C0.505859 4.625 0.271484 5.375 0.716797 5.82031L3.17773 8.23438L2.5918 11.6328C2.49805 12.2422 3.1543 12.7109 3.69336 12.4297L6.76367 10.8125L9.81055 12.4297C10.3496 12.7109 11.0059 12.2422 10.9121 11.6328L10.3262 8.23438L12.7871 5.82031C13.2324 5.375 12.998 4.625 12.3887 4.53125L8.9668 4.03906L7.41992 0.921875C7.16211 0.382812 6.36523 0.359375 6.08398 0.921875Z"
-                                                                fill="currentColor" />
-                                                        </svg>
-                                                    </span>
-                                                </li>
-                                                <li class="rating__list">
-                                                    <span class="rating__icon">
-                                                        <svg width="14" height="13" viewBox="0 0 14 13"
-                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M12.4141 4.53125L8.99219 4.03906L7.44531 0.921875C7.1875 0.382812 6.39062 0.359375 6.10938 0.921875L4.58594 4.03906L1.14062 4.53125C0.53125 4.625 0.296875 5.375 0.742188 5.82031L3.20312 8.23438L2.61719 11.6328C2.52344 12.2422 3.17969 12.7109 3.71875 12.4297L6.78906 10.8125L9.83594 12.4297C10.375 12.7109 11.0312 12.2422 10.9375 11.6328L10.3516 8.23438L12.8125 5.82031C13.2578 5.375 13.0234 4.625 12.4141 4.53125ZM9.53125 7.95312L10.1875 11.75L6.78906 9.96875L3.36719 11.75L4.02344 7.95312L1.25781 5.28125L5.07812 4.71875L6.78906 1.25L8.47656 4.71875L12.2969 5.28125L9.53125 7.95312Z"
-                                                                fill="currentColor" />
-                                                        </svg>
-                                                    </span>
-                                                </li>
-                                            </ul>
-                                        </div> --}}
                                 <div id="writereview" class="reviews__comment--reply__area">
                                     <form action="{{ route('route_new_comment') }}" method="POST">
                                         @csrf
@@ -388,11 +291,8 @@
                                         <button class="primary__btn text-white" type="submit">Submit</button>
                                     </form>
                                     @else
-                                    <p>Bạn cần <a class="fw-bold" href="{{ route('login') }}">Đăng Nhập</a> để
-                                        bình
-                                        luận.</p>
+                                    <p>Bạn cần <a class="fw-bold" href="{{ route('login') }}">Đăng Nhập</a> để bình luận.</p>
                                     @endif
-
                                     @if (session('success'))
                                     <p style="color: green">{{ session('success') }}</p>
                                     @endif
@@ -402,43 +302,8 @@
                                     @endif
                                 </div>
                             </div>
+
                         </div>
-                    </div>
-                </details>
-            </div>
-            <div class="product__details--accordion__list">
-                <details>
-                    <summary class="product__details--summary">
-                        <h2 class="product__details--summary__title">Thông tin bổ sung
-                            <svg width="11" height="6" xmlns="http://www.w3.org/2000/svg" class="order-summary-toggle__dropdown" fill="currentColor">
-                                <path d="M.504 1.813l4.358 3.845.496.438.496-.438 4.642-4.096L9.504.438 4.862 4.534h.992L1.496.69.504 1.812z">
-                                </path>
-                            </svg>
-                        </h2>
-                    </summary>
-                    <div class="product__details--summary__wrapper">
-                        <ul class="additional__info_list">
-                            <li class="additional__info_list--item">
-                                <span class="info__list--item-head"><strong>Color</strong></span>
-                                <span class="info__list--item-content">Black, white, blue, red, gray</span>
-                            </li>
-                            <li class="additional__info_list--item">
-                                <span class="info__list--item-head"><strong>Weight</strong></span>
-                                <span class="info__list--item-content">2kg</span>
-                            </li>
-                            <li class="additional__info_list--item">
-                                <span class="info__list--item-head"><strong>Brand</strong></span>
-                                <span class="info__list--item-content">Gadget</span>
-                            </li>
-                            <li class="additional__info_list--item">
-                                <span class="info__list--item-head"><strong>Guarantee</strong></span>
-                                <span class="info__list--item-content">5 years</span>
-                            </li>
-                            <li class="additional__info_list--item">
-                                <span class="info__list--item-head"><strong>Battery</strong></span>
-                                <span class="info__list--item-content">10000 mA</span>
-                            </li>
-                        </ul>
                     </div>
                 </details>
             </div>
@@ -500,72 +365,18 @@
                                     </li>
                                 </ul>
                                 <div class="product__add--to__card">
+                                    @if($pro_same->quantity_product > 0)
                                     <a class="product__card--btn" title="Add To Card" href="cart.html">Thêm giỏ
                                         hàng
                                         <svg width="17" height="15" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M13.2371 4H11.5261L8.5027 0.460938C8.29176 0.226562 7.9402 0.203125 7.70582 0.390625C7.47145 0.601562 7.44801 0.953125 7.63551 1.1875L10.0496 4H3.46364L5.8777 1.1875C6.0652 0.953125 6.04176 0.601562 5.80739 0.390625C5.57301 0.203125 5.22145 0.226562 5.01051 0.460938L1.98707 4H0.299574C0.135511 4 0.0183239 4.14062 0.0183239 4.28125V4.84375C0.0183239 5.00781 0.135511 5.125 0.299574 5.125H0.721449L1.3777 9.78906C1.44801 10.3516 1.91676 10.75 2.47926 10.75H11.0339C11.5964 10.75 12.0652 10.3516 12.1355 9.78906L12.7918 5.125H13.2371C13.3777 5.125 13.5183 5.00781 13.5183 4.84375V4.28125C13.5183 4.14062 13.3777 4 13.2371 4ZM11.0339 9.625H2.47926L1.86989 5.125H11.6433L11.0339 9.625ZM7.33082 6.4375C7.33082 6.13281 7.07301 5.875 6.76832 5.875C6.4402 5.875 6.20582 6.13281 6.20582 6.4375V8.3125C6.20582 8.64062 6.4402 8.875 6.76832 8.875C7.07301 8.875 7.33082 8.64062 7.33082 8.3125V6.4375ZM9.95582 6.4375C9.95582 6.13281 9.69801 5.875 9.39332 5.875C9.0652 5.875 8.83082 6.13281 8.83082 6.4375V8.3125C8.83082 8.64062 9.0652 8.875 9.39332 8.875C9.69801 8.875 9.95582 8.64062 9.95582 8.3125V6.4375ZM4.70582 6.4375C4.70582 6.13281 4.44801 5.875 4.14332 5.875C3.8152 5.875 3.58082 6.13281 3.58082 6.4375V8.3125C3.58082 8.64062 3.8152 8.875 4.14332 8.875C4.44801 8.875 4.70582 8.64062 4.70582 8.3125V6.4375Z" fill="currentColor" />
                                         </svg>
                                     </a>
+                                    @endif
                                 </div>
                             </div>
                             <div class="product__card--content text-center">
-                                {{-- <ul class="rating product__card--rating d-flex justify-content-center">
-                                            <li class="rating__list">
-                                                <span class="rating__icon">
-                                                    <svg width="14" height="13" viewBox="0 0 14 13"
-                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M6.08398 0.921875L4.56055 4.03906L1.11523 4.53125C0.505859 4.625 0.271484 5.375 0.716797 5.82031L3.17773 8.23438L2.5918 11.6328C2.49805 12.2422 3.1543 12.7109 3.69336 12.4297L6.76367 10.8125L9.81055 12.4297C10.3496 12.7109 11.0059 12.2422 10.9121 11.6328L10.3262 8.23438L12.7871 5.82031C13.2324 5.375 12.998 4.625 12.3887 4.53125L8.9668 4.03906L7.41992 0.921875C7.16211 0.382812 6.36523 0.359375 6.08398 0.921875Z"
-                                                            fill="currentColor" />
-                                                    </svg>
-                                                </span>
-                                            </li>
-                                            <li class="rating__list">
-                                                <span class="rating__icon">
-                                                    <svg width="14" height="13" viewBox="0 0 14 13"
-                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M6.08398 0.921875L4.56055 4.03906L1.11523 4.53125C0.505859 4.625 0.271484 5.375 0.716797 5.82031L3.17773 8.23438L2.5918 11.6328C2.49805 12.2422 3.1543 12.7109 3.69336 12.4297L6.76367 10.8125L9.81055 12.4297C10.3496 12.7109 11.0059 12.2422 10.9121 11.6328L10.3262 8.23438L12.7871 5.82031C13.2324 5.375 12.998 4.625 12.3887 4.53125L8.9668 4.03906L7.41992 0.921875C7.16211 0.382812 6.36523 0.359375 6.08398 0.921875Z"
-                                                            fill="currentColor" />
-                                                    </svg>
-                                                </span>
-                                            </li>
-                                            <li class="rating__list">
-                                                <span class="rating__icon">
-                                                    <svg width="14" height="13" viewBox="0 0 14 13"
-                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M6.08398 0.921875L4.56055 4.03906L1.11523 4.53125C0.505859 4.625 0.271484 5.375 0.716797 5.82031L3.17773 8.23438L2.5918 11.6328C2.49805 12.2422 3.1543 12.7109 3.69336 12.4297L6.76367 10.8125L9.81055 12.4297C10.3496 12.7109 11.0059 12.2422 10.9121 11.6328L10.3262 8.23438L12.7871 5.82031C13.2324 5.375 12.998 4.625 12.3887 4.53125L8.9668 4.03906L7.41992 0.921875C7.16211 0.382812 6.36523 0.359375 6.08398 0.921875Z"
-                                                            fill="currentColor" />
-                                                    </svg>
-                                                </span>
-                                            </li>
-                                            <li class="rating__list">
-                                                <span class="rating__icon">
-                                                    <svg width="14" height="13" viewBox="0 0 14 13"
-                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M12.4141 4.53125L8.99219 4.03906L7.44531 0.921875C7.1875 0.382812 6.39062 0.359375 6.10938 0.921875L4.58594 4.03906L1.14062 4.53125C0.53125 4.625 0.296875 5.375 0.742188 5.82031L3.20312 8.23438L2.61719 11.6328C2.52344 12.2422 3.17969 12.7109 3.71875 12.4297L6.78906 10.8125L9.83594 12.4297C10.375 12.7109 11.0312 12.2422 10.9375 11.6328L10.3516 8.23438L12.8125 5.82031C13.2578 5.375 13.0234 4.625 12.4141 4.53125ZM9.53125 7.95312L10.1875 11.75L6.78906 9.96875L3.36719 11.75L4.02344 7.95312L1.25781 5.28125L5.07812 4.71875L6.78906 1.25L8.47656 4.71875L12.2969 5.28125L9.53125 7.95312Z"
-                                                            fill="currentColor" />
-                                                    </svg>
-                                                </span>
-                                            </li>
-                                            <li class="rating__list">
-                                                <span class="rating__icon">
-                                                    <svg width="14" height="13" viewBox="0 0 14 13"
-                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M12.4141 4.53125L8.99219 4.03906L7.44531 0.921875C7.1875 0.382812 6.39062 0.359375 6.10938 0.921875L4.58594 4.03906L1.14062 4.53125C0.53125 4.625 0.296875 5.375 0.742188 5.82031L3.20312 8.23438L2.61719 11.6328C2.52344 12.2422 3.17969 12.7109 3.71875 12.4297L6.78906 10.8125L9.83594 12.4297C10.375 12.7109 11.0312 12.2422 10.9375 11.6328L10.3516 8.23438L12.8125 5.82031C13.2578 5.375 13.0234 4.625 12.4141 4.53125ZM9.53125 7.95312L10.1875 11.75L6.78906 9.96875L3.36719 11.75L4.02344 7.95312L1.25781 5.28125L5.07812 4.71875L6.78906 1.25L8.47656 4.71875L12.2969 5.28125L9.53125 7.95312Z"
-                                                            fill="currentColor" />
-                                                    </svg>
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <span class="rating__review--text">(126) Review</span>
-                                            </li>
-                                        </ul> --}}
-
-                                <h3 class="product__card--title"><a href="product-details.html">{{ $pro_same->name }}</a></h3>
+                                <h3 class="product__card--title text-truncate"><a href="product-details.html">{{ $pro_same->name }}</a></h3>
                                 <div class="product__card--price">
                                     @if (isset($pro_same->price_sale) && $pro_same->price_sale > 0)
                                     <span class="current__price">{{ $pro_same->price_sale }}đ</span>
@@ -578,6 +389,7 @@
                         </article>
                     </div>
                     @endforeach
+
                 </div>
                 <div class="swiper__nav--btn swiper-button-next">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class=" -chevron-right">
@@ -643,4 +455,5 @@
     </section>
     <!-- End feature section -->
 </main>
+
 @endsection

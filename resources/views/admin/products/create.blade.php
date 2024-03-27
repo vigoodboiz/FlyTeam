@@ -23,16 +23,16 @@
             <input type="text" name="brand" id="brand" class="form-control" required>
         </div>
         <div class="form-group">
+            <label for="brand">Giá:</label>
+            <input type="text" name="price" id="price" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="brand">Giá sale:</label>
+            <input type="text" name="price_sale" id="price_sale" class="form-control" required>
+        </div>
+        <div class="form-group">
             <label for="describe">Mô Tả:</label>
             <input type="text" name="describe" id="describe" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="price">Giá:</label>
-            <input type="number" name="price" id="price" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="price_sale">Giá khuyến mãi:</label>
-            <input type="number" name="price_sale" id="price_sale" class="form-control">
         </div>
         <div class="form-group">
             <label for="quantity_product">số lượng sản phẩm:</label>
@@ -46,6 +46,7 @@
         <button type="submit" class="btn btn-primary" id="addProductBtn">Thêm sản phẩm</button>
     </form>
 </div>
+
 @endsection
 @section('js-custom')
     <script>

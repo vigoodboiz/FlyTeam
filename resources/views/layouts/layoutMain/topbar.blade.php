@@ -125,7 +125,7 @@
                                  </a>
                              </li>
                              <li class="header__menu--items">
-                                 <a class="header__menu--link active" href="#">Chúng tôi
+                                 <a class="header__menu--link active" href="#">Trang
                                      <svg class="menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg"
                                          width="12" height="7.41" viewBox="0 0 12 7.41">
                                          <path d="M16.59,8.59,12,13.17,7.41,8.59,6,10l6,6,6-6Z"
@@ -134,7 +134,6 @@
                                  </a>
                                  <ul class="header__sub--menu">
                                      <li class="header__sub--menu__items"><a href="{{ route('aboutPage') }}"
-
                                              class="header__sub--menu__link">Về chúng tôi</a></li>
                                      <li class="header__sub--menu__items"><a href="{{ route('privacyPage') }}"
                                              class="header__sub--menu__link">Chính sách bảo mật</a></li>
@@ -175,8 +174,8 @@
                                  <span class="visually-hidden">Danh sách yêu thích</span>
                              </a>
                          </li>
-                         <li class="header__account--items">
-                             <a class="header__account--btn d-sm-2-none" href="{{ route('accountPage') }}">
+                         <li class="header__menu--items">
+                             <a class="header__menu--link" href="#">
                                  <span class="header__account--btn__icon">
                                      <svg width="17" height="17" viewBox="0 0 17 17" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -188,8 +187,40 @@
                                              stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
                                      </svg>
                                  </span>
-                                 <span class="visually-hidden">Tài khoản của tôi</span>
                              </a>
+
+                             <ul class="header__sub--menu">
+                                 @if (Auth::check())
+                                     @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
+                                         <li class="header__sub--menu__items"><a href="{{ route('dashboard') }}"
+                                                 class="header__sub--menu__link">Trang quản trị</a></li>
+                                     @elseif(Auth::user()->role_id == 3)
+                                         <li class="header__sub--menu__items"><a href="{{ route('portfolioPage') }}"
+                                                 class="header__sub--menu__link">Thông tin</a></li>
+                                         <li class="header__sub--menu__items"><a href="{{ route('point') }}"
+                                                 class="header__sub--menu__link">Điểm thưởng</a></li>
+                                         <li class="header__sub--menu__items"><a href="{{ route('wishlistPage') }}"
+                                                 class="header__sub--menu__link">Sản phẩm yêu thích</a></li>
+                                         <li class="header__sub--menu__items"><a href="{{ route('history') }}"
+                                                 class="header__sub--menu__link">Lịch sử đơn hàng</a></li>
+                                     @endif
+                                     <li class="header__sub--menu__items"><a class="header__sub--menu__link"
+                                             href="{{ route('logout') }}"onclick="event.preventDefault();
+                                                                                                                    document.getElementById('logout-form').submit(); return view('auth.login');"><i></i>Đăng
+                                             xuất</a>
+                                     </li>
+                                     @else
+                                     <li class="header__sub--menu__items"><a href="{{ route('register') }}"
+                                    class="header__sub--menu__link">Đăng ký</a></li>
+                                    <li class="header__sub--menu__items"><a href="{{ route('login') }}"
+                                    class="header__sub--menu__link">Đăng nhập</a></li>
+
+                                 @endif
+                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                     class="d-none">
+                                     @csrf
+                                 </form>
+                             </ul>
                          </li>
                          <li class="header__account--items header__minicart--items">
 
@@ -242,6 +273,5 @@
          </button>
      </div>
      <!-- End serch box area -->
-
  </header>
  <!-- End header area -->

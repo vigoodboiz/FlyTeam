@@ -80,7 +80,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
+
 });
 Route::get('page/point', [PointController::class, 'index'])->name('point');
 
@@ -118,7 +118,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/oder', [OderController::class, 'listOder'])->name('listOder');
     Route::match(['GET', 'POST'], '/oder/search', [OderController::class, 'listOder'])->name('searchOder');
     Route::get('/delete/{id}', [OderController::class, 'deleteoder'])->name('deleteoder');
-    
+
     //Forgot password
     Route::post('forgot-password', [ForgotPasswordController::class, 'forgotPass'])->name('password.forgot');
     Route::post('verify-otp', [ForgotPasswordController::class, 'verify'])->name('otp.verify');
@@ -146,6 +146,10 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('/newComment', [ShopDetailsController::class, 'newComment'])->name('route_new_comment');
     Route::match(['GET', 'POST'], '/comment/delete/{id}', [ShopDetailsController::class, 'delete'])->name('route_comment_delete_fe');
 
+    Route::get('/comments/{id}/edit', [ShopDetailsController::class, 'edit'])->name('comments.edit');
+    Route::patch('/comments/{id}', [ShopDetailsController::class, 'update'])->name('comments.update');
+
+
 
     ///////////////////////// product //////////////////
     Route::get('/products', [ProductController::class, 'index'])->name('products.index');
@@ -163,6 +167,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
    Route::get('/variants/edit/{product_id}', [VariantController::class, 'edit'])->name('variants.edit');
    Route::put('/variants/update/{product_id}', [VariantController::class, 'update'])->name('variants.update');
    Route::delete('/variants/{id}', [VariantController::class, 'destroy'])->name('variants.destroy');
+
+
+
 
     ///////////////////////// gallery //////////////////
     Route::get('/index/{product_id}', [GalleryController::class, 'index'])->name('index');
@@ -184,7 +191,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/list-coupon', [CouponController::class, 'list_coupon'])->name('list_coupon');
     Route::post('/insert-coupon-code', [CouponController::class, 'insert_coupon_code'])->name('insert_coupon_code');
     Route::post('/check-coupon', [CartController::class, 'check_coupon'])->name('check_coupon');
-    Route::get('/unset-coupon', [CouponController::class, 'unset_coupon'])->name('unset_coupon');
+    Route::match(['GET', 'POST'],'/unset-coupon', [CouponController::class, 'unset_coupon'])->name('unset_coupon');
 
 
 
@@ -213,6 +220,7 @@ Route::get('page/shop', [shopGridController::class, 'index'])->name('shopGrid');
 Route::get('page/shop/fillCate/{id_cate}', [shopGridController::class, 'fillCate'])->name('fillCate');
 Route::get('page/shop/fillPrice', [shopGridController::class, 'fillPrice'])->name('fillPrice');
 Route::get('page/shop/fillBrand', [shopGridController::class, 'fillBrand'])->name('fillBrand');
+Route::get('/products/shop/{brand}', [shopGridController::class, 'fillBrand'])->name('fillBrand');
 Route::match(['GET', 'POST'], '/shopGrid/searchPro', [shopGridController::class, 'index'])->name('search');
 
 
@@ -258,6 +266,7 @@ Route::post('add_to_cart/{product}', [CartController::class, 'store'])->name('ad
 Route::match(['GET', 'POST'],'/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
 Route::delete('/cart/products/{productId}', [CartController::class, 'removeProductFromCart'])->name('cart.removeProduct');
 Route::get('cart/delete/{cart}', [CartController::class, 'destroy'])->name('cart.delete');
+
 
 //whishlist
 Route::get('/favorite/{product}', [FavoriteController::class, 'index'])->name('favorite');
