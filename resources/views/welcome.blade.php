@@ -30,6 +30,8 @@
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
+    <!-- ////////////// -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
     <style>

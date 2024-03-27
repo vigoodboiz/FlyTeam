@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
