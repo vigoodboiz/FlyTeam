@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="col-lg-12">
-                <div class="table-responsive rounded mb-3">
+                <div class="table-responsive table-hover rounded mb-3">
                     <table class="data-table table mb-0 tbl-server-info">
                         <thead class="bg-white text-uppercase">
                             <tr class="ligth ligth-data">

@@ -22,10 +22,17 @@
                 </div>
             </div>
             <div class="col-lg-12">
+<<<<<<< HEAD
+                <div class="table-responsive rounded mb-3">
+                    <table class="data-table table-hover table mb-0 tbl-server-info">
+                        <thead class="bg-white text-uppercase">
+                            <tr class="ligth ligth-data">
+=======
                 <div class="table-responsive-xl">
                     <table class="table">
                         <thead>
                             <tr>
+>>>>>>> 8ab459d2d01550823b29ecd284f07afe3ed3cf5f
                                 <th>Mã sản phẩm</th>
                                 <th>Danh mục</th>
                                 <th>Tên sản phẩm</th>
@@ -56,17 +63,17 @@
                                     <td><img src="{{ asset('upload/public/images/' . $product->image) }}"
                                             alt="{{ $product->name }}" width="500px">
                                     <td>{{ $product->view_count }}</td>
-                                    <td> <a href="{{ route('index', $product->id) }}" class="btn btn-success">Ảnh
+                                    <td> <a href="{{ route('index', $product->id) }}" class="btn btn-success"><i class="bi bi-card-image"></i>
                                         </a>
                                     </td>
                                     <td> <a href="{{ route('variants.index', $product->id) }}"
-                                            class="btn btn-success">Thuộc tính
+                                            class="btn btn-success"><i class="bi bi-view-list"></i>
                                         </a>
                                     </td>
                                     <td>
 
                                         @can('product_edit')
-                                            <a href="{{ route('products.edit', $product->id) }}" class="btn btn-danger"><i
+                                            <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary"><i
                                                     class="fa-solid fa-pen"></i></a>
                                         @endcan
 

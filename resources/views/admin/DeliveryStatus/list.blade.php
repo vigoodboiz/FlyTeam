@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>{{ $title }}</h1><br>
-    <table class="table">
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th scope="col">Mã đơn hàng</th>

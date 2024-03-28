@@ -10,7 +10,7 @@
                     </div>
                 </div>
             </div>
-            <table class="table mt-3" border="1">
+            <table class="table mt-3 table-hover" >
                 <thead>
                     <tr>
                         <th>Id khách hàng</th>

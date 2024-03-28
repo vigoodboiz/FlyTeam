@@ -191,7 +191,6 @@
             $('.status-select').on('change', function() {
                 var oderId = $(this).data('oder-id');
                 var newStatus = $(this).val();
-
                 $.ajax({
                     url: '{{ route('updateOder_status') }}',
                     method: 'POST',
@@ -203,7 +202,7 @@
                     success: function(response) {
                         // Xử lý thành công
                         console.log(response);
-                        window.location.reload();
+                        window.location.reload(); // Tải lại trang
                     },
                     error: function(xhr) {
                         // Xử lý lỗi
@@ -211,6 +210,7 @@
                     }
                 });
             });
+
         });
     </script>
 @endsection
@@ -219,21 +219,20 @@
     <script>
         $(document).ready(function() {
             $('.delivery-select').on('change', function() {
-                var oderId = $(this).data('delivery-id');
-                var newStatus = $(this).val();
-
+                var delivery = $(this).data('delivery-id');
+                var newDeli = $(this).val();
                 $.ajax({
                     url: '{{ route('updateDelivery_status') }}',
                     method: 'POST',
                     data: {
                         _token: '{{ csrf_token() }}',
-                        id: oderId,
-                        status: newStatus
+                        id: delivery,
+                        status: newDeli
                     },
                     success: function(response) {
                         // Xử lý thành công
                         console.log(response);
-                        window.location.reload();
+                        window.location.reload(); // Tải lại trang
                     },
                     error: function(xhr) {
                         // Xử lý lỗi

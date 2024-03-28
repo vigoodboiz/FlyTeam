@@ -96,6 +96,9 @@
         #cellPaiChart {
             height: 160px;
         }
+        .status-column {
+            width: 250px; /* Đặt kích thước tùy ý */
+        }
     </style>
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">

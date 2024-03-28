@@ -45,24 +45,38 @@ class CheckoutController extends Controller
         return $totalPrice;
     }
 
-
-
     public function post_checkout(Request $request)
     {
         $userId = Auth::user()->id;
         $cart = Cart::where('user_id', $userId)->get();
         $note = $request->input('note') ?? '';
+        
 
         if (!$cart) {
             return redirect()->route('shopGrid')->with('error', 'Bạn không có đơn hàng nào cả!');
         } else {
             foreach ($cart as $cartItem) {
+                Session::start();
+                if (Session::has('coupon') && is_array(Session::get('coupon'))) {
+                    foreach (Session::get('coupon') as $key => $cou) {
+                        if ($cou['coupon_condition'] == 1) {
+                            $total_coupon = ($cartItem->total_price * $cou['coupon_number']) / 100;
+                        } elseif ($cou['coupon_condition'] == 2) {
+                            $total_coupon = $cou['coupon_number'];
+                        }
+                    }
+                } else {
+                    $total_coupon = 0;
+                }
+
+
+
                 $order = new Order();
                 $order->cart_id = $cartItem->id;
                 $order->user_id = Auth::user()->id;
                 $order->product_id = $cartItem->product_id;
                 $order->quantity = $cartItem->quantity;
-                $order->total_price = $cartItem->total_price;
+                $order->total_price = $cartItem->total_price - $total_coupon;
                 $order->note = $note;
                 $order->payment_status = 'Đang xác nhận';
                 $order->delivery_status = 'Đang xử lý';
@@ -111,14 +125,28 @@ class CheckoutController extends Controller
 
             if ($cart->isNotEmpty()) {
                 foreach ($cart as $cartItem) {
+
+                    Session::start();
+                    if (Session::has('coupon') && is_array(Session::get('coupon'))) {
+                        foreach (Session::get('coupon') as $key => $cou) {
+                            if ($cou['coupon_condition'] == 1) {
+                                $total_coupon = ($cartItem->total_price * $cou['coupon_number']) / 100;
+                            } elseif ($cou['coupon_condition'] == 2) {
+                                $total_coupon = $cou['coupon_number'];
+                            }
+                        }
+                    } else {
+                        $total_coupon = 0;
+                    }
+
                     $order = new Order();
                     $order->cart_id = $cartItem->id;
                     $order->user_id = Auth::user()->id;
                     $order->product_id = $cartItem->product_id;
                     $order->quantity = $cartItem->quantity;
-                    $order->total_price = $cartItem->total_price;
+                    $order->total_price = $cartItem->total_price -$total_coupon;
                     $order->note = $note;
-                    $order->payment_status = 'Đã Thanh Toán';
+                    $order->payment_status = 'Đã thanh toán';
                     $order->delivery_status = 'Đang xử lý';
                     $order->save();
 
@@ -173,14 +201,28 @@ class CheckoutController extends Controller
 
             if ($cart->isNotEmpty()) {
                 foreach ($cart as $cartItem) {
+
+                    Session::start();
+                if (Session::has('coupon') && is_array(Session::get('coupon'))) {
+                    foreach (Session::get('coupon') as $key => $cou) {
+                        if ($cou['coupon_condition'] == 1) {
+                            $total_coupon = ($cartItem->total_price * $cou['coupon_number']) / 100;
+                        } elseif ($cou['coupon_condition'] == 2) {
+                            $total_coupon = $cou['coupon_number'];
+                        }
+                    }
+                }else{
+                    $total_coupon = 0;
+                }
+
                     $order = new Order();
                     $order->cart_id = $cartItem->id;
                     $order->user_id = Auth::user()->id;
                     $order->product_id = $cartItem->product_id;
                     $order->quantity = $cartItem->quantity;
-                    $order->total_price = $cartItem->total_price;
+                    $order->total_price = $cartItem->total_price - $total_coupon;
                     $order->note = $note;
-                    $order->payment_status = 'Đã Thanh Toán';
+                    $order->payment_status = 'Đã thanh toán';
                     $order->delivery_status = 'Đang xử lý';
                     $order->save();
 
@@ -224,6 +266,7 @@ class CheckoutController extends Controller
             $order->delivery_status = 'Đang xử lý';
             $order->save(); 
             return redirect()->route('confirmed')->with('error', 'Đơn hàng của bạn đã được xác nhận - Bạn không thể hủy đơn hàng!');
+
         }
     }
 

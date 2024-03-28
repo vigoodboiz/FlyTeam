@@ -24,7 +24,7 @@
             </div>
             <div class="col-lg-12">
                 <div class="table-responsive rounded mb-3">
-                    <table class="data-table table mb-0 tbl-server-info">
+                    <table class="data-table table-hover table mb-0 tbl-server-info">
                         <thead class="bg-white text-uppercase">
                             <tr class="ligth ligth-data">
                                 <th>
@@ -57,8 +57,8 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
                                     @if (!empty($item->profile_picture))
-                                        <td><img src="{{ asset('storage/' . $item->profile_picture) }}"
-                                                class="rounded-circle" alt="Profile Picture"></td>
+                                        <td><img src="{{ asset('storage/' . $item->profile_picture) }}" width="200" class="rounded-circle" alt="Profile Picture"></td>
+
                                     @else{
                                         <td>
                                             <p>No images!</p>

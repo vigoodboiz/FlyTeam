@@ -59,7 +59,7 @@
                                 thái giao hàng</a></li>
 
                     @endcan
-
+                    --}}
                     <li><a href="{{ route('home') }}"><i class="fa-solid fa-person"></i> Trang khách
                             hàng</a></li>
                 </ul>
