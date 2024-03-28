@@ -20,7 +20,7 @@
     </div>
     <!-- End breadcrumb section -->
     <!-- Start collection section -->
-    @if (Auth::check())
+
     <section class="shop__collection--section section--padding">
         <div class="container">
             <div class="section__heading text-center mb-40">
@@ -42,7 +42,6 @@
                                             @endif
                                     </div>
                                 </a>
-
                                 <ul class="product__card--action">
                                     <li class="product__card--action__list">
                                         <a class="product__card--action__btn" title="Quick View" data-bs-toggle="modal" data-bs-target="#examplemodal" href="javascript:void(0)">
@@ -60,17 +59,28 @@
                                             <span class="visually-hidden">Compare</span>
                                         </a>
                                     </li>
+                                    @if (Auth::check())
                                     <li class="product__card--action__list">
-                                        <a class="product__card--action__btn" title="Wishlist" href="{{ route('favorite', $pro_sale->id) }}">
-                                            <svg class="product__card--action__btn--svg" width="18" height="18" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M13.5379 1.52734C11.9519 0.1875 9.51832 0.378906 8.01442 1.9375C6.48317 0.378906 4.04957 0.1875 2.46364 1.52734C0.412855 3.25 0.713636 6.06641 2.1902 7.57031L6.97536 12.4648C7.24879 12.7383 7.60426 12.9023 8.01442 12.9023C8.39723 12.9023 8.7527 12.7383 9.02614 12.4648L13.8386 7.57031C15.2879 6.06641 15.5886 3.25 13.5379 1.52734ZM12.8816 6.64062L8.09645 11.5352C8.04176 11.5898 7.98707 11.5898 7.90504 11.5352L3.11989 6.64062C2.10817 5.62891 1.91676 3.71484 3.31129 2.53906C4.3777 1.63672 6.01832 1.77344 7.05739 2.8125L8.01442 3.79688L8.97145 2.8125C9.98317 1.77344 11.6238 1.63672 12.6902 2.51172C14.0847 3.71484 13.8933 5.62891 12.8816 6.64062Z" fill="currentColor" />
+                                        @if ($pro_sale->favorited)
+                                        <a class="product__card--action__btn" title="Bỏ thích" href="{{ route('favorite', $pro_sale->id) }}">
+                                            <svg class="product__card--action__btn--svg" width="18" height="18" color="#FF0000" viewBox="0 0 16 13" fill="red" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M13.5379 1.52734C11.9519 0.1875 9.51832 0.378906 8.01442 1.9375C6.48317 0.378906 4.04957 0.1875 2.46364 1.52734C0.412855 3.25 0.713636 6.06641 2.1902 7.57031L6.97536 12.4648C7.24879 12.7383 7.60426 12.9023 8.01442 12.9023C8.39723 12.9023 8.7527 12.7383 9.02614 12.4648L13.8386 7.57031C15.2879 6.06641 15.5886 3.25 13.5379 1.52734ZM12.8816 6.64062L8.09645 11.5352C8.04176 11.5898 7.98707 11.5898 7.90504 11.5352L3.11989 6.64062C2.10817 5.62891 1.91676 3.71484 3.31129 2.53906C4.3777 1.63672 6.01832 1.77344 7.05739 2.8125L8.01442 3.79688L8.97145 2.8125C9.98317 1.77344 11.6238 1.63672 12.6902 2.51172C14.0847 3.71484 13.8933 5.62891 12.8816 6.64062Z" fill="red" />
                                             </svg>
                                             <span class="visually-hidden">Wishlist</span>
-                                        </a>
+                                            @else
+                                            <a class="product__card--action__btn" title="Yêu thích" href="{{ route('favorite', $pro_sale->id) }}">
+                                                <svg class="product__card--action__btn--svg" width="18" height="18" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M13.5379 1.52734C11.9519 0.1875 9.51832 0.378906 8.01442 1.9375C6.48317 0.378906 4.04957 0.1875 2.46364 1.52734C0.412855 3.25 0.713636 6.06641 2.1902 7.57031L6.97536 12.4648C7.24879 12.7383 7.60426 12.9023 8.01442 12.9023C8.39723 12.9023 8.7527 12.7383 9.02614 12.4648L13.8386 7.57031C15.2879 6.06641 15.5886 3.25 13.5379 1.52734ZM12.8816 6.64062L8.09645 11.5352C8.04176 11.5898 7.98707 11.5898 7.90504 11.5352L3.11989 6.64062C2.10817 5.62891 1.91676 3.71484 3.31129 2.53906C4.3777 1.63672 6.01832 1.77344 7.05739 2.8125L8.01442 3.79688L8.97145 2.8125C9.98317 1.77344 11.6238 1.63672 12.6902 2.51172C14.0847 3.71484 13.8933 5.62891 12.8816 6.64062Z" fill="pink" />
+                                                </svg>
+
+                                                <span class="visually-hidden">Wishlist</span>
+                                                @endif
+                                            </a>
                                     </li>
+                                    @endif
                                 </ul>
                                 <div class="product__add--to__card">
-                                    <a href="{{ route('shopDetails', $pro_sale->id) }}" class="product__card--btn" title="chi tiết">Xem chi tiết
+                                    <a href="{{ route('shopDetails', $pro_sale->id) }}" class="product__card--btn" title="Add To Card">Xem chi tiết
                                         <svg width="17" height="15" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M13.2371 4H11.5261L8.5027 0.460938C8.29176 0.226562 7.9402 0.203125 7.70582 0.390625C7.47145 0.601562 7.44801 0.953125 7.63551 1.1875L10.0496 4H3.46364L5.8777 1.1875C6.0652 0.953125 6.04176 0.601562 5.80739 0.390625C5.57301 0.203125 5.22145 0.226562 5.01051 0.460938L1.98707 4H0.299574C0.135511 4 0.0183239 4.14062 0.0183239 4.28125V4.84375C0.0183239 5.00781 0.135511 5.125 0.299574 5.125H0.721449L1.3777 9.78906C1.44801 10.3516 1.91676 10.75 2.47926 10.75H11.0339C11.5964 10.75 12.0652 10.3516 12.1355 9.78906L12.7918 5.125H13.2371C13.3777 5.125 13.5183 5.00781 13.5183 4.84375V4.28125C13.5183 4.14062 13.3777 4 13.2371 4ZM11.0339 9.625H2.47926L1.86989 5.125H11.6433L11.0339 9.625ZM7.33082 6.4375C7.33082 6.13281 7.07301 5.875 6.76832 5.875C6.4402 5.875 6.20582 6.13281 6.20582 6.4375V8.3125C6.20582 8.64062 6.4402 8.875 6.76832 8.875C7.07301 8.875 7.33082 8.64062 7.33082 8.3125V6.4375ZM9.95582 6.4375C9.95582 6.13281 9.69801 5.875 9.39332 5.875C9.0652 5.875 8.83082 6.13281 8.83082 6.4375V8.3125C8.83082 8.64062 9.0652 8.875 9.39332 8.875C9.69801 8.875 9.95582 8.64062 9.95582 8.3125V6.4375ZM4.70582 6.4375C4.70582 6.13281 4.44801 5.875 4.14332 5.875C3.8152 5.875 3.58082 6.13281 3.58082 6.4375V8.3125C3.58082 8.64062 3.8152 8.875 4.14332 8.875C4.44801 8.875 4.70582 8.64062 4.70582 8.3125V6.4375Z" fill="currentColor" />
                                         </svg>
@@ -85,7 +95,7 @@
                                     </label>
                                     <!-- <button  type="hidden"  type="button" class="quantity__value quickview__value--quantity increase" aria-label="quantity value" value="Increase Value">+</button> -->
                                 </div>
-                                <h3 class="product__card--title text-truncate"><a>{{ $pro_sale->name }}
+                                <h3 class="product__card--title text-truncate"><a >{{ $pro_sale->name }}
                                     </a>
                                 </h3>
                                 <div class="product__card--price">
@@ -154,10 +164,10 @@
                                 @foreach ($new_product as $pro_new)
                                 <div class="small__product--card d-flex">
                                     <div class="small__product--thumbnail">
-                                        <a class="display-block" href="product-details.html"><img src="{{ asset('upload/public/images/' . $pro_new->image) }}" style="height: 80px;" alt="product-img"></a>
+                                        <a class="display-block" href="{{ route('shopDetails', $pro_new->id) }}"><img src="{{ asset('upload/public/images/' . $pro_new->image) }}" style="height: 80px;" alt="product-img"></a>
                                     </div>
                                     <div class="small__product--content">
-                                        <h3 class="small__product--card__title text-truncate "><a href="product-details.html">{{ $pro_new->name }}</a></h3>
+                                        <h3 class="small__product--card__title text-truncate "><a href="{{ route('shopDetails', $pro_new->id) }}">{{ $pro_new->name }}</a></h3>
                                         <div class="small__product--card__price mb_5">
                                             <span class="current__price">{{ $pro_new->price }}đ</span>
                                         </div>
@@ -170,7 +180,7 @@
                             <h2 class="widget__title h3">Thương hiệu</h2>
                             <ul class="widget__tagcloud">
                                 @foreach ($products as $pro)
-                                <li class="widget__tagcloud--list"><a class="widget__tagcloud--link" href="{{ route('fillBrand', $pro->brand) }}">{{ $pro->brand }}</a></li>
+                                <li class="widget__tagcloud--list"><a class="widget__tagcloud--link" href="#">{{ $pro->brand }}</a></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -241,7 +251,6 @@
                             <p class="product__showing--count">Hiện thị 1–6 of {{ $products->count() }} kết quả
                             </p>
                         </div>
-
                         <div class="tab_content">
                             <div id="product_grid" class="tab_pane">
                                 <div class="product__section--inner">
@@ -278,22 +287,29 @@
                                                                 <span class="visually-hidden">Compare</span>
                                                             </a>
                                                         </li>
+                                                        @if (Auth::check())
                                                         <li class="product__card--action__list">
                                                             @if ($pro->favorited)
-                                                            <a class="product__card--action__btn" title="Unlove" href="{{ route('favorite', $pro->id) }}">
-                                                                <svg class="product__card--action__btn--svg" width="18" height="18" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M13.5379 1.52734C11.9519 0.1875 9.51832 0.378906 8.01442 1.9375C6.48317 0.378906 4.04957 0.1875 2.46364 1.52734C0.412855 3.25 0.713636 6.06641 2.1902 7.57031L6.97536 12.4648C7.24879 12.7383 7.60426 12.9023 8.01442 12.9023C8.39723 12.9023 8.7527 12.7383 9.02614 12.4648L13.8386 7.57031C15.2879 6.06641 15.5886 3.25 13.5379 1.52734ZM12.8816 6.64062L8.09645 11.5352C8.04176 11.5898 7.98707 11.5898 7.90504 11.5352L3.11989 6.64062C2.10817 5.62891 1.91676 3.71484 3.31129 2.53906C4.3777 1.63672 6.01832 1.77344 7.05739 2.8125L8.01442 3.79688L8.97145 2.8125C9.98317 1.77344 11.6238 1.63672 12.6902 2.51172C14.0847 3.71484 13.8933 5.62891 12.8816 6.64062Z" fill="currentColor" />
+                                                            <a class="product__card--action__btn" title="Bỏ thích" href="{{ route('favorite', $pro->id) }}">
+                                                                <svg class="product__card--action__btn--svg" width="18" height="18" color="#FF0000" viewBox="0 0 16 13" fill="red" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M13.5379 1.52734C11.9519 0.1875 9.51832 0.378906 8.01442 1.9375C6.48317 0.378906 4.04957 0.1875 2.46364 1.52734C0.412855 3.25 0.713636 6.06641 2.1902 7.57031L6.97536 12.4648C7.24879 12.7383 7.60426 12.9023 8.01442 12.9023C8.39723 12.9023 8.7527 12.7383 9.02614 12.4648L13.8386 7.57031C15.2879 6.06641 15.5886 3.25 13.5379 1.52734ZM12.8816 6.64062L8.09645 11.5352C8.04176 11.5898 7.98707 11.5898 7.90504 11.5352L3.11989 6.64062C2.10817 5.62891 1.91676 3.71484 3.31129 2.53906C4.3777 1.63672 6.01832 1.77344 7.05739 2.8125L8.01442 3.79688L8.97145 2.8125C9.98317 1.77344 11.6238 1.63672 12.6902 2.51172C14.0847 3.71484 13.8933 5.62891 12.8816 6.64062Z" fill="red" />
                                                                 </svg>
-                                                                <span class="visually-hidden">Unlove</span>
+                                                                <span class="visually-hidden">Sản phẩm
+                                                                    yêu thích</span>
                                                                 @else
-                                                                <a class="product__card--action__btn" title="Love" href="{{ route('favorite', $pro->id) }}">
-                                                                    <svg class="product__card--action__btn--svg" width="18" height="18" color="#DC143C" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                        <path d="M13.5379 1.52734C11.9519 0.1875 9.51832 0.378906 8.01442 1.9375C6.48317 0.378906 4.04957 0.1875 2.46364 1.52734C0.412855 3.25 0.713636 6.06641 2.1902 7.57031L6.97536 12.4648C7.24879 12.7383 7.60426 12.9023 8.01442 12.9023C8.39723 12.9023 8.7527 12.7383 9.02614 12.4648L13.8386 7.57031C15.2879 6.06641 15.5886 3.25 13.5379 1.52734ZM12.8816 6.64062L8.09645 11.5352C8.04176 11.5898 7.98707 11.5898 7.90504 11.5352L3.11989 6.64062C2.10817 5.62891 1.91676 3.71484 3.31129 2.53906C4.3777 1.63672 6.01832 1.77344 7.05739 2.8125L8.01442 3.79688L8.97145 2.8125C9.98317 1.77344 11.6238 1.63672 12.6902 2.51172C14.0847 3.71484 13.8933 5.62891 12.8816 6.64062Z" fill="red" />
+                                                                <a class="product__card--action__btn" title="Yêu thích" href="{{ route('favorite', $pro->id) }}">
+                                                                    <svg class="product__card--action__btn--svg" width="18" height="18" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path d="M13.5379 1.52734C11.9519 0.1875 9.51832 0.378906 8.01442 1.9375C6.48317 0.378906 4.04957 0.1875 2.46364 1.52734C0.412855 3.25 0.713636 6.06641 2.1902 7.57031L6.97536 12.4648C7.24879 12.7383 7.60426 12.9023 8.01442 12.9023C8.39723 12.9023 8.7527 12.7383 9.02614 12.4648L13.8386 7.57031C15.2879 6.06641 15.5886 3.25 13.5379 1.52734ZM12.8816 6.64062L8.09645 11.5352C8.04176 11.5898 7.98707 11.5898 7.90504 11.5352L3.11989 6.64062C2.10817 5.62891 1.91676 3.71484 3.31129 2.53906C4.3777 1.63672 6.01832 1.77344 7.05739 2.8125L8.01442 3.79688L8.97145 2.8125C9.98317 1.77344 11.6238 1.63672 12.6902 2.51172C14.0847 3.71484 13.8933 5.62891 12.8816 6.64062Z" fill="pink" />
                                                                     </svg>
-                                                                    <span class="visually-hidden">Love</span>
+
+                                                                    <span class="visually-hidden">Sản
+                                                                        phẩm yêu thích</span>
                                                                     @endif
+                                                                </a>
                                                         </li>
+                                                        @endif
                                                     </ul>
+
                                                     <div class="product__add--to__card">
                                                         <a href="{{ route('shopDetails', $pro->id) }}">
                                                             <svg width="17" height="15" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -337,7 +353,6 @@
                                                                 @endif
                                                         </div>
                                                     </a>
-
                                                     <ul class="product__card--action">
                                                         <li class="product__card--action__list">
                                                             <a class="product__card--action__btn" title="Quick View" data-bs-toggle="modal" data-bs-target="#examplemodal" href="javascript:void(0)">
@@ -356,14 +371,25 @@
                                                                 <span class="visually-hidden">Compare</span>
                                                             </a>
                                                         </li>
+                                                        @if (Auth::check())
                                                         <li class="product__card--action__list">
-                                                            <a class="product__card--action__btn" title="Wishlist" href="{{ route('favorite', $pro->id) }}">
-                                                                <svg class="product__card--action__btn--svg" width="18" height="18" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M13.5379 1.52734C11.9519 0.1875 9.51832 0.378906 8.01442 1.9375C6.48317 0.378906 4.04957 0.1875 2.46364 1.52734C0.412855 3.25 0.713636 6.06641 2.1902 7.57031L6.97536 12.4648C7.24879 12.7383 7.60426 12.9023 8.01442 12.9023C8.39723 12.9023 8.7527 12.7383 9.02614 12.4648L13.8386 7.57031C15.2879 6.06641 15.5886 3.25 13.5379 1.52734ZM12.8816 6.64062L8.09645 11.5352C8.04176 11.5898 7.98707 11.5898 7.90504 11.5352L3.11989 6.64062C2.10817 5.62891 1.91676 3.71484 3.31129 2.53906C4.3777 1.63672 6.01832 1.77344 7.05739 2.8125L8.01442 3.79688L8.97145 2.8125C9.98317 1.77344 11.6238 1.63672 12.6902 2.51172C14.0847 3.71484 13.8933 5.62891 12.8816 6.64062Z" fill="currentColor" />
+                                                            @if ($pro->favorited)
+                                                            <a class="product__card--action__btn" title="Bỏ thích" href="{{ route('favorite', $pro->id) }}">
+                                                                <svg class="product__card--action__btn--svg" width="18" height="18" color="#FF0000" viewBox="0 0 16 13" fill="red" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M13.5379 1.52734C11.9519 0.1875 9.51832 0.378906 8.01442 1.9375C6.48317 0.378906 4.04957 0.1875 2.46364 1.52734C0.412855 3.25 0.713636 6.06641 2.1902 7.57031L6.97536 12.4648C7.24879 12.7383 7.60426 12.9023 8.01442 12.9023C8.39723 12.9023 8.7527 12.7383 9.02614 12.4648L13.8386 7.57031C15.2879 6.06641 15.5886 3.25 13.5379 1.52734ZM12.8816 6.64062L8.09645 11.5352C8.04176 11.5898 7.98707 11.5898 7.90504 11.5352L3.11989 6.64062C2.10817 5.62891 1.91676 3.71484 3.31129 2.53906C4.3777 1.63672 6.01832 1.77344 7.05739 2.8125L8.01442 3.79688L8.97145 2.8125C9.98317 1.77344 11.6238 1.63672 12.6902 2.51172C14.0847 3.71484 13.8933 5.62891 12.8816 6.64062Z" fill="red" />
                                                                 </svg>
                                                                 <span class="visually-hidden">Wishlist</span>
-                                                            </a>
+                                                                @else
+                                                                <a class="product__card--action__btn" title="Yêu thích" href="{{ route('favorite', $pro->id) }}">
+                                                                    <svg class="product__card--action__btn--svg" width="18" height="18" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path d="M13.5379 1.52734C11.9519 0.1875 9.51832 0.378906 8.01442 1.9375C6.48317 0.378906 4.04957 0.1875 2.46364 1.52734C0.412855 3.25 0.713636 6.06641 2.1902 7.57031L6.97536 12.4648C7.24879 12.7383 7.60426 12.9023 8.01442 12.9023C8.39723 12.9023 8.7527 12.7383 9.02614 12.4648L13.8386 7.57031C15.2879 6.06641 15.5886 3.25 13.5379 1.52734ZM12.8816 6.64062L8.09645 11.5352C8.04176 11.5898 7.98707 11.5898 7.90504 11.5352L3.11989 6.64062C2.10817 5.62891 1.91676 3.71484 3.31129 2.53906C4.3777 1.63672 6.01832 1.77344 7.05739 2.8125L8.01442 3.79688L8.97145 2.8125C9.98317 1.77344 11.6238 1.63672 12.6902 2.51172C14.0847 3.71484 13.8933 5.62891 12.8816 6.64062Z" fill="pink" />
+                                                                    </svg>
+
+                                                                    <span class="visually-hidden">Wishlist</span>
+                                                                    @endif
+                                                                </a>
                                                         </li>
+                                                        @endif
                                                     </ul>
                                                 </div>
                                                 <div class="product__card--content product__list--content">
@@ -440,9 +466,9 @@
                                                     <p class="product__card--content__desc mb-15">
                                                         {{ $pro->describe }}
                                                     </p>
-
-                                                    <a class="primary__btn quickview__cart--btn" href="{{ route('shopDetails', $pro->id) }}">Xem chi tiêt</a>
-
+                                                    @if ($pro->quantity_product > 0)
+                                                    <a class="primary__btn quickview__cart--btn" href="{{ route('shopDetails', $pro->id) }}">Xem chi tiết</a>
+                                                    @endif
                                                 </div>
                                             </div>
                                             @endforeach
@@ -512,19 +538,6 @@
                     </div>
                 </div>
             </div>
-            @else
-            <div class="breadcrumb__section breadcrumb__bg">
-                <div class="container">
-                    <div class="row row-cols-1">
-                        <div class="col">
-                            <div class="breadcrumb__content text-center">
-                                <p>Xin vui lòng đăng nhập để có thể tiếp tục mua hàng!</p><a class="account__menu--list" href="{{ route('login') }}">Đăng nhập</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endif
             <!-- End shop section -->
             <!-- Start feature section -->
             <section class="feature__section section--padding pt-0">

@@ -1,10 +1,8 @@
 @extends('layouts.app')
 @section('content')
     <style>
-        .description-cell {
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            max-width: 250px;
+        .table th {
+            white-space: nowrap;
         }
     </style>
 
@@ -13,22 +11,28 @@
             <div class="col-lg-12">
                 <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
                     <div>
-                        <h4 class="mb-3">Danh sách sản phẩm</h4>
+                        <h4 class="table-title">Danh sách sản phẩm</h4>
                     </div>
                     <div>
                         @can('product_create')
                             <a href="{{ route('products.create') }}" class="btn btn-primary add-list"><i
                                     class="las la-plus mr-3"></i>Thêm sản phẩm</a>
-
                         @endcan
                     </div>
                 </div>
             </div>
             <div class="col-lg-12">
+<<<<<<< HEAD
                 <div class="table-responsive rounded mb-3">
                     <table class="data-table table-hover table mb-0 tbl-server-info">
                         <thead class="bg-white text-uppercase">
                             <tr class="ligth ligth-data">
+=======
+                <div class="table-responsive-xl">
+                    <table class="table">
+                        <thead>
+                            <tr>
+>>>>>>> 8ab459d2d01550823b29ecd284f07afe3ed3cf5f
                                 <th>Mã sản phẩm</th>
                                 <th>Danh mục</th>
                                 <th>Tên sản phẩm</th>
@@ -52,8 +56,8 @@
                                     <td>{{ $product->category->name }}</td>
                                     <td>{{ Illuminate\Support\Str::limit($product->name, 10) }}</td>
                                     <td>{{ $product->brand }}</td>
-                                    <td>{{$product->price}}</td>
-                                    <td>{{$product->price_sale}}</td>
+                                    <td>{{ $product->price }}</td>
+                                    <td>{{ $product->price_sale }}</td>
                                     <td>{{ Illuminate\Support\Str::limit($product->describe, 50) }}</td>
                                     <td>{{ $product->quantity_product }}</td>
                                     <td><img src="{{ asset('upload/public/images/' . $product->image) }}"
@@ -93,6 +97,5 @@
                 </div>
             </div>
         </div>
-    @endsection
-
-
+    </div>
+@endsection

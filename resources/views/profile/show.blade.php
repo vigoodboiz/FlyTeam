@@ -12,8 +12,9 @@
                         @else
                             <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
+                                @method('POST')
                                 <input type="file" name="profile_picture">
-                                <button type="submit">Upload</button>
+                                <button type="submit" class="btn btn-success">Tải lên</button>
                             </form>
                         @endif
                     </div>

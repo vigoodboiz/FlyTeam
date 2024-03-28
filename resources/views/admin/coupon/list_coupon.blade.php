@@ -3,6 +3,11 @@
     <?php
     use Illuminate\Support\Facades\Session;
     ?>
+    <style>
+        .table th {
+            white-space: nowrap;
+        }
+    </style>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
@@ -21,6 +26,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th>STT</th>
                         <th>Tên mã giảm giá</th>
                         <th>Ngày bắt đầu</th>
                         <th>Ngày kết thúc</th>
@@ -29,8 +35,8 @@
                         <th>Điều kiện giảm giá</th>
                         <th>Số giảm</th>
                         <th>Số tiền được áp dụng</th>
+                        {{-- <th>Trạng thái</th> --}}
                         <th>Trạng thái</th>
-                        <th> Chức năng</th>
                         <th>Hành động</th>
                     </tr>
                 </thead>
@@ -38,12 +44,13 @@
 
                     @foreach ($coupon as $key => $cou)
                         <tr>
+                            <td>{{ $loop->index + 1 }}</td>
                             <td>{{ $cou->coupon_name }}</td>
                             <td>{{ $cou->coupon_date_start }}</td>
                             <td>{{ $cou->coupon_date_end }}</td>
                             <td>{{ $cou->coupon_code }}</td>
                             {{-- <td>{{ $cou->coupon_time }}</td> --}}
-                            <td>{{$cou->max}}</td>
+                            <td>{{ $cou->max }}</td>
                             <td><span class="text-ellipsis">
                                     <?php
                             if ($cou->coupon_condition == 1) {
@@ -71,7 +78,7 @@
                             }
                             ?>
                                 </span></td>
-                            <td><span class="text-ellipsis">
+                            {{-- <td><span class="text-ellipsis">
                                     <?php
                             if ($cou->coupon_status == 1) {
                             ?>
@@ -85,7 +92,7 @@
                             }
                             ?>
                                 </span>
-                            </td>
+                            </td> --}}
                             <td><span class="text-ellipsis">
                                     <?php
                             if ($cou->coupon_date_end >= $today) {

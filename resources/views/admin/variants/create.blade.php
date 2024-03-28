@@ -23,11 +23,15 @@
                 <input type="text" class="form-control" id="value" name="value">
             </div>
             <div class="mb-3">
-                <label for="value">Nhập giá</label>
+                <label for="product_name">Nhập tên sản phẩm</label>
+                <input type="text" class="form-control" id="price" name="product_name">
+            </div>
+            <div class="mb-3">
+                <label for="price">Nhập giá</label>
                 <input type="text" class="form-control" id="price" name="price">
             </div>
             <div class="mb-3">
-                <label for="value">Nhập giá sale</label>
+                <label for="price_sale">Nhập giá sale</label>
                 <input type="text" class="form-control" id="price_sale" name="price_sale">
             </div>
 

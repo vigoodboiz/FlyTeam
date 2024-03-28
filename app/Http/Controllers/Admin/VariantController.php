@@ -46,7 +46,7 @@ class VariantController extends Controller
         // return redirect()->route('variants.index')->with('success', 'Danh mục được thêm thành công!');
         $product_name = Products::where('id', $product_id)->value('name');
         $variant = new Variant();
-        $variant->product_name = $product_name;
+        $variant->product_name = $request->product_name;
         $variant->name = $request->name;
         $variant->value = $request->value;
         $variant->product_id = $request->product_id;

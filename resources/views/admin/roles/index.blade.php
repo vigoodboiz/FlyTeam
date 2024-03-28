@@ -2,6 +2,11 @@
 
 @section('title', 'Vai trò')
 @section('content')
+    <style>
+        .table th {
+            white-space: nowrap;
+        }
+    </style>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
@@ -10,10 +15,6 @@
                         <h4 class="mb-3">Danh sách vai trò</h4>
                     </div>
                     <div>
-                        @can('role_delete')
-                            <a href="#" id="deleteSelectRole" class="btn btn-danger add-list"><i class="las la-trash"></i>Xóa
-                                lựa chọn</a>
-                        @endcan
                         @can('role_create')
                             <a href="{{ route('roles.create') }}" class="btn btn-primary add-list"><i
                                     class="las la-plus mr-3"></i>Thêm vai trò</a>

@@ -17,7 +17,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&amp;family=Karma:wght@300;400;500;600;700&amp;display=swap"
         rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Plugin css -->
     <link rel="stylesheet" href="{{ asset('becute/assets/css/vendor/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -29,23 +30,28 @@
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
+    <!-- ////////////// -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-       
+
     <style>
         .chi {
-           
+
             font-family: Arial, sans-serif;
         }
+
         .chi1 {
             max-width: 1000px;
             margin: 50px auto;
         }
+
         .profile-card {
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             padding: 30px;
         }
+
         .profile-card .avatar {
             width: 120px;
             height: 120px;
@@ -53,37 +59,42 @@
             overflow: hidden;
             margin: 0 auto 20px;
         }
+
         .profile-card .avatar img {
             width: 100%;
             height: auto;
         }
+
         .profile-card h2 {
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 10px;
             text-align: center;
         }
+
         .profile-card p {
             font-size: 16px;
             color: #666;
             margin-bottom: 20px;
             text-align: center;
         }
+
         .profile-card .btn {
             width: 100%;
         }
-    
+
         .text-truncate {
             max-width: 200px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
+
         .out-of-stock {
             filter: blur(5px);
             background-color: rgba(0, 0, 0, 0.5);
         }
-        
+
         .product__card--thumbnail__container {
             position: relative;
         }
@@ -93,10 +104,11 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            color: black; 
+            color: black;
             font-weight: bold;
             z-index: 2;
         }
+
         .product__card--thumbnail__text::after {
             content: "";
             position: absolute;
@@ -104,7 +116,7 @@
             left: -100px;
             width: 500px;
             height: 50px;
-            background-color: rgba(0, 0, 0, 0.2); 
+            background-color: rgba(0, 0, 0, 0.2);
 
         }
     </style>
@@ -139,18 +151,20 @@
     <script src="{{ asset('becute/assets/js/plugins/glightbox.min.js') }}"></script>
 
 
-        <!-- All Script JS Plugins here  -->
-        <script src="{{ asset('becute/assets/js/vendor/popper.js') }}" defer="defer"></script>
-        <script src="{{ asset('becute/assets/js/vendor/bootstrap.min.js') }}" defer="defer"></script>
-        <script src="{{ asset('becute/assets/js/plugins/swiper-bundle.min.js') }}"></script>
-        <script src="{{ asset('becute/assets/js/plugins/glightbox.min.js') }}"></script>
+    <!-- All Script JS Plugins here  -->
+    <script src="{{ asset('becute/assets/js/vendor/popper.js') }}" defer="defer"></script>
+    <script src="{{ asset('becute/assets/js/vendor/bootstrap.min.js') }}" defer="defer"></script>
+    <script src="{{ asset('becute/assets/js/plugins/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('becute/assets/js/plugins/glightbox.min.js') }}"></script>
 
-        
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
     <!-- Customscript js -->
     <script src="{{ asset('becute/assets/js/script.js') }}"></script>
     <!-- fill price -->
@@ -227,4 +241,5 @@
     </script>
     {{-- @endcan --}}
 </body>
+
 </html>

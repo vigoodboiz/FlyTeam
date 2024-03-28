@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
 use App\Models\Item;
 use App\Models\CartItem;
-
+use App\Models\Variant;
 use App\Models\User;
 use App\Models\Products;
 
@@ -49,8 +49,8 @@ class Cart extends Model
     {
         return $this->hasMany(CartItem::class);
     }
-    public function variant(): BelongsTo
-    {
-        return $this->belongsTo(Variant::class);
-    }
+    // public function variant(): BelongsTo
+    // {
+    //     return $this->belongsTo(Variant::class);
+    // }
 }

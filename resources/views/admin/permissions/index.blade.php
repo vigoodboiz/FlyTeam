@@ -10,14 +10,10 @@
                         <h4 class="mb-3">Danh sách quyền truy cập</h4>
                     </div>
                     <div>
-                        @can('permission_delete')
-                            <a href="#" id="deleteAll" class="btn btn-danger add-list"><i class="las la-trash"></i>Xóa lựa
-                                chọn</a>
+                        @can('permission_create')
+                            <a href="{{ route('permissions.create') }}" class="btn btn-primary add-list"><i
+                                    class="las la-plus mr-3"></i>Thêm quyền truy cập</a>
                         @endcan
-
-                        <a href="{{ route('permissions.create') }}" class="btn btn-primary add-list"><i
-                                class="las la-plus mr-3"></i>Thêm quyền truy cập</a>
-
                     </div>
                 </div>
             </div>
@@ -82,38 +78,39 @@
                 </div>
             </div>
         </div>
-    @endsection
+    </div>
+@endsection
 
-    @push('scripts')
-        @can('permission_delete')
-            <script>
-                $(document).ready(function() {
+@push('scripts')
+    @can('permission_delete')
+        <script>
+            $(document).ready(function() {
 
-                    $("#selectAll").click(function() {
-                        $("input[type=checkbox]").prop('checked', $(this).prop('checked'));
-                    });
-
-                    $("#deleteAll").on("click", function() {
-                        var ids = [];
-                        $.each($("input[name='ids']:checked"), function() {
-                            ids.push($(this).val());
-                        });
-
-                        $.ajax({
-                            type: "DELETE",
-                            url: 'permissions/massDestroy',
-                            data: {
-                                ids: ids,
-                                _token: $('meta[name="csrf-token"]').attr('content')
-                            },
-                            dataType: "json",
-                            success: function(response) {
-                                location.reload();
-                            }
-                        });
-                    });
-
+                $("#selectAll").click(function() {
+                    $("input[type=checkbox]").prop('checked', $(this).prop('checked'));
                 });
-            </script>
-        @endcan
-    @endpush
+
+                $("#deleteAll").on("click", function() {
+                    var ids = [];
+                    $.each($("input[name='ids']:checked"), function() {
+                        ids.push($(this).val());
+                    });
+
+                    $.ajax({
+                        type: "DELETE",
+                        url: 'permissions/massDestroy',
+                        data: {
+                            ids: ids,
+                            _token: $('meta[name="csrf-token"]').attr('content')
+                        },
+                        dataType: "json",
+                        success: function(response) {
+                            location.reload();
+                        }
+                    });
+                });
+
+            });
+        </script>
+    @endcan
+@endpush

@@ -57,11 +57,6 @@ class ProductController extends Controller
             $validatedData['image'] = $imageName;
         }
         Products::create($validatedData);
-        // if ($request->variants) {
-        //     foreach ($request->variants as $variantName) {
-        //         $validatedData->variants()->create(['name' => $variantName]);
-        //     }
-        // }
         return redirect()->back()->with('success', 'Sản phẩm được thêm thành công!');
     }
     /**
@@ -99,6 +94,8 @@ class ProductController extends Controller
             'id_category' => 'required',
             'name' => 'required',
             'brand' => 'required',
+            'price' => 'required',
+            'price_sale' => 'required',
             'describe' => 'required',
             'quantity_product' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',

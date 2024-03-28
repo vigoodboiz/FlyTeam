@@ -81,7 +81,8 @@
                             </div>
                             <div class="checkout__content--step__footer d-flex align-items-center">
                                 <a class="continue__shipping--btn primary__btn border-radius-5" href="{{ route('home') }}">Tiếp tục mua hàng</a>
-                                <a class="previous__link--content" href="{{ route('cartPage') }}">Trở lại giỏ hàng</a>
+                                <a class="previous__link--content" href="{{ route('cartPage') }}">Trở lại giỏ
+                                    hàng</a>
                             </div>
                         </form>
                     </div>
@@ -104,17 +105,19 @@
                         <div class="cart__table checkout__product--table">
                             <table class="cart__table--inner">
                                 <tbody class="cart__table--body">
-                                    @foreach($cartItems as $cart)
+                                    @foreach ($cartItems as $cart)
                                     <tr class="cart__table--body__items">
                                         <td class="cart__table--body__list">
                                             <div class="product__image two  d-flex align-items-center">
                                                 <div class="product__thumbnail border-radius-5">
-                                                    <a class="display-block"><img class="display-block border-radius-5" src="{{ asset('upload/public/images/'.$cart->product->image) }}" alt="cart-product"></a>
+                                                    <a class="display-block"><img class="display-block border-radius-5" src="{{ asset('upload/public/images/' . $cart->product->image) }}" alt="cart-product"></a>
 
                                                 </div>
                                                 <div class="product__description">
                                                     <label>Tên</label>
-                                                    <h4 class="product__description--name text-truncate">{{$cart->product->name}}</h4>
+                                                    <h4 class="product__description--name text-truncate">
+                                                        {{ $cart->product->name }}
+                                                    </h4>
 
                                                 </div>
                                             </div>
@@ -122,15 +125,15 @@
                                         <td class="cart__table--body__list">
                                             <div class="product__description">
                                                 <label>SL</label>
-                                                <span class="cart__price">{{$cart->quantity}}</span>
+                                                <span class="cart__price">{{ $cart->quantity }}</span>
                                             </div>
                                         </td>
                                         <td class="cart__table--body__list">
                                             <label>Giá</label>
-                                            @if(isset($cart->product->price_sale) && $cart->product->price_sale > 0)
-                                            <span class="cart__price">{{ number_format($cart->product->price_sale, 0, ',', '.')}}đ</span>
+                                            @if (isset($cart->product->price_sale) && $cart->product->price_sale > 0)
+                                            <span class="cart__price">{{ number_format($cart->product->price_sale, 0, ',', '.') }}đ</span>
                                             @else
-                                            <span class="cart__price">{{ number_format($cart->product->price, 0, ',', '.')}}đ</span>
+                                            <span class="cart__price">{{ number_format($cart->product->price, 0, ',', '.') }}đ</span>
                                             @endif
 
                                         </td>
@@ -144,7 +147,6 @@
                         <div class="checkout__total">
                             <table class="checkout__total--table">
                                 <tbody class="checkout__total--body">
-
                                     <tr>
                                         <form action="{{ route('check_coupon') }}" method="POST">
                                             @csrf
@@ -170,7 +172,9 @@
                                     </tr>
                                     <tr class="checkout__total--items">
                                         <td class="checkout__total--amount text-left">Tổng Tiền </td>
-                                        <td class="checkout__total--amount text-right">{{ number_format($totalPrice, 0, ',', '.')}}</td>
+                                        <td class="checkout__total--amount text-right">
+                                            {{ number_format($totalPrice, 0, ',', '.') }}
+                                        </td>
                                     </tr>
                                     <tr class="checkout__total--items">
                                         <td class="checkout__total--amount text-left">Giao Hàng</td>
@@ -183,21 +187,24 @@
                                         @if ($cou['coupon_condition'] == 1)
                                         <tr>
                                             <td class="checkout__total--amount text-left">Giảm :</td>
-                                            <td class="checkout__total--amount text-right">{{ $cou['coupon_number'] }} %</td>
+                                            <td class="checkout__total--amount text-right">
+                                                {{ $cou['coupon_number'] }} %
+                                            </td>
                                         </tr>
                                         <p>
                                             <?php
                                             $total_coupon = ($totalPrice * $cou['coupon_number']) / 100;
-                                            
-
                                             echo '<tr><td class="checkout__total--amount text-left" >Giảm :' . number_format($total_coupon, 0, ',', '.') . '</td></tr>';
                                             ?>
                                         </p>
                                         <p>
                                             <tr>
-                                                <td class="checkout__total--amount text-left">Số tiền trả :</td>
+                                                <td class="checkout__total--amount text-left">Số tiền
+                                                    trả :</td>
 
-                                                <td class="checkout__total--amount text-right"> {{ number_format($totalPrice - $total_coupon, 0, ',', '.') }}</td>
+                                                <td class="checkout__total--amount text-right">
+                                                    {{ number_format($totalPrice - $total_coupon, 0, ',', '.') }}
+                                                </td>
 
 
                                             </tr>
@@ -205,8 +212,11 @@
                                         </p>
                                         @elseif($cou['coupon_condition'] == 2)
                                         <tr>
-                                            <td class="checkout__total--amount text-left">Số tiền giảm :</td>
-                                            <td class="checkout__total--amount text-right">{{ number_format($cou['coupon_number'], 0, ',', '.') }}</td>
+                                            <td class="checkout__total--amount text-left">Số tiền giảm
+                                                :</td>
+                                            <td class="checkout__total--amount text-right">
+                                                {{ number_format($cou['coupon_number'], 0, ',', '.') }}
+                                            </td>
                                         </tr>
                                         <p>
                                             <?php
@@ -216,9 +226,12 @@
                                         </p>
                                         <p>
                                             <tr>
-                                                <td class="checkout__total--amount text-left">Số tiền trả :</td>
+                                                <td class="checkout__total--amount text-left">Số tiền
+                                                    trả :</td>
 
-                                                <td class="checkout__total--amount text-right"> {{ number_format($total_coupon, 0, ',', '.') }}</td>
+                                                <td class="checkout__total--amount text-right">
+                                                    {{ number_format($total_coupon, 0, ',', '.') }}
+                                                </td>
 
                                             </tr>
                                         </p>
@@ -236,7 +249,8 @@
                                 display: block;
                                 margin-right: 10px;
                                 width: 50px;
-                                margin-left: 20px; /* Thêm cách lề trái 20px */
+                                margin-left: 20px;
+                                /* Thêm cách lề trái 20px */
                             }
 
                             .method-item {
@@ -259,7 +273,8 @@
 
                             .method-item .image {
                                 margin-right: 20px;
-                                 margin-left: 20px; /* Thêm cách lề trái 20px */
+                                margin-left: 20px;
+                                /* Thêm cách lề trái 20px */
                             }
 
                             .method-item .image img {
@@ -289,23 +304,23 @@
                             .hihi {
                                 margin-left: 100px;
                             }
-                            .gui{
+
+                            .gui {
                                 width: 100%;
                                 height: 40px;
                             }
-                            
                         </style>
 
 
                         <hr>
                         <h3 class="hihi">Vui Lòng Chọn Phương Thức Thanh Toán </h3>
-                        @if(session('success'))
+                        @if (session('success'))
                         <div class="alert alert-success">
                             {{ session('success') }}
                         </div>
                         @endif
 
-                        @if(session('error'))
+                        @if (session('error'))
                         <div class="alert alert-danger">
                             {{ session('error') }}
                         </div>
@@ -391,7 +406,7 @@
                                     var totalMomo = document.createElement("input");
                                     totalMomo.setAttribute("type", "hidden");
                                     totalMomo.setAttribute("name", "total_momo");
-                                    totalMomo.setAttribute("value", "{{ $totalPrice  - $total_coupon }}");
+                                    totalMomo.setAttribute("value", "{{ $totalPrice - $total_coupon }}");
                                     form.appendChild(totalMomo);
                                 }
 
