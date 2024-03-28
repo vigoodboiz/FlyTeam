@@ -76,7 +76,7 @@ class CartController extends Controller
     {
         try {
             $userId = Auth::id();
-            $cartItems = Cart::where('user_id', $userId)->get();
+            $cartItems = Cart::where('user_id', $userId)->orderBy('created_at', 'DESC')->get();
 
             $totalPrice = $this->calculateTotalPrice();
             $new_product = Products::orderBy('created_at', 'DESC')->limit(3)->get();
@@ -91,7 +91,7 @@ class CartController extends Controller
 
     public function store(Request $request, string $id)
     {
-        try {
+       
             $product = Products::query()->find($id);
             $userId = auth()->user()->id;
 
@@ -99,13 +99,13 @@ class CartController extends Controller
             $cartItem = Cart::where('user_id', $userId)
                 ->where('product_id', $id)
                 ->first();
-
             if ($cartItem) {
                 if ($request->quantity > $product->quantity_product) {
                     return back()->with('error', 'Không thể thêm sản phẩm vào giỏ hàng - sản phẩm vượt quá số lượng cho phép');
                 } elseif ($request->quantity == 0) {
                     return back()->with('error', 'Không thể thêm sản phẩm vào giỏ hàng - số lượng không được bằng 0');
-                } else {
+                } 
+                else {
                     $existingCartItem = Cart::where('product_id', $id)
                         ->where('user_id', $userId)
                         ->where('variants', $request->variantName)
@@ -117,7 +117,11 @@ class CartController extends Controller
                         $existingCartItem->save();
 
                         return back()->with('success', 'Số lượng sản phẩm tăng thành công!');
-                    } else {
+                    }
+                    elseif($request->variantName == ""){
+                        return back()->with('error', 'Không thể thêm sản phẩm vào giỏ hàng - vui lòng chọn biến thể');
+                    }
+                     else {
                         if ($request->quantity > 0 && $request->quantity <= $product->quantity_product) {
                             Cart::create([
                                 'quantity' => $request->quantity,
@@ -135,7 +139,10 @@ class CartController extends Controller
                         }
                     }
                 }
-            } else {
+            } elseif($request->variantName == ""){
+                return back()->with('error', 'Không thể thêm sản phẩm vào giỏ hàng - vui lòng chọn biến thể');
+            }
+            else {
                 // Sản phẩm chưa tồn tại thì thêm mới
                 if ($request->quantity > 0 && $request->quantity <= $product->quantity_product) {
                     Cart::create([
@@ -153,11 +160,7 @@ class CartController extends Controller
                     return back()->with('error', 'Không thể thêm sản phẩm vào giỏ hàng - sản phẩm vượt quá số lượng cho phép');
                 }
             }
-        } catch (\Exception $exception) {
-            Log::error('CartController@store: ' . $exception->getMessage());
-
-            return back()->with('error', 'Không thể thêm sản phẩm vào giỏ hàng - Vui lòng đăng nhập để tiếp tục!');
-        }
+       
     }
     public function calculateTotalPrice()
     {

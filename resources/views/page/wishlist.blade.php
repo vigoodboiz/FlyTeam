@@ -66,9 +66,7 @@
                                                             class="in__stock text__secondary">{{ $item->created_at->format('d/m/Y') }}</span>
                                                     </td>
                                                     <td class="cart__table--body__list text-right">
-                                                        <a class="wishlist__cart--btn primary__btn" href="cart.html">Thêm
-                                                            giỏ
-                                                            hàng</a>
+                                                        <a class="wishlist__cart--btn primary__btn" href="{{ route('shopDetails', $item->id) }}">Xem</a>
                                                     </td>
                                                 </tr>
                                             @endforeach

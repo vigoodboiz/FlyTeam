@@ -47,6 +47,57 @@ class CheckoutController extends Controller
 
 
 
+    // public function post_checkout(Request $request)
+    // {
+    //     $userId = Auth::user()->id;
+    //     $cart = Cart::where('user_id', $userId)->get();
+    //     $note = $request->input('note') ?? '';
+
+    //     if (!$cart) {
+    //         return redirect()->route('shopGrid')->with('error', 'Bạn không có đơn hàng nào cả!');
+    //     } else {
+    //         foreach ($cart as $cartItem) {
+    //             $order = new Order();
+    //             $order->cart_id = $cartItem->id;
+    //             $order->user_id = Auth::user()->id;
+    //             $order->product_id = $cartItem->product_id;
+    //             $order->quantity = $cartItem->quantity;
+    //             $order->total_price = $cartItem->total_price;
+    //             $order->note = $note;
+    //             $order->payment_status = 'Đang xác nhận';
+    //             $order->delivery_status = 'Đang xử lý';
+    //             $order->save();
+
+    //             $product = Products::find($cartItem->product_id);
+    //             $product->decrement('quantity_product', $cartItem->quantity);
+
+    //             $usedCouponId = $request->input('coupon');
+
+    //             $coupon = Coupon::find($usedCouponId);
+    //             if ($coupon) {
+    //                 $coupon->coupon_time--;
+    //                 $coupon->save();
+    //             }
+
+    //             Session::start();
+    //             Session::forget('coupon');
+    //         }
+
+    //         $userId = auth::user()->id;
+    //         $userMail = auth::user()->email;
+    //         $userName = auth::user()->name;
+    //         $carts = Cart::where('user_id', $userId)->get();
+    //         $Mail = Mail::to($userMail)->send(new TestMail($userName));
+    //         $carts = Cart::where('user_id', $userId)->get();
+    //         foreach ($carts as $cart) {
+    //             $cart->delete();
+    //         }
+
+
+    //         return redirect()->route('history')->with('success', 'Đặt hàng thành công!');
+    //     }
+    // }
+
     public function post_checkout(Request $request)
     {
         $userId = Auth::user()->id;
@@ -57,12 +108,27 @@ class CheckoutController extends Controller
             return redirect()->route('shopGrid')->with('error', 'Bạn không có đơn hàng nào cả!');
         } else {
             foreach ($cart as $cartItem) {
+                Session::start();
+                if (Session::has('coupon') && is_array(Session::get('coupon'))) {
+                    foreach (Session::get('coupon') as $key => $cou) {
+                        if ($cou['coupon_condition'] == 1) {
+                            $total_coupon = ($cartItem->total_price * $cou['coupon_number']) / 100;
+                        } elseif ($cou['coupon_condition'] == 2) {
+                            $total_coupon = $cou['coupon_number'];
+                        }
+                    }
+                } else {
+                    $total_coupon = 0;
+                }
+
+
+
                 $order = new Order();
                 $order->cart_id = $cartItem->id;
                 $order->user_id = Auth::user()->id;
                 $order->product_id = $cartItem->product_id;
                 $order->quantity = $cartItem->quantity;
-                $order->total_price = $cartItem->total_price;
+                $order->total_price = $cartItem->total_price - $total_coupon;
                 $order->note = $note;
                 $order->payment_status = 'Đang xác nhận';
                 $order->delivery_status = 'Đang xử lý';
@@ -93,7 +159,6 @@ class CheckoutController extends Controller
                 $cart->delete();
             }
 
-
             return redirect()->route('history')->with('success', 'Đặt hàng thành công!');
         }
     }
@@ -113,14 +178,28 @@ class CheckoutController extends Controller
 
             if ($cart->isNotEmpty()) {
                 foreach ($cart as $cartItem) {
+
+                    Session::start();
+                    if (Session::has('coupon') && is_array(Session::get('coupon'))) {
+                        foreach (Session::get('coupon') as $key => $cou) {
+                            if ($cou['coupon_condition'] == 1) {
+                                $total_coupon = ($cartItem->total_price * $cou['coupon_number']) / 100;
+                            } elseif ($cou['coupon_condition'] == 2) {
+                                $total_coupon = $cou['coupon_number'];
+                            }
+                        }
+                    } else {
+                        $total_coupon = 0;
+                    }
+
                     $order = new Order();
                     $order->cart_id = $cartItem->id;
                     $order->user_id = Auth::user()->id;
                     $order->product_id = $cartItem->product_id;
                     $order->quantity = $cartItem->quantity;
-                    $order->total_price = $cartItem->total_price;
+                    $order->total_price = $cartItem->total_price -$total_coupon;
                     $order->note = $note;
-                    $order->payment_status = 'Đã Thanh Toán';
+                    $order->payment_status = 'Đã thanh toán';
                     $order->delivery_status = 'Đang xử lý';
                     $order->save();
 
@@ -175,14 +254,28 @@ class CheckoutController extends Controller
 
             if ($cart->isNotEmpty()) {
                 foreach ($cart as $cartItem) {
+
+                    Session::start();
+                if (Session::has('coupon') && is_array(Session::get('coupon'))) {
+                    foreach (Session::get('coupon') as $key => $cou) {
+                        if ($cou['coupon_condition'] == 1) {
+                            $total_coupon = ($cartItem->total_price * $cou['coupon_number']) / 100;
+                        } elseif ($cou['coupon_condition'] == 2) {
+                            $total_coupon = $cou['coupon_number'];
+                        }
+                    }
+                }else{
+                    $total_coupon = 0;
+                }
+
                     $order = new Order();
                     $order->cart_id = $cartItem->id;
                     $order->user_id = Auth::user()->id;
                     $order->product_id = $cartItem->product_id;
                     $order->quantity = $cartItem->quantity;
-                    $order->total_price = $cartItem->total_price;
+                    $order->total_price = $cartItem->total_price - $total_coupon;
                     $order->note = $note;
-                    $order->payment_status = 'Đã Thanh Toán';
+                    $order->payment_status = 'Đã thanh toán';
                     $order->delivery_status = 'Đang xử lý';
                     $order->save();
 
@@ -224,6 +317,7 @@ class CheckoutController extends Controller
             return redirect()->back()->with('success', 'Đơn đặt hàng đã được hủy thành công!');
         } else {
             $order->payment_status = 'Đã xác nhận';
+
             $order->save();
             return redirect()->back()->with('error', 'Đơn hàng của bạn đã được xác nhận - Bạn không thể hủy đơn hàng!');
         }

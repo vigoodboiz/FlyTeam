@@ -18,7 +18,7 @@
                     </div>
                 </div>
             </div>
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>Tên mã giảm giá</th>

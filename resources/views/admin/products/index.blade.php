@@ -26,7 +26,7 @@
             </div>
             <div class="col-lg-12">
                 <div class="table-responsive rounded mb-3">
-                    <table class="data-table table mb-0 tbl-server-info">
+                    <table class="data-table table-hover table mb-0 tbl-server-info">
                         <thead class="bg-white text-uppercase">
                             <tr class="ligth ligth-data">
                                 <th>Mã sản phẩm</th>
@@ -59,17 +59,17 @@
                                     <td><img src="{{ asset('upload/public/images/' . $product->image) }}"
                                             alt="{{ $product->name }}" width="500px">
                                     <td>{{ $product->view_count }}</td>
-                                    <td> <a href="{{ route('index', $product->id) }}" class="btn btn-success">Ảnh
+                                    <td> <a href="{{ route('index', $product->id) }}" class="btn btn-success"><i class="bi bi-card-image"></i>
                                         </a>
                                     </td>
                                     <td> <a href="{{ route('variants.index', $product->id) }}"
-                                            class="btn btn-success">Thuộc tính
+                                            class="btn btn-success"><i class="bi bi-view-list"></i>
                                         </a>
                                     </td>
                                     <td>
 
                                         @can('product_edit')
-                                            <a href="{{ route('products.edit', $product->id) }}" class="btn btn-danger"><i
+                                            <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary"><i
                                                     class="fa-solid fa-pen"></i></a>
                                         @endcan
 

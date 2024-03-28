@@ -187,8 +187,8 @@
                                         </tr>
                                         <p>
                                             <?php
-                                            $total_coupon = min((($totalPrice * $cou['coupon_number']) / 100), 30000);
-                                            // min($totalAmount * ($discountPercent / 100), 30000);
+                                            $total_coupon = ($totalPrice * $cou['coupon_number']) / 100;
+                                            
 
                                             echo '<tr><td class="checkout__total--amount text-left" >Giảm :' . number_format($total_coupon, 0, ',', '.') . '</td></tr>';
                                             ?>
